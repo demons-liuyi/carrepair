@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="fonts/css/vendor.bundle.base.css" />
+		<link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.css" />
+		<link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.min.css" />
+		<style>
+			#header {
+				width: auto;
+				height: 70px;
+				border: 0px solid red;
+				background-color: aliceblue;
+			}
+			
+			#buttondiv {
+				width: auto;
+				height: 50px;
+				border: 0px solid red;
+				background-color: antiquewhite;
+			}
+			
+			h2 {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			#selectdiv {
+				float: right;
+				display: inline-block;
+				height: 40px;
+				width: 600px;
+				border: 0px solid red;
+				margin-top: 18px;
+			}
+			
+			#rightbuttondiv {
+				float: right;
+			}
+			
+			#buttondivul {
+				list-style-type: none;
+				margin-top: 13px;
+				margin-right: 40px;
+			}
+			
+			li {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			#font {
+				font-size: 18px;
+			}
+			
+			#img {
+				color: orange;
+			}
+			
+			#selectbtn {
+				background-color: orange;
+				color: white;
+			}
+			
+			#staffquery {
+				display: none;
+				border: 1px solid green;
+				position: absolute;
+				left: 350px;
+				top: 100px;
+				width: 950px;
+				height: 510px;
+				background-color: white;
+				z-index: 555;
+			}
+			
+			#staffqueryspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#staffqueryh2 {
+				margin-bottom: 15px;
+			}
+			
+			#staffquerylinediv {
+				background-color: darkblue;
+				width: 950px;
+				height: 20px;
+				color: white;
+			}
+			
+			#staffquerymarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 750px;
+				top: 36px;
+			}
+			
+			#staffqueryfork {
+				font-size: 32px;
+				position: absolute;
+				left: 880px;
+				top: 40px;
+			}
+			
+			#staffquerycontent {
+				width: 903px;
+				height: 400px;
+				margin-left: 21px;
+				background-color: wheat;
+			}
+			
+			#fnuctiondiv {
+				width: auto;
+				height: 40px;
+				border: 0px solid lightskyblue;
+				background-color: lightskyblue;
+			}
+			
+			#functionul {
+				list-style-type: none;
+				margin-top: 9px;
+				margin-right: 40px;
+				font-size: 16px;
+				display: inline-block;
+			}
+			
+			#functionli {
+				padding-left: 30px;
+			}
+			
+			#functionupdiv {
+				border: 0px solid red;
+				width: 30px;
+				height: 40px;
+				display: inline-block;
+				float: right;
+				margin-right: 10px;
+				color: dodgerblue;
+			}
+			
+			#trigon {
+				padding-left: 7px;
+			}
+			
+			.customer {
+				display: none;
+			}
+			
+			.car {
+				display: none;
+			}
+			
+			#customerinfo {
+				width: 1666px;
+				height: 400px;
+				border: 0px solid red;
+				overflow: scroll;
+			}
+			
+			#carinfo {
+				width: 1666px;
+				height: 200px;
+				border: 0px solid red;
+				overflow: scroll;
+			}
+			
+			#pastdiv {
+				width: auto;
+				height: 40px;
+				border: 0px solid lightskyblue;
+				background-color: white;
+				color: darkgray;
+			}
+			
+			.color {
+				color: lightskyblue;
+			}
+			
+			#addcustomerandcar {
+				display: none;
+				width: 1112px;
+				height: 575px;
+				border: 1px solid red;
+				position: absolute;
+				left: 200px;
+				top: 80px;
+				background-color: white;
+				z-index: 888;
+			}
+			
+			#addcustomerandcarlinediv {
+				background-color: darkblue;
+				width: 1112px;
+				height: 20px;
+			}
+			
+			#addcustomerandcarspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#savebtn {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 900px;
+				top: 42px;
+			}
+			
+			#addcustomerandcarcontent {
+				width: 1060px;
+				margin-left: 25px;
+				margin-top: 15px;
+				height: 450px;
+				background-color: wheat;
+			}
+			
+			#closespan {
+				font-size: 32px;
+				position: absolute;
+				left: 1040px;
+				top: 45px;
+			}
+			
+			#info {
+				padding-top: 20px;
+			}
+			
+			#word {
+				margin-left: 30px;
+			}
+			
+			#selectcity {
+				border: 1px solid green;
+				position: absolute;
+				left: 400px;
+				top: 40px;
+				width: 700px;
+				height: 600px;
+				background-color: whitesmoke;
+				display: none;
+				z-index: 999;
+			}
+			
+			#selectcityh2 {
+				margin-bottom: 15px;
+			}
+			
+			#selectcityspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#selectcitylinediv {
+				background-color: darkblue;
+				width: 700px;
+				height: 20px;
+			}
+			
+			#selectcitydiv {
+				border: 0px solid deepskyblue;
+			}
+			
+			#selectcitycontentdiv {
+				border: 0px solid deepskyblue;
+				background-color: white;
+				width: 650px;
+				height: 450px;
+				margin-left: 20px;
+				overflow: -webkit-paged-y;
+			}
+			
+			#selectcityremove {
+				font-size: 32px;
+				position: absolute;
+				left: 640px;
+				top: 45px;
+			}
+			
+			#selectcitymarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 500px;
+				top: 42px;
+			}
+			
+			#brandmodels {
+				width: 1150px;
+				height: 650px;
+				border: 0px solid red;
+				position: absolute;
+				left: 200px;
+				top: 50px;
+				background-color: whitesmoke;
+				z-index: 999;
+				display: none;
+			}
+			
+			#brandmodelslinediv {
+				background-color: darkblue;
+				width: 1150px;
+				height: 20px;
+			}
+			
+			#brandmodelsspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#brandmodelsh2 {
+				margin-bottom: 15px;
+			}
+			
+			#brandmodelsmarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 900px;
+				top: 42px;
+			}
+			
+			#brandmodelscolse {
+				background-color: gray;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 1020px;
+				top: 42px;
+			}
+			
+			#select {
+				background-color: orange;
+				color: white;
+			}
+			
+			#carbrand {
+				margin-left: 30px;
+				margin-top: 10px;
+				width: 300px;
+				height: 500px;
+				background-color: white;
+				display: inline-block;
+				overflow: scroll;
+			}
+			
+			#cartype {
+				margin-left: 30px;
+				width: 755px;
+				height: 500px;
+				background-color: white;
+				display: inline-block;
+				overflow: scroll;
+			}
+			
+			#customerclassify {
+				width: 850px;
+				height: 650px;
+				border: 0px solid red;
+				position: absolute;
+				left: 400px;
+				top: 50px;
+				background-color: whitesmoke;
+				z-index: 999;
+				display: none;
+			}
+			
+			#customerclassifylinediv {
+				background-color: darkblue;
+				width: 850px;
+				height: 20px;
+			}
+			
+			#customerclassifyh2 {
+				position: absolute;
+				top: 10px;
+			}
+			
+			#customerclassifycolse {
+				background-color: gray;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 720px;
+				top: 27px;
+			}
+			
+			#customerclassifyheader {
+				background-color: white;
+				height: 50px;
+			}
+			
+			#customerclassifybody {
+				width: 850px;
+				height: 580px;
+				background-color: whitesmoke;
+			}
+			
+			#customerclassifytable {
+				background-color: white;
+				height: 400px;
+				width: 800px;
+				margin-left: 25px;
+				overflow: scroll;
+			}
+			
+			#selectemployee {
+				border: 1px solid green;
+				position: absolute;
+				left: 570px;
+				top: 100px;
+				width: 500px;
+				height: 550px;
+				background-color: lightgray;
+				display: none;
+				z-index: 999;
+			}
+			
+			#selectemployeeh2 {
+				margin-bottom: 15px;
+			}
+			
+			#selectemployeespan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#selectemployeelinediv {
+				background-color: darkblue;
+				width: 500px;
+				height: 20px;
+			}
+			
+			#selectemployeediv {
+				border: 0px solid deepskyblue;
+			}
+			
+			#selectemployeecontentdiv {
+				border: 1px solid deepskyblue;
+				width: 450px;
+				height: 450px;
+				margin-left: 20px;
+			}
+			
+			#selectemployeeremove {
+				font-size: 32px;
+				position: absolute;
+				left: 440px;
+				top: 45px;
+			}
+			
+			#selectemployeemarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 300px;
+				top: 42px;
+			}
+			
+			#carnumber {
+				width: 500px;
+				height: 450px;
+				border: 1px solid red;
+				position: absolute;
+				left: 600px;
+				top: 100px;
+				z-index: 999;
+				display: none;
+				background-color: white;
+			}
+			
+			#carnumberlinediv {
+				background-color: darkblue;
+				width: 500px;
+				height: 20px;
+			}
+			
+			#carnumberspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#carnumberh2 {
+				margin-bottom: 15px;
+			}
+			
+			#carnumberremove {
+				font-size: 32px;
+				position: absolute;
+				left: 440px;
+				top: 45px;
+			}
+			
+			#carnumbercontent {
+				width: 450px;
+				height: 340px;
+				margin-left: 23px;
+				background-color: whitesmoke;
+			}
+			
+			#fueltype {
+				width: 700px;
+				height: 600px;
+				position: absolute;
+				left: 500px;
+				top: 60px;
+				background-color: white;
+				z-index: 999;
+				display: none;
+			}
+			
+			#fueltypeheader {
+				width: 700px;
+				height: 80px;
+				background-color: whitesmoke;
+			}
+			
+			#fueltyperemove {
+				font-size: 32px;
+				position: absolute;
+				left: 650px;
+				top: 25px;
+			}
+			
+			#fueltypefunction {
+				width: 700px;
+				background-color: darkgray;
+				height: 50px;
+			}
+			
+			#fueltypemarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 500px;
+				top: 24px;
+			}
+			
+			#fueltypetable {
+				overflow: scroll;
+			}
+			
+			#customerdata {
+				width: 900px;
+				height: 500px;
+				border: 1px solid red;
+				position: absolute;
+				left: 300px;
+				top: 80px;
+				background-color: white;
+				z-index: 999;
+				display: none;
+			}
+			
+			#customerdatalinediv {
+				background-color: darkblue;
+				width: 900px;
+				height: 20px;
+			}
+			
+			#customerdatamarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 680px;
+				top: 42px;
+			}
+			
+			#customerdataremove {
+				font-size: 32px;
+				position: absolute;
+				left: 830px;
+				top: 45px;
+			}
+			
+			#customerdatacontent {
+				width: 850px;
+				height: 385px;
+				margin-left: 25px;
+				background-color: whitesmoke;
+			}
+			
+			#updateword {
+				position: absolute;
+				left: 400px;
+				top: 150px;
+				width: 698px;
+				height: 400px;
+				border: 1px solid red;
+				background-color: white;
+				z-index: 888;
+				display: none;
+			}
+			
+			#updatewordlinediv {
+				background-color: darkblue;
+				width: 698px;
+				height: 20px;
+			}
+			
+			#updatewordmarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 480px;
+				top: 42px;
+			}
+			
+			#updatewordremove {
+				font-size: 32px;
+				position: absolute;
+				left: 630px;
+				top: 45px;
+			}
+			
+			#updatewordcontent {
+				width: 650px;
+				height: 290px;
+				margin-left: 22px;
+				background-color: wheat;
+			}
+			
+			#carinfoedit {
+				position: absolute;
+				left: 300px;
+				top: 120px;
+				width: 1000px;
+				height: 500px;
+				border: 1px solid red;
+				background-color: white;
+				z-index: 888;
+				display: none;
+			}
+			
+			#carinfoeditlinediv {
+				background-color: darkblue;
+				width: 1000px;
+				height: 20px;
+			}
+			
+			#carinfoeditmarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 800px;
+				top: 42px;
+			}
+			
+			#carinfoeditremove {
+				font-size: 32px;
+				position: absolute;
+				left: 930px;
+				top: 45px;
+			}
+			
+			#carinfoeditcontent {
+				width: 957px;
+				margin-left: 20px;
+				margin-top: 15px;
+				height: 375px;
+				background-color: whitesmoke;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：车辆资料编辑
+            -->
+			<div id="carinfoedit">
+				<div id="carinfoeditlinediv">
+					<span id="selectemployeespan">车辆资料编辑</span>
+				</div>
+				<div>
+					<h2 id="selectemployeeh2">车辆资料编辑</h2>
+					<button id="carinfoeditmarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 保存
+					</button>
+					<span @click="closecarinfoedit()" id="carinfoeditremove" class="glyphicon glyphicon-remove"></span>
+				</div>
+				<div id="carinfoeditcontent">
+					<p style="padding-top: 15px;">
+						<span style="margin-left: 20px;">车牌号码：</span>
+						<select @click="opencarnumber()" style="width: 85px;">
+
+						</select>
+						<span style="margin-left: 20px;">车辆品牌：</span>
+						<select @click="openbrandmodels()" style="width: 155px;">
+
+						</select>
+						<span style="margin-left: 20px;">车辆型号：</span>
+						<input style="width: 145px;" type="text" />
+						<span style="margin-left: 20px;">驾驶员：</span>
+						<input style="width: 145px;" type="text" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">驾驶员电话：</span><input type="text" />
+						<span style="margin-left: 20px;">出生日期：</span><input type="date" />
+						<span style="margin-left: 20px;">车辆归属：</span>
+						<select @click="openfueltype()" style="width: 165px;">
+
+						</select>
+						<span style="margin-left: 20px;">驾证到期：</span><input type="date" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">车架号：</span><input type="text" />
+						<span style="margin-left: 20px;">发动机号：</span><input type="text" />
+						<span style="margin-left: 20px;">车辆年款：</span><input type="text" />
+						<span style="margin-left: 20px;">里程：</span><input type="text" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">发动机品牌：</span>
+						<select style="width: 365px;">
+							<option></option>
+						</select>
+						<span style="margin-left: 20px;">载重：</span><input type="text" />
+						<span style="margin-left: 20px;">购买日期：</span><input type="date" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">上牌日期：</span><input type="date" />
+						<span style="margin-left: 20px;">车检日期：</span><input type="date" />
+						<span style="margin-left: 20px;">燃油类别：</span>
+						<select @click="openfueltype()" style="width: 165px;">
+						</select>
+						<span style="margin-left: 20px;">车系：</span>
+						<input type="text" />
+
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">保险：交强险保险公司：</span>
+						<select style="width: 165px;">
+							<option></option>
+						</select>
+						<span style="margin-left: 20px;">交强险到期：</span><input type="date" />
+						<span style="margin-left: 20px;">在我投保车：</span>
+						<input type="checkbox" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">商业险保险公司：</span>
+						<select style="width: 165px;">
+							<option></option>
+						</select>
+						<span style="margin-left: 20px;">商业险到期：</span><input type="date" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">下次保养里程：</span>
+						<input type="text" />
+						<span style="margin-left: 20px;">下次保养日期：</span><input type="date" />
+						<span style="margin-left: 20px;">客户名称：</span>
+						<input style="width: 255px;" type="text" />
+					</p>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：修改口令
+            -->
+			<div id="updateword">
+				<div id="updatewordlinediv">
+					<span id="selectemployeespan">修改口令</span>
+				</div>
+				<div>
+					<h2 id="selectemployeeh2">修改口令</h2>
+					<button id="updatewordmarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 保存
+					</button>
+					<span @click="closeupdateword()" id="updatewordremove" class="glyphicon glyphicon-remove"></span>
+				</div>
+				<div id="updatewordcontent">
+					<p style="margin-left: 150px;padding-top: 50px;">
+						<span>会员卡号：</span><input style="width: 180px;" type="text" />
+					</p>
+					<p style="margin-left: 150px;padding-top: 50px;">
+						<span>客户消费密码：</span><input style="width: 180px;" type="text" />
+					</p>
+					<p style="margin-left: 150px;padding-top: 50px;">
+						<span>重新确认：</span><input style="width: 180px;" type="text" />
+					</p>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：客户资料编辑
+            -->
+			<div id="customerdata">
+				<div id="customerdatalinediv">
+					<span id="selectemployeespan">客户资料编辑</span>
+				</div>
+				<div>
+					<h2 id="selectemployeeh2">客户资料编辑</h2>
+					<button id="customerdatamarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 保存
+					</button>
+					<span @click="closecustomerdata()" id="customerdataremove" class="glyphicon glyphicon-remove"></span>
+				</div>
+				<div id="customerdatacontent">
+					<p style="padding-top: 20px;">
+						<span style="margin-left: 20px;">客户编号：</span><input style="width: 170px;" type="text" />
+						<span style="margin-left: 20px;">客户名称：</span><input style="width: 80px;" type="text" />
+						<span style="margin-left: 20px;">联系人：</span><input style="width: 80px;" type="text" />
+						<span style="margin-left: 20px;">手机：</span><input style="width: 150px;" type="text" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">客户地址：</span><input style="width: 510px;" type="text" />
+						<span style="margin-left: 20px;">客户生日：</span><input type="date" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">账期(天)：</span><input style="width: 50px;" type="number" />
+						<span style="margin-left: 20px;">挂账额度：</span><input style="width: 80px;" type="text" />
+						<span style="margin-left: 20px;">专属顾问：</span>
+						<select @click="openselectemployee()" style="width: 165px;">
+
+						</select>
+						<span style="margin-left: 20px;">顾问电话：</span><input style="width: 145px;" type="text" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">省：</span><input style="width: 100px;" type="text" />
+						<select @click="openselectcity()" style="width: 105px;">
+
+						</select>
+						<span style="margin-left: 20px;">市：</span><input style="width: 100px;" type="text" />
+						<select style="width: 105px;">
+
+						</select>
+						<span style="margin-left: 20px;">区：</span><input style="width: 100px;" type="text" />
+						<select style="width: 105px;">
+
+						</select>
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">备注：</span><input style="width: 750px;" type="text" />
+
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">纳税人识别号：</span>
+						<input style="width: 180px;" type="text" />
+						<span style="margin-left: 20px;">注册电话：</span>
+						<input style="width: 150px;" type="text" />
+						<span style="margin-left: 20px;">开户银行：</span>
+						<input style="width: 150px;" type="text" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">银行账号：</span>
+						<input style="width: 180px;" type="text" />
+						<span style="margin-left: 20px;">注册地址：</span>
+						<input style="width: 420px;" type="text" />
+					</p>
+					<p style="padding-top: 10px;">
+						<span style="margin-left: 20px;">其他一：</span><input style="width: 120px;" type="text" />
+						<span style="margin-left: 20px;">其他二：</span><input style="width: 120px;" type="text" />
+						<span style="margin-left: 20px;">其他三：</span><input style="width: 120px;" type="text" />
+						<span style="margin-left: 20px;">其他四：</span><input style="width: 120px;" type="text" />
+					</p>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：选择员工
+            -->
+			<div id="selectemployee">
+				<div id="selectemployeelinediv">
+					<span id="selectemployeespan">选择员工</span>
+				</div>
+				<div id="selectemployeediv">
+					<h2 id="selectemployeeh2">选择员工</h2>
+					<button id="selectemployeemarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 确定
+					</button>
+					<span @click="closeselectemployee()" id="selectemployeeremove" class="glyphicon glyphicon-remove"></span>
+					<div>
+						<div id="selectemployeecontentdiv">
+							<select style="width: 450px;">
+								<option></option>
+							</select>
+							<select style="width: 450px;">
+								<option></option>
+							</select>
+							<table border="1px" class="table">
+								<thead>
+									<tr style="background-color: deepskyblue;">
+										<td></td>
+										<td>部门名称</td>
+										<td>工号</td>
+										<td>姓名</td>
+									</tr>
+								</thead>
+								<tbody>
+									<td style="width: 40px;">
+										<span style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+									</td>
+									<td>领用日期</td>
+									<td>员工编号</td>
+									<td>员工编号</td>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：燃油类别
+            -->
+			<div id="fueltype">
+				<div id="fueltypeheader">
+					<h2>选择内容设置</h2>
+					<button id="fueltypemarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 选择
+					</button>
+					<span @click="closefueltype()" id="fueltyperemove" class="glyphicon glyphicon-remove"></span>
+				</div>
+				<div id="fueltypefunction">
+					<ul style="border: 0px solid red;float: right; margin-right: 60px;margin-top: 15px;">
+						<li>
+							<span id="img" class="glyphicon glyphicon-edit"></span>
+							<span id="font">修改</span>
+						</li>
+						<li>
+							<span id="img" class="glyphicon glyphicon-save-file"></span>
+							<span id="font">保存</span>
+						</li>
+					</ul>
+				</div>
+				<div id="fueltypetable">
+					<table border="1px" class="table">
+						<thead>
+							<tr style="background-color: deepskyblue;">
+								<td></td>
+								<td>序号</td>
+								<td>燃油类别</td>
+							</tr>
+						</thead>
+						<tbody>
+							<td></td>
+							<td>序号</td>
+							<td>燃油类别</td>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：车牌字
+            -->
+			<div id="carnumber">
+				<div id="carnumberlinediv">
+					<span id="carnumberspan">车牌字</span>
+				</div>
+				<h2 id="carnumberh2">车牌字</h2>
+				<span @click="closecarnumber()" id="carnumberremove" class="glyphicon glyphicon-remove"></span>
+				<div id="carnumbercontent">
+					<p style="margin-left: 80px;padding-top: 20px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
+					</p>
+					<p style="margin-left: 80px;padding-top: 5px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
+					</p>
+					<p style="margin-left: 80px;padding-top: 5px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
+					</p>
+					<p style="margin-left: 80px;padding-top: 5px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
+					</p>
+					<p style="margin-left: 80px;padding-top: 5px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
+					</p>
+					<p style="margin-left: 80px;padding-top: 5px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
+					</p>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：客户分类
+            -->
+			<div id="customerclassify">
+				<div id="customerclassifylinediv">
+					<span id="brandmodelsspan">客户分类</span>
+				</div>
+				<div id="customerclassifyheader">
+					<h2 id="customerclassifyh2">客户分类</h2>
+					<button @click="closecustomerclassify()" id="customerclassifycolse" class="btn btn-default">关闭</button>
+				</div>
+				<div id="customerclassifybody">
+					<div>
+						<ul style="border: 0px solid red;float: right; margin-right: 60px;margin-top: 20px;">
+							<li>
+								<span id="img" class="glyphicon glyphicon-plus"></span>
+								<span id="font">增加</span>
+							</li>
+							<li>
+								<span id="img" class="glyphicon glyphicon-remove"></span>
+								<span id="font">删除</span>
+							</li>
+							<li>
+								<span id="img" class="glyphicon glyphicon-save-file"></span>
+								<span id="font">保存</span>
+							</li>
+						</ul>
+					</div>
+					<div style="clear: both;padding-top: 10px;">
+						<p>
+							<span style="padding-left: 30px;">分类代码：</span><input type="text" />
+							<span style="padding-left: 20px;">客户类别：</span><input type="text" />
+							<span style="padding-left: 20px;">价格类型：</span>
+							<select>
+								<option>标准价</option>
+								<option>会员价</option>
+							</select>
+						</p>
+						<p>
+							<span style="padding-left: 30px;">有效期(年)：</span><input type="text" />
+							<span style="padding-left: 20px;">会费：</span><input type="text" />
+							<span style="padding-left: 20px;">类别：</span>
+							<select>
+								<option>会员</option>
+								<option>非会员</option>
+							</select>
+						</p>
+					</div>
+					<div id="customerclassifytable">
+						<table border="1px" class="table">
+							<thead>
+								<tr style="background-color: deepskyblue;">
+									<td></td>
+									<td>分类编码</td>
+									<td>客户类别</td>
+									<td>价格类型</td>
+									<td>有效期(年)</td>
+									<td>会费</td>
+									<td>类别</td>
+								</tr>
+							</thead>
+							<tbody>
+								<td></td>
+								<td>分类编码</td>
+								<td>客户类别</td>
+								<td>价格类型</td>
+								<td>有效期(年)</td>
+								<td>会费</td>
+								<td>类别</td>
+							</tbody>
+						</table>
+					</div>
+					<div style="margin-left: 25px;">
+						<span>合计：<span></span>条记录</span>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：品牌车型
+            -->
+			<div id="brandmodels">
+				<div id="brandmodelslinediv">
+					<span id="brandmodelsspan">品牌车型</span>
+				</div>
+				<div>
+					<h2 id="brandmodelsh2">品牌车型</h2>
+					<button id="brandmodelsmarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 选择
+					</button>
+					<button @click="closebrandmodels()" id="brandmodelscolse" class="btn btn-default">关闭</button>
+					<div>
+						<div>
+							<input style="width: 150px;margin-left: 30px;" value="品牌编码/品牌名称" type="text" />
+							<button id="select" class="btn btn-default">搜索</button>
+							<input style="width: 150px;margin-left: 122px;" value="车型编码/车型名称" type="text" />
+							<button id="select" class="btn btn-default">搜索</button>
+						</div>
+						<div id="carbrand">
+							<table border="1px" class="table">
+								<thead>
+									<tr style="background-color: deepskyblue;">
+										<td></td>
+										<td>编码</td>
+										<td>品牌名称</td>
+										<td>首字母</td>
+									</tr>
+								</thead>
+								<tbody>
+									<td></td>
+									<td>编码</td>
+									<td>品牌名称</td>
+									<td>首字母</td>
+								</tbody>
+							</table>
+						</div>
+						<div id="cartype">
+							<table border="1px" class="table" style="min-width:900px;">
+								<thead>
+									<tr style="background-color: deepskyblue;">
+										<td></td>
+										<td>车型ID</td>
+										<td>车型名称</td>
+										<td>参考价格</td>
+										<td>车辆年款</td>
+										<td>排气量</td>
+										<td>进口国产</td>
+										<td>燃油标号</td>
+										<td>四驱类型</td>
+									</tr>
+								</thead>
+								<tbody>
+									<td></td>
+									<td>车型ID</td>
+									<td>车型名称</td>
+									<td>参考价格</td>
+									<td>车辆年款</td>
+									<td>排气量</td>
+									<td>进口国产</td>
+									<td>燃油标号</td>
+									<td>四驱类型</td>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：所在城市选择
+            -->
+			<div id="selectcity">
+				<div id="selectcitylinediv">
+					<span id="selectcityspan">所在城市选择</span>
+				</div>
+				<div id="selectcitydiv">
+					<h2 id="selectcityh2">省市选择</h2>
+					<button id="selectcitymarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 选择
+					</button>
+					<span @click="closeselectcity()" id="selectcityremove" class="glyphicon glyphicon-remove"></span>
+					<div id="selectcitycontentdiv">
+						<table style="width: 400px;" border="1px" class="table">
+							<thead>
+								<tr style="background-color: deepskyblue;">
+									<td></td>
+									<td>城市ID</td>
+									<td>城市名称</td>
+								</tr>
+							</thead>
+							<tbody>
+								<td></td>
+								<td>车型ID</td>
+								<td>车型名称</td>
+							</tbody>
+						</table>
+					</div>
+					<span style="padding-left: 20px;">共<span></span>条记录</span>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：增加客户和车资料
+            -->
+			<div id="addcustomerandcar">
+				<div id="addcustomerandcarlinediv">
+					<span id="addcustomerandcarspan">增加客户和车资料</span>
+				</div>
+				<h2>增加客户和车资料</h2>
+				<button id="savebtn" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> 保存</button>
+				<span id="closespan" @click="closeaddcustomerandcar()" class="glyphicon glyphicon-remove"></span>
+				<div id="addcustomerandcarcontent">
+					<div id="info">
+						<p>
+							<span id="word">客户编号：</span><input type="text" />
+							<span id="word">客户名称：</span><input type="text" />
+							<span id="word">联系人：</span><input type="text" />
+							<span id="word">手机号码：</span><input type="text" />
+						</p>
+						<p>
+							<span id="word">客户地址：</span><input style="width: 600px;" type="text" />
+							<span id="word">客户生日：</span><input type="date" />
+						</p>
+						<p>
+							<span id="word">账期(天)：</span><input style="width: 100px;" type="number" />
+							<span id="word">挂账额度：</span><input type="text" />
+							<span id="word">专属顾问：</span>
+							<select @click="openselectemployee()" style="width: 165px;">
+
+							</select>
+							<span id="word">顾问电话：</span><input type="text" />
+						</p>
+						<p>
+							<span id="word">省：</span><input style="width: 100px;" type="text" />
+							<select @click="openselectcity()" style="width: 165px;">
+
+							</select>
+							<span id="word">市：</span><input style="width: 100px;" type="text" />
+							<select style="width: 165px;">
+
+							</select>
+							<span id="word">区：</span><input style="width: 100px;" type="text" />
+							<select style="width: 165px;">
+
+							</select>
+						</p>
+						<p>
+							<span id="word">备注：</span><input style="width: 970px;" type="text" />
+
+						</p>
+						<p>
+							<span id="word">车牌号码：</span>
+							<select @click="opencarnumber()" style="width: 165px;">
+
+							</select>
+							<span id="word">车辆品牌：</span>
+							<select @click="openbrandmodels()" style="width: 165px;">
+
+							</select>
+							<span id="word">车辆型号：</span><input type="text" />
+							<span id="word">驾驶员：</span><input type="text" />
+						</p>
+						<p>
+							<span id="word">驾驶员电话：</span><input type="text" />
+							<span id="word">出生日期：</span><input type="date" />
+							<span id="word">车辆归属：</span>
+							<select @click="openfueltype()" style="width: 165px;">
+
+							</select>
+							<span id="word">驾证到期：</span><input type="date" />
+						</p>
+						<p>
+							<span id="word">车架号：</span><input type="text" />
+							<span id="word">发动机号：</span><input type="text" />
+							<span id="word">车辆年款：</span><input type="text" />
+							<span id="word">里程：</span><input type="text" />
+						</p>
+						<p>
+							<span id="word">发动机品牌：</span>
+							<select style="width: 365px;">
+								<option></option>
+							</select>
+							<span id="word">载重：</span><input type="text" />
+							<span id="word">购买日期：</span><input type="date" />
+						</p>
+						<p>
+							<span id="word">上牌日期：</span><input type="date" />
+							<span id="word">车检日期：</span><input type="date" />
+							<span id="word">燃油类别：</span>
+							<select @click="openfueltype()" style="width: 165px;">
+
+							</select>
+							<span id="word">在我投保车：</span><input type="checkbox" />
+						</p>
+						<p>
+							<span id="word">保险：交强险保险公司：</span>
+							<select style="width: 165px;">
+								<option></option>
+							</select>
+							<span id="word">交强险到期：</span><input type="date" />
+						</p>
+						<p>
+							<span id="word">商业险保险公司：</span>
+							<select style="width: 165px;">
+								<option></option>
+							</select>
+							<span id="word">商业险到期：</span><input type="date" />
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：客户查询
+            -->
+			<div id="staffquery">
+				<div id="staffquerylinediv">
+					<span id="staffqueryspan">客户查询</span>
+				</div>
+				<div id="staffquerybodydiv">
+					<h2 id="staffqueryh2">客户查询</h2>
+					<button id="staffquerymarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 确定
+					</button>
+					<span id="staffqueryfork" @click="closestaffquery()" class="glyphicon glyphicon-remove"></span>
+					<div id="staffquerycontent">
+						<p style="padding-top: 25px;">
+							<span style="margin-left: 20px;">客户编号：</span>
+							<input style="width: 170px;" type="text">
+							<span style="margin-left: 20px;">客户名称：</span>
+							<input style="width: 170px;" type="text">
+							<span style="margin-left: 20px;">客户类别：</span>
+							<select style="width: 135px;">
+								<option></option>
+							</select>
+						</p>
+						<p>
+							<span style="margin-left: 20px;">联系人：</span>
+							<input style="width: 170px;" type="text">
+							<span style="margin-left: 20px;">手机号码：</span>
+							<input style="width: 170px;" type="text">
+							<span style="margin-left: 20px;">客户地址：</span>
+							<input style="width: 170px;" type="text">
+						</p>
+						<p>
+							<span style="margin-left: 20px;">备注：</span>
+							<input style="width: 160px;" type="text">
+							<span style="margin-left: 20px;">会员卡号：</span>
+							<input style="width: 100px;" type="text">
+							<span style="margin-left: 20px;">客户生日：</span>
+							<input style="width: 100px;" type="number">
+							<input style="width: 100px;" type="number">
+							<span style="margin-left: 20px;">在我投保车：</span>
+							<input style="width: 10px;" type="checkbox">
+						</p>
+						<p>
+							<span style="margin-left: 20px;">超过X月没自修：</span>
+							<input style="width: 160px;" type="text">
+							<span style="margin-left: 20px;">专属顾问：</span>
+							<select @click="openselectemployee()" style="width: 135px;">
+							</select>
+							<span style="margin-left: 20px;">顾问电话：</span>
+							<input style="width: 160px;" type="text">
+						</p>
+						<p>
+							<span style="margin-left: 20px;">省：</span><input style="width: 100px;" type="text" />
+							<select @click="openselectcity()" style="width: 135px;">
+
+							</select>
+							<span style="margin-left: 20px;">市：</span><input style="width: 100px;" type="text" />
+							<select style="width: 135px;">
+								<option></option>
+							</select>
+							<span style="margin-left: 20px;">区：</span><input style="width: 100px;" type="text" />
+							<select style="width: 135px;">
+								<option></option>
+							</select>
+						</p>
+						<p>
+							<span style="margin-left: 20px;">车牌号码：</span>
+							<input type="text" />
+							<span style="margin-left: 20px;">车辆品牌：</span>
+							<select @click="openbrandmodels()" style="width: 165px;">
+
+							</select>
+							<span style="margin-left: 20px;">车辆型号：</span>
+							<input type="text" />
+						</p>
+						<p>
+							<span style="margin-left: 20px;">车架号：</span>
+							<input type="text" />
+							<span style="margin-left: 20px;">发动机号：</span>
+							<input type="text" />
+							<span style="margin-left: 20px;">保险公司：</span>
+							<select style="width: 150px;margin-left: 20px;">
+								<option>阳光保险</option>
+								<option>太平洋保险</option>
+							</select>
+						</p>
+						<p>
+							<span style="margin-left: 20px;">发动机品牌：</span>
+							<select style="width: 230px;margin-left: 20px;">
+								<option>所有</option>
+								<option>00-地洞</option>
+								<option>12-中国重汽动力</option>
+							</select>
+							<span style="margin-left: 20px;">驾驶员：</span>
+							<input type="text" />
+							<span style="margin-left: 20px;">驾驶员电话：</span>
+							<input type="text" />
+						</p>
+						<p>
+							<select style="width: 85px;margin-left: 20px;">
+								<option>开户日期</option>
+								<option>入会日期</option>
+								<option>会员到期</option>
+							</select>
+							<input style="width: 120px;margin-left: 20px;" type="date" />
+							<input style="width: 120px;margin-left: 20px;" type="date" />
+							<select style="width: 85px;margin-left: 20px;">
+								<option>购买日期</option>
+								<option>上牌日期</option>
+							</select>
+							<select style="width: 60px;margin-left: 20px;">
+								<option>所有</option>
+							</select>
+							<span style="margin-left: 20px;">月 驾驶员生日：</span>
+							<input style="width: 70px;" type="number" />
+							<input style="width: 70px;" type="number" />
+						</p>
+						<p>
+							<span style="margin-left: 20px;">定金余额：</span>
+							<input style="width: 70px;" type="text" />
+							<span style="margin-left: 20px;">至：</span>
+							<input style="width: 70px;" type="text" />
+							<span style="margin-left: 20px;">储蓄卡余额：</span>
+							<input style="width: 70px;" type="text" />
+							<span style="margin-left: 20px;">至：</span>
+							<input style="width: 70px;" type="text" />
+							<span style="margin-left: 20px;">积分：</span>
+							<input style="width: 70px;" type="text" />
+							<span style="margin-left: 20px;">至：</span>
+							<input style="width: 70px;" type="text" />
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：页面主体
+            -->
+			<div id="header">
+				<h2>客户档案</h2>
+				<div id="selectdiv">
+					<input value="匹配名称/名称简码/手机/会员卡号/车牌号" style="display: inline-block; width: 400px;" class="form-control" type="text" />
+					<button id="selectbtn" class="btn btn-default">搜索</button>
+					<button id="closebtn" class="btn btn-default">关闭</button>
+				</div>
+			</div>
+			<div id="buttondiv">
+				<div id="rightbuttondiv">
+
+					<ul id="buttondivul">
+						<li>
+							<span id="img" class="glyphicon glyphicon-edit"></span>
+							<span @click="customerdown()" id="font">客户编辑</span>
+						</li>
+						<li>
+							<span id="img" class="glyphicon glyphicon-file"></span>
+							<span @click="cardown()" id="font">车资料</span>
+						</li>
+						<li>
+							<span id="img" class="glyphicon glyphicon-edit"></span>
+							<span @click="opencustomerclassify()" id="font">客户分类</span>
+						</li>
+						<li style="padding-right: 200px;">
+							<span id="img" class="glyphicon glyphicon-list-alt"></span>
+							<span @click="openstaffquery()" id="font">查询</span>
+						</li>
+						<li>
+							<span id="img" class="glyphicon glyphicon-share"></span>
+							<span id="font">导出</span>
+						</li>
+						<li>
+							<span id="img" class="glyphicon glyphicon-cog"></span>
+							<span id="font">字段设置</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="customer" id="fnuctiondiv">
+				<ul id="functionul">
+					<li>客户编辑</li>
+					<li @click="openaddcustomerandcar()" id="functionli">增加客户和车</li>
+					<li @click="opencustomerdata()" id="functionli">增加客户</li>
+					<li @click="opencustomerdata()" id="functionli">修改客户</li>
+					<li id="functionli">相关证照</li>
+					<li @click="openupdateword()" id="functionli">设置密码</li>
+				</ul>
+				<div @click="customerup()" id="functionupdiv">
+					<span id="trigon">▲</span>
+					<span>收起</span>
+				</div>
+			</div>
+			<div class="car" id="fnuctiondiv">
+				<ul id="functionul">
+					<li>车资料</li>
+					<li @click="opencarinfoedit()" id="functionli">增加车资料</li>
+					<li @click="opencarinfoedit()" id="functionli">修改车资料</li>
+					<li id="functionli">删除车资料</li>
+				</ul>
+				<div @click="carup()" id="functionupdiv">
+					<span id="trigon">▲</span>
+					<span>收起</span>
+				</div>
+			</div>
+
+			<div id="customerinfo">
+				<table border="1px" class="table" style="min-width:2500px;">
+					<thead>
+						<tr style="background-color: deepskyblue;">
+							<td></td>
+							<td>客户编号</td>
+							<td>客户名称</td>
+							<td>详细地址</td>
+							<td>联系人</td>
+							<td>手机</td>
+							<td>客户生日</td>
+							<td>客户类别</td>
+							<td>会员卡号</td>
+							<td>入会日期</td>
+							<td>会员到期</td>
+							<td>备注</td>
+							<td>建档日期</td>
+							<td>服务顾问</td>
+							<td>业务员电话</td>
+							<td>账期(天)</td>
+							<td>挂账额度</td>
+							<td>累计积分</td>
+							<td>定金金额</td>
+							<td>客户省</td>
+							<td>客户市</td>
+							<td>客户区</td>
+							<td>纳税人识别号</td>
+							<td>注册电话</td>
+							<td>开户银行</td>
+							<td>银行账号</td>
+							<td>注册地址</td>
+						</tr>
+					</thead>
+					<tbody>				
+						<tr @click="datashift(item)" v-for="item in clientinfo">
+							<td style="width: 40px;">
+								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+							</td>
+							<td>{{item.number}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.address}}</td>
+							<td>{{item.linkman}}</td>
+							<td>{{item.phone}}</td>
+							<td>{{item.borndate}}</td>
+							<td>{{item.clienttype}}</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>{{item.remark}}</td>
+							<td>{{item.date}}</td>
+							<td>{{item.staffname}}</td>
+							<td>{{item.counselorname}}</td>
+							<td>{{item.paymentdays}}</td>
+							<td>{{item.paymentsize}}</td>
+							<td>{{item.integral}}</td>
+							<td></td>
+							<td>{{item.sheng}}</td>
+							<td>{{item.shi}}</td>
+							<td>{{item.qv}}</td>
+							<td>{{item.taxpayernumber}}</td>
+							<td>{{item.registerphone}}</td>
+							<td>{{item.bank}}</td>
+							<td>{{item.banknumber}}</td>
+							<td>{{item.registeraddress}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="carinfo">
+				<div id="pastdiv">
+					<ul id="functionul">
+						<li class="carinfo" @click="cuttocar()" id="functionli">车辆信息</li>
+						<li class="pastbuy" @click="cuttopastbuy()" id="functionli">历史消费</li>
+						<li class="pastreview" @click="cuttopastreview()" id="functionli">历史回访</li>
+					</ul>
+				</div>
+				<table border="1px" class="table" style="min-width:2500px;">
+					<thead>
+						<tr style="background-color: deepskyblue;">
+							<td></td>
+							<td v-for="item in data">{{item}}</td>
+
+						</tr>
+					</thead>
+					<tbody>
+						<td style="width: 40px;">
+								<span  style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+						</td>
+						<td>领用日期</td>
+						<td>员工编号</td>
+						<td>员工姓名</td>
+						<td>类别编码</td>
+						<td>类别编码</td>
+						<td>领用日期</td>
+						<td>员工编号</td>
+						<td>员工姓名</td>
+						<td>类别编码</td>
+						<td>类别编码</td>
+					</tbody>
+				</table>
+			</div>
+
+			<div><span>共<span>{{clientinfo.length}}</span>条记录</span><span>第<span>1</span>页</span><span>共<span>1</span>页</span>
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script>
+			//查询客户资料
+			function selectClientInfo() {
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectClientInfo",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.clientinfo = response;
+						console.log(vm.clientinfo);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			var vm = new Vue({
+				el: ".container-fluid",
+				data() {
+					return {
+						clientinfo:{},
+						data: [],
+						carinfo: ["车牌号码", "车辆品牌", "车辆型号", "驾驶员", "驾驶员电话", "出生日期", "车辆归属", "驾证到期", "车架号", "发动机号", "发动机品牌", "车辆年款", "里程", "载重", "购买日期", "上牌日期", "车检到期", "交强险保险公司", "交强险到期", "商业险保险公司", "商业险到期", "在我投保车", "燃油类别", "下次保养里程", "下次保养日期"],
+						pastbuy: ["单据类型", "销售单号", "车牌号", "维修业务", "进厂时间", "完工时间", "结算时间", "消费时间"],
+						pastreview: ["回访时间", "客户编码", "客户名称", "地址", "车牌号", "联系电话", "回访效果", "服务顾问", "详细说明", "开单人"]
+					}
+				},
+				methods: {
+					datashift: function(item) {
+						var that = this;
+						for(var i = 0; i < that.clientinfo.length; i++) {
+							that.clientinfo[i].check = false;
+						}
+						item.check = true;
+					},
+					opencarinfoedit: function() {
+						$("#carinfoedit").addClass("show");
+					},
+					closecarinfoedit: function() {
+						$("#carinfoedit").removeClass("show");
+					},
+					openupdateword: function() {
+						$("#updateword").addClass("show");
+					},
+					closeupdateword: function() {
+						$("#updateword").removeClass("show");
+					},
+					opencustomerdata: function() {
+						$("#customerdata").addClass("show");
+					},
+					closecustomerdata: function() {
+						$("#customerdata").removeClass("show");
+					},
+					openfueltype: function() {
+						$("#fueltype").addClass("show");
+					},
+					closefueltype: function() {
+						$("#fueltype").removeClass("show");
+					},
+					opencarnumber: function() {
+						$("#carnumber").addClass("show");
+					},
+					closecarnumber: function() {
+						$("#carnumber").removeClass("show");
+					},
+					openselectemployee: function() {
+						$("#selectemployee").addClass("show");
+						$("#selectemployee").addClass("qwe");
+					},
+					closeselectemployee: function() {
+						$("#selectemployee").removeClass("show");
+					},
+					opencustomerclassify: function() {
+						$("#customerclassify").addClass("show");
+					},
+					closecustomerclassify: function() {
+						$("#customerclassify").removeClass("show");
+					},
+					openbrandmodels: function() {
+						$("#brandmodels").addClass("show");
+					},
+					closebrandmodels: function() {
+						$("#brandmodels").removeClass("show");
+					},
+					openselectcity: function() {
+						$("#selectcity").addClass("show");
+					},
+					closeselectcity: function() {
+						$("#selectcity").removeClass("show");
+					},
+					openaddcustomerandcar: function() {
+						$("#addcustomerandcar").addClass("show");
+					},
+					closeaddcustomerandcar: function() {
+						$("#addcustomerandcar").removeClass("show");
+					},
+					cuttocar: function() {
+						vm.data = vm.carinfo;
+						$(".carinfo").addClass("color").siblings().removeClass("color");
+					},
+					cuttopastbuy: function() {
+						vm.data = vm.pastbuy;
+						$(".pastbuy").addClass("color").siblings().removeClass("color");
+					},
+					cuttopastreview: function() {
+						vm.data = vm.pastreview;
+						$(".pastreview").addClass("color").siblings().removeClass("color");
+					},
+					customerdown: function() {
+						$(".customer").addClass("show");
+					},
+					cardown: function() {
+						$(".car").addClass("show");
+					},
+					customerup: function() {
+						$(".customer").removeClass("show");
+					},
+					carup: function() {
+						$(".car").removeClass("show");
+					},
+					openstaffquery: function() {
+						$("#staffquery").addClass("show");
+					},
+					closestaffquery: function() {
+						$("#staffquery").removeClass("show");
+					}
+				},
+				created: function() {
+					this.data = this.carinfo;
+					selectClientInfo();
+				}
+			});
+		</script>
+	</body>
+
+</html>
