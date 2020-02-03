@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CarinfoMapper {
+	List<Carinfo> selectCarInfoByClientNumber(String number);
+	
     int countByExample(CarinfoExample example);
 
     int deleteByExample(CarinfoExample example);

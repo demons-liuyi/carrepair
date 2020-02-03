@@ -3,7 +3,57 @@ package com.accp.domain;
 import java.util.Date;
 
 public class Carinfo {
-    private Integer id;
+	private String carbrandname;
+	
+	private String cartypename;
+	
+	private String enginebrandname;
+	
+	private String loadnumber;
+	
+	private Boolean check;
+	
+    public String getCarbrandname() {
+		return carbrandname;
+	}
+
+	public void setCarbrandname(String carbrandname) {
+		this.carbrandname = carbrandname;
+	}
+
+	public String getCartypename() {
+		return cartypename;
+	}
+
+	public void setCartypename(String cartypename) {
+		this.cartypename = cartypename;
+	}
+
+	public String getEnginebrandname() {
+		return enginebrandname;
+	}
+
+	public void setEnginebrandname(String enginebrandname) {
+		this.enginebrandname = enginebrandname;
+	}
+
+	public String getLoadnumber() {
+		return loadnumber;
+	}
+
+	public void setLoadnumber(String loadnumber) {
+		this.loadnumber = loadnumber;
+	}
+
+	public Boolean getCheck() {
+		return check;
+	}
+
+	public void setCheck(Boolean check) {
+		this.check = check;
+	}
+
+	private Integer id;
 
     private String carnumber;
 

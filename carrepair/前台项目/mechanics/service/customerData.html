@@ -1535,7 +1535,7 @@
 							<td>注册地址</td>
 						</tr>
 					</thead>
-					<tbody>				
+					<tbody>
 						<tr @click="datashift(item)" v-for="item in clientinfo">
 							<td style="width: 40px;">
 								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
@@ -1583,23 +1583,39 @@
 						<tr style="background-color: deepskyblue;">
 							<td></td>
 							<td v-for="item in data">{{item}}</td>
-
 						</tr>
 					</thead>
 					<tbody>
-						<td style="width: 40px;">
-								<span  style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
-						</td>
-						<td>领用日期</td>
-						<td>员工编号</td>
-						<td>员工姓名</td>
-						<td>类别编码</td>
-						<td>类别编码</td>
-						<td>领用日期</td>
-						<td>员工编号</td>
-						<td>员工姓名</td>
-						<td>类别编码</td>
-						<td>类别编码</td>
+						<tr v-for="item in carinfo">
+							<td style="width: 40px;">
+								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+							</td>
+							<td>{{item.carnumber}}</td>
+							<td>{{item.carbrandname}}</td>
+							<td>{{item.cartypename}}</td>
+							<td>{{item.carer}}</td>
+							<td>{{item.carerphone}}</td>
+							<td>{{item.borndate}}</td>
+							<td>{{item.affiliation}}</td>
+							<td>{{item.drivinglicence}}</td>
+							<td>{{item.carnumber1}}</td>
+							<td>{{item.enginenumber}}</td>
+							<td>{{item.enginebrandname}}</td>
+							<td>{{item.yearprice}}</td>
+							<td>{{item.mileage}}</td>
+							<td>{{item.loadnumber}}</td>
+							<td>{{item.buydate}}</td>
+							<td>{{item.dutydate}}</td>
+							<td>{{item.carcheckdate}}</td>
+							<td>{{item.jqinsurance}}</td>					
+							<td>{{item.jqinsurancedate}}</td>
+							<td>{{item.syinsurance}}</td>
+							<td>{{item.syinsurancedate}}</td>
+							<td></td>
+							<td>{{item.fueloiltype}}</td>
+							<td>{{item.maintain}}</td>
+							<td>{{item.maintaindate}}</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -1625,6 +1641,38 @@
 					success: function(response) {
 						vm.clientinfo = response;
 						console.log(vm.clientinfo);
+						console.log(vm.clientinfo.length);
+						selectCarInfoByClientNumber();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据客户编号查询车辆资料
+			function selectCarInfoByClientNumber() {
+				var qwe = 0;
+
+				for(var i = 0; i < vm.clientinfo.length; i++) {
+					if(vm.clientinfo[i].check == true) {
+						qwe = vm.clientinfo[i].number;
+					}
+				}
+				console.log(qwe);
+
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectCarInfoByClientNumber",
+					data: {
+						number: qwe
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.carinfo = response;
+						console.log(vm.carinfo);
 					},
 					error: function(error) {
 						console.log(error);
@@ -1635,9 +1683,10 @@
 				el: ".container-fluid",
 				data() {
 					return {
-						clientinfo:{},
+						clientinfo: {},
+						carinfo: {},
 						data: [],
-						carinfo: ["车牌号码", "车辆品牌", "车辆型号", "驾驶员", "驾驶员电话", "出生日期", "车辆归属", "驾证到期", "车架号", "发动机号", "发动机品牌", "车辆年款", "里程", "载重", "购买日期", "上牌日期", "车检到期", "交强险保险公司", "交强险到期", "商业险保险公司", "商业险到期", "在我投保车", "燃油类别", "下次保养里程", "下次保养日期"],
+						carInfo: ["车牌号码", "车辆品牌", "车辆型号", "驾驶员", "驾驶员电话", "出生日期", "车辆归属", "驾证到期", "车架号", "发动机号", "发动机品牌", "车辆年款", "里程", "载重", "购买日期", "上牌日期", "车检到期", "交强险保险公司", "交强险到期", "商业险保险公司", "商业险到期", "在我投保车", "燃油类别", "下次保养里程", "下次保养日期"],
 						pastbuy: ["单据类型", "销售单号", "车牌号", "维修业务", "进厂时间", "完工时间", "结算时间", "消费时间"],
 						pastreview: ["回访时间", "客户编码", "客户名称", "地址", "车牌号", "联系电话", "回访效果", "服务顾问", "详细说明", "开单人"]
 					}
@@ -1649,6 +1698,7 @@
 							that.clientinfo[i].check = false;
 						}
 						item.check = true;
+						selectCarInfoByClientNumber();
 					},
 					opencarinfoedit: function() {
 						$("#carinfoedit").addClass("show");
@@ -1712,7 +1762,7 @@
 						$("#addcustomerandcar").removeClass("show");
 					},
 					cuttocar: function() {
-						vm.data = vm.carinfo;
+						vm.data = vm.carInfo;
 						$(".carinfo").addClass("color").siblings().removeClass("color");
 					},
 					cuttopastbuy: function() {
@@ -1743,8 +1793,10 @@
 					}
 				},
 				created: function() {
-					this.data = this.carinfo;
+					var that = this;
+					that.data = that.carInfo;
 					selectClientInfo();
+
 				}
 			});
 		</script>

@@ -29,6 +29,21 @@
     <result column="maintain" property="maintain" jdbcType="REAL" />
     <result column="maintaindate" property="maintaindate" jdbcType="DATE" />
   </resultMap>
+  <resultMap type="com.accp.domain.Carinfo" id="BaseResultPlus" extends="BaseResultMap">
+  	<result column="carbrandname" property="carbrandname" jdbcType="VARCHAR" />
+  	<result column="cartypename" property="cartypename" jdbcType="VARCHAR" />
+  	<result column="enginebrandname" property="enginebrandname" jdbcType="VARCHAR" />
+  	<result column="loadnumber" property="loadnumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectCarInfoByClientNumber" resultMap="BaseResultPlus">
+  	SELECT c.carnumber,(SELECT carbrandname FROM carbrand WHERE id=c.carbrandid) carbrandname,
+(SELECT cartypename FROM car WHERE car.id=c.carid) cartypename,carer,carerphone,borndate,affiliation,drivinglicence,carnumber1,enginenumber,
+(SELECT enginebrandname FROM enginebrand WHERE id=(SELECT engineid FROM car WHERE car.id=c.carid)) enginebrandname,yearprice,mileage,
+(SELECT car.load FROM car WHERE car.id=c.carid) 
+loadnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance,syinsurancedate,fueloiltype,maintain,maintaindate
+ FROM car_client cc
+INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
