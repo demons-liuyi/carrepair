@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.MaintenanceitemsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Maintenanceitems" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="itemsName" property="itemsname" jdbcType="VARCHAR" />
+    <result column="typeId" property="typeid" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="normalPrice" property="normalprice" jdbcType="REAL" />
+    <result column="memberPrice" property="memberprice" jdbcType="REAL" />
+    <result column="vipPrice" property="vipprice" jdbcType="REAL" />
+    <result column="negotiatedPrice" property="negotiatedprice" jdbcType="REAL" />
+    <result column="claimPrice" property="claimprice" jdbcType="REAL" />
+    <result column="insurancePrice" property="insuranceprice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, itemsName, typeId, remark, normalPrice, memberPrice, vipPrice, negotiatedPrice, 
+    claimPrice, insurancePrice
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaintenanceitemsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from maintenanceitems
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from maintenanceitems
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from maintenanceitems
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.MaintenanceitemsExample" >
+    delete from maintenanceitems
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Maintenanceitems" >
+    insert into maintenanceitems (id, itemsName, typeId, 
+      remark, normalPrice, memberPrice, 
+      vipPrice, negotiatedPrice, claimPrice, 
+      insurancePrice)
+    values (#{id,jdbcType=INTEGER}, #{itemsname,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{normalprice,jdbcType=REAL}, #{memberprice,jdbcType=REAL}, 
+      #{vipprice,jdbcType=REAL}, #{negotiatedprice,jdbcType=REAL}, #{claimprice,jdbcType=REAL}, 
+      #{insuranceprice,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Maintenanceitems" >
+    insert into maintenanceitems
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="itemsname != null" >
+        itemsName,
+      </if>
+      <if test="typeid != null" >
+        typeId,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="normalprice != null" >
+        normalPrice,
+      </if>
+      <if test="memberprice != null" >
+        memberPrice,
+      </if>
+      <if test="vipprice != null" >
+        vipPrice,
+      </if>
+      <if test="negotiatedprice != null" >
+        negotiatedPrice,
+      </if>
+      <if test="claimprice != null" >
+        claimPrice,
+      </if>
+      <if test="insuranceprice != null" >
+        insurancePrice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemsname != null" >
+        #{itemsname,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="normalprice != null" >
+        #{normalprice,jdbcType=REAL},
+      </if>
+      <if test="memberprice != null" >
+        #{memberprice,jdbcType=REAL},
+      </if>
+      <if test="vipprice != null" >
+        #{vipprice,jdbcType=REAL},
+      </if>
+      <if test="negotiatedprice != null" >
+        #{negotiatedprice,jdbcType=REAL},
+      </if>
+      <if test="claimprice != null" >
+        #{claimprice,jdbcType=REAL},
+      </if>
+      <if test="insuranceprice != null" >
+        #{insuranceprice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.MaintenanceitemsExample" resultType="java.lang.Integer" >
+    select count(*) from maintenanceitems
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update maintenanceitems
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemsname != null" >
+        itemsName = #{record.itemsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeid != null" >
+        typeId = #{record.typeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.normalprice != null" >
+        normalPrice = #{record.normalprice,jdbcType=REAL},
+      </if>
+      <if test="record.memberprice != null" >
+        memberPrice = #{record.memberprice,jdbcType=REAL},
+      </if>
+      <if test="record.vipprice != null" >
+        vipPrice = #{record.vipprice,jdbcType=REAL},
+      </if>
+      <if test="record.negotiatedprice != null" >
+        negotiatedPrice = #{record.negotiatedprice,jdbcType=REAL},
+      </if>
+      <if test="record.claimprice != null" >
+        claimPrice = #{record.claimprice,jdbcType=REAL},
+      </if>
+      <if test="record.insuranceprice != null" >
+        insurancePrice = #{record.insuranceprice,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update maintenanceitems
+    set id = #{record.id,jdbcType=INTEGER},
+      itemsName = #{record.itemsname,jdbcType=VARCHAR},
+      typeId = #{record.typeid,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      normalPrice = #{record.normalprice,jdbcType=REAL},
+      memberPrice = #{record.memberprice,jdbcType=REAL},
+      vipPrice = #{record.vipprice,jdbcType=REAL},
+      negotiatedPrice = #{record.negotiatedprice,jdbcType=REAL},
+      claimPrice = #{record.claimprice,jdbcType=REAL},
+      insurancePrice = #{record.insuranceprice,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Maintenanceitems" >
+    update maintenanceitems
+    <set >
+      <if test="itemsname != null" >
+        itemsName = #{itemsname,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        typeId = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="normalprice != null" >
+        normalPrice = #{normalprice,jdbcType=REAL},
+      </if>
+      <if test="memberprice != null" >
+        memberPrice = #{memberprice,jdbcType=REAL},
+      </if>
+      <if test="vipprice != null" >
+        vipPrice = #{vipprice,jdbcType=REAL},
+      </if>
+      <if test="negotiatedprice != null" >
+        negotiatedPrice = #{negotiatedprice,jdbcType=REAL},
+      </if>
+      <if test="claimprice != null" >
+        claimPrice = #{claimprice,jdbcType=REAL},
+      </if>
+      <if test="insuranceprice != null" >
+        insurancePrice = #{insuranceprice,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Maintenanceitems" >
+    update maintenanceitems
+    set itemsName = #{itemsname,jdbcType=VARCHAR},
+      typeId = #{typeid,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      normalPrice = #{normalprice,jdbcType=REAL},
+      memberPrice = #{memberprice,jdbcType=REAL},
+      vipPrice = #{vipprice,jdbcType=REAL},
+      negotiatedPrice = #{negotiatedprice,jdbcType=REAL},
+      claimPrice = #{claimprice,jdbcType=REAL},
+      insurancePrice = #{insuranceprice,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

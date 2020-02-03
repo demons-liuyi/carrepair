@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ArtisanMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Artisan" >
+    <id column="artisanNo" property="artisanno" jdbcType="VARCHAR" />
+    <result column="artisanName" property="artisanname" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="artisanClassId" property="artisanclassid" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="weChat" property="wechat" jdbcType="VARCHAR" />
+    <result column="idCardNo" property="idcardno" jdbcType="VARCHAR" />
+    <result column="residence" property="residence" jdbcType="VARCHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="bankAccount" property="bankaccount" jdbcType="VARCHAR" />
+    <result column="artisanLevelId" property="artisanlevelid" jdbcType="INTEGER" />
+    <result column="groupLeader" property="groupleader" jdbcType="BIT" />
+    <result column="maintainType" property="maintaintype" jdbcType="VARCHAR" />
+    <result column="maintainBrand" property="maintainbrand" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    artisanNo, artisanName, sex, artisanClassId, phone, account, address, birthday, weChat, 
+    idCardNo, residence, bank, bankAccount, artisanLevelId, groupLeader, maintainType, 
+    maintainBrand
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ArtisanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from artisan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from artisan
+    where artisanNo = #{artisanno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from artisan
+    where artisanNo = #{artisanno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ArtisanExample" >
+    delete from artisan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Artisan" >
+    insert into artisan (artisanNo, artisanName, sex, 
+      artisanClassId, phone, account, 
+      address, birthday, weChat, 
+      idCardNo, residence, bank, 
+      bankAccount, artisanLevelId, groupLeader, 
+      maintainType, maintainBrand)
+    values (#{artisanno,jdbcType=VARCHAR}, #{artisanname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{artisanclassid,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{wechat,jdbcType=VARCHAR}, 
+      #{idcardno,jdbcType=VARCHAR}, #{residence,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
+      #{bankaccount,jdbcType=VARCHAR}, #{artisanlevelid,jdbcType=INTEGER}, #{groupleader,jdbcType=BIT}, 
+      #{maintaintype,jdbcType=VARCHAR}, #{maintainbrand,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Artisan" >
+    insert into artisan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="artisanno != null" >
+        artisanNo,
+      </if>
+      <if test="artisanname != null" >
+        artisanName,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="artisanclassid != null" >
+        artisanClassId,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="wechat != null" >
+        weChat,
+      </if>
+      <if test="idcardno != null" >
+        idCardNo,
+      </if>
+      <if test="residence != null" >
+        residence,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount,
+      </if>
+      <if test="artisanlevelid != null" >
+        artisanLevelId,
+      </if>
+      <if test="groupleader != null" >
+        groupLeader,
+      </if>
+      <if test="maintaintype != null" >
+        maintainType,
+      </if>
+      <if test="maintainbrand != null" >
+        maintainBrand,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="artisanno != null" >
+        #{artisanno,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanname != null" >
+        #{artisanname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanclassid != null" >
+        #{artisanclassid,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardno != null" >
+        #{idcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="residence != null" >
+        #{residence,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanlevelid != null" >
+        #{artisanlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="groupleader != null" >
+        #{groupleader,jdbcType=BIT},
+      </if>
+      <if test="maintaintype != null" >
+        #{maintaintype,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainbrand != null" >
+        #{maintainbrand,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ArtisanExample" resultType="java.lang.Integer" >
+    select count(*) from artisan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update artisan
+    <set >
+      <if test="record.artisanno != null" >
+        artisanNo = #{record.artisanno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artisanname != null" >
+        artisanName = #{record.artisanname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artisanclassid != null" >
+        artisanClassId = #{record.artisanclassid,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=DATE},
+      </if>
+      <if test="record.wechat != null" >
+        weChat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardno != null" >
+        idCardNo = #{record.idcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.residence != null" >
+        residence = #{record.residence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank != null" >
+        bank = #{record.bank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankaccount != null" >
+        bankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artisanlevelid != null" >
+        artisanLevelId = #{record.artisanlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupleader != null" >
+        groupLeader = #{record.groupleader,jdbcType=BIT},
+      </if>
+      <if test="record.maintaintype != null" >
+        maintainType = #{record.maintaintype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maintainbrand != null" >
+        maintainBrand = #{record.maintainbrand,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update artisan
+    set artisanNo = #{record.artisanno,jdbcType=VARCHAR},
+      artisanName = #{record.artisanname,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      artisanClassId = #{record.artisanclassid,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=DATE},
+      weChat = #{record.wechat,jdbcType=VARCHAR},
+      idCardNo = #{record.idcardno,jdbcType=VARCHAR},
+      residence = #{record.residence,jdbcType=VARCHAR},
+      bank = #{record.bank,jdbcType=VARCHAR},
+      bankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      artisanLevelId = #{record.artisanlevelid,jdbcType=INTEGER},
+      groupLeader = #{record.groupleader,jdbcType=BIT},
+      maintainType = #{record.maintaintype,jdbcType=VARCHAR},
+      maintainBrand = #{record.maintainbrand,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Artisan" >
+    update artisan
+    <set >
+      <if test="artisanname != null" >
+        artisanName = #{artisanname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanclassid != null" >
+        artisanClassId = #{artisanclassid,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="wechat != null" >
+        weChat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardno != null" >
+        idCardNo = #{idcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="residence != null" >
+        residence = #{residence,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanlevelid != null" >
+        artisanLevelId = #{artisanlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="groupleader != null" >
+        groupLeader = #{groupleader,jdbcType=BIT},
+      </if>
+      <if test="maintaintype != null" >
+        maintainType = #{maintaintype,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainbrand != null" >
+        maintainBrand = #{maintainbrand,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where artisanNo = #{artisanno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Artisan" >
+    update artisan
+    set artisanName = #{artisanname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      artisanClassId = #{artisanclassid,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      weChat = #{wechat,jdbcType=VARCHAR},
+      idCardNo = #{idcardno,jdbcType=VARCHAR},
+      residence = #{residence,jdbcType=VARCHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      artisanLevelId = #{artisanlevelid,jdbcType=INTEGER},
+      groupLeader = #{groupleader,jdbcType=BIT},
+      maintainType = #{maintaintype,jdbcType=VARCHAR},
+      maintainBrand = #{maintainbrand,jdbcType=VARCHAR}
+    where artisanNo = #{artisanno,jdbcType=VARCHAR}
+  </update>
+</mapper>

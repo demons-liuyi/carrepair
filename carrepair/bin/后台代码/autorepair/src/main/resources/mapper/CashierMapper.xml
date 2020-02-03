@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.CashierMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Cashier" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="totalNum" property="totalnum" jdbcType="REAL" />
+    <result column="cashierstatic" property="cashierstatic" jdbcType="VARCHAR" />
+    <result column="paymentType" property="paymenttype" jdbcType="VARCHAR" />
+    <result column="invoiceNo" property="invoiceno" jdbcType="VARCHAR" />
+    <result column="cashiertime" property="cashiertime" jdbcType="TIMESTAMP" />
+    <result column="staffId" property="staffid" jdbcType="VARCHAR" />
+    <result column="onCredit" property="oncredit" jdbcType="REAL" />
+    <result column="interior" property="interior" jdbcType="REAL" />
+    <result column="clientId" property="clientid" jdbcType="VARCHAR" />
+    <result column="change" property="change" jdbcType="REAL" />
+    <result column="Number" property="number" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, totalNum, cashierstatic, paymentType, invoiceNo, cashiertime, staffId, onCredit, 
+    interior, clientId, change, Number
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CashierExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cashier
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cashier
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cashier
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.CashierExample" >
+    delete from cashier
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Cashier" >
+    insert into cashier (id, totalNum, cashierstatic, 
+      paymentType, invoiceNo, cashiertime, 
+      staffId, onCredit, interior, 
+      clientId, change, Number
+      )
+    values (#{id,jdbcType=INTEGER}, #{totalnum,jdbcType=REAL}, #{cashierstatic,jdbcType=VARCHAR}, 
+      #{paymenttype,jdbcType=VARCHAR}, #{invoiceno,jdbcType=VARCHAR}, #{cashiertime,jdbcType=TIMESTAMP}, 
+      #{staffid,jdbcType=VARCHAR}, #{oncredit,jdbcType=REAL}, #{interior,jdbcType=REAL}, 
+      #{clientid,jdbcType=VARCHAR}, #{change,jdbcType=REAL}, #{number,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Cashier" >
+    insert into cashier
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="totalnum != null" >
+        totalNum,
+      </if>
+      <if test="cashierstatic != null" >
+        cashierstatic,
+      </if>
+      <if test="paymenttype != null" >
+        paymentType,
+      </if>
+      <if test="invoiceno != null" >
+        invoiceNo,
+      </if>
+      <if test="cashiertime != null" >
+        cashiertime,
+      </if>
+      <if test="staffid != null" >
+        staffId,
+      </if>
+      <if test="oncredit != null" >
+        onCredit,
+      </if>
+      <if test="interior != null" >
+        interior,
+      </if>
+      <if test="clientid != null" >
+        clientId,
+      </if>
+      <if test="change != null" >
+        change,
+      </if>
+      <if test="number != null" >
+        Number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="totalnum != null" >
+        #{totalnum,jdbcType=REAL},
+      </if>
+      <if test="cashierstatic != null" >
+        #{cashierstatic,jdbcType=VARCHAR},
+      </if>
+      <if test="paymenttype != null" >
+        #{paymenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceno != null" >
+        #{invoiceno,jdbcType=VARCHAR},
+      </if>
+      <if test="cashiertime != null" >
+        #{cashiertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staffid != null" >
+        #{staffid,jdbcType=VARCHAR},
+      </if>
+      <if test="oncredit != null" >
+        #{oncredit,jdbcType=REAL},
+      </if>
+      <if test="interior != null" >
+        #{interior,jdbcType=REAL},
+      </if>
+      <if test="clientid != null" >
+        #{clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="change != null" >
+        #{change,jdbcType=REAL},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.CashierExample" resultType="java.lang.Integer" >
+    select count(*) from cashier
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cashier
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalnum != null" >
+        totalNum = #{record.totalnum,jdbcType=REAL},
+      </if>
+      <if test="record.cashierstatic != null" >
+        cashierstatic = #{record.cashierstatic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymenttype != null" >
+        paymentType = #{record.paymenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceno != null" >
+        invoiceNo = #{record.invoiceno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cashiertime != null" >
+        cashiertime = #{record.cashiertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.staffid != null" >
+        staffId = #{record.staffid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oncredit != null" >
+        onCredit = #{record.oncredit,jdbcType=REAL},
+      </if>
+      <if test="record.interior != null" >
+        interior = #{record.interior,jdbcType=REAL},
+      </if>
+      <if test="record.clientid != null" >
+        clientId = #{record.clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.change != null" >
+        change = #{record.change,jdbcType=REAL},
+      </if>
+      <if test="record.number != null" >
+        Number = #{record.number,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cashier
+    set id = #{record.id,jdbcType=INTEGER},
+      totalNum = #{record.totalnum,jdbcType=REAL},
+      cashierstatic = #{record.cashierstatic,jdbcType=VARCHAR},
+      paymentType = #{record.paymenttype,jdbcType=VARCHAR},
+      invoiceNo = #{record.invoiceno,jdbcType=VARCHAR},
+      cashiertime = #{record.cashiertime,jdbcType=TIMESTAMP},
+      staffId = #{record.staffid,jdbcType=VARCHAR},
+      onCredit = #{record.oncredit,jdbcType=REAL},
+      interior = #{record.interior,jdbcType=REAL},
+      clientId = #{record.clientid,jdbcType=VARCHAR},
+      change = #{record.change,jdbcType=REAL},
+      Number = #{record.number,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Cashier" >
+    update cashier
+    <set >
+      <if test="totalnum != null" >
+        totalNum = #{totalnum,jdbcType=REAL},
+      </if>
+      <if test="cashierstatic != null" >
+        cashierstatic = #{cashierstatic,jdbcType=VARCHAR},
+      </if>
+      <if test="paymenttype != null" >
+        paymentType = #{paymenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceno != null" >
+        invoiceNo = #{invoiceno,jdbcType=VARCHAR},
+      </if>
+      <if test="cashiertime != null" >
+        cashiertime = #{cashiertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staffid != null" >
+        staffId = #{staffid,jdbcType=VARCHAR},
+      </if>
+      <if test="oncredit != null" >
+        onCredit = #{oncredit,jdbcType=REAL},
+      </if>
+      <if test="interior != null" >
+        interior = #{interior,jdbcType=REAL},
+      </if>
+      <if test="clientid != null" >
+        clientId = #{clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="change != null" >
+        change = #{change,jdbcType=REAL},
+      </if>
+      <if test="number != null" >
+        Number = #{number,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Cashier" >
+    update cashier
+    set totalNum = #{totalnum,jdbcType=REAL},
+      cashierstatic = #{cashierstatic,jdbcType=VARCHAR},
+      paymentType = #{paymenttype,jdbcType=VARCHAR},
+      invoiceNo = #{invoiceno,jdbcType=VARCHAR},
+      cashiertime = #{cashiertime,jdbcType=TIMESTAMP},
+      staffId = #{staffid,jdbcType=VARCHAR},
+      onCredit = #{oncredit,jdbcType=REAL},
+      interior = #{interior,jdbcType=REAL},
+      clientId = #{clientid,jdbcType=VARCHAR},
+      change = #{change,jdbcType=REAL},
+      Number = #{number,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

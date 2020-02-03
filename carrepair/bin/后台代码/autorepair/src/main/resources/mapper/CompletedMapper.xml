@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.CompletedMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Completed" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="yesOrno" property="yesorno" jdbcType="INTEGER" />
+    <result column="predicttime" property="predicttime" jdbcType="TIMESTAMP" />
+    <result column="nowtime" property="nowtime" jdbcType="TIMESTAMP" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="workid" property="workid" jdbcType="INTEGER" />
+    <result column="dutyid" property="dutyid" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, yesOrno, predicttime, nowtime, reason, workid, dutyid, price
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CompletedExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from completed
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from completed
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from completed
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.CompletedExample" >
+    delete from completed
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Completed" >
+    insert into completed (id, yesOrno, predicttime, 
+      nowtime, reason, workid, 
+      dutyid, price)
+    values (#{id,jdbcType=INTEGER}, #{yesorno,jdbcType=INTEGER}, #{predicttime,jdbcType=TIMESTAMP}, 
+      #{nowtime,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR}, #{workid,jdbcType=INTEGER}, 
+      #{dutyid,jdbcType=INTEGER}, #{price,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Completed" >
+    insert into completed
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="yesorno != null" >
+        yesOrno,
+      </if>
+      <if test="predicttime != null" >
+        predicttime,
+      </if>
+      <if test="nowtime != null" >
+        nowtime,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="workid != null" >
+        workid,
+      </if>
+      <if test="dutyid != null" >
+        dutyid,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="yesorno != null" >
+        #{yesorno,jdbcType=INTEGER},
+      </if>
+      <if test="predicttime != null" >
+        #{predicttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nowtime != null" >
+        #{nowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="workid != null" >
+        #{workid,jdbcType=INTEGER},
+      </if>
+      <if test="dutyid != null" >
+        #{dutyid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.CompletedExample" resultType="java.lang.Integer" >
+    select count(*) from completed
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update completed
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.yesorno != null" >
+        yesOrno = #{record.yesorno,jdbcType=INTEGER},
+      </if>
+      <if test="record.predicttime != null" >
+        predicttime = #{record.predicttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.nowtime != null" >
+        nowtime = #{record.nowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reason != null" >
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workid != null" >
+        workid = #{record.workid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dutyid != null" >
+        dutyid = #{record.dutyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update completed
+    set id = #{record.id,jdbcType=INTEGER},
+      yesOrno = #{record.yesorno,jdbcType=INTEGER},
+      predicttime = #{record.predicttime,jdbcType=TIMESTAMP},
+      nowtime = #{record.nowtime,jdbcType=TIMESTAMP},
+      reason = #{record.reason,jdbcType=VARCHAR},
+      workid = #{record.workid,jdbcType=INTEGER},
+      dutyid = #{record.dutyid,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Completed" >
+    update completed
+    <set >
+      <if test="yesorno != null" >
+        yesOrno = #{yesorno,jdbcType=INTEGER},
+      </if>
+      <if test="predicttime != null" >
+        predicttime = #{predicttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nowtime != null" >
+        nowtime = #{nowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="workid != null" >
+        workid = #{workid,jdbcType=INTEGER},
+      </if>
+      <if test="dutyid != null" >
+        dutyid = #{dutyid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Completed" >
+    update completed
+    set yesOrno = #{yesorno,jdbcType=INTEGER},
+      predicttime = #{predicttime,jdbcType=TIMESTAMP},
+      nowtime = #{nowtime,jdbcType=TIMESTAMP},
+      reason = #{reason,jdbcType=VARCHAR},
+      workid = #{workid,jdbcType=INTEGER},
+      dutyid = #{dutyid,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

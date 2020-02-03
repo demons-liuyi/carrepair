@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.DimissionMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Dimission" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="staffId" property="staffid" jdbcType="VARCHAR" />
+    <result column="dimissionDate" property="dimissiondate" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.accp.domain.Dimission" extends="BaseResultMap" >
+    <result column="dimissionCause" property="dimissioncause" jdbcType="VARBINARY" />
+  </resultMap>
+  <resultMap type="com.accp.domain.Dimission" id="ResultMapPlus" extends="ResultMapWithBLOBs">
+  	<result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
+  	<result column="name" property="name" jdbcType="VARCHAR" />
+  	<result column="sex" property="sex" jdbcType="VARCHAR" />
+  	<result column="postname" property="postname" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectDimissionInfo" resultMap="ResultMapPlus">
+  	SELECT (SELECT departmentName FROM department WHERE department.id=st.departmentid) 
+	departmentname,staffid,NAME,sex,(SELECT postName FROM post WHERE id=st.postid) postname,dimissionDate,dimissionCause
+ 	FROM dimission di INNER JOIN staff st ON di.`staffId`=st.staffno
+  </select>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, staffId, dimissionDate
+  </sql>
+  <sql id="Blob_Column_List" >
+    dimissionCause
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.accp.domain.DimissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dimission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.DimissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dimission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dimission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dimission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.DimissionExample" >
+    delete from dimission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Dimission" >
+    insert into dimission (id, staffId, dimissionDate, 
+      dimissionCause)
+    values (#{id,jdbcType=INTEGER}, #{staffid,jdbcType=VARCHAR}, #{dimissiondate,jdbcType=DATE}, 
+      #{dimissioncause,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Dimission" >
+    insert into dimission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="staffid != null" >
+        staffId,
+      </if>
+      <if test="dimissiondate != null" >
+        dimissionDate,
+      </if>
+      <if test="dimissioncause != null" >
+        dimissionCause,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="staffid != null" >
+        #{staffid,jdbcType=VARCHAR},
+      </if>
+      <if test="dimissiondate != null" >
+        #{dimissiondate,jdbcType=DATE},
+      </if>
+      <if test="dimissioncause != null" >
+        #{dimissioncause,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.DimissionExample" resultType="java.lang.Integer" >
+    select count(*) from dimission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dimission
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffid != null" >
+        staffId = #{record.staffid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dimissiondate != null" >
+        dimissionDate = #{record.dimissiondate,jdbcType=DATE},
+      </if>
+      <if test="record.dimissioncause != null" >
+        dimissionCause = #{record.dimissioncause,jdbcType=VARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update dimission
+    set id = #{record.id,jdbcType=INTEGER},
+      staffId = #{record.staffid,jdbcType=VARCHAR},
+      dimissionDate = #{record.dimissiondate,jdbcType=DATE},
+      dimissionCause = #{record.dimissioncause,jdbcType=VARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dimission
+    set id = #{record.id,jdbcType=INTEGER},
+      staffId = #{record.staffid,jdbcType=VARCHAR},
+      dimissionDate = #{record.dimissiondate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Dimission" >
+    update dimission
+    <set >
+      <if test="staffid != null" >
+        staffId = #{staffid,jdbcType=VARCHAR},
+      </if>
+      <if test="dimissiondate != null" >
+        dimissionDate = #{dimissiondate,jdbcType=DATE},
+      </if>
+      <if test="dimissioncause != null" >
+        dimissionCause = #{dimissioncause,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.accp.domain.Dimission" >
+    update dimission
+    set staffId = #{staffid,jdbcType=VARCHAR},
+      dimissionDate = #{dimissiondate,jdbcType=DATE},
+      dimissionCause = #{dimissioncause,jdbcType=VARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Dimission" >
+    update dimission
+    set staffId = #{staffid,jdbcType=VARCHAR},
+      dimissionDate = #{dimissiondate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

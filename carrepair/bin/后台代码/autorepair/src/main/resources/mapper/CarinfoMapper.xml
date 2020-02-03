@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.CarinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Carinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="carNumber" property="carnumber" jdbcType="VARCHAR" />
+    <result column="carBrandId" property="carbrandid" jdbcType="INTEGER" />
+    <result column="carId" property="carid" jdbcType="INTEGER" />
+    <result column="carer" property="carer" jdbcType="VARCHAR" />
+    <result column="carerPhone" property="carerphone" jdbcType="VARCHAR" />
+    <result column="bornDate" property="borndate" jdbcType="DATE" />
+    <result column="affiliation" property="affiliation" jdbcType="VARCHAR" />
+    <result column="drivingLicence" property="drivinglicence" jdbcType="DATE" />
+    <result column="carNumber1" property="carnumber1" jdbcType="VARCHAR" />
+    <result column="engineNumber" property="enginenumber" jdbcType="VARCHAR" />
+    <result column="yearPrice" property="yearprice" jdbcType="REAL" />
+    <result column="mileage" property="mileage" jdbcType="REAL" />
+    <result column="engineId" property="engineid" jdbcType="INTEGER" />
+    <result column="load" property="load" jdbcType="VARCHAR" />
+    <result column="buyDate" property="buydate" jdbcType="TIMESTAMP" />
+    <result column="dutyDate" property="dutydate" jdbcType="TIMESTAMP" />
+    <result column="carCheckDate" property="carcheckdate" jdbcType="TIMESTAMP" />
+    <result column="fuelOilType" property="fueloiltype" jdbcType="VARCHAR" />
+    <result column="carSeries" property="carseries" jdbcType="VARCHAR" />
+    <result column="Jqinsurance" property="jqinsurance" jdbcType="VARCHAR" />
+    <result column="Jqinsurancedate" property="jqinsurancedate" jdbcType="DATE" />
+    <result column="Syinsurance" property="syinsurance" jdbcType="VARCHAR" />
+    <result column="Syinsurancedate" property="syinsurancedate" jdbcType="DATE" />
+    <result column="maintain" property="maintain" jdbcType="REAL" />
+    <result column="maintaindate" property="maintaindate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, carNumber, carBrandId, carId, carer, carerPhone, bornDate, affiliation, drivingLicence, 
+    carNumber1, engineNumber, yearPrice, mileage, engineId, load, buyDate, dutyDate, 
+    carCheckDate, fuelOilType, carSeries, Jqinsurance, Jqinsurancedate, Syinsurance, 
+    Syinsurancedate, maintain, maintaindate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CarinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from carinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from carinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from carinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.CarinfoExample" >
+    delete from carinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Carinfo" >
+    insert into carinfo (id, carNumber, carBrandId, 
+      carId, carer, carerPhone, 
+      bornDate, affiliation, drivingLicence, 
+      carNumber1, engineNumber, yearPrice, 
+      mileage, engineId, load, 
+      buyDate, dutyDate, carCheckDate, 
+      fuelOilType, carSeries, Jqinsurance, 
+      Jqinsurancedate, Syinsurance, Syinsurancedate, 
+      maintain, maintaindate)
+    values (#{id,jdbcType=INTEGER}, #{carnumber,jdbcType=VARCHAR}, #{carbrandid,jdbcType=INTEGER}, 
+      #{carid,jdbcType=INTEGER}, #{carer,jdbcType=VARCHAR}, #{carerphone,jdbcType=VARCHAR}, 
+      #{borndate,jdbcType=DATE}, #{affiliation,jdbcType=VARCHAR}, #{drivinglicence,jdbcType=DATE}, 
+      #{carnumber1,jdbcType=VARCHAR}, #{enginenumber,jdbcType=VARCHAR}, #{yearprice,jdbcType=REAL}, 
+      #{mileage,jdbcType=REAL}, #{engineid,jdbcType=INTEGER}, #{load,jdbcType=VARCHAR}, 
+      #{buydate,jdbcType=TIMESTAMP}, #{dutydate,jdbcType=TIMESTAMP}, #{carcheckdate,jdbcType=TIMESTAMP}, 
+      #{fueloiltype,jdbcType=VARCHAR}, #{carseries,jdbcType=VARCHAR}, #{jqinsurance,jdbcType=VARCHAR}, 
+      #{jqinsurancedate,jdbcType=DATE}, #{syinsurance,jdbcType=VARCHAR}, #{syinsurancedate,jdbcType=DATE}, 
+      #{maintain,jdbcType=REAL}, #{maintaindate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Carinfo" >
+    insert into carinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="carnumber != null" >
+        carNumber,
+      </if>
+      <if test="carbrandid != null" >
+        carBrandId,
+      </if>
+      <if test="carid != null" >
+        carId,
+      </if>
+      <if test="carer != null" >
+        carer,
+      </if>
+      <if test="carerphone != null" >
+        carerPhone,
+      </if>
+      <if test="borndate != null" >
+        bornDate,
+      </if>
+      <if test="affiliation != null" >
+        affiliation,
+      </if>
+      <if test="drivinglicence != null" >
+        drivingLicence,
+      </if>
+      <if test="carnumber1 != null" >
+        carNumber1,
+      </if>
+      <if test="enginenumber != null" >
+        engineNumber,
+      </if>
+      <if test="yearprice != null" >
+        yearPrice,
+      </if>
+      <if test="mileage != null" >
+        mileage,
+      </if>
+      <if test="engineid != null" >
+        engineId,
+      </if>
+      <if test="load != null" >
+        load,
+      </if>
+      <if test="buydate != null" >
+        buyDate,
+      </if>
+      <if test="dutydate != null" >
+        dutyDate,
+      </if>
+      <if test="carcheckdate != null" >
+        carCheckDate,
+      </if>
+      <if test="fueloiltype != null" >
+        fuelOilType,
+      </if>
+      <if test="carseries != null" >
+        carSeries,
+      </if>
+      <if test="jqinsurance != null" >
+        Jqinsurance,
+      </if>
+      <if test="jqinsurancedate != null" >
+        Jqinsurancedate,
+      </if>
+      <if test="syinsurance != null" >
+        Syinsurance,
+      </if>
+      <if test="syinsurancedate != null" >
+        Syinsurancedate,
+      </if>
+      <if test="maintain != null" >
+        maintain,
+      </if>
+      <if test="maintaindate != null" >
+        maintaindate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="carnumber != null" >
+        #{carnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carbrandid != null" >
+        #{carbrandid,jdbcType=INTEGER},
+      </if>
+      <if test="carid != null" >
+        #{carid,jdbcType=INTEGER},
+      </if>
+      <if test="carer != null" >
+        #{carer,jdbcType=VARCHAR},
+      </if>
+      <if test="carerphone != null" >
+        #{carerphone,jdbcType=VARCHAR},
+      </if>
+      <if test="borndate != null" >
+        #{borndate,jdbcType=DATE},
+      </if>
+      <if test="affiliation != null" >
+        #{affiliation,jdbcType=VARCHAR},
+      </if>
+      <if test="drivinglicence != null" >
+        #{drivinglicence,jdbcType=DATE},
+      </if>
+      <if test="carnumber1 != null" >
+        #{carnumber1,jdbcType=VARCHAR},
+      </if>
+      <if test="enginenumber != null" >
+        #{enginenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="yearprice != null" >
+        #{yearprice,jdbcType=REAL},
+      </if>
+      <if test="mileage != null" >
+        #{mileage,jdbcType=REAL},
+      </if>
+      <if test="engineid != null" >
+        #{engineid,jdbcType=INTEGER},
+      </if>
+      <if test="load != null" >
+        #{load,jdbcType=VARCHAR},
+      </if>
+      <if test="buydate != null" >
+        #{buydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dutydate != null" >
+        #{dutydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carcheckdate != null" >
+        #{carcheckdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fueloiltype != null" >
+        #{fueloiltype,jdbcType=VARCHAR},
+      </if>
+      <if test="carseries != null" >
+        #{carseries,jdbcType=VARCHAR},
+      </if>
+      <if test="jqinsurance != null" >
+        #{jqinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="jqinsurancedate != null" >
+        #{jqinsurancedate,jdbcType=DATE},
+      </if>
+      <if test="syinsurance != null" >
+        #{syinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="syinsurancedate != null" >
+        #{syinsurancedate,jdbcType=DATE},
+      </if>
+      <if test="maintain != null" >
+        #{maintain,jdbcType=REAL},
+      </if>
+      <if test="maintaindate != null" >
+        #{maintaindate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.CarinfoExample" resultType="java.lang.Integer" >
+    select count(*) from carinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update carinfo
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.carnumber != null" >
+        carNumber = #{record.carnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carbrandid != null" >
+        carBrandId = #{record.carbrandid,jdbcType=INTEGER},
+      </if>
+      <if test="record.carid != null" >
+        carId = #{record.carid,jdbcType=INTEGER},
+      </if>
+      <if test="record.carer != null" >
+        carer = #{record.carer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carerphone != null" >
+        carerPhone = #{record.carerphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.borndate != null" >
+        bornDate = #{record.borndate,jdbcType=DATE},
+      </if>
+      <if test="record.affiliation != null" >
+        affiliation = #{record.affiliation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drivinglicence != null" >
+        drivingLicence = #{record.drivinglicence,jdbcType=DATE},
+      </if>
+      <if test="record.carnumber1 != null" >
+        carNumber1 = #{record.carnumber1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enginenumber != null" >
+        engineNumber = #{record.enginenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yearprice != null" >
+        yearPrice = #{record.yearprice,jdbcType=REAL},
+      </if>
+      <if test="record.mileage != null" >
+        mileage = #{record.mileage,jdbcType=REAL},
+      </if>
+      <if test="record.engineid != null" >
+        engineId = #{record.engineid,jdbcType=INTEGER},
+      </if>
+      <if test="record.load != null" >
+        load = #{record.load,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buydate != null" >
+        buyDate = #{record.buydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dutydate != null" >
+        dutyDate = #{record.dutydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.carcheckdate != null" >
+        carCheckDate = #{record.carcheckdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fueloiltype != null" >
+        fuelOilType = #{record.fueloiltype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carseries != null" >
+        carSeries = #{record.carseries,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jqinsurance != null" >
+        Jqinsurance = #{record.jqinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jqinsurancedate != null" >
+        Jqinsurancedate = #{record.jqinsurancedate,jdbcType=DATE},
+      </if>
+      <if test="record.syinsurance != null" >
+        Syinsurance = #{record.syinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syinsurancedate != null" >
+        Syinsurancedate = #{record.syinsurancedate,jdbcType=DATE},
+      </if>
+      <if test="record.maintain != null" >
+        maintain = #{record.maintain,jdbcType=REAL},
+      </if>
+      <if test="record.maintaindate != null" >
+        maintaindate = #{record.maintaindate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update carinfo
+    set id = #{record.id,jdbcType=INTEGER},
+      carNumber = #{record.carnumber,jdbcType=VARCHAR},
+      carBrandId = #{record.carbrandid,jdbcType=INTEGER},
+      carId = #{record.carid,jdbcType=INTEGER},
+      carer = #{record.carer,jdbcType=VARCHAR},
+      carerPhone = #{record.carerphone,jdbcType=VARCHAR},
+      bornDate = #{record.borndate,jdbcType=DATE},
+      affiliation = #{record.affiliation,jdbcType=VARCHAR},
+      drivingLicence = #{record.drivinglicence,jdbcType=DATE},
+      carNumber1 = #{record.carnumber1,jdbcType=VARCHAR},
+      engineNumber = #{record.enginenumber,jdbcType=VARCHAR},
+      yearPrice = #{record.yearprice,jdbcType=REAL},
+      mileage = #{record.mileage,jdbcType=REAL},
+      engineId = #{record.engineid,jdbcType=INTEGER},
+      load = #{record.load,jdbcType=VARCHAR},
+      buyDate = #{record.buydate,jdbcType=TIMESTAMP},
+      dutyDate = #{record.dutydate,jdbcType=TIMESTAMP},
+      carCheckDate = #{record.carcheckdate,jdbcType=TIMESTAMP},
+      fuelOilType = #{record.fueloiltype,jdbcType=VARCHAR},
+      carSeries = #{record.carseries,jdbcType=VARCHAR},
+      Jqinsurance = #{record.jqinsurance,jdbcType=VARCHAR},
+      Jqinsurancedate = #{record.jqinsurancedate,jdbcType=DATE},
+      Syinsurance = #{record.syinsurance,jdbcType=VARCHAR},
+      Syinsurancedate = #{record.syinsurancedate,jdbcType=DATE},
+      maintain = #{record.maintain,jdbcType=REAL},
+      maintaindate = #{record.maintaindate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Carinfo" >
+    update carinfo
+    <set >
+      <if test="carnumber != null" >
+        carNumber = #{carnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carbrandid != null" >
+        carBrandId = #{carbrandid,jdbcType=INTEGER},
+      </if>
+      <if test="carid != null" >
+        carId = #{carid,jdbcType=INTEGER},
+      </if>
+      <if test="carer != null" >
+        carer = #{carer,jdbcType=VARCHAR},
+      </if>
+      <if test="carerphone != null" >
+        carerPhone = #{carerphone,jdbcType=VARCHAR},
+      </if>
+      <if test="borndate != null" >
+        bornDate = #{borndate,jdbcType=DATE},
+      </if>
+      <if test="affiliation != null" >
+        affiliation = #{affiliation,jdbcType=VARCHAR},
+      </if>
+      <if test="drivinglicence != null" >
+        drivingLicence = #{drivinglicence,jdbcType=DATE},
+      </if>
+      <if test="carnumber1 != null" >
+        carNumber1 = #{carnumber1,jdbcType=VARCHAR},
+      </if>
+      <if test="enginenumber != null" >
+        engineNumber = #{enginenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="yearprice != null" >
+        yearPrice = #{yearprice,jdbcType=REAL},
+      </if>
+      <if test="mileage != null" >
+        mileage = #{mileage,jdbcType=REAL},
+      </if>
+      <if test="engineid != null" >
+        engineId = #{engineid,jdbcType=INTEGER},
+      </if>
+      <if test="load != null" >
+        load = #{load,jdbcType=VARCHAR},
+      </if>
+      <if test="buydate != null" >
+        buyDate = #{buydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dutydate != null" >
+        dutyDate = #{dutydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carcheckdate != null" >
+        carCheckDate = #{carcheckdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fueloiltype != null" >
+        fuelOilType = #{fueloiltype,jdbcType=VARCHAR},
+      </if>
+      <if test="carseries != null" >
+        carSeries = #{carseries,jdbcType=VARCHAR},
+      </if>
+      <if test="jqinsurance != null" >
+        Jqinsurance = #{jqinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="jqinsurancedate != null" >
+        Jqinsurancedate = #{jqinsurancedate,jdbcType=DATE},
+      </if>
+      <if test="syinsurance != null" >
+        Syinsurance = #{syinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="syinsurancedate != null" >
+        Syinsurancedate = #{syinsurancedate,jdbcType=DATE},
+      </if>
+      <if test="maintain != null" >
+        maintain = #{maintain,jdbcType=REAL},
+      </if>
+      <if test="maintaindate != null" >
+        maintaindate = #{maintaindate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Carinfo" >
+    update carinfo
+    set carNumber = #{carnumber,jdbcType=VARCHAR},
+      carBrandId = #{carbrandid,jdbcType=INTEGER},
+      carId = #{carid,jdbcType=INTEGER},
+      carer = #{carer,jdbcType=VARCHAR},
+      carerPhone = #{carerphone,jdbcType=VARCHAR},
+      bornDate = #{borndate,jdbcType=DATE},
+      affiliation = #{affiliation,jdbcType=VARCHAR},
+      drivingLicence = #{drivinglicence,jdbcType=DATE},
+      carNumber1 = #{carnumber1,jdbcType=VARCHAR},
+      engineNumber = #{enginenumber,jdbcType=VARCHAR},
+      yearPrice = #{yearprice,jdbcType=REAL},
+      mileage = #{mileage,jdbcType=REAL},
+      engineId = #{engineid,jdbcType=INTEGER},
+      load = #{load,jdbcType=VARCHAR},
+      buyDate = #{buydate,jdbcType=TIMESTAMP},
+      dutyDate = #{dutydate,jdbcType=TIMESTAMP},
+      carCheckDate = #{carcheckdate,jdbcType=TIMESTAMP},
+      fuelOilType = #{fueloiltype,jdbcType=VARCHAR},
+      carSeries = #{carseries,jdbcType=VARCHAR},
+      Jqinsurance = #{jqinsurance,jdbcType=VARCHAR},
+      Jqinsurancedate = #{jqinsurancedate,jdbcType=DATE},
+      Syinsurance = #{syinsurance,jdbcType=VARCHAR},
+      Syinsurancedate = #{syinsurancedate,jdbcType=DATE},
+      maintain = #{maintain,jdbcType=REAL},
+      maintaindate = #{maintaindate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.StaffMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Staff" >
+    <id column="staffNo" property="staffno" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="departmentId" property="departmentid" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="postId" property="postid" jdbcType="INTEGER" />
+    <result column="physicalCondition" property="physicalcondition" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="nativePlace" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="maritalStatus" property="maritalstatus" jdbcType="VARCHAR" />
+    <result column="educationBackground" property="educationbackground" jdbcType="VARCHAR" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="professionalQualification" property="professionalqualification" jdbcType="VARCHAR" />
+    <result column="property" property="property" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
+    <result column="authorizedStrength" property="authorizedstrength" jdbcType="VARCHAR" />
+    <result column="idCardNo" property="idcardno" jdbcType="VARCHAR" />
+    <result column="residence" property="residence" jdbcType="VARCHAR" />
+    <result column="presentAddress" property="presentaddress" jdbcType="VARCHAR" />
+    <result column="contactNumber" property="contactnumber" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="depositBank" property="depositbank" jdbcType="VARCHAR" />
+    <result column="bankAccount" property="bankaccount" jdbcType="VARCHAR" />
+    <result column="emergencyContact" property="emergencycontact" jdbcType="VARCHAR" />
+    <result column="emergencyPhone" property="emergencyphone" jdbcType="VARCHAR" />
+    <result column="dateOnBoard" property="dateonboard" jdbcType="DATE" />
+    <result column="theTrialDue" property="thetrialdue" jdbcType="DATE" />
+    <result column="birthdayDate" property="birthdaydate" jdbcType="DATE" />
+    <result column="contractStart" property="contractstart" jdbcType="DATE" />
+    <result column="agreementEnds" property="agreementends" jdbcType="DATE" />
+    <result column="cardNumber" property="cardnumber" jdbcType="VARCHAR" />
+    <result column="internalCardNo" property="internalcardno" jdbcType="VARCHAR" />
+    <result column="referrer" property="referrer" jdbcType="VARCHAR" />
+    <result column="wholeOrderDiscountRight" property="wholeorderdiscountright" jdbcType="VARCHAR" />
+    <result column="timeDiscountRight" property="timediscountright" jdbcType="VARCHAR" />
+    <result column="rightToDiscount" property="righttodiscount" jdbcType="VARCHAR" />
+    <result column="rightOfRelief" property="rightofrelief" jdbcType="VARCHAR" />
+    <result column="jobResume" property="jobresume" jdbcType="VARCHAR" />
+    <result column="educationexperience" property="educationexperience" jdbcType="VARCHAR" />
+    <result column="memberOfFamily" property="memberoffamily" jdbcType="VARCHAR" />
+    <result column="disciplinaryRecords" property="disciplinaryrecords" jdbcType="VARCHAR" />
+    <result column="employmentAdvice" property="employmentadvice" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="roleId" property="roleid" jdbcType="INTEGER" />
+    <result column="isDimission" property="isdimission" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap type="com.accp.domain.Staff" id="BaseResultMapPlus" extends="BaseResultMap">
+  	 <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectStaffPhone" resultMap="BaseResultMapPlus">
+  	 select (SELECT departmentName FROM department WHERE department.id=departmentid) 
+departmentname,staffNo,name,emergencyPhone,contactNumber,phone,email from staff where staff.isdimission=0
+  </select>
+  <select id="selectStaffByCondition" resultMap="BaseResultMapPlus">
+  	 SELECT s.*,d.departmentname FROM staff s INNER JOIN department d ON s.departmentid=d.id WHERE d.departmentname LIKE '%${departmentname}%' and s.isdimission=0; 
+  </select>
+  <select id="selectStaffByStaffNo" resultMap="BaseResultMapPlus">
+  	 select s.*,d.departmentname from staff s inner join department d on s.departmentid=d.id where s.staffno ='${staffno}';
+  </select>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    staffNo, name, sex, departmentId, account, password, postId, physicalCondition, height, 
+    nativePlace, nation, maritalStatus, educationBackground, school, major, professionalQualification, 
+    property, degree, authorizedStrength, idCardNo, residence, presentAddress, contactNumber, 
+    phone, email, depositBank, bankAccount, emergencyContact, emergencyPhone, dateOnBoard, 
+    theTrialDue, birthdayDate, contractStart, agreementEnds, cardNumber, internalCardNo, 
+    referrer, wholeOrderDiscountRight, timeDiscountRight, rightToDiscount, rightOfRelief, 
+    jobResume, educationexperience, memberOfFamily, disciplinaryRecords, employmentAdvice, 
+    picture, roleId, isDimission
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.StaffExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from staff
+    where staffNo = #{staffno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from staff
+    where staffNo = #{staffno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.StaffExample" >
+    delete from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Staff" >
+    insert into staff (staffNo, name, sex, 
+      departmentId, account, password, 
+      postId, physicalCondition, height, 
+      nativePlace, nation, maritalStatus, 
+      educationBackground, school, major, 
+      professionalQualification, property, degree, 
+      authorizedStrength, idCardNo, residence, 
+      presentAddress, contactNumber, phone, 
+      email, depositBank, bankAccount, 
+      emergencyContact, emergencyPhone, dateOnBoard, 
+      theTrialDue, birthdayDate, contractStart, 
+      agreementEnds, cardNumber, internalCardNo, 
+      referrer, wholeOrderDiscountRight, timeDiscountRight, 
+      rightToDiscount, rightOfRelief, jobResume, 
+      educationexperience, memberOfFamily, disciplinaryRecords, 
+      employmentAdvice, picture, roleId, 
+      isDimission)
+    values (#{staffno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{departmentid,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{postid,jdbcType=INTEGER}, #{physicalcondition,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, 
+      #{nativeplace,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{maritalstatus,jdbcType=VARCHAR}, 
+      #{educationbackground,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+      #{professionalqualification,jdbcType=VARCHAR}, #{property,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
+      #{authorizedstrength,jdbcType=VARCHAR}, #{idcardno,jdbcType=VARCHAR}, #{residence,jdbcType=VARCHAR}, 
+      #{presentaddress,jdbcType=VARCHAR}, #{contactnumber,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{depositbank,jdbcType=VARCHAR}, #{bankaccount,jdbcType=VARCHAR}, 
+      #{emergencycontact,jdbcType=VARCHAR}, #{emergencyphone,jdbcType=VARCHAR}, #{dateonboard,jdbcType=DATE}, 
+      #{thetrialdue,jdbcType=DATE}, #{birthdaydate,jdbcType=DATE}, #{contractstart,jdbcType=DATE}, 
+      #{agreementends,jdbcType=DATE}, #{cardnumber,jdbcType=VARCHAR}, #{internalcardno,jdbcType=VARCHAR}, 
+      #{referrer,jdbcType=VARCHAR}, #{wholeorderdiscountright,jdbcType=VARCHAR}, #{timediscountright,jdbcType=VARCHAR}, 
+      #{righttodiscount,jdbcType=VARCHAR}, #{rightofrelief,jdbcType=VARCHAR}, #{jobresume,jdbcType=VARCHAR}, 
+      #{educationexperience,jdbcType=VARCHAR}, #{memberoffamily,jdbcType=VARCHAR}, #{disciplinaryrecords,jdbcType=VARCHAR}, 
+      #{employmentadvice,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{roleid,jdbcType=INTEGER}, 
+      #{isdimission,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Staff" >
+    insert into staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffno != null" >
+        staffNo,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="departmentid != null" >
+        departmentId,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="postid != null" >
+        postId,
+      </if>
+      <if test="physicalcondition != null" >
+        physicalCondition,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="nativeplace != null" >
+        nativePlace,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="maritalstatus != null" >
+        maritalStatus,
+      </if>
+      <if test="educationbackground != null" >
+        educationBackground,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="professionalqualification != null" >
+        professionalQualification,
+      </if>
+      <if test="property != null" >
+        property,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+      <if test="authorizedstrength != null" >
+        authorizedStrength,
+      </if>
+      <if test="idcardno != null" >
+        idCardNo,
+      </if>
+      <if test="residence != null" >
+        residence,
+      </if>
+      <if test="presentaddress != null" >
+        presentAddress,
+      </if>
+      <if test="contactnumber != null" >
+        contactNumber,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="depositbank != null" >
+        depositBank,
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount,
+      </if>
+      <if test="emergencycontact != null" >
+        emergencyContact,
+      </if>
+      <if test="emergencyphone != null" >
+        emergencyPhone,
+      </if>
+      <if test="dateonboard != null" >
+        dateOnBoard,
+      </if>
+      <if test="thetrialdue != null" >
+        theTrialDue,
+      </if>
+      <if test="birthdaydate != null" >
+        birthdayDate,
+      </if>
+      <if test="contractstart != null" >
+        contractStart,
+      </if>
+      <if test="agreementends != null" >
+        agreementEnds,
+      </if>
+      <if test="cardnumber != null" >
+        cardNumber,
+      </if>
+      <if test="internalcardno != null" >
+        internalCardNo,
+      </if>
+      <if test="referrer != null" >
+        referrer,
+      </if>
+      <if test="wholeorderdiscountright != null" >
+        wholeOrderDiscountRight,
+      </if>
+      <if test="timediscountright != null" >
+        timeDiscountRight,
+      </if>
+      <if test="righttodiscount != null" >
+        rightToDiscount,
+      </if>
+      <if test="rightofrelief != null" >
+        rightOfRelief,
+      </if>
+      <if test="jobresume != null" >
+        jobResume,
+      </if>
+      <if test="educationexperience != null" >
+        educationexperience,
+      </if>
+      <if test="memberoffamily != null" >
+        memberOfFamily,
+      </if>
+      <if test="disciplinaryrecords != null" >
+        disciplinaryRecords,
+      </if>
+      <if test="employmentadvice != null" >
+        employmentAdvice,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="roleid != null" >
+        roleId,
+      </if>
+      <if test="isdimission != null" >
+        isDimission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffno != null" >
+        #{staffno,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="postid != null" >
+        #{postid,jdbcType=INTEGER},
+      </if>
+      <if test="physicalcondition != null" >
+        #{physicalcondition,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalstatus != null" >
+        #{maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="educationbackground != null" >
+        #{educationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalqualification != null" >
+        #{professionalqualification,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizedstrength != null" >
+        #{authorizedstrength,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardno != null" >
+        #{idcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="residence != null" >
+        #{residence,jdbcType=VARCHAR},
+      </if>
+      <if test="presentaddress != null" >
+        #{presentaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactnumber != null" >
+        #{contactnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="depositbank != null" >
+        #{depositbank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencycontact != null" >
+        #{emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyphone != null" >
+        #{emergencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="dateonboard != null" >
+        #{dateonboard,jdbcType=DATE},
+      </if>
+      <if test="thetrialdue != null" >
+        #{thetrialdue,jdbcType=DATE},
+      </if>
+      <if test="birthdaydate != null" >
+        #{birthdaydate,jdbcType=DATE},
+      </if>
+      <if test="contractstart != null" >
+        #{contractstart,jdbcType=DATE},
+      </if>
+      <if test="agreementends != null" >
+        #{agreementends,jdbcType=DATE},
+      </if>
+      <if test="cardnumber != null" >
+        #{cardnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="internalcardno != null" >
+        #{internalcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="referrer != null" >
+        #{referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="wholeorderdiscountright != null" >
+        #{wholeorderdiscountright,jdbcType=VARCHAR},
+      </if>
+      <if test="timediscountright != null" >
+        #{timediscountright,jdbcType=VARCHAR},
+      </if>
+      <if test="righttodiscount != null" >
+        #{righttodiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="rightofrelief != null" >
+        #{rightofrelief,jdbcType=VARCHAR},
+      </if>
+      <if test="jobresume != null" >
+        #{jobresume,jdbcType=VARCHAR},
+      </if>
+      <if test="educationexperience != null" >
+        #{educationexperience,jdbcType=VARCHAR},
+      </if>
+      <if test="memberoffamily != null" >
+        #{memberoffamily,jdbcType=VARCHAR},
+      </if>
+      <if test="disciplinaryrecords != null" >
+        #{disciplinaryrecords,jdbcType=VARCHAR},
+      </if>
+      <if test="employmentadvice != null" >
+        #{employmentadvice,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="isdimission != null" >
+        #{isdimission,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.StaffExample" resultType="java.lang.Integer" >
+    select count(*) from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update staff
+    <set >
+      <if test="record.staffno != null" >
+        staffNo = #{record.staffno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentid != null" >
+        departmentId = #{record.departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postid != null" >
+        postId = #{record.postid,jdbcType=INTEGER},
+      </if>
+      <if test="record.physicalcondition != null" >
+        physicalCondition = #{record.physicalcondition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nativeplace != null" >
+        nativePlace = #{record.nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maritalstatus != null" >
+        maritalStatus = #{record.maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.educationbackground != null" >
+        educationBackground = #{record.educationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="record.school != null" >
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.major != null" >
+        major = #{record.major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.professionalqualification != null" >
+        professionalQualification = #{record.professionalqualification,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property != null" >
+        property = #{record.property,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degree != null" >
+        degree = #{record.degree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorizedstrength != null" >
+        authorizedStrength = #{record.authorizedstrength,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardno != null" >
+        idCardNo = #{record.idcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.residence != null" >
+        residence = #{record.residence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.presentaddress != null" >
+        presentAddress = #{record.presentaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactnumber != null" >
+        contactNumber = #{record.contactnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depositbank != null" >
+        depositBank = #{record.depositbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankaccount != null" >
+        bankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emergencycontact != null" >
+        emergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emergencyphone != null" >
+        emergencyPhone = #{record.emergencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateonboard != null" >
+        dateOnBoard = #{record.dateonboard,jdbcType=DATE},
+      </if>
+      <if test="record.thetrialdue != null" >
+        theTrialDue = #{record.thetrialdue,jdbcType=DATE},
+      </if>
+      <if test="record.birthdaydate != null" >
+        birthdayDate = #{record.birthdaydate,jdbcType=DATE},
+      </if>
+      <if test="record.contractstart != null" >
+        contractStart = #{record.contractstart,jdbcType=DATE},
+      </if>
+      <if test="record.agreementends != null" >
+        agreementEnds = #{record.agreementends,jdbcType=DATE},
+      </if>
+      <if test="record.cardnumber != null" >
+        cardNumber = #{record.cardnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.internalcardno != null" >
+        internalCardNo = #{record.internalcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referrer != null" >
+        referrer = #{record.referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wholeorderdiscountright != null" >
+        wholeOrderDiscountRight = #{record.wholeorderdiscountright,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timediscountright != null" >
+        timeDiscountRight = #{record.timediscountright,jdbcType=VARCHAR},
+      </if>
+      <if test="record.righttodiscount != null" >
+        rightToDiscount = #{record.righttodiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightofrelief != null" >
+        rightOfRelief = #{record.rightofrelief,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobresume != null" >
+        jobResume = #{record.jobresume,jdbcType=VARCHAR},
+      </if>
+      <if test="record.educationexperience != null" >
+        educationexperience = #{record.educationexperience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberoffamily != null" >
+        memberOfFamily = #{record.memberoffamily,jdbcType=VARCHAR},
+      </if>
+      <if test="record.disciplinaryrecords != null" >
+        disciplinaryRecords = #{record.disciplinaryrecords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employmentadvice != null" >
+        employmentAdvice = #{record.employmentadvice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture != null" >
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleid != null" >
+        roleId = #{record.roleid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdimission != null" >
+        isDimission = #{record.isdimission,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update staff
+    set staffNo = #{record.staffno,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      departmentId = #{record.departmentid,jdbcType=INTEGER},
+      account = #{record.account,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      postId = #{record.postid,jdbcType=INTEGER},
+      physicalCondition = #{record.physicalcondition,jdbcType=VARCHAR},
+      height = #{record.height,jdbcType=VARCHAR},
+      nativePlace = #{record.nativeplace,jdbcType=VARCHAR},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      maritalStatus = #{record.maritalstatus,jdbcType=VARCHAR},
+      educationBackground = #{record.educationbackground,jdbcType=VARCHAR},
+      school = #{record.school,jdbcType=VARCHAR},
+      major = #{record.major,jdbcType=VARCHAR},
+      professionalQualification = #{record.professionalqualification,jdbcType=VARCHAR},
+      property = #{record.property,jdbcType=VARCHAR},
+      degree = #{record.degree,jdbcType=VARCHAR},
+      authorizedStrength = #{record.authorizedstrength,jdbcType=VARCHAR},
+      idCardNo = #{record.idcardno,jdbcType=VARCHAR},
+      residence = #{record.residence,jdbcType=VARCHAR},
+      presentAddress = #{record.presentaddress,jdbcType=VARCHAR},
+      contactNumber = #{record.contactnumber,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      depositBank = #{record.depositbank,jdbcType=VARCHAR},
+      bankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      emergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
+      emergencyPhone = #{record.emergencyphone,jdbcType=VARCHAR},
+      dateOnBoard = #{record.dateonboard,jdbcType=DATE},
+      theTrialDue = #{record.thetrialdue,jdbcType=DATE},
+      birthdayDate = #{record.birthdaydate,jdbcType=DATE},
+      contractStart = #{record.contractstart,jdbcType=DATE},
+      agreementEnds = #{record.agreementends,jdbcType=DATE},
+      cardNumber = #{record.cardnumber,jdbcType=VARCHAR},
+      internalCardNo = #{record.internalcardno,jdbcType=VARCHAR},
+      referrer = #{record.referrer,jdbcType=VARCHAR},
+      wholeOrderDiscountRight = #{record.wholeorderdiscountright,jdbcType=VARCHAR},
+      timeDiscountRight = #{record.timediscountright,jdbcType=VARCHAR},
+      rightToDiscount = #{record.righttodiscount,jdbcType=VARCHAR},
+      rightOfRelief = #{record.rightofrelief,jdbcType=VARCHAR},
+      jobResume = #{record.jobresume,jdbcType=VARCHAR},
+      educationexperience = #{record.educationexperience,jdbcType=VARCHAR},
+      memberOfFamily = #{record.memberoffamily,jdbcType=VARCHAR},
+      disciplinaryRecords = #{record.disciplinaryrecords,jdbcType=VARCHAR},
+      employmentAdvice = #{record.employmentadvice,jdbcType=VARCHAR},
+      picture = #{record.picture,jdbcType=VARCHAR},
+      roleId = #{record.roleid,jdbcType=INTEGER},
+      isDimission = #{record.isdimission,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Staff" >
+    update staff
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null" >
+        departmentId = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="postid != null" >
+        postId = #{postid,jdbcType=INTEGER},
+      </if>
+      <if test="physicalcondition != null" >
+        physicalCondition = #{physicalcondition,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        nativePlace = #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalstatus != null" >
+        maritalStatus = #{maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="educationbackground != null" >
+        educationBackground = #{educationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalqualification != null" >
+        professionalQualification = #{professionalqualification,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null" >
+        property = #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizedstrength != null" >
+        authorizedStrength = #{authorizedstrength,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardno != null" >
+        idCardNo = #{idcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="residence != null" >
+        residence = #{residence,jdbcType=VARCHAR},
+      </if>
+      <if test="presentaddress != null" >
+        presentAddress = #{presentaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactnumber != null" >
+        contactNumber = #{contactnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="depositbank != null" >
+        depositBank = #{depositbank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencycontact != null" >
+        emergencyContact = #{emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyphone != null" >
+        emergencyPhone = #{emergencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="dateonboard != null" >
+        dateOnBoard = #{dateonboard,jdbcType=DATE},
+      </if>
+      <if test="thetrialdue != null" >
+        theTrialDue = #{thetrialdue,jdbcType=DATE},
+      </if>
+      <if test="birthdaydate != null" >
+        birthdayDate = #{birthdaydate,jdbcType=DATE},
+      </if>
+      <if test="contractstart != null" >
+        contractStart = #{contractstart,jdbcType=DATE},
+      </if>
+      <if test="agreementends != null" >
+        agreementEnds = #{agreementends,jdbcType=DATE},
+      </if>
+      <if test="cardnumber != null" >
+        cardNumber = #{cardnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="internalcardno != null" >
+        internalCardNo = #{internalcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="referrer != null" >
+        referrer = #{referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="wholeorderdiscountright != null" >
+        wholeOrderDiscountRight = #{wholeorderdiscountright,jdbcType=VARCHAR},
+      </if>
+      <if test="timediscountright != null" >
+        timeDiscountRight = #{timediscountright,jdbcType=VARCHAR},
+      </if>
+      <if test="righttodiscount != null" >
+        rightToDiscount = #{righttodiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="rightofrelief != null" >
+        rightOfRelief = #{rightofrelief,jdbcType=VARCHAR},
+      </if>
+      <if test="jobresume != null" >
+        jobResume = #{jobresume,jdbcType=VARCHAR},
+      </if>
+      <if test="educationexperience != null" >
+        educationexperience = #{educationexperience,jdbcType=VARCHAR},
+      </if>
+      <if test="memberoffamily != null" >
+        memberOfFamily = #{memberoffamily,jdbcType=VARCHAR},
+      </if>
+      <if test="disciplinaryrecords != null" >
+        disciplinaryRecords = #{disciplinaryrecords,jdbcType=VARCHAR},
+      </if>
+      <if test="employmentadvice != null" >
+        employmentAdvice = #{employmentadvice,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        roleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="isdimission != null" >
+        isDimission = #{isdimission,jdbcType=INTEGER},
+      </if>
+    </set>
+    where staffNo = #{staffno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Staff" >
+    update staff
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      departmentId = #{departmentid,jdbcType=INTEGER},
+      account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      postId = #{postid,jdbcType=INTEGER},
+      physicalCondition = #{physicalcondition,jdbcType=VARCHAR},
+      height = #{height,jdbcType=VARCHAR},
+      nativePlace = #{nativeplace,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      maritalStatus = #{maritalstatus,jdbcType=VARCHAR},
+      educationBackground = #{educationbackground,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      professionalQualification = #{professionalqualification,jdbcType=VARCHAR},
+      property = #{property,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR},
+      authorizedStrength = #{authorizedstrength,jdbcType=VARCHAR},
+      idCardNo = #{idcardno,jdbcType=VARCHAR},
+      residence = #{residence,jdbcType=VARCHAR},
+      presentAddress = #{presentaddress,jdbcType=VARCHAR},
+      contactNumber = #{contactnumber,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      depositBank = #{depositbank,jdbcType=VARCHAR},
+      bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      emergencyContact = #{emergencycontact,jdbcType=VARCHAR},
+      emergencyPhone = #{emergencyphone,jdbcType=VARCHAR},
+      dateOnBoard = #{dateonboard,jdbcType=DATE},
+      theTrialDue = #{thetrialdue,jdbcType=DATE},
+      birthdayDate = #{birthdaydate,jdbcType=DATE},
+      contractStart = #{contractstart,jdbcType=DATE},
+      agreementEnds = #{agreementends,jdbcType=DATE},
+      cardNumber = #{cardnumber,jdbcType=VARCHAR},
+      internalCardNo = #{internalcardno,jdbcType=VARCHAR},
+      referrer = #{referrer,jdbcType=VARCHAR},
+      wholeOrderDiscountRight = #{wholeorderdiscountright,jdbcType=VARCHAR},
+      timeDiscountRight = #{timediscountright,jdbcType=VARCHAR},
+      rightToDiscount = #{righttodiscount,jdbcType=VARCHAR},
+      rightOfRelief = #{rightofrelief,jdbcType=VARCHAR},
+      jobResume = #{jobresume,jdbcType=VARCHAR},
+      educationexperience = #{educationexperience,jdbcType=VARCHAR},
+      memberOfFamily = #{memberoffamily,jdbcType=VARCHAR},
+      disciplinaryRecords = #{disciplinaryrecords,jdbcType=VARCHAR},
+      employmentAdvice = #{employmentadvice,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      roleId = #{roleid,jdbcType=INTEGER},
+      isDimission = #{isdimission,jdbcType=INTEGER}
+    where staffNo = #{staffno,jdbcType=VARCHAR}
+  </update>
+</mapper>

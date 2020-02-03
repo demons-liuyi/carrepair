@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.CarMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Car" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="carTypeName" property="cartypename" jdbcType="VARCHAR" />
+    <result column="engineId" property="engineid" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="carYearPrice" property="caryearprice" jdbcType="REAL" />
+    <result column="power" property="power" jdbcType="VARCHAR" />
+    <result column="importOrdomestic" property="importordomestic" jdbcType="VARCHAR" />
+    <result column="fuelLabel" property="fuellabel" jdbcType="VARCHAR" />
+    <result column="load" property="load" jdbcType="VARCHAR" />
+    <result column="carBrandId" property="carbrandid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, carTypeName, engineId, price, carYearPrice, power, importOrdomestic, fuelLabel, 
+    load, carBrandId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CarExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from car
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from car
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from car
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.CarExample" >
+    delete from car
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Car" >
+    insert into car (id, carTypeName, engineId, 
+      price, carYearPrice, power, 
+      importOrdomestic, fuelLabel, load, 
+      carBrandId)
+    values (#{id,jdbcType=INTEGER}, #{cartypename,jdbcType=VARCHAR}, #{engineid,jdbcType=INTEGER}, 
+      #{price,jdbcType=REAL}, #{caryearprice,jdbcType=REAL}, #{power,jdbcType=VARCHAR}, 
+      #{importordomestic,jdbcType=VARCHAR}, #{fuellabel,jdbcType=VARCHAR}, #{load,jdbcType=VARCHAR}, 
+      #{carbrandid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Car" >
+    insert into car
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cartypename != null" >
+        carTypeName,
+      </if>
+      <if test="engineid != null" >
+        engineId,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="caryearprice != null" >
+        carYearPrice,
+      </if>
+      <if test="power != null" >
+        power,
+      </if>
+      <if test="importordomestic != null" >
+        importOrdomestic,
+      </if>
+      <if test="fuellabel != null" >
+        fuelLabel,
+      </if>
+      <if test="load != null" >
+        load,
+      </if>
+      <if test="carbrandid != null" >
+        carBrandId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cartypename != null" >
+        #{cartypename,jdbcType=VARCHAR},
+      </if>
+      <if test="engineid != null" >
+        #{engineid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="caryearprice != null" >
+        #{caryearprice,jdbcType=REAL},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="importordomestic != null" >
+        #{importordomestic,jdbcType=VARCHAR},
+      </if>
+      <if test="fuellabel != null" >
+        #{fuellabel,jdbcType=VARCHAR},
+      </if>
+      <if test="load != null" >
+        #{load,jdbcType=VARCHAR},
+      </if>
+      <if test="carbrandid != null" >
+        #{carbrandid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.CarExample" resultType="java.lang.Integer" >
+    select count(*) from car
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update car
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cartypename != null" >
+        carTypeName = #{record.cartypename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engineid != null" >
+        engineId = #{record.engineid,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=REAL},
+      </if>
+      <if test="record.caryearprice != null" >
+        carYearPrice = #{record.caryearprice,jdbcType=REAL},
+      </if>
+      <if test="record.power != null" >
+        power = #{record.power,jdbcType=VARCHAR},
+      </if>
+      <if test="record.importordomestic != null" >
+        importOrdomestic = #{record.importordomestic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fuellabel != null" >
+        fuelLabel = #{record.fuellabel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.load != null" >
+        load = #{record.load,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carbrandid != null" >
+        carBrandId = #{record.carbrandid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update car
+    set id = #{record.id,jdbcType=INTEGER},
+      carTypeName = #{record.cartypename,jdbcType=VARCHAR},
+      engineId = #{record.engineid,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=REAL},
+      carYearPrice = #{record.caryearprice,jdbcType=REAL},
+      power = #{record.power,jdbcType=VARCHAR},
+      importOrdomestic = #{record.importordomestic,jdbcType=VARCHAR},
+      fuelLabel = #{record.fuellabel,jdbcType=VARCHAR},
+      load = #{record.load,jdbcType=VARCHAR},
+      carBrandId = #{record.carbrandid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Car" >
+    update car
+    <set >
+      <if test="cartypename != null" >
+        carTypeName = #{cartypename,jdbcType=VARCHAR},
+      </if>
+      <if test="engineid != null" >
+        engineId = #{engineid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="caryearprice != null" >
+        carYearPrice = #{caryearprice,jdbcType=REAL},
+      </if>
+      <if test="power != null" >
+        power = #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="importordomestic != null" >
+        importOrdomestic = #{importordomestic,jdbcType=VARCHAR},
+      </if>
+      <if test="fuellabel != null" >
+        fuelLabel = #{fuellabel,jdbcType=VARCHAR},
+      </if>
+      <if test="load != null" >
+        load = #{load,jdbcType=VARCHAR},
+      </if>
+      <if test="carbrandid != null" >
+        carBrandId = #{carbrandid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Car" >
+    update car
+    set carTypeName = #{cartypename,jdbcType=VARCHAR},
+      engineId = #{engineid,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      carYearPrice = #{caryearprice,jdbcType=REAL},
+      power = #{power,jdbcType=VARCHAR},
+      importOrdomestic = #{importordomestic,jdbcType=VARCHAR},
+      fuelLabel = #{fuellabel,jdbcType=VARCHAR},
+      load = #{load,jdbcType=VARCHAR},
+      carBrandId = #{carbrandid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

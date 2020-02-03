@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="fonts/css/vendor.bundle.base.css" />
+		<link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.css" />
+		<link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.min.css" />
+		<style>
+			#header {
+				width: auto;
+				height: 70px;
+				border: 1px solid red;
+				background-color: aliceblue;
+			}
+			
+			#buttondiv {
+				width: auto;
+				height: 50px;
+				border: 1px solid red;
+				background-color: whitesmoke;
+			}
+			
+			h2 {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			#selectdiv {
+				float: right;
+				display: inline-block;
+				height: 40px;
+				width: 480px;
+				border: 0px solid red;
+				margin-top: 18px;
+				padding-left: 300px;
+			}
+			
+			#rightbuttondiv {
+				float: right;
+			}
+			
+			#ul {
+				list-style-type: none;
+				padding-top: 13px;
+				margin-right: 40px;
+			}
+			
+			li {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			#font {
+				font-size: 18px;
+			}
+			
+			#img {
+				color: orange;
+			}
+			
+			#selectbtn {
+				background-color: orange;
+				color: white;
+			}
+			
+			#closebtn {
+				background-color: gainsboro;
+				color: white;
+			}
+			
+			#exitregistration {
+				display: none;
+				border: 1px solid green;
+				position: absolute;
+				left: 450px;
+				top: 150px;
+				width: 750px;
+				height: 400px;
+				background-color: lightgray;
+			}
+			
+			#exitregistrationh2 {
+				margin-bottom: 15px;
+			}
+			
+			#exitregistrationlinediv {
+				background-color: darkblue;
+				width: 750px;
+				height: 20px;
+			}
+			
+			#exitregistrationspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#exitregistrationbodydiv {
+				margin-top: 8px;
+				margin-left: 9px;
+				width: 730px;
+				height: 360px;
+				background-color: white;
+			}
+			
+			#employeescard {
+				border: 1px solid red;
+				width: 1200px;
+				height: 665px;
+				position: absolute;
+				left: 220px;
+				top: 80px;
+				display: none;
+				background-color: white;
+			}
+			
+			#employeescardlinediv {
+				background-color: darkblue;
+				width: 1200px;
+				height: 20px;
+			}
+			
+			#employeescardspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#employeescardfork {
+				font-size: 52px;
+				position: absolute;
+				left: 680px;
+				top: 150px;
+			}
+			
+			#closespan {
+				font-size: 32px;
+				position: absolute;
+				left: 1140px;
+				top: 40px;
+			}
+			
+			#information {
+				margin-left: 25px;
+				border: 0px solid red;
+				background-color: wheat;
+				width: 1150px;
+				height: 550px;
+			}
+			
+			#savebtn {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 600px;
+				top: 35px;
+			}
+			
+			#word {
+				margin-left: 30px;
+			}
+			
+			#exitregistrationmarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 450px;
+				top: 45px;
+			}
+			
+			#fork {
+				font-size: 32px;
+				position: absolute;
+				left: 680px;
+				top: 50px;
+			}
+			
+			#exitregistrationcontent {
+				width: 680px;
+				height: 280px;
+				margin-left: 21px;
+				background-color: wheat;
+			}
+			
+			#exitregistrationcontentdiv {
+				background-color: white;
+				width: 630px;
+				height: 180px;
+				margin-top: 15px;
+				margin-left: 25px;
+				overflow: scroll;
+			}
+			
+			#selectemployee {
+				border: 1px solid green;
+				position: absolute;
+				left: 570px;
+				top: 100px;
+				width: 500px;
+				height: 550px;
+				background-color: lightgray;
+				display: none;
+			}
+			
+			#selectemployeeh2 {
+				margin-bottom: 15px;
+			}
+			
+			#selectemployeespan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#selectemployeelinediv {
+				background-color: darkblue;
+				width: 500px;
+				height: 20px;
+			}
+			
+			#selectemployeediv {
+				border: 0px solid deepskyblue;
+			}
+			
+			#selectemployeecontentdiv {
+				border: 1px solid deepskyblue;
+				width: 450px;
+				height: 450px;
+				margin-left: 20px;
+			}
+			
+			#selectemployeeremove {
+				font-size: 32px;
+				position: absolute;
+				left: 440px;
+				top: 45px;
+			}
+			
+			#selectemployeemarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 300px;
+				top: 42px;
+			}
+			
+			.qwe {
+				z-index: 999;
+			}
+			
+			#else {
+				position: absolute;
+				display: none;
+			}
+			
+			#staffquery {
+				display: none;
+				border: 1px solid green;
+				position: absolute;
+				left: 450px;
+				top: 150px;
+				width: 735px;
+				height: 430px;
+				background-color: white;
+			}
+			
+			#staffqueryspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#staffqueryh2 {
+				margin-bottom: 15px;
+			}
+			
+			#staffquerylinediv {
+				background-color: darkblue;
+				width: 735px;
+				height: 20px;
+				color: white;
+			}
+			
+			#staffquerymarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 500px;
+				top: 36px;
+			}
+			
+			#staffqueryfork {
+				font-size: 32px;
+				position: absolute;
+				left: 680px;
+				top: 40px;
+			}
+			
+			#staffquerycontent {
+				width: 690px;
+				height: 330px;
+				margin-left: 21px;
+				background-color: wheat;
+			}
+			
+			#permissioncopy {
+				background-color: whitesmoke;
+				color: white;
+				width: 700px;
+				height: 600px;
+				border: 1px solid red;
+				position: absolute;
+				left: 400px;
+				top: 120px;
+				z-index: 888;
+				display: none;
+			}
+			
+			#permissioncopyh2 {
+				margin-bottom: 15px;
+				color: darkgray;
+			}
+			
+			#permissioncopylinediv {
+				background-color: darkblue;
+				width: 700px;
+				height: 20px;
+			}
+			
+			#permissioncopymarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 500px;
+				top: 42px;
+			}
+			
+			#permissioncopyremove {
+				font-size: 32px;
+				position: absolute;
+				left: 640px;
+				top: 45px;
+				color: darkgray;
+			}
+			
+			#select {
+				background-color: orange;
+				color: white;
+			}
+			
+			#permissioncopycontent {
+				width: 650px;
+				height: 485px;
+				margin-left: 22px;
+				border: 1px solid red;
+				background-color: white;
+			}
+			
+			#permissioncopyblue {
+				height: 80px;
+				width: 650px;
+				background-color: dodgerblue;
+			}
+			
+			#permissioncopyfunction {
+				height: 50px;
+				width: 650px;
+				background-color: wheat;
+			}
+			
+			#permission {
+				height: 50px;
+				background-color: deepskyblue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：权限复制           	
+            -->
+
+			<div id="permissioncopy">
+				<div id="permissioncopylinediv">
+					<span id="selectemployeespan">权限复制</span>
+				</div>
+				<h2 id="permissioncopyh2">权限复制</h2>
+				<input style="margin-left: 260px;margin-bottom: 10px;" type="text" value="匹配工号/姓名" />
+				<button id="select" class="btn btn-default">搜索</button>
+				<span @click="closepermissioncopy()" id="permissioncopyremove" class="glyphicon glyphicon-remove"></span>
+				<div id="permissioncopycontent">
+					<div id="permissioncopyblue">
+						<p style="padding-top: 10px;">
+							<span style="margin-left: 20px;">被复制员工：</span>
+							<input type="text" />
+							<select @click="openselectemployee()" style="width: 125px;">
+
+							</select>
+							<span style="margin-left: 20px;">员工范围：</span>
+							<select style="width: 125px;">
+								<option></option>
+							</select>
+						</p>
+						<p style="padding-top: 5px;">
+							<input style="margin-left: 30px;" type="checkbox" /><span style="margin-left: 20px;">模块权</span>
+							<input style="margin-left: 30px;" type="checkbox" /><span style="margin-left: 20px;">单据权</span>
+							<input style="margin-left: 30px;" type="checkbox" /><span style="margin-left: 20px;">数据权</span>
+							<input style="margin-left: 30px;" type="checkbox" /><span style="margin-left: 20px;">查询项目权</span>
+							<input style="margin-left: 30px;" type="checkbox" /><span style="margin-left: 20px;">仓库权</span>
+						</p>
+					</div>
+					<div id="permissioncopyfunction">
+						<ul style="padding-top: 10px;color: black;">
+							<li>
+								<span id="img" class="glyphicon glyphicon-floppy-saved"></span>
+								<span id="font">全部选择</span>
+							</li>
+							<li>
+								<span id="img" class="glyphicon glyphicon-floppy-remove"></span>
+								<span @click="openstaffquery()" id="font">全部取消</span>
+							</li>
+							<li>
+								<span id="img" class="glyphicon glyphicon-save-file"></span>
+								<span id="font">确认</span>
+							</li>
+						</ul>
+					</div>
+					<table style="background-color: whitesmoke;color: black;" border="1px" class="table">
+						<thead>
+							<tr style="background-color: deepskyblue;">
+								<td></td>
+								<td>选择</td>
+								<td>属于门店</td>
+								<td>员工编号</td>
+								<td>员工姓名</td>
+								<td>部门</td>
+								<td>岗位</td>
+							</tr>
+						</thead>
+						<tbody>
+							<td></td>
+							<td>领用日期</td>
+							<td>员工编号</td>
+							<td>员工编号</td>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-01-04
+            	描述：选择员工
+            -->
+			<div id="selectemployee">
+				<div id="selectemployeelinediv">
+					<span id="selectemployeespan">选择员工</span>
+				</div>
+				<div id="selectemployeediv">
+					<h2 id="selectemployeeh2">选择员工</h2>
+					<button id="selectemployeemarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 确定
+					</button>
+					<span @click="closeselectemployee()" id="selectemployeeremove" class="glyphicon glyphicon-remove"></span>
+					<div>
+						<div id="selectemployeecontentdiv">
+							<select style="width: 450px;">
+								<option></option>
+							</select>
+							<select style="width: 450px;">
+								<option></option>
+							</select>
+							<table border="1px" class="table">
+								<thead>
+									<tr style="background-color: deepskyblue;">
+										<td></td>
+										<td>部门名称</td>
+										<td>工号</td>
+										<td>姓名</td>
+									</tr>
+								</thead>
+								<tbody>
+									<td></td>
+									<td>领用日期</td>
+									<td>员工编号</td>
+									<td>员工编号</td>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="header">
+				<h2>员工权限设置</h2>
+				<div id="selectdiv">
+					<button id="selectbtn" class="btn btn-default">保存</button>
+					<button id="closebtn" class="btn btn-default">关闭</button>
+				</div>
+			</div>
+			<div id="buttondiv">
+				<div style="display: inline-block;margin-top: 10px;margin-left: 10px;">
+					<span>员工姓名：</span><input />
+					<span @click="openselectemployee()" style="position: absolute;left: 255px;top: 83px;" class="glyphicon glyphicon-triangle-bottom"></span>
+					<span style="position: absolute;left: 255px;top: 93px;" class="glyphicon glyphicon-triangle-bottom"></span>
+				</div>
+				<div id="rightbuttondiv">
+					<ul id="ul">
+						<li>
+							<span id="img" class="glyphicon glyphicon-floppy-saved"></span>
+							<span id="font">全部选择</span>
+						</li>
+						<li>
+							<span id="img" class="glyphicon glyphicon-floppy-remove"></span>
+							<span @click="openstaffquery()" id="font">全部取消</span>
+						</li>
+						<li>
+							<span id="img" class="glyphicon glyphicon-duplicate"></span>
+							<span @click="openpermissioncopy()" id="font">复制</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="permission">
+				<ul style="padding-top: 10px;">
+					<li>
+						<span id="font">模块权限</span>
+					</li>
+					<li>
+						<span id="font">单据权限</span>
+					</li>
+					<li>
+						<span id="font">数据权限</span>
+					</li>
+					<li>
+						<span id="font">仓库开单</span>
+					</li>
+				</ul>
+			</div>
+			<div><span>记录条数：</span>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script>
+			var vm = new Vue({
+				el: ".container-fluid",
+				data() {
+
+				},
+				methods: {
+					openstaffquery: function() {
+						$("#staffquery").addClass("show");
+					},
+					closestaffquery: function() {
+						$("#staffquery").removeClass("show");
+					},
+					showif: function() {
+						$("#info").removeClass("hidden");
+						$("#else").removeClass("show");
+						$("#ifli").addClass("active");
+						$("#elseli").removeClass("active");
+					},
+					showelse: function() {
+						$("#ifli").removeClass("active");
+						$("#elseli").addClass("active");
+						$("#info").addClass("hidden")
+						$("#else").addClass("show");
+					},
+					openemployeescard: function() {
+						$("#employeescard").addClass("show");
+					},
+					closeemployeescard: function() {
+						$("#employeescard").removeClass("show");
+					},
+					openexitregistration: function() {
+						$("#exitregistration").addClass("show");
+					},
+					closeexitregistration: function() {
+						$("#exitregistration").removeClass("show");
+					},
+					openselectemployee: function() {
+						$("#selectemployee").addClass("show");
+						$("#selectemployee").addClass("qwe");
+					},
+					closeselectemployee: function() {
+						$("#selectemployee").removeClass("show");
+					},
+					openpermissioncopy: function() {
+						$("#permissioncopy").addClass("show");
+					},
+					closepermissioncopy: function() {
+						$("#permissioncopy").removeClass("show");
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>
