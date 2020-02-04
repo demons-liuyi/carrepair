@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>竣工检查</title>
+		<link rel="stylesheet" href="static/css/bootstrap.min.css" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<style>
+	div:{
+		border: 1px solid black;
+	}
+	.row>div{
+	  		display: flex;
+	  		justify-content:space-between
+	  	}
+	 .ser{
+	 	display: inline-block;
+	 	
+	 }
+	 #ser{
+	 	padding-top: 20px;
+	 }
+	 #meun div{
+	 	float: right;
+	 }
+	 #meun a{
+	 	color: black;
+	 	font-size: 20px;
+	 }
+	 .firstdiv{
+	 	background-color:#F7F7F7;
+	 }
+	 #caidan{
+	 	background-color:#F7F7F7;
+	 	height: 30px;
+	 }
+	 #ser button{
+	 	margin-right: 10px;
+	 }
+	 #ss{
+	 	border-top: 1px solid green;
+	 	padding-top: 20px;
+	 }
+	 .ss{
+	 	width: 250px;
+	 	margin-right: 20px;
+	 	
+	 }
+	 .rili{
+	 	display: inline-block;
+	 	position: relative;
+	 	top:13px;
+	 	width: 45px;
+	 	height: 40px;
+	 	background-image: url(static/images/rili.png);
+	 	background-repeat: no-repeat;
+	 	background-position: center;
+	 }
+	  .danjv{
+	 	display: inline-block;
+	 	position: relative;
+	 	top:6px;
+	 	width: 25px;
+	 	height: 25px;
+	 	background-image: url(static/images/danjv.png);
+	 	background-repeat: no-repeat;
+	 	background-position: center;
+	 }
+	 .head td{
+	 	font-size: 20px;
+	 	
+	 }
+	 .che{
+	 	display: inline-block;
+	 
+	 }
+	
+	 
+</style>
+	</head>
+	<body>
+<div class="container-fluid">
+	<div class="row firstdiv">
+		<div class="col-md-10"><h1>竣工检查</h1>
+		</div>
+		<div class="col-md-2" id="ser">
+			<button class="btn btn-default">搜索</button>
+			<button class="btn btn-danger">关闭</button>
+		</div>
+	</div>
+	
+	<div id="ss" class="form-inline" >
+		
+		开单日期：<input style="margin-right: 5px;" class="form-control ss" type="date" /><i class="rili"></i>
+				<input  class="form-control ss" type="date" />
+		维修单号：<input class="form-control ss" type="text" />
+		单据状态：<select  class="form-control ss">
+			<option>已竣</option>
+			<option>未竣</option>
+		</select>
+		车牌号：<input class="form-control ss" type="text" />
+		<div style="padding-top: 20px;">
+		车架号：<input class="form-control ss" type="text" />
+		</div>
+	</div>
+	<div id="caidan">
+	<h4><i class="danjv"></i>打开单据</h4>
+		
+	</div>
+	<div>
+		<table class="table table-hover">
+		
+			<tr class="head">
+				<td>维修单号</td>
+				<td>单据类型</td>
+				<td>业务类型</td>
+				<td>施工班次</td>
+				<td>车主姓名</td>
+				<td>车牌号</td>
+				<td>车型</td>
+				<td>车架号</td>
+				<td>接车时间</td>
+				<td>预计完工</td>
+				<td>完工时间</td>
+				<td>误工原因</td>
+				<td>返工数</td>
+				
+			</tr>
+			
+				<tr>
+				<td>维修单号</td>
+				<td>单据类型</td>
+				<td>业务类型</td>
+				<td>施工班次</td>
+				<td>车主姓名</td>
+				<td>车牌号</td>
+				<td>车型</td>
+				<td>车架号</td>
+				<td>接车时间</td>
+				<td>预计完工</td>
+				<td>完工时间</td>
+				<td>误工原因</td>
+				<td>返工数</td>
+			</tr>
+				<tr>
+				<td>维修单号</td>
+				<td>单据类型</td>
+				<td>业务类型</td>
+				<td>施工班次</td>
+				<td>车主姓名</td>
+				<td>车牌号</td>
+				<td>车型</td>
+				<td>车架号</td>
+				<td>接车时间</td>
+				<td>预计完工</td>
+				<td>完工时间</td>
+				<td>误工原因</td>
+				<td>返工数</td>
+			</tr>
+		</table>
+	</div>
+<button id="motal" class="btn btn-primary btn-lg">竣工检查</button>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">竣工检查</h4>
+            </div>
+            <div class="modal-body content">
+            	
+            		<div style="margin-right: 30px;" class="form-inline che">
+            		<input style="margin-right: 15px; margin-left: 50px; margin-bottom: 6px;" class="form-control" type="radio" name="hege" value="1"/>合格完工<br/>
+            		<p>预计完工时间：<input class="form-control" type="date"/></p>
+            		<p>实际完工时间：<input class="form-control" type="date"/></p>
+            		<p>误工原因：<select style="width:134px; margin-left: 25px;" class="form-control">
+            			<option></option>
+            		</select></p>
+            		<p>质检员：<select style="width:134px;  margin-left: 38px;" class="form-control">
+            			<option></option>
+            		</select></p>
+            		<p>责任人：<select style="width:134px;  margin-left: 38px;" class="form-control">
+            			<option></option>
+            		</select></p>
+            		<p>处罚金额：
+            		<input  style="width:134px;  margin-left: 20px;"  class="form-control" type="text" />
+            		</p>
+            		</div>
+            	<div style="position: relative; bottom: 135px;" class="form-inline che">
+            		
+            		<input style="margin-right: 15px; margin-left: 50px; margin-bottom: 6px;" class="form-control" type="radio" name="hege" value="0"/>不合格返工<span style="margin-left: 20px;">以返工<i>0</i>次</span><br/>
+            		<p>误工原因：<select style="width:134px; margin-left: 25px;" class="form-control">
+            			<option></option>
+            		</select></p>
+
+            		<p>责任人：<select style="width:134px;  margin-left: 38px;" class="form-control">
+            			<option></option>
+            		</select></p>
+            		<p>处罚金额：
+            		<input  style="width:134px;  margin-left: 20px;"  class="form-control" type="text" />
+            		</p>
+            		
+            	</div>
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+	
+
+</div>
+ <script type="text/javascript" src="static/js/jquery.min.js"></script>
+ <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+ <script src="static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+ 	$(function(){
+ 		$("#motal").click(function(){
+ 			$("#myModal").modal("show")
+ 			
+ 			if($("[name=hege]:checked").val()==1){
+ 			$(".che:eq(1) input:not(:first)").each(function(){
+ 				$(this).attr("disabled","true")
+ 			})
+ 			$(".che:eq(1) select").each(function(){
+ 				$(this).attr("disabled","true")
+ 			})
+ 			$(".che:eq(0) input:not(:first)").each(function(){
+ 				$(this).removeAttr("disabled")
+ 			})
+ 			$(".che:eq(0) select").each(function(){
+ 				$(this).removeAttr("disabled")
+ 			})
+
+ 			
+ 		    }else{
+ 			$(".che:eq(0) input:not(:first)").each(function(){
+ 				$(this).attr("disabled","true")
+ 			})
+ 			$(".che:eq(0) select").each(function(){
+ 				$(this).attr("disabled","true")
+ 			})
+ 			$(".che:eq(1) input:not(:first)").each(function(){
+ 				$(this).removeAttr("disabled")
+ 			})
+ 			$(".che:eq(1) select").each(function(){
+ 				$(this).removeAttr("disabled")
+ 			})
+
+ 		    }
+ 		})
+ 		 
+ 				
+ 		$("[name=hege]").change(function(){
+ 			if($(this).val()==1){
+ 			$(".che:eq(1) input:not(:first)").each(function(){
+ 				$(this).attr("disabled","true")
+ 			})
+ 			$(".che:eq(1) select").each(function(){
+ 				$(this).attr("disabled","true")
+ 			})
+ 			$(".che:eq(0) input:not(:first)").each(function(){
+ 				$(this).removeAttr("disabled")
+ 			})
+ 			$(".che:eq(0) select").each(function(){
+ 				$(this).removeAttr("disabled")
+ 			})
+
+ 			
+ 		    }else{
+ 			$(".che:eq(0) input:not(:first)").each(function(){
+ 				$(this).attr("disabled","true")
+ 			})
+ 			$(".che:eq(0) select").each(function(){
+ 				$(this).attr("disabled","true")
+ 			})
+ 			$(".che:eq(1) input:not(:first)").each(function(){
+ 				$(this).removeAttr("disabled")
+ 			})
+ 			$(".che:eq(1) select").each(function(){
+ 				$(this).removeAttr("disabled")
+ 			})
+
+ 		    }
+ 		})
+ 		
+ 	})
+ 	
+ </script>
+	</body>
+</html>
