@@ -121,8 +121,7 @@ public class exitRegistrationController {
 		}
 		String [] group=staffname.split(" ");
 		String staffno=group[0];
-		byte [] qwe=dimissioncause.getBytes();
-		int i=ds.addDimission(staffno,date, qwe);	 
+		int i=ds.addDimission(staffno,date, dimissioncause);	 
 		int j=ss.updateStaff(staffno,1);
 		if(i>0&&j>0) {
 			return i;

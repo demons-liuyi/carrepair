@@ -4,6 +4,11 @@
   <resultMap id="BaseResultMap" type="com.accp.domain.Maintain" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="maintaiNname" property="maintainname" jdbcType="VARCHAR" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, maintaiNname
+    id, maintaiNname, otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaintainExample" >
     select
@@ -97,8 +102,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.accp.domain.Maintain" >
-    insert into maintain (id, maintaiNname)
-    values (#{id,jdbcType=INTEGER}, #{maintainname,jdbcType=VARCHAR})
+    insert into maintain (id, maintaiNname, otherone, 
+      othertwo, otherthree, otherfour, 
+      otherfive)
+    values (#{id,jdbcType=INTEGER}, #{maintainname,jdbcType=VARCHAR}, #{otherone,jdbcType=VARCHAR}, 
+      #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, 
+      #{otherfive,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Maintain" >
     insert into maintain
@@ -109,6 +118,21 @@
       <if test="maintainname != null" >
         maintaiNname,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -116,6 +140,21 @@
       </if>
       <if test="maintainname != null" >
         #{maintainname,jdbcType=VARCHAR},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -134,6 +173,21 @@
       <if test="record.maintainname != null" >
         maintaiNname = #{record.maintainname,jdbcType=VARCHAR},
       </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -142,7 +196,12 @@
   <update id="updateByExample" parameterType="map" >
     update maintain
     set id = #{record.id,jdbcType=INTEGER},
-      maintaiNname = #{record.maintainname,jdbcType=VARCHAR}
+      maintaiNname = #{record.maintainname,jdbcType=VARCHAR},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -153,12 +212,32 @@
       <if test="maintainname != null" >
         maintaiNname = #{maintainname,jdbcType=VARCHAR},
       </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.Maintain" >
     update maintain
-    set maintaiNname = #{maintainname,jdbcType=VARCHAR}
+    set maintaiNname = #{maintainname,jdbcType=VARCHAR},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

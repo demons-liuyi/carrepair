@@ -18,21 +18,15 @@ public interface DimissionMapper {
 
     int insertSelective(Dimission record);
 
-    List<Dimission> selectByExampleWithBLOBs(DimissionExample example);
-
     List<Dimission> selectByExample(DimissionExample example);
 
     Dimission selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Dimission record, @Param("example") DimissionExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") Dimission record, @Param("example") DimissionExample example);
-
     int updateByExample(@Param("record") Dimission record, @Param("example") DimissionExample example);
 
     int updateByPrimaryKeySelective(Dimission record);
-
-    int updateByPrimaryKeyWithBLOBs(Dimission record);
 
     int updateByPrimaryKey(Dimission record);
 }

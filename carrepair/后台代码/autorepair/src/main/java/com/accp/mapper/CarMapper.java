@@ -10,7 +10,7 @@ public interface CarMapper {
 
     int deleteByExample(CarExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Car record);
 
@@ -18,7 +18,7 @@ public interface CarMapper {
 
     List<Car> selectByExample(CarExample example);
 
-    Car selectByPrimaryKey(Integer id);
+    Car selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Car record, @Param("example") CarExample example);
 

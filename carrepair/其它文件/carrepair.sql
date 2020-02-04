@@ -35,9 +35,14 @@ CREATE TABLE `artisan` (
   `bank` varchar(20) DEFAULT NULL COMMENT '开户银行',
   `bankAccount` varchar(20) DEFAULT NULL COMMENT '银行账号',
   `artisanLevelId` int(4) DEFAULT NULL COMMENT '技工星级Id',
-  `groupLeader` tinyint(1) DEFAULT NULL COMMENT '是否组长',
+  `groupLeader` int(1) DEFAULT NULL COMMENT '是否组长0否1是',
   `maintainType` varchar(100) DEFAULT NULL COMMENT '维修工种',
   `maintainBrand` varchar(100) DEFAULT NULL COMMENT '维修品牌',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`artisanNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -52,6 +57,11 @@ CREATE TABLE `artisanclass` (
   `artisanClassName` varchar(10) DEFAULT NULL COMMENT '班组名称',
   `artisanClassWeight` int(4) DEFAULT NULL COMMENT '提成权重',
   `parentId` int(10) DEFAULT NULL COMMENT '父级id',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -65,6 +75,11 @@ CREATE TABLE `artisanlevel` (
   `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '等级编号',
   `artisanLevelName` varchar(20) DEFAULT NULL COMMENT '等级名称',
   `artisanLevelWeight` int(4) DEFAULT NULL COMMENT '提成权重',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -75,7 +90,7 @@ CREATE TABLE `artisanlevel` (
 DROP TABLE IF EXISTS `car`;
 
 CREATE TABLE `car` (
-  `id` int(4) NOT NULL COMMENT '车型编号',
+  `id` varchar(20) NOT NULL COMMENT '车型编号',
   `carTypeName` varchar(20) DEFAULT NULL COMMENT '车型名称',
   `engineId` int(4) DEFAULT NULL COMMENT '发动机品牌外键',
   `price` float DEFAULT NULL COMMENT '参考价格',
@@ -85,30 +100,35 @@ CREATE TABLE `car` (
   `fuelLabel` varchar(20) DEFAULT NULL COMMENT '燃油编号',
   `load` varchar(20) DEFAULT NULL COMMENT '载重',
   `carBrandId` int(4) DEFAULT NULL COMMENT '与车品牌表相关联',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `car` */
 
-insert  into `car`(`id`,`carTypeName`,`engineId`,`price`,`carYearPrice`,`power`,`importOrdomestic`,`fuelLabel`,`load`,`carBrandId`) values 
-(1,'重汽汕德卡',4,480000,NULL,NULL,'国产',NULL,'20吨',1),
-(2,'重汽豪沃',3,420000,NULL,NULL,'国产',NULL,'22吨',1),
-(3,'重汽豪翰',2,450000,NULL,NULL,'国产',NULL,'21吨',1),
-(4,'重汽斯太尔',1,470000,NULL,NULL,'国产',NULL,'22吨',1),
-(5,'丰田雷凌',2,150000,NULL,NULL,'进口',NULL,'3吨',2),
-(6,'丰田汉兰达',1,180000,NULL,NULL,'进口',NULL,'3吨',2),
-(7,'德龙X3000',3,320000,NULL,NULL,'国产',NULL,'15吨',3),
-(8,'德龙H6000',4,250000,NULL,NULL,'国产',NULL,'14吨',3),
-(9,'德御',3,280000,NULL,NULL,'国产',NULL,'15吨',3),
-(10,'一汽解放J7',4,330000,NULL,NULL,'国产',NULL,'18吨',4),
-(11,'一汽解放J6P',3,350000,NULL,NULL,'国产',NULL,'20吨',4),
-(12,'上汽红岩杰狮自卸车',4,220000,NULL,NULL,'国产',NULL,'12吨',5),
-(13,'上汽红岩杰狮牵引车',4,240000,NULL,NULL,'国产',NULL,'10吨',5),
-(14,'上汽红岩新金刚自卸车',3,200000,NULL,NULL,'国产',NULL,'10吨',5),
-(15,'上汽红岩杰卡自卸车',2,180000,NULL,NULL,'国产',NULL,'10吨',5),
-(16,'上汽红岩杰卡牵引车',1,170000,NULL,NULL,'国产',NULL,'8吨',5),
-(17,'大运重卡',4,330000,NULL,NULL,'国产',NULL,'25吨',6),
-(18,'东风华神',4,180000,NULL,NULL,'国产',NULL,'3吨',6);
+insert  into `car`(`id`,`carTypeName`,`engineId`,`price`,`carYearPrice`,`power`,`importOrdomestic`,`fuelLabel`,`load`,`carBrandId`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+('1','重汽汕德卡',4,480000,NULL,NULL,'国产',NULL,'20吨',1,NULL,NULL,NULL,NULL,NULL),
+('10','一汽解放J7',4,330000,NULL,NULL,'国产',NULL,'18吨',4,NULL,NULL,NULL,NULL,NULL),
+('11','一汽解放J6P',3,350000,NULL,NULL,'国产',NULL,'20吨',4,NULL,NULL,NULL,NULL,NULL),
+('12','上汽红岩杰狮自卸车',4,220000,NULL,NULL,'国产',NULL,'12吨',5,NULL,NULL,NULL,NULL,NULL),
+('13','上汽红岩杰狮牵引车',4,240000,NULL,NULL,'国产',NULL,'10吨',5,NULL,NULL,NULL,NULL,NULL),
+('14','上汽红岩新金刚自卸车',3,200000,NULL,NULL,'国产',NULL,'10吨',5,NULL,NULL,NULL,NULL,NULL),
+('15','上汽红岩杰卡自卸车',2,180000,NULL,NULL,'国产',NULL,'10吨',5,NULL,NULL,NULL,NULL,NULL),
+('16','上汽红岩杰卡牵引车',1,170000,NULL,NULL,'国产',NULL,'8吨',5,NULL,NULL,NULL,NULL,NULL),
+('17','大运重卡',4,330000,NULL,NULL,'国产',NULL,'25吨',6,NULL,NULL,NULL,NULL,NULL),
+('18','东风华神',4,180000,NULL,NULL,'国产',NULL,'3吨',6,NULL,NULL,NULL,NULL,NULL),
+('2','重汽豪沃',3,420000,NULL,NULL,'国产',NULL,'22吨',1,NULL,NULL,NULL,NULL,NULL),
+('3','重汽豪翰',3,450000,NULL,NULL,'国产',NULL,'21吨',1,NULL,NULL,NULL,NULL,NULL),
+('4','重汽斯太尔',1,470000,NULL,NULL,'国产',NULL,'22吨',1,NULL,NULL,NULL,NULL,NULL),
+('5','丰田雷凌',2,150000,NULL,NULL,'进口',NULL,'3吨',2,NULL,NULL,NULL,NULL,NULL),
+('6','丰田汉兰达',1,180000,NULL,NULL,'进口',NULL,'3吨',2,NULL,NULL,NULL,NULL,NULL),
+('7','德龙X3000',3,320000,NULL,NULL,'国产',NULL,'15吨',3,NULL,NULL,NULL,NULL,NULL),
+('8','德龙H6000',4,250000,NULL,NULL,'国产',NULL,'14吨',3,NULL,NULL,NULL,NULL,NULL),
+('9','德御',3,280000,NULL,NULL,'国产',NULL,'15吨',3,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `car_client` */
 
@@ -118,10 +138,20 @@ CREATE TABLE `car_client` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `carid` varchar(20) DEFAULT NULL COMMENT '车辆编号',
   `clientid` varchar(20) DEFAULT NULL COMMENT '1客户编号',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `car_client` */
+
+insert  into `car_client`(`id`,`carid`,`clientid`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'1','00000CU123',NULL,NULL,NULL,NULL,NULL),
+(2,'2','00000CU123',NULL,NULL,NULL,NULL,NULL),
+(3,'3','00000CU234',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `carbrand` */
 
@@ -131,18 +161,23 @@ CREATE TABLE `carbrand` (
   `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '汽车品牌编号',
   `carBrandName` varchar(20) DEFAULT NULL COMMENT '汽车品牌名称',
   `firstletter` varchar(10) DEFAULT NULL COMMENT '汽车首字母',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `carbrand` */
 
-insert  into `carbrand`(`id`,`carBrandName`,`firstletter`) values 
-(1,'中国重汽','A'),
-(2,'丰田','F'),
-(3,'陕汽重卡','B'),
-(4,'中国一汽','K'),
-(5,'上汽红岩','H'),
-(6,'其他重型车','Z');
+insert  into `carbrand`(`id`,`carBrandName`,`firstletter`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'中国重汽','A',NULL,NULL,NULL,NULL,NULL),
+(2,'丰田','F',NULL,NULL,NULL,NULL,NULL),
+(3,'陕汽重卡','B',NULL,NULL,NULL,NULL,NULL),
+(4,'中国一汽','K',NULL,NULL,NULL,NULL,NULL),
+(5,'上汽红岩','H',NULL,NULL,NULL,NULL,NULL),
+(6,'其他重型车','Z',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `carinfo` */
 
@@ -175,13 +210,20 @@ CREATE TABLE `carinfo` (
   `Syinsurancedate` date DEFAULT NULL COMMENT '商业保险到期时间',
   `maintain` float DEFAULT NULL COMMENT '下次保养里程',
   `maintaindate` date DEFAULT NULL COMMENT '下次保养日期',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `carinfo` */
 
-insert  into `carinfo`(`id`,`carNumber`,`carBrandId`,`carId`,`carer`,`carerPhone`,`bornDate`,`affiliation`,`drivingLicence`,`carNumber1`,`engineNumber`,`yearPrice`,`mileage`,`engineId`,`load`,`buyDate`,`dutyDate`,`carCheckDate`,`fuelOilType`,`carSeries`,`Jqinsurance`,`Jqinsurancedate`,`Syinsurance`,`Syinsurancedate`,`maintain`,`maintaindate`) values 
-(1,'湘A778BY',1,3,'伟星','16634555987','1996-12-22','公司车','2020-02-20','LE42131831L436672','345347K',2001,10000,NULL,NULL,'2002-03-05 00:00:00','2003-04-01 00:00:00','2003-12-21 00:00:00','汽油',NULL,'太平洋保险','2004-01-01','人寿保险','2004-01-01',20000,'2004-05-05');
+insert  into `carinfo`(`id`,`carNumber`,`carBrandId`,`carId`,`carer`,`carerPhone`,`bornDate`,`affiliation`,`drivingLicence`,`carNumber1`,`engineNumber`,`yearPrice`,`mileage`,`engineId`,`load`,`buyDate`,`dutyDate`,`carCheckDate`,`fuelOilType`,`carSeries`,`Jqinsurance`,`Jqinsurancedate`,`Syinsurance`,`Syinsurancedate`,`maintain`,`maintaindate`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'湘A12356',1,3,'伟星','16634555987','1996-12-22','公司车','2020-02-20','LE42131831L436672','345347K',2001,10000,NULL,NULL,'2002-03-05 00:00:00','2003-04-01 00:00:00','2003-12-21 00:00:00','汽油',NULL,'太平洋保险','2004-01-01','人寿保险','2004-01-01',20000,'2004-05-05',NULL,NULL,NULL,NULL,NULL),
+(2,'湘B54352',2,5,'张伟','18884343221','1995-10-21','公司车','2022-03-21','LL4123123J1245332','432234K',2018,5000,NULL,NULL,'2018-12-12 00:00:00','2018-12-21 00:00:00','2019-01-21 00:00:00','汽油',NULL,'人寿保险','2018-12-25','太平洋保险','2018-12-30',18000,'2020-09-21',NULL,NULL,NULL,NULL,NULL),
+(3,'湘C53453',3,8,'菲力','17759342092','1994-11-21','公司车','2023-04-22','LL1432423F1435323','423422K',2015,12000,NULL,NULL,'2015-05-23 00:00:00','2015-12-23 00:00:00','2016-01-01 00:00:00','汽油',NULL,'平安人寿保险','2015-06-23','阳光人寿保险','2015-12-29',250000,'2017-12-21',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `cashier` */
 
@@ -197,9 +239,14 @@ CREATE TABLE `cashier` (
   `staffId` varchar(10) DEFAULT NULL COMMENT '员工表id检查该员工的角色是否有权限使用内部券',
   `onCredit` float DEFAULT NULL COMMENT '挂账金额',
   `interior` float DEFAULT NULL COMMENT '内部免单金额',
-  `clientId` varchar(10) DEFAULT NULL COMMENT '客户编号',
+  `clientId` varchar(20) DEFAULT NULL COMMENT '客户编号',
   `change` float DEFAULT NULL COMMENT '找零',
   `Number` varchar(10) DEFAULT NULL COMMENT '销售单号',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -234,14 +281,22 @@ CREATE TABLE `client` (
   `carNo` varchar(10) DEFAULT NULL COMMENT '与车辆表关联',
   `date` date DEFAULT NULL COMMENT '注册日期',
   `Integral` int(10) DEFAULT NULL COMMENT '积分',
+  `onCredit` float DEFAULT NULL COMMENT '挂账金额',
+  `deposit` float DEFAULT NULL COMMENT '定金金额',
+  `petCard` float DEFAULT NULL COMMENT '储值卡余额',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `client` */
 
-insert  into `client`(`number`,`name`,`linkman`,`phone`,`address`,`borndate`,`paymentDays`,`paymentSize`,`staffNo`,`counselorName`,`sheng`,`shi`,`qv`,`remark`,`taxpayerNumber`,`registerPhone`,`bank`,`bankNumber`,`registerAddress`,`other`,`typeId`,`carNo`,`date`,`Integral`) values 
-('00000CU123','欧欧','周小容','13122332987','湖南省株洲市荷塘区','1998-02-02',10,10000,'ASD002','17489222873','湖南省','株洲市','荷塘区','无','243432213','18893888273','工商银行','876789574832789','湖南省株洲市荷塘区红旗广场支行',NULL,2,NULL,'2020-01-05',0),
-('00000CU234','湾湾','刘小平','14232322145','湖南省长沙市天心区','1999-03-05',10,5000,'ASD003','18598237648','湖南省','株洲市','荷塘区','无','534325321','18643436373','兴业银行','898574839432285','湖南省株洲市新华东路支行',NULL,3,NULL,'2020-01-03',0);
+insert  into `client`(`number`,`name`,`linkman`,`phone`,`address`,`borndate`,`paymentDays`,`paymentSize`,`staffNo`,`counselorName`,`sheng`,`shi`,`qv`,`remark`,`taxpayerNumber`,`registerPhone`,`bank`,`bankNumber`,`registerAddress`,`other`,`typeId`,`carNo`,`date`,`Integral`,`onCredit`,`deposit`,`petCard`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+('00000CU123','欧欧','周小容','13122332987','湖南省株洲市荷塘区','1998-02-02',10,10000,'ASD002','17489222873','湖南省','株洲市','荷塘区','无','243432213','18893888273','工商银行','876789574832789','湖南省株洲市荷塘区红旗广场支行',NULL,2,NULL,'2020-01-05',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('00000CU234','湾湾','刘小平','14232322145','湖南省长沙市天心区','1999-03-05',10,5000,'ASD003','18598237648','湖南省','株洲市','荷塘区','无','534325321','18643436373','兴业银行','898574839432285','湖南省株洲市新华东路支行',NULL,3,NULL,'2020-01-03',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `clienttype` */
 
@@ -255,17 +310,22 @@ CREATE TABLE `clienttype` (
   `address` varchar(50) DEFAULT NULL COMMENT '地址',
   `type` varchar(20) DEFAULT NULL COMMENT '类别',
   `discount` float DEFAULT NULL COMMENT '折扣',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `clienttype` */
 
-insert  into `clienttype`(`id`,`clientType`,`validity`,`cost`,`address`,`type`,`discount`) values 
-(1,'标准客户',5,500,NULL,'标准价',0.95),
-(2,'会员客户',5,888,NULL,'会员价',0.88),
-(3,'协议客户',5,1000,NULL,'协议价',0.8),
-(4,'索赔客户',5,1288,NULL,'索赔价',0.78),
-(5,'保险客户',5,1588,NULL,'保险价',0.72);
+insert  into `clienttype`(`id`,`clientType`,`validity`,`cost`,`address`,`type`,`discount`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'标准客户',5,500,NULL,'标准价',0.95,NULL,NULL,NULL,NULL,NULL),
+(2,'会员客户',5,888,NULL,'会员价',0.88,NULL,NULL,NULL,NULL,NULL),
+(3,'协议客户',5,1000,NULL,'协议价',0.8,NULL,NULL,NULL,NULL,NULL),
+(4,'索赔客户',5,1288,NULL,'索赔价',0.78,NULL,NULL,NULL,NULL,NULL),
+(5,'保险客户',5,1588,NULL,'保险价',0.72,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `coinspray` */
 
@@ -274,6 +334,11 @@ DROP TABLE IF EXISTS `coinspray`;
 CREATE TABLE `coinspray` (
   `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '钣喷编号',
   `coinSprayName` varchar(20) DEFAULT NULL COMMENT '钣喷名称',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -311,6 +376,11 @@ CREATE TABLE `commodity` (
   `negotiatedPrice` float DEFAULT NULL COMMENT '协议价',
   `claimPrice` float DEFAULT NULL COMMENT '索赔价',
   `insurancePrice` float DEFAULT NULL COMMENT '保险价',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`commodityNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -324,6 +394,11 @@ CREATE TABLE `commoditytype` (
   `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '商品分类编号',
   `typeName` varchar(20) DEFAULT NULL COMMENT '商品分类名称',
   `parentId` int(4) DEFAULT NULL COMMENT '商品父级id',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -339,9 +414,14 @@ CREATE TABLE `completed` (
   `predicttime` datetime DEFAULT NULL COMMENT '预计完工时间',
   `nowtime` datetime DEFAULT NULL COMMENT '实际完工时间',
   `reason` varchar(30) DEFAULT NULL COMMENT '误工原因',
-  `workid` int(11) DEFAULT NULL COMMENT '质检员，与员工表关联',
-  `dutyid` int(11) DEFAULT NULL COMMENT '责任人，与员工表关联',
+  `workid` varchar(10) DEFAULT NULL COMMENT '质检员，与员工表关联',
+  `dutyid` varchar(10) DEFAULT NULL COMMENT '责任人，与员工表关联',
   `price` float DEFAULT NULL COMMENT '处罚金额',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -356,24 +436,29 @@ CREATE TABLE `department` (
   `departmentName` varchar(20) DEFAULT NULL COMMENT '部门名称',
   `departmentTypeName` varchar(20) DEFAULT NULL COMMENT '部门类型名称',
   `parentId` int(4) DEFAULT NULL COMMENT '父级id',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `department` */
 
-insert  into `department`(`id`,`departmentName`,`departmentTypeName`,`parentId`) values 
-(1,'北京德召文卡车系统','北京德召文卡车系统',0),
-(2,'0000-成高','北京德召文卡车系统',1),
-(3,'管钱部','管理部',2),
-(4,'客服部','服务部门',2),
-(5,'售后服务部','管理部',2),
-(6,'备件部','管理部',2),
-(7,'技术部','服务部门',2),
-(8,'市场部','管理部',2),
-(9,'机电组','维修班组',7),
-(10,'钣金组','维修班组',7),
-(11,'喷漆组','维修班组',7),
-(12,'美容组','维修班组',7);
+insert  into `department`(`id`,`departmentName`,`departmentTypeName`,`parentId`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'北京德召文卡车系统','北京德召文卡车系统',0,NULL,NULL,NULL,NULL,NULL),
+(2,'0000-成高','北京德召文卡车系统',1,NULL,NULL,NULL,NULL,NULL),
+(3,'管钱部','管理部',2,NULL,NULL,NULL,NULL,NULL),
+(4,'客服部','服务部门',2,NULL,NULL,NULL,NULL,NULL),
+(5,'售后服务部','管理部',2,NULL,NULL,NULL,NULL,NULL),
+(6,'备件部','管理部',2,NULL,NULL,NULL,NULL,NULL),
+(7,'技术部','服务部门',2,NULL,NULL,NULL,NULL,NULL),
+(8,'市场部','管理部',2,NULL,NULL,NULL,NULL,NULL),
+(9,'机电组','维修班组',7,NULL,NULL,NULL,NULL,NULL),
+(10,'钣金组','维修班组',7,NULL,NULL,NULL,NULL,NULL),
+(11,'喷漆组','维修班组',7,NULL,NULL,NULL,NULL,NULL),
+(12,'美容组','维修班组',7,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `dimission` */
 
@@ -383,15 +468,20 @@ CREATE TABLE `dimission` (
   `id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `staffId` varchar(10) DEFAULT NULL COMMENT '员工id',
   `dimissionDate` date DEFAULT NULL COMMENT '离职日期',
-  `dimissionCause` varbinary(100) DEFAULT NULL COMMENT '离职原因',
+  `dimissionCause` varchar(100) DEFAULT NULL COMMENT '离职原因',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 /*Data for the table `dimission` */
 
-insert  into `dimission`(`id`,`staffId`,`dimissionDate`,`dimissionCause`) values 
-(14,'ASD002','2020-01-19','认为热望'),
-(15,'SWE001','2020-01-20','ewqeq');
+insert  into `dimission`(`id`,`staffId`,`dimissionDate`,`dimissionCause`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(18,'ASD002','2020-02-03','我不想干了',NULL,NULL,NULL,NULL,NULL),
+(19,'SWE001','2020-02-03','我也不想干了',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `enginebrand` */
 
@@ -400,16 +490,21 @@ DROP TABLE IF EXISTS `enginebrand`;
 CREATE TABLE `enginebrand` (
   `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '发动机品牌编号',
   `engineBrandName` varchar(20) DEFAULT NULL COMMENT '发动机品牌名称',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `enginebrand` */
 
-insert  into `enginebrand`(`id`,`engineBrandName`) values 
-(1,'帕金斯发动机'),
-(2,'康明斯发动机'),
-(3,'卡特发动机'),
-(4,'上柴发动机');
+insert  into `enginebrand`(`id`,`engineBrandName`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'帕金斯发动机',NULL,NULL,NULL,NULL,NULL),
+(2,'康明斯发动机',NULL,NULL,NULL,NULL,NULL),
+(3,'卡特发动机',NULL,NULL,NULL,NULL,NULL),
+(4,'上柴发动机',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `ewitem` */
 
@@ -421,8 +516,13 @@ CREATE TABLE `ewitem` (
   `priceType` varchar(30) DEFAULT NULL COMMENT '价类',
   `price` float DEFAULT NULL COMMENT '价格',
   `remark` varchar(30) DEFAULT NULL COMMENT '备注',
-  `rescueid` int(11) DEFAULT NULL COMMENT '与救援关联',
-  `repairid` int(11) DEFAULT NULL COMMENT '与维修表关联',
+  `rescueid` varchar(30) DEFAULT NULL COMMENT '与救援关联',
+  `repairid` varchar(20) DEFAULT NULL COMMENT '与维修表关联',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -437,6 +537,11 @@ CREATE TABLE `getgood` (
   `goodid` int(11) DEFAULT NULL COMMENT '与物料表关联',
   `count` int(11) DEFAULT NULL COMMENT '需求数量',
   `item` varchar(20) DEFAULT NULL COMMENT '对应项目',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -451,6 +556,11 @@ CREATE TABLE `invoice` (
   `money` float DEFAULT NULL COMMENT '发票金额',
   `invoiceType` varchar(10) DEFAULT NULL COMMENT '发票类型',
   `invoiceDate` datetime DEFAULT NULL COMMENT '开票时间',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`invoiceNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -466,6 +576,11 @@ CREATE TABLE `item_repair` (
   `wjid` int(11) DEFAULT NULL COMMENT '救援或者维修表id',
   `itemid` int(11) DEFAULT NULL COMMENT '项目id',
   `teamid` int(11) DEFAULT NULL COMMENT '班组id',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -476,12 +591,17 @@ CREATE TABLE `item_repair` (
 DROP TABLE IF EXISTS `jurisdiction`;
 
 CREATE TABLE `jurisdiction` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `jurisdictionName` varchar(20) DEFAULT NULL COMMENT '权限名称',
   `ename` varchar(20) DEFAULT NULL COMMENT '英文名称',
   `catalog` int(11) DEFAULT NULL COMMENT '0是目录1是功能',
   `parentId` int(11) DEFAULT NULL COMMENT '权限父id',
   `path` varchar(20) DEFAULT NULL COMMENT '权限路径',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -498,6 +618,11 @@ CREATE TABLE `legworkcat` (
   `model` varchar(20) DEFAULT NULL COMMENT '车型',
   `mileage` varchar(20) DEFAULT NULL COMMENT '当前里程',
   `artisanClassId` int(4) DEFAULT NULL COMMENT '所在班组',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -515,6 +640,11 @@ CREATE TABLE `linkman` (
   `telephone` varchar(20) DEFAULT NULL COMMENT '电话',
   `email` varchar(20) DEFAULT NULL COMMENT 'email',
   `manufacturerNumber` varchar(10) DEFAULT NULL COMMENT '与厂商表关联',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -527,6 +657,11 @@ DROP TABLE IF EXISTS `maintain`;
 CREATE TABLE `maintain` (
   `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '保养编号',
   `maintaiNname` varchar(20) DEFAULT NULL COMMENT '保养名称',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -544,6 +679,11 @@ CREATE TABLE `maintainregist` (
   `remark` varchar(50) DEFAULT NULL COMMENT '备注',
   `sjmileage` float DEFAULT NULL COMMENT '实际里程',
   `Sjmileagedate` date DEFAULT NULL COMMENT '实际日期',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -564,6 +704,11 @@ CREATE TABLE `maintenanceitems` (
   `negotiatedPrice` float DEFAULT NULL COMMENT '协议价',
   `claimPrice` float DEFAULT NULL COMMENT '索赔价',
   `insurancePrice` float DEFAULT NULL COMMENT '保险价',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -585,6 +730,11 @@ CREATE TABLE `manufacturer` (
   `laver` varchar(20) DEFAULT NULL COMMENT '厂商等级',
   `brank` varchar(20) DEFAULT NULL COMMENT '经营品牌',
   `type` varchar(20) DEFAULT NULL COMMENT '厂商类别',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -602,6 +752,11 @@ CREATE TABLE `materialrequire_good` (
   `item` varchar(20) DEFAULT NULL COMMENT '对应项目',
   `warehouse` varchar(20) DEFAULT NULL COMMENT '仓库',
   `Isget` int(11) DEFAULT NULL COMMENT '是否领料1=是；0=否',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -614,6 +769,11 @@ DROP TABLE IF EXISTS `minorrepair`;
 CREATE TABLE `minorrepair` (
   `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '小修编号',
   `minorRepairName` varchar(20) DEFAULT NULL COMMENT '小修名称',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -626,17 +786,22 @@ DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '岗位id',
   `postName` varchar(20) DEFAULT NULL COMMENT '岗位名称',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `post` */
 
-insert  into `post`(`id`,`postName`) values 
-(1,'展厅经理'),
-(2,'销售顾问'),
-(3,'销售员'),
-(4,'库管员'),
-(5,'移车员');
+insert  into `post`(`id`,`postName`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'展厅经理',NULL,NULL,NULL,NULL,NULL),
+(2,'销售顾问',NULL,NULL,NULL,NULL,NULL),
+(3,'销售员',NULL,NULL,NULL,NULL,NULL),
+(4,'库管员',NULL,NULL,NULL,NULL,NULL),
+(5,'移车员',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `repair` */
 
@@ -645,7 +810,7 @@ DROP TABLE IF EXISTS `repair`;
 CREATE TABLE `repair` (
   `number` varchar(20) NOT NULL COMMENT '维修编号',
   `carinfoId` int(11) DEFAULT NULL COMMENT '与车辆信息表关联',
-  `counselorId` int(11) DEFAULT NULL COMMENT '与员工关联',
+  `staffno` varchar(10) DEFAULT NULL COMMENT '与员工关联',
   `oil` varchar(30) DEFAULT NULL COMMENT '进厂油量',
   `type` varchar(20) DEFAULT NULL COMMENT '业务类别',
   `worktime` varchar(20) DEFAULT NULL COMMENT '施工班次',
@@ -661,6 +826,13 @@ CREATE TABLE `repair` (
   `fault` varchar(30) DEFAULT NULL COMMENT '故障描述',
   `faultreasult` varchar(30) DEFAULT NULL COMMENT '故障原因',
   `status` varchar(20) DEFAULT NULL COMMENT '维修状态',
+  `orderTime` datetime DEFAULT NULL COMMENT '开单时间',
+  `stockDater` datetime DEFAULT NULL COMMENT '结算时间',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -673,7 +845,7 @@ DROP TABLE IF EXISTS `rescue`;
 CREATE TABLE `rescue` (
   `number` varchar(30) NOT NULL COMMENT '救援编号',
   `carinfoid` int(11) DEFAULT NULL COMMENT '与车辆信息表关联',
-  `counselorid` int(11) DEFAULT NULL COMMENT '与员工关联',
+  `staffno` varchar(10) DEFAULT NULL COMMENT '与员工关联',
   `rescueTeamid` int(11) DEFAULT NULL COMMENT '派工班组与班组表关联',
   `type` varchar(20) DEFAULT NULL COMMENT '业务类别',
   `worktimes` varchar(20) DEFAULT NULL COMMENT '施工班次',
@@ -694,6 +866,13 @@ CREATE TABLE `rescue` (
   `fault` varchar(30) DEFAULT NULL COMMENT '故障描述',
   `faultreasult` varchar(30) DEFAULT NULL COMMENT '故障原因',
   `status` varchar(30) DEFAULT NULL COMMENT '维修状态',
+  `orderTime` datetime DEFAULT NULL COMMENT '开单时间',
+  `stockDater` datetime DEFAULT NULL COMMENT '结算时间',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -706,6 +885,11 @@ DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '角色id',
   `roleName` varchar(20) DEFAULT NULL COMMENT '角色名称',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -716,9 +900,14 @@ CREATE TABLE `role` (
 DROP TABLE IF EXISTS `role_jurisdiction`;
 
 CREATE TABLE `role_jurisdiction` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `roleid` int(4) DEFAULT NULL COMMENT '角色id',
   `jurisdictionId` int(4) DEFAULT NULL COMMENT '权限id',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -778,18 +967,23 @@ CREATE TABLE `staff` (
   `picture` varchar(1000) DEFAULT NULL COMMENT '员工相片',
   `roleId` int(4) DEFAULT NULL COMMENT '角色表id',
   `isDimission` int(2) DEFAULT '0' COMMENT '0为在职1为已离职',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`staffNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `staff` */
 
-insert  into `staff`(`staffNo`,`name`,`sex`,`departmentId`,`account`,`password`,`postId`,`physicalCondition`,`height`,`nativePlace`,`nation`,`maritalStatus`,`educationBackground`,`school`,`major`,`professionalQualification`,`property`,`degree`,`authorizedStrength`,`idCardNo`,`residence`,`presentAddress`,`contactNumber`,`phone`,`email`,`depositBank`,`bankAccount`,`emergencyContact`,`emergencyPhone`,`dateOnBoard`,`theTrialDue`,`birthdayDate`,`contractStart`,`agreementEnds`,`cardNumber`,`internalCardNo`,`referrer`,`wholeOrderDiscountRight`,`timeDiscountRight`,`rightToDiscount`,`rightOfRelief`,`jobResume`,`educationexperience`,`memberOfFamily`,`disciplinaryRecords`,`employmentAdvice`,`picture`,`roleId`,`isDimission`) values 
-('ASD002','克莱尔','女',9,'sdf','88888888',2,'良好',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'18834535222','16623423663','1234237783@qq.com',NULL,NULL,NULL,'14124546574','2019-02-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1),
-('ASD003','墨菲','男',12,'xcv','88888888',3,'良好',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'17775345332','18843242211','2312213453@qq.com',NULL,NULL,NULL,'14245657543',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
-('SWE001','史蒂夫','男',3,'qwe','88888888',2,'良好','173','湖南','壮族','已婚','本科','湖南农业大学','计算机软件','中级工程师','记考勤记薪','一本','在编','430202199910011022','湖南省株洲市荷塘区','湖南省长沙市天元区','13142000286','13142000286','1525532629@qq.com','中国银行','74327342374238123','詹姆斯','15276222983','2019-02-02','2019-05-02','1999-10-01','2019-05-02','2020-05-02','2993827192','2131232131','凯文','1','1','1','1','1','1','1','1','1','1',1,1),
-('SWE002','科比','男',4,'asd','88888888',3,'良好','188','湖南',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'12243545465','13156734327','3288321354@qq.com',NULL,NULL,NULL,'14248894324',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
-('SWE003','蒂格','男',6,'zxc','88888888',4,'良好',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'15687846453','15323245675','2377894392@qq.com',NULL,NULL,NULL,'13456333423',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),
-('ZXC001','帕克','男',11,'ert','88888888',5,'良好',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'14565435322','13442355323','3231877432@qq.com',NULL,NULL,NULL,'14343253442',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
+insert  into `staff`(`staffNo`,`name`,`sex`,`departmentId`,`account`,`password`,`postId`,`physicalCondition`,`height`,`nativePlace`,`nation`,`maritalStatus`,`educationBackground`,`school`,`major`,`professionalQualification`,`property`,`degree`,`authorizedStrength`,`idCardNo`,`residence`,`presentAddress`,`contactNumber`,`phone`,`email`,`depositBank`,`bankAccount`,`emergencyContact`,`emergencyPhone`,`dateOnBoard`,`theTrialDue`,`birthdayDate`,`contractStart`,`agreementEnds`,`cardNumber`,`internalCardNo`,`referrer`,`wholeOrderDiscountRight`,`timeDiscountRight`,`rightToDiscount`,`rightOfRelief`,`jobResume`,`educationexperience`,`memberOfFamily`,`disciplinaryRecords`,`employmentAdvice`,`picture`,`roleId`,`isDimission`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+('ASD002','克莱尔','女',9,'sdf','88888888',2,'良好',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'18834535222','16623423663','1234237783@qq.com',NULL,NULL,NULL,'14124546574','2019-02-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL),
+('ASD003','墨菲','男',12,'xcv','88888888',3,'良好',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'17775345332','18843242211','2312213453@qq.com',NULL,NULL,NULL,'14245657543',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL),
+('SWE001','史蒂夫','男',3,'qwe','88888888',2,'良好','173','湖南','壮族','已婚','本科','湖南农业大学','计算机软件','中级工程师','记考勤记薪','一本','在编','430202199910011022','湖南省株洲市荷塘区','湖南省长沙市天元区','13142000286','13142000286','1525532629@qq.com','中国银行','74327342374238123','詹姆斯','15276222983','2019-02-02','2019-05-02','1999-10-01','2019-05-02','2020-05-02','2993827192','2131232131','凯文','1','1','1','1','1','1','1','1','1','1',1,1,NULL,NULL,NULL,NULL,NULL),
+('SWE002','科比','男',4,'asd','88888888',3,'良好','188','湖南',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'12243545465','13156734327','3288321354@qq.com',NULL,NULL,NULL,'14248894324',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL),
+('SWE003','蒂格','男',6,'zxc','88888888',4,'良好',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'15687846453','15323245675','2377894392@qq.com',NULL,NULL,NULL,'13456333423',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL),
+('ZXC001','帕克','男',11,'ert','88888888',5,'良好',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'14565435322','13442355323','3231877432@qq.com',NULL,NULL,NULL,'14343253442',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `work` */
 
@@ -803,6 +997,11 @@ CREATE TABLE `work` (
   `outsideBlack` int(4) DEFAULT NULL COMMENT '站外晚上',
   `workTime` datetime DEFAULT NULL COMMENT '工作时间',
   `artisanClassId` int(4) DEFAULT NULL COMMENT '技工班组id',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '其它字段1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT '其它字段2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT '其它字段3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT '其它字段4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT '其它字段5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

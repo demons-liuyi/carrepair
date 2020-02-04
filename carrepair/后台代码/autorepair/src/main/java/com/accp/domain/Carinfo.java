@@ -2,16 +2,20 @@ package com.accp.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Carinfo {
-	private String carbrandname;
+	private String carbrandname;//车辆品牌名称
 	
-	private String cartypename;
+	private String cartypename;//车型名称
 	
-	private String enginebrandname;
+	private String enginebrandname;//发动机名称
 	
-	private String loadnumber;
+	private String loadnumber;//载重
 	
-	private Boolean check;
+	private Boolean check;//是否被选中
 	
     public String getCarbrandname() {
 		return carbrandname;
@@ -65,10 +69,14 @@ public class Carinfo {
 
     private String carerphone;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date borndate;
 
     private String affiliation;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date drivinglicence;
 
     private String carnumber1;
@@ -83,10 +91,16 @@ public class Carinfo {
 
     private String load;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date buydate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date dutydate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date carcheckdate;
 
     private String fueloiltype;
@@ -95,15 +109,31 @@ public class Carinfo {
 
     private String jqinsurance;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date jqinsurancedate;
 
     private String syinsurance;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date syinsurancedate;
 
     private Float maintain;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date maintaindate;
+
+    private String otherone;
+
+    private String othertwo;
+
+    private String otherthree;
+
+    private String otherfour;
+
+    private String otherfive;
 
     public Integer getId() {
         return id;
@@ -311,5 +341,45 @@ public class Carinfo {
 
     public void setMaintaindate(Date maintaindate) {
         this.maintaindate = maintaindate;
+    }
+
+    public String getOtherone() {
+        return otherone;
+    }
+
+    public void setOtherone(String otherone) {
+        this.otherone = otherone;
+    }
+
+    public String getOthertwo() {
+        return othertwo;
+    }
+
+    public void setOthertwo(String othertwo) {
+        this.othertwo = othertwo;
+    }
+
+    public String getOtherthree() {
+        return otherthree;
+    }
+
+    public void setOtherthree(String otherthree) {
+        this.otherthree = otherthree;
+    }
+
+    public String getOtherfour() {
+        return otherfour;
+    }
+
+    public void setOtherfour(String otherfour) {
+        this.otherfour = otherfour;
+    }
+
+    public String getOtherfive() {
+        return otherfive;
+    }
+
+    public void setOtherfive(String otherfive) {
+        this.otherfive = otherfive;
     }
 }

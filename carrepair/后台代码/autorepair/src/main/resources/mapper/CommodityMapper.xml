@@ -29,6 +29,11 @@
     <result column="negotiatedPrice" property="negotiatedprice" jdbcType="REAL" />
     <result column="claimPrice" property="claimprice" jdbcType="REAL" />
     <result column="insurancePrice" property="insuranceprice" jdbcType="REAL" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -92,7 +97,7 @@
     commodityNo, name, brand, carType, unit, CommdityTypeId, income, original, commodityGrade, 
     commodityPlace, manufacturerNumber, firmNumber, barCode, size, volume, weight, suttle, 
     primeCost, sellway, markupPercentage, code, NormalPrice, vipPrice, memberPrice, negotiatedPrice, 
-    claimPrice, insurancePrice
+    claimPrice, insurancePrice, otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CommodityExample" >
     select
@@ -133,8 +138,9 @@
       weight, suttle, primeCost, 
       sellway, markupPercentage, code, 
       NormalPrice, vipPrice, memberPrice, 
-      negotiatedPrice, claimPrice, insurancePrice
-      )
+      negotiatedPrice, claimPrice, insurancePrice, 
+      otherone, othertwo, otherthree, 
+      otherfour, otherfive)
     values (#{commodityno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
       #{cartype,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{commditytypeid,jdbcType=INTEGER}, 
       #{income,jdbcType=VARCHAR}, #{original,jdbcType=VARCHAR}, #{commoditygrade,jdbcType=VARCHAR}, 
@@ -143,8 +149,9 @@
       #{weight,jdbcType=VARCHAR}, #{suttle,jdbcType=VARCHAR}, #{primecost,jdbcType=REAL}, 
       #{sellway,jdbcType=VARCHAR}, #{markuppercentage,jdbcType=REAL}, #{code,jdbcType=VARCHAR}, 
       #{normalprice,jdbcType=REAL}, #{vipprice,jdbcType=REAL}, #{memberprice,jdbcType=REAL}, 
-      #{negotiatedprice,jdbcType=REAL}, #{claimprice,jdbcType=REAL}, #{insuranceprice,jdbcType=REAL}
-      )
+      #{negotiatedprice,jdbcType=REAL}, #{claimprice,jdbcType=REAL}, #{insuranceprice,jdbcType=REAL}, 
+      #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, 
+      #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Commodity" >
     insert into commodity
@@ -230,6 +237,21 @@
       <if test="insuranceprice != null" >
         insurancePrice,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="commodityno != null" >
@@ -312,6 +334,21 @@
       </if>
       <if test="insuranceprice != null" >
         #{insuranceprice,jdbcType=REAL},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -405,6 +442,21 @@
       <if test="record.insuranceprice != null" >
         insurancePrice = #{record.insuranceprice,jdbcType=REAL},
       </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -438,7 +490,12 @@
       memberPrice = #{record.memberprice,jdbcType=REAL},
       negotiatedPrice = #{record.negotiatedprice,jdbcType=REAL},
       claimPrice = #{record.claimprice,jdbcType=REAL},
-      insurancePrice = #{record.insuranceprice,jdbcType=REAL}
+      insurancePrice = #{record.insuranceprice,jdbcType=REAL},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -524,6 +581,21 @@
       <if test="insuranceprice != null" >
         insurancePrice = #{insuranceprice,jdbcType=REAL},
       </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     where commodityNo = #{commodityno,jdbcType=VARCHAR}
   </update>
@@ -554,7 +626,12 @@
       memberPrice = #{memberprice,jdbcType=REAL},
       negotiatedPrice = #{negotiatedprice,jdbcType=REAL},
       claimPrice = #{claimprice,jdbcType=REAL},
-      insurancePrice = #{insuranceprice,jdbcType=REAL}
+      insurancePrice = #{insuranceprice,jdbcType=REAL},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where commodityNo = #{commodityno,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -1,17 +1,16 @@
 package com.accp.mapper;
 
-import com.accp.domain.Department;
 import com.accp.domain.Staff;
 import com.accp.domain.StaffExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface StaffMapper {
-	List<Staff> selectStaffPhone();
-	
 	Staff selectStaffByStaffNo(String staffno);
 	
 	List<Staff> selectStaffByCondition(String departmentname);
+	
+	List<Staff> selectStaffPhone();
 	
     int countByExample(StaffExample example);
 

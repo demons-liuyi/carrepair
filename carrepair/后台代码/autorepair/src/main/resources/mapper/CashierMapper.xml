@@ -14,6 +14,11 @@
     <result column="clientId" property="clientid" jdbcType="VARCHAR" />
     <result column="change" property="change" jdbcType="REAL" />
     <result column="Number" property="number" jdbcType="VARCHAR" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -75,7 +80,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, totalNum, cashierstatic, paymentType, invoiceNo, cashiertime, staffId, onCredit, 
-    interior, clientId, change, Number
+    interior, clientId, change, Number, otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CashierExample" >
     select
@@ -111,13 +116,15 @@
     insert into cashier (id, totalNum, cashierstatic, 
       paymentType, invoiceNo, cashiertime, 
       staffId, onCredit, interior, 
-      clientId, change, Number
-      )
+      clientId, change, Number, 
+      otherone, othertwo, otherthree, 
+      otherfour, otherfive)
     values (#{id,jdbcType=INTEGER}, #{totalnum,jdbcType=REAL}, #{cashierstatic,jdbcType=VARCHAR}, 
       #{paymenttype,jdbcType=VARCHAR}, #{invoiceno,jdbcType=VARCHAR}, #{cashiertime,jdbcType=TIMESTAMP}, 
       #{staffid,jdbcType=VARCHAR}, #{oncredit,jdbcType=REAL}, #{interior,jdbcType=REAL}, 
-      #{clientid,jdbcType=VARCHAR}, #{change,jdbcType=REAL}, #{number,jdbcType=VARCHAR}
-      )
+      #{clientid,jdbcType=VARCHAR}, #{change,jdbcType=REAL}, #{number,jdbcType=VARCHAR}, 
+      #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, 
+      #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Cashier" >
     insert into cashier
@@ -158,6 +165,21 @@
       <if test="number != null" >
         Number,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -195,6 +217,21 @@
       </if>
       <if test="number != null" >
         #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -243,6 +280,21 @@
       <if test="record.number != null" >
         Number = #{record.number,jdbcType=VARCHAR},
       </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -261,7 +313,12 @@
       interior = #{record.interior,jdbcType=REAL},
       clientId = #{record.clientid,jdbcType=VARCHAR},
       change = #{record.change,jdbcType=REAL},
-      Number = #{record.number,jdbcType=VARCHAR}
+      Number = #{record.number,jdbcType=VARCHAR},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -302,6 +359,21 @@
       <if test="number != null" >
         Number = #{number,jdbcType=VARCHAR},
       </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -317,7 +389,12 @@
       interior = #{interior,jdbcType=REAL},
       clientId = #{clientid,jdbcType=VARCHAR},
       change = #{change,jdbcType=REAL},
-      Number = #{number,jdbcType=VARCHAR}
+      Number = #{number,jdbcType=VARCHAR},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

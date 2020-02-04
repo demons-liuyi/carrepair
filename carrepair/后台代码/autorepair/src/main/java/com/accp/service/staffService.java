@@ -151,7 +151,6 @@ public class staffService {
 		 record.setIsdimission(isdimission);	
 		 record.setStaffno(staffno);
 		int i=sm.updateByPrimaryKeySelective(record);
-		System.out.println(i);
 		return i;
 	}
 }

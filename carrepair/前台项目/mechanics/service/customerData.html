@@ -1213,18 +1213,21 @@
 							</select>
 							<span id="word">顾问电话：</span><input type="text" />
 						</p>
-						<p>
-							<span id="word">省：</span><input style="width: 100px;" type="text" />
-							<select @click="openselectcity()" style="width: 165px;">
-
+						<p id="example">
+							<select style="width: 100px;margin-left: 30px;" v-model="prov">
+								<option v-for="option in arr" :value="option.name">
+									{{ option.name }}
+								</option>
 							</select>
-							<span id="word">市：</span><input style="width: 100px;" type="text" />
-							<select style="width: 165px;">
-
+							<select style="width: 300px;margin-left: 30px;" v-model="city">
+								<option v-for="option in cityArr" :value="option.name">
+									{{ option.name }}
+								</option>
 							</select>
-							<span id="word">区：</span><input style="width: 100px;" type="text" />
-							<select style="width: 165px;">
-
+							<select style="width: 450px;margin-left: 30px;" v-model="district" v-if="district">
+								<option v-for="option in districtArr" :value="option.name">
+									{{ option.name }}
+								</option>
 							</select>
 						</p>
 						<p>
@@ -1607,7 +1610,7 @@
 							<td>{{item.buydate}}</td>
 							<td>{{item.dutydate}}</td>
 							<td>{{item.carcheckdate}}</td>
-							<td>{{item.jqinsurance}}</td>					
+							<td>{{item.jqinsurance}}</td>
 							<td>{{item.jqinsurancedate}}</td>
 							<td>{{item.syinsurance}}</td>
 							<td>{{item.syinsurancedate}}</td>
@@ -1628,6 +1631,7 @@
 		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/map.js" charset="utf-8"></script>
 		<script>
 			//查询客户资料
 			function selectClientInfo() {
@@ -1683,6 +1687,12 @@
 				el: ".container-fluid",
 				data() {
 					return {
+						arr: arrAll,
+						prov: '北京',
+						city: '北京',
+						district: '东城区',
+						cityArr: [],
+						districtArr: [],
 						clientinfo: {},
 						carinfo: {},
 						data: [],
@@ -1692,6 +1702,30 @@
 					}
 				},
 				methods: {
+					updateCity: function() {
+						for(var i in this.arr) {
+							var obj = this.arr[i];
+							if(obj.name == this.prov) {
+								this.cityArr = obj.sub;
+								break;
+							}
+						}
+						this.city = this.cityArr[1].name;
+					},
+					updateDistrict: function() {
+						for(var i in this.cityArr) {
+							var obj = this.cityArr[i];
+							if(obj.name == this.city) {
+								this.districtArr = obj.sub;
+								break;
+							}
+						}
+						if(this.districtArr && this.districtArr.length > 0 && this.districtArr[1].name) {
+							this.district = this.districtArr[1].name;
+						} else {
+							this.district = '';
+						}
+					},
 					datashift: function(item) {
 						var that = this;
 						for(var i = 0; i < that.clientinfo.length; i++) {
@@ -1790,6 +1824,19 @@
 					},
 					closestaffquery: function() {
 						$("#staffquery").removeClass("show");
+					}
+				},
+				beforeMount: function() {
+					this.updateCity();
+					this.updateDistrict();
+				},
+				watch: {
+					prov: function() {
+						this.updateCity();
+						this.updateDistrict();
+					},
+					city: function() {
+						this.updateDistrict();
 					}
 				},
 				created: function() {

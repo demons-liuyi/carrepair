@@ -2,33 +2,21 @@ package com.accp.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Dimission {
-    private Integer id;
+	private String departmentname;// 部门名称
 
-    private String staffid;
+	private String name;// 员工姓名
 
-    private Date dimissiondate;
+	private String sex;// 性别
 
-    private byte[] dimissioncause;
-    
-    private String departmentname;//部门名称
-   
-    private String name;//员工姓名
-    
-    private String sex;//性别
-    
-    private String postname;//岗位名称	
-    
-    private Boolean check;//是否被选中
+	private String postname;// 岗位名称
 
-	public Boolean getCheck() {
-		return check;
-	}
-
-	public void setCheck(Boolean check) {
-		this.check = check;
-	}
-
+	private Boolean check;// 是否被选中
+	
 	public String getDepartmentname() {
 		return departmentname;
 	}
@@ -61,35 +49,103 @@ public class Dimission {
 		this.postname = postname;
 	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Boolean getCheck() {
+		return check;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setCheck(Boolean check) {
+		this.check = check;
+	}
 
-    public String getStaffid() {
-        return staffid;
-    }
+	private Integer id;
 
-    public void setStaffid(String staffid) {
-        this.staffid = staffid;
-    }
+	private String staffid;
 
-    public Date getDimissiondate() {
-        return dimissiondate;
-    }
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date dimissiondate;
 
-    public void setDimissiondate(Date dimissiondate) {
-        this.dimissiondate = dimissiondate;
-    }
+	private String dimissioncause;
 
-    public byte[] getDimissioncause() {
-        return dimissioncause;
-    }
+	private String otherone;
 
-    public void setDimissioncause(byte[] dimissioncause) {
-        this.dimissioncause = dimissioncause;
-    }
+	private String othertwo;
+
+	private String otherthree;
+
+	private String otherfour;
+
+	private String otherfive;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getStaffid() {
+		return staffid;
+	}
+
+	public void setStaffid(String staffid) {
+		this.staffid = staffid;
+	}
+
+	public Date getDimissiondate() {
+		return dimissiondate;
+	}
+
+	public void setDimissiondate(Date dimissiondate) {
+		this.dimissiondate = dimissiondate;
+	}
+
+	public String getDimissioncause() {
+		return dimissioncause;
+	}
+
+	public void setDimissioncause(String dimissioncause) {
+		this.dimissioncause = dimissioncause;
+	}
+
+	public String getOtherone() {
+		return otherone;
+	}
+
+	public void setOtherone(String otherone) {
+		this.otherone = otherone;
+	}
+
+	public String getOthertwo() {
+		return othertwo;
+	}
+
+	public void setOthertwo(String othertwo) {
+		this.othertwo = othertwo;
+	}
+
+	public String getOtherthree() {
+		return otherthree;
+	}
+
+	public void setOtherthree(String otherthree) {
+		this.otherthree = otherthree;
+	}
+
+	public String getOtherfour() {
+		return otherfour;
+	}
+
+	public void setOtherfour(String otherfour) {
+		this.otherfour = otherfour;
+	}
+
+	public String getOtherfive() {
+		return otherfive;
+	}
+
+	public void setOtherfive(String otherfive) {
+		this.otherfive = otherfive;
+	}
 }

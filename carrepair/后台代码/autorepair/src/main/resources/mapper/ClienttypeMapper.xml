@@ -9,6 +9,11 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="discount" property="discount" jdbcType="REAL" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, clientType, validity, cost, address, type, discount
+    id, clientType, validity, cost, address, type, discount, otherone, othertwo, otherthree, 
+    otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ClienttypeExample" >
     select
@@ -103,11 +109,13 @@
   </delete>
   <insert id="insert" parameterType="com.accp.domain.Clienttype" >
     insert into clienttype (id, clientType, validity, 
-      cost, address, type, discount
-      )
+      cost, address, type, discount, 
+      otherone, othertwo, otherthree, 
+      otherfour, otherfive)
     values (#{id,jdbcType=INTEGER}, #{clienttype,jdbcType=VARCHAR}, #{validity,jdbcType=INTEGER}, 
-      #{cost,jdbcType=REAL}, #{address,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{discount,jdbcType=REAL}
-      )
+      #{cost,jdbcType=REAL}, #{address,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{discount,jdbcType=REAL}, 
+      #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, 
+      #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Clienttype" >
     insert into clienttype
@@ -133,6 +141,21 @@
       <if test="discount != null" >
         discount,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -155,6 +178,21 @@
       </if>
       <if test="discount != null" >
         #{discount,jdbcType=REAL},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +226,21 @@
       <if test="record.discount != null" >
         discount = #{record.discount,jdbcType=REAL},
       </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +254,12 @@
       cost = #{record.cost,jdbcType=REAL},
       address = #{record.address,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=VARCHAR},
-      discount = #{record.discount,jdbcType=REAL}
+      discount = #{record.discount,jdbcType=REAL},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +285,21 @@
       <if test="discount != null" >
         discount = #{discount,jdbcType=REAL},
       </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -237,7 +310,12 @@
       cost = #{cost,jdbcType=REAL},
       address = #{address,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
-      discount = #{discount,jdbcType=REAL}
+      discount = #{discount,jdbcType=REAL},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

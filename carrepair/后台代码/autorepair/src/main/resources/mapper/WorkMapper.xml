@@ -9,6 +9,11 @@
     <result column="outsideBlack" property="outsideblack" jdbcType="INTEGER" />
     <result column="workTime" property="worktime" jdbcType="TIMESTAMP" />
     <result column="artisanClassId" property="artisanclassid" jdbcType="INTEGER" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, instationWhite, instationBlack, outsideWhite, outsideBlack, workTime, artisanClassId
+    id, instationWhite, instationBlack, outsideWhite, outsideBlack, workTime, artisanClassId, 
+    otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.WorkExample" >
     select
@@ -104,10 +110,14 @@
   <insert id="insert" parameterType="com.accp.domain.Work" >
     insert into work (id, instationWhite, instationBlack, 
       outsideWhite, outsideBlack, workTime, 
-      artisanClassId)
+      artisanClassId, otherone, othertwo, 
+      otherthree, otherfour, otherfive
+      )
     values (#{id,jdbcType=INTEGER}, #{instationwhite,jdbcType=INTEGER}, #{instationblack,jdbcType=INTEGER}, 
       #{outsidewhite,jdbcType=INTEGER}, #{outsideblack,jdbcType=INTEGER}, #{worktime,jdbcType=TIMESTAMP}, 
-      #{artisanclassid,jdbcType=INTEGER})
+      #{artisanclassid,jdbcType=INTEGER}, #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, 
+      #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Work" >
     insert into work
@@ -133,6 +143,21 @@
       <if test="artisanclassid != null" >
         artisanClassId,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -155,6 +180,21 @@
       </if>
       <if test="artisanclassid != null" >
         #{artisanclassid,jdbcType=INTEGER},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +228,21 @@
       <if test="record.artisanclassid != null" >
         artisanClassId = #{record.artisanclassid,jdbcType=INTEGER},
       </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +256,12 @@
       outsideWhite = #{record.outsidewhite,jdbcType=INTEGER},
       outsideBlack = #{record.outsideblack,jdbcType=INTEGER},
       workTime = #{record.worktime,jdbcType=TIMESTAMP},
-      artisanClassId = #{record.artisanclassid,jdbcType=INTEGER}
+      artisanClassId = #{record.artisanclassid,jdbcType=INTEGER},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +287,21 @@
       <if test="artisanclassid != null" >
         artisanClassId = #{artisanclassid,jdbcType=INTEGER},
       </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -237,7 +312,12 @@
       outsideWhite = #{outsidewhite,jdbcType=INTEGER},
       outsideBlack = #{outsideblack,jdbcType=INTEGER},
       workTime = #{worktime,jdbcType=TIMESTAMP},
-      artisanClassId = #{artisanclassid,jdbcType=INTEGER}
+      artisanClassId = #{artisanclassid,jdbcType=INTEGER},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

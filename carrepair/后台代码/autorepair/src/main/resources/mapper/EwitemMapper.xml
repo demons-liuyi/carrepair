@@ -7,8 +7,13 @@
     <result column="priceType" property="pricetype" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="REAL" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="rescueid" property="rescueid" jdbcType="INTEGER" />
-    <result column="repairid" property="repairid" jdbcType="INTEGER" />
+    <result column="rescueid" property="rescueid" jdbcType="VARCHAR" />
+    <result column="repairid" property="repairid" jdbcType="VARCHAR" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, priceType, price, remark, rescueid, repairid
+    id, name, priceType, price, remark, rescueid, repairid, otherone, othertwo, otherthree, 
+    otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.EwitemExample" >
     select
@@ -104,10 +110,14 @@
   <insert id="insert" parameterType="com.accp.domain.Ewitem" >
     insert into ewitem (id, name, priceType, 
       price, remark, rescueid, 
-      repairid)
+      repairid, otherone, othertwo, 
+      otherthree, otherfour, otherfive
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pricetype,jdbcType=VARCHAR}, 
-      #{price,jdbcType=REAL}, #{remark,jdbcType=VARCHAR}, #{rescueid,jdbcType=INTEGER}, 
-      #{repairid,jdbcType=INTEGER})
+      #{price,jdbcType=REAL}, #{remark,jdbcType=VARCHAR}, #{rescueid,jdbcType=VARCHAR}, 
+      #{repairid,jdbcType=VARCHAR}, #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, 
+      #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Ewitem" >
     insert into ewitem
@@ -133,6 +143,21 @@
       <if test="repairid != null" >
         repairid,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -151,10 +176,25 @@
         #{remark,jdbcType=VARCHAR},
       </if>
       <if test="rescueid != null" >
-        #{rescueid,jdbcType=INTEGER},
+        #{rescueid,jdbcType=VARCHAR},
       </if>
       <if test="repairid != null" >
-        #{repairid,jdbcType=INTEGER},
+        #{repairid,jdbcType=VARCHAR},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -183,10 +223,25 @@
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
       <if test="record.rescueid != null" >
-        rescueid = #{record.rescueid,jdbcType=INTEGER},
+        rescueid = #{record.rescueid,jdbcType=VARCHAR},
       </if>
       <if test="record.repairid != null" >
-        repairid = #{record.repairid,jdbcType=INTEGER},
+        repairid = #{record.repairid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -200,8 +255,13 @@
       priceType = #{record.pricetype,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=REAL},
       remark = #{record.remark,jdbcType=VARCHAR},
-      rescueid = #{record.rescueid,jdbcType=INTEGER},
-      repairid = #{record.repairid,jdbcType=INTEGER}
+      rescueid = #{record.rescueid,jdbcType=VARCHAR},
+      repairid = #{record.repairid,jdbcType=VARCHAR},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -222,10 +282,25 @@
         remark = #{remark,jdbcType=VARCHAR},
       </if>
       <if test="rescueid != null" >
-        rescueid = #{rescueid,jdbcType=INTEGER},
+        rescueid = #{rescueid,jdbcType=VARCHAR},
       </if>
       <if test="repairid != null" >
-        repairid = #{repairid,jdbcType=INTEGER},
+        repairid = #{repairid,jdbcType=VARCHAR},
+      </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -236,8 +311,13 @@
       priceType = #{pricetype,jdbcType=VARCHAR},
       price = #{price,jdbcType=REAL},
       remark = #{remark,jdbcType=VARCHAR},
-      rescueid = #{rescueid,jdbcType=INTEGER},
-      repairid = #{repairid,jdbcType=INTEGER}
+      rescueid = #{rescueid,jdbcType=VARCHAR},
+      repairid = #{repairid,jdbcType=VARCHAR},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

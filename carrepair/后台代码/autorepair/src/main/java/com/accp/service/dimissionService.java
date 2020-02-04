@@ -28,7 +28,7 @@ public class dimissionService {
 		return list;
 	}
 	
-	public int addDimission(String staffno,Date dimissiondate,byte [] dimissioncause) {
+	public int addDimission(String staffno,Date dimissiondate,String dimissioncause) {
 		Dimission di=new Dimission();
 		di.setStaffid(staffno);
 		di.setDimissiondate(dimissiondate);

@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.accp.domain.Rescue" >
     <id column="number" property="number" jdbcType="VARCHAR" />
     <result column="carinfoid" property="carinfoid" jdbcType="INTEGER" />
-    <result column="counselorid" property="counselorid" jdbcType="INTEGER" />
+    <result column="staffno" property="staffno" jdbcType="VARCHAR" />
     <result column="rescueTeamid" property="rescueteamid" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="worktimes" property="worktimes" jdbcType="VARCHAR" />
@@ -25,6 +25,13 @@
     <result column="fault" property="fault" jdbcType="VARCHAR" />
     <result column="faultreasult" property="faultreasult" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="orderTime" property="ordertime" jdbcType="TIMESTAMP" />
+    <result column="stockDater" property="stockdater" jdbcType="TIMESTAMP" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -85,9 +92,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    number, carinfoid, counselorid, rescueTeamid, type, worktimes, getman, workdate, 
-    nowdate, address, car, liche, worktime, overtime, rescueaddress, setter, company, 
-    price, remark, state, fault, faultreasult, status
+    number, carinfoid, staffno, rescueTeamid, type, worktimes, getman, workdate, nowdate, 
+    address, car, liche, worktime, overtime, rescueaddress, setter, company, price, remark, 
+    state, fault, faultreasult, status, orderTime, stockDater, otherone, othertwo, otherthree, 
+    otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.RescueExample" >
     select
@@ -120,22 +128,26 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.accp.domain.Rescue" >
-    insert into rescue (number, carinfoid, counselorid, 
+    insert into rescue (number, carinfoid, staffno, 
       rescueTeamid, type, worktimes, 
       getman, workdate, nowdate, 
       address, car, liche, worktime, 
       overtime, rescueaddress, setter, 
       company, price, remark, 
       state, fault, faultreasult, 
-      status)
-    values (#{number,jdbcType=VARCHAR}, #{carinfoid,jdbcType=INTEGER}, #{counselorid,jdbcType=INTEGER}, 
+      status, orderTime, stockDater, 
+      otherone, othertwo, otherthree, 
+      otherfour, otherfive)
+    values (#{number,jdbcType=VARCHAR}, #{carinfoid,jdbcType=INTEGER}, #{staffno,jdbcType=VARCHAR}, 
       #{rescueteamid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{worktimes,jdbcType=VARCHAR}, 
       #{getman,jdbcType=VARCHAR}, #{workdate,jdbcType=TIMESTAMP}, #{nowdate,jdbcType=TIMESTAMP}, 
       #{address,jdbcType=VARCHAR}, #{car,jdbcType=VARCHAR}, #{liche,jdbcType=REAL}, #{worktime,jdbcType=TIMESTAMP}, 
       #{overtime,jdbcType=TIMESTAMP}, #{rescueaddress,jdbcType=VARCHAR}, #{setter,jdbcType=VARCHAR}, 
       #{company,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{remark,jdbcType=VARCHAR}, 
       #{state,jdbcType=VARCHAR}, #{fault,jdbcType=VARCHAR}, #{faultreasult,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR})
+      #{status,jdbcType=VARCHAR}, #{ordertime,jdbcType=TIMESTAMP}, #{stockdater,jdbcType=TIMESTAMP}, 
+      #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, 
+      #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Rescue" >
     insert into rescue
@@ -146,8 +158,8 @@
       <if test="carinfoid != null" >
         carinfoid,
       </if>
-      <if test="counselorid != null" >
-        counselorid,
+      <if test="staffno != null" >
+        staffno,
       </if>
       <if test="rescueteamid != null" >
         rescueTeamid,
@@ -209,6 +221,27 @@
       <if test="status != null" >
         status,
       </if>
+      <if test="ordertime != null" >
+        orderTime,
+      </if>
+      <if test="stockdater != null" >
+        stockDater,
+      </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="number != null" >
@@ -217,8 +250,8 @@
       <if test="carinfoid != null" >
         #{carinfoid,jdbcType=INTEGER},
       </if>
-      <if test="counselorid != null" >
-        #{counselorid,jdbcType=INTEGER},
+      <if test="staffno != null" >
+        #{staffno,jdbcType=VARCHAR},
       </if>
       <if test="rescueteamid != null" >
         #{rescueteamid,jdbcType=INTEGER},
@@ -280,6 +313,27 @@
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
       </if>
+      <if test="ordertime != null" >
+        #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockdater != null" >
+        #{stockdater,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.accp.domain.RescueExample" resultType="java.lang.Integer" >
@@ -297,8 +351,8 @@
       <if test="record.carinfoid != null" >
         carinfoid = #{record.carinfoid,jdbcType=INTEGER},
       </if>
-      <if test="record.counselorid != null" >
-        counselorid = #{record.counselorid,jdbcType=INTEGER},
+      <if test="record.staffno != null" >
+        staffno = #{record.staffno,jdbcType=VARCHAR},
       </if>
       <if test="record.rescueteamid != null" >
         rescueTeamid = #{record.rescueteamid,jdbcType=INTEGER},
@@ -360,6 +414,27 @@
       <if test="record.status != null" >
         status = #{record.status,jdbcType=VARCHAR},
       </if>
+      <if test="record.ordertime != null" >
+        orderTime = #{record.ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.stockdater != null" >
+        stockDater = #{record.stockdater,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -369,7 +444,7 @@
     update rescue
     set number = #{record.number,jdbcType=VARCHAR},
       carinfoid = #{record.carinfoid,jdbcType=INTEGER},
-      counselorid = #{record.counselorid,jdbcType=INTEGER},
+      staffno = #{record.staffno,jdbcType=VARCHAR},
       rescueTeamid = #{record.rescueteamid,jdbcType=INTEGER},
       type = #{record.type,jdbcType=VARCHAR},
       worktimes = #{record.worktimes,jdbcType=VARCHAR},
@@ -389,7 +464,14 @@
       state = #{record.state,jdbcType=VARCHAR},
       fault = #{record.fault,jdbcType=VARCHAR},
       faultreasult = #{record.faultreasult,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=VARCHAR}
+      status = #{record.status,jdbcType=VARCHAR},
+      orderTime = #{record.ordertime,jdbcType=TIMESTAMP},
+      stockDater = #{record.stockdater,jdbcType=TIMESTAMP},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -400,8 +482,8 @@
       <if test="carinfoid != null" >
         carinfoid = #{carinfoid,jdbcType=INTEGER},
       </if>
-      <if test="counselorid != null" >
-        counselorid = #{counselorid,jdbcType=INTEGER},
+      <if test="staffno != null" >
+        staffno = #{staffno,jdbcType=VARCHAR},
       </if>
       <if test="rescueteamid != null" >
         rescueTeamid = #{rescueteamid,jdbcType=INTEGER},
@@ -463,13 +545,34 @@
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
       </if>
+      <if test="ordertime != null" >
+        orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockdater != null" >
+        stockDater = #{stockdater,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     where number = #{number,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.Rescue" >
     update rescue
     set carinfoid = #{carinfoid,jdbcType=INTEGER},
-      counselorid = #{counselorid,jdbcType=INTEGER},
+      staffno = #{staffno,jdbcType=VARCHAR},
       rescueTeamid = #{rescueteamid,jdbcType=INTEGER},
       type = #{type,jdbcType=VARCHAR},
       worktimes = #{worktimes,jdbcType=VARCHAR},
@@ -489,7 +592,14 @@
       state = #{state,jdbcType=VARCHAR},
       fault = #{fault,jdbcType=VARCHAR},
       faultreasult = #{faultreasult,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
+      status = #{status,jdbcType=VARCHAR},
+      orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      stockDater = #{stockdater,jdbcType=TIMESTAMP},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where number = #{number,jdbcType=VARCHAR}
   </update>
 </mapper>
