@@ -39,6 +39,13 @@
   	 <result column="clienttype" property="clienttype" jdbcType="VARCHAR" />
   	  <result column="staffname" property="staffname" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectMaxNumber" resultMap="BaseResultPlus">
+  	SELECT MAX(number) number FROM CLIENT 
+  </select>
+  
+  <select id="selectClientInfoByNumber" resultMap="BaseResultPlus">
+  	select *,(select name from staff where staff.`staffNo`=client.`staffNo`) staffname from client where number='${number}'
+  </select>
   
   <select id="selectClientInfo" resultMap="BaseResultPlus">
   	select (select clienttype from clienttype where id=typeid) clienttype,

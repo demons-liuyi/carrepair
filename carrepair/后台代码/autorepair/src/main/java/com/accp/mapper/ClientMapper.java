@@ -6,6 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ClientMapper {
+	Client selectMaxNumber();
+	
+	Client selectClientInfoByNumber(String number);
+	
 	List<Client> selectClientInfo();
 	
     int countByExample(ClientExample example);
