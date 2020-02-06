@@ -2,7 +2,12 @@ package com.accp.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Client {
+	
 	private String clienttype;//客户类别
 	
 	private String staffname;//员工姓名
@@ -33,8 +38,8 @@ public class Client {
 	public void setStaffname(String staffname) {
 		this.staffname = staffname;
 	}
-
-	private String number;
+	
+    private String number;
 
     private String name;
 
@@ -44,6 +49,8 @@ public class Client {
 
     private String address;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date borndate;
 
     private Integer paymentdays;
@@ -78,9 +85,27 @@ public class Client {
 
     private String carno;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     private Integer integral;
+
+    private Float oncredit;
+
+    private Float deposit;
+
+    private Float petcard;
+
+    private String otherone;
+
+    private String othertwo;
+
+    private String otherthree;
+
+    private String otherfour;
+
+    private String otherfive;
 
     public String getNumber() {
         return number;
@@ -272,5 +297,69 @@ public class Client {
 
     public void setIntegral(Integer integral) {
         this.integral = integral;
+    }
+
+    public Float getOncredit() {
+        return oncredit;
+    }
+
+    public void setOncredit(Float oncredit) {
+        this.oncredit = oncredit;
+    }
+
+    public Float getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(Float deposit) {
+        this.deposit = deposit;
+    }
+
+    public Float getPetcard() {
+        return petcard;
+    }
+
+    public void setPetcard(Float petcard) {
+        this.petcard = petcard;
+    }
+
+    public String getOtherone() {
+        return otherone;
+    }
+
+    public void setOtherone(String otherone) {
+        this.otherone = otherone;
+    }
+
+    public String getOthertwo() {
+        return othertwo;
+    }
+
+    public void setOthertwo(String othertwo) {
+        this.othertwo = othertwo;
+    }
+
+    public String getOtherthree() {
+        return otherthree;
+    }
+
+    public void setOtherthree(String otherthree) {
+        this.otherthree = otherthree;
+    }
+
+    public String getOtherfour() {
+        return otherfour;
+    }
+
+    public void setOtherfour(String otherfour) {
+        this.otherfour = otherfour;
+    }
+
+    public String getOtherfive() {
+        return otherfive;
+    }
+
+    public void setOtherfive(String otherfive) {
+        this.otherfive = otherfive;
     }
 }

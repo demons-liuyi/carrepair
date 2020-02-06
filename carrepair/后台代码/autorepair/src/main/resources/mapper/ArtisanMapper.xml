@@ -16,9 +16,14 @@
     <result column="bank" property="bank" jdbcType="VARCHAR" />
     <result column="bankAccount" property="bankaccount" jdbcType="VARCHAR" />
     <result column="artisanLevelId" property="artisanlevelid" jdbcType="INTEGER" />
-    <result column="groupLeader" property="groupleader" jdbcType="BIT" />
+    <result column="groupLeader" property="groupleader" jdbcType="INTEGER" />
     <result column="maintainType" property="maintaintype" jdbcType="VARCHAR" />
     <result column="maintainBrand" property="maintainbrand" jdbcType="VARCHAR" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -81,7 +86,7 @@
   <sql id="Base_Column_List" >
     artisanNo, artisanName, sex, artisanClassId, phone, account, address, birthday, weChat, 
     idCardNo, residence, bank, bankAccount, artisanLevelId, groupLeader, maintainType, 
-    maintainBrand
+    maintainBrand, otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ArtisanExample" >
     select
@@ -119,13 +124,17 @@
       address, birthday, weChat, 
       idCardNo, residence, bank, 
       bankAccount, artisanLevelId, groupLeader, 
-      maintainType, maintainBrand)
+      maintainType, maintainBrand, otherone, 
+      othertwo, otherthree, otherfour, 
+      otherfive)
     values (#{artisanno,jdbcType=VARCHAR}, #{artisanname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{artisanclassid,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{wechat,jdbcType=VARCHAR}, 
       #{idcardno,jdbcType=VARCHAR}, #{residence,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
-      #{bankaccount,jdbcType=VARCHAR}, #{artisanlevelid,jdbcType=INTEGER}, #{groupleader,jdbcType=BIT}, 
-      #{maintaintype,jdbcType=VARCHAR}, #{maintainbrand,jdbcType=VARCHAR})
+      #{bankaccount,jdbcType=VARCHAR}, #{artisanlevelid,jdbcType=INTEGER}, #{groupleader,jdbcType=INTEGER}, 
+      #{maintaintype,jdbcType=VARCHAR}, #{maintainbrand,jdbcType=VARCHAR}, #{otherone,jdbcType=VARCHAR}, 
+      #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, 
+      #{otherfive,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Artisan" >
     insert into artisan
@@ -181,6 +190,21 @@
       <if test="maintainbrand != null" >
         maintainBrand,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="artisanno != null" >
@@ -226,13 +250,28 @@
         #{artisanlevelid,jdbcType=INTEGER},
       </if>
       <if test="groupleader != null" >
-        #{groupleader,jdbcType=BIT},
+        #{groupleader,jdbcType=INTEGER},
       </if>
       <if test="maintaintype != null" >
         #{maintaintype,jdbcType=VARCHAR},
       </if>
       <if test="maintainbrand != null" >
         #{maintainbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -288,13 +327,28 @@
         artisanLevelId = #{record.artisanlevelid,jdbcType=INTEGER},
       </if>
       <if test="record.groupleader != null" >
-        groupLeader = #{record.groupleader,jdbcType=BIT},
+        groupLeader = #{record.groupleader,jdbcType=INTEGER},
       </if>
       <if test="record.maintaintype != null" >
         maintainType = #{record.maintaintype,jdbcType=VARCHAR},
       </if>
       <if test="record.maintainbrand != null" >
         maintainBrand = #{record.maintainbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -317,9 +371,14 @@
       bank = #{record.bank,jdbcType=VARCHAR},
       bankAccount = #{record.bankaccount,jdbcType=VARCHAR},
       artisanLevelId = #{record.artisanlevelid,jdbcType=INTEGER},
-      groupLeader = #{record.groupleader,jdbcType=BIT},
+      groupLeader = #{record.groupleader,jdbcType=INTEGER},
       maintainType = #{record.maintaintype,jdbcType=VARCHAR},
-      maintainBrand = #{record.maintainbrand,jdbcType=VARCHAR}
+      maintainBrand = #{record.maintainbrand,jdbcType=VARCHAR},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -367,13 +426,28 @@
         artisanLevelId = #{artisanlevelid,jdbcType=INTEGER},
       </if>
       <if test="groupleader != null" >
-        groupLeader = #{groupleader,jdbcType=BIT},
+        groupLeader = #{groupleader,jdbcType=INTEGER},
       </if>
       <if test="maintaintype != null" >
         maintainType = #{maintaintype,jdbcType=VARCHAR},
       </if>
       <if test="maintainbrand != null" >
         maintainBrand = #{maintainbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
       </if>
     </set>
     where artisanNo = #{artisanno,jdbcType=VARCHAR}
@@ -393,9 +467,14 @@
       bank = #{bank,jdbcType=VARCHAR},
       bankAccount = #{bankaccount,jdbcType=VARCHAR},
       artisanLevelId = #{artisanlevelid,jdbcType=INTEGER},
-      groupLeader = #{groupleader,jdbcType=BIT},
+      groupLeader = #{groupleader,jdbcType=INTEGER},
       maintainType = #{maintaintype,jdbcType=VARCHAR},
-      maintainBrand = #{maintainbrand,jdbcType=VARCHAR}
+      maintainBrand = #{maintainbrand,jdbcType=VARCHAR},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where artisanNo = #{artisanno,jdbcType=VARCHAR}
   </update>
 </mapper>

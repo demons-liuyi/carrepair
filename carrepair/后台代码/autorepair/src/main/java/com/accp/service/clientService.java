@@ -22,5 +22,27 @@ public class clientService {
 		List<Client> list=cm.selectClientInfo();
 		return list;
 	}
+	
+	
+	
+	public Client selectClientInfoByNumber(String number) {
+		Client client=cm.selectClientInfoByNumber(number);
+		return client;
+	}
+	
+	public int insertClientInfo(Client client) {
+		int i=cm.insertSelective(client);
+		return i;
+	}
+	
+	public int updateClientInfoByNumber(Client client) {
+		int i=cm.updateByPrimaryKeySelective(client);
+		return i;
+	}
+	
+	public Client selectMaxNumber() {
+		Client client=cm.selectMaxNumber();
+		return client;
+	}
 
 }

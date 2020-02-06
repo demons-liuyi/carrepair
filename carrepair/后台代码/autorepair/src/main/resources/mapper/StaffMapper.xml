@@ -51,6 +51,11 @@
     <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="roleId" property="roleid" jdbcType="INTEGER" />
     <result column="isDimission" property="isdimission" jdbcType="INTEGER" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap type="com.accp.domain.Staff" id="BaseResultMapPlus" extends="BaseResultMap">
   	 <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
@@ -131,7 +136,7 @@ departmentname,staffNo,name,emergencyPhone,contactNumber,phone,email from staff 
     theTrialDue, birthdayDate, contractStart, agreementEnds, cardNumber, internalCardNo, 
     referrer, wholeOrderDiscountRight, timeDiscountRight, rightToDiscount, rightOfRelief, 
     jobResume, educationexperience, memberOfFamily, disciplinaryRecords, employmentAdvice, 
-    picture, roleId, isDimission
+    picture, roleId, isDimission, otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.StaffExample" >
     select
@@ -180,7 +185,9 @@ departmentname,staffNo,name,emergencyPhone,contactNumber,phone,email from staff 
       rightToDiscount, rightOfRelief, jobResume, 
       educationexperience, memberOfFamily, disciplinaryRecords, 
       employmentAdvice, picture, roleId, 
-      isDimission)
+      isDimission, otherone, othertwo, 
+      otherthree, otherfour, otherfive
+      )
     values (#{staffno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{departmentid,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{postid,jdbcType=INTEGER}, #{physicalcondition,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, 
@@ -197,7 +204,9 @@ departmentname,staffNo,name,emergencyPhone,contactNumber,phone,email from staff 
       #{righttodiscount,jdbcType=VARCHAR}, #{rightofrelief,jdbcType=VARCHAR}, #{jobresume,jdbcType=VARCHAR}, 
       #{educationexperience,jdbcType=VARCHAR}, #{memberoffamily,jdbcType=VARCHAR}, #{disciplinaryrecords,jdbcType=VARCHAR}, 
       #{employmentadvice,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{roleid,jdbcType=INTEGER}, 
-      #{isdimission,jdbcType=INTEGER})
+      #{isdimission,jdbcType=INTEGER}, #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, 
+      #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Staff" >
     insert into staff
@@ -349,6 +358,21 @@ departmentname,staffNo,name,emergencyPhone,contactNumber,phone,email from staff 
       <if test="isdimission != null" >
         isDimission,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="staffno != null" >
@@ -497,6 +521,21 @@ departmentname,staffNo,name,emergencyPhone,contactNumber,phone,email from staff 
       </if>
       <if test="isdimission != null" >
         #{isdimission,jdbcType=INTEGER},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -656,6 +695,21 @@ departmentname,staffNo,name,emergencyPhone,contactNumber,phone,email from staff 
       <if test="record.isdimission != null" >
         isDimission = #{record.isdimission,jdbcType=INTEGER},
       </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -711,7 +765,12 @@ departmentname,staffNo,name,emergencyPhone,contactNumber,phone,email from staff 
       employmentAdvice = #{record.employmentadvice,jdbcType=VARCHAR},
       picture = #{record.picture,jdbcType=VARCHAR},
       roleId = #{record.roleid,jdbcType=INTEGER},
-      isDimission = #{record.isdimission,jdbcType=INTEGER}
+      isDimission = #{record.isdimission,jdbcType=INTEGER},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -863,6 +922,21 @@ departmentname,staffNo,name,emergencyPhone,contactNumber,phone,email from staff 
       <if test="isdimission != null" >
         isDimission = #{isdimission,jdbcType=INTEGER},
       </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     where staffNo = #{staffno,jdbcType=VARCHAR}
   </update>
@@ -915,7 +989,12 @@ departmentname,staffNo,name,emergencyPhone,contactNumber,phone,email from staff 
       employmentAdvice = #{employmentadvice,jdbcType=VARCHAR},
       picture = #{picture,jdbcType=VARCHAR},
       roleId = #{roleid,jdbcType=INTEGER},
-      isDimission = #{isdimission,jdbcType=INTEGER}
+      isDimission = #{isdimission,jdbcType=INTEGER},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where staffNo = #{staffno,jdbcType=VARCHAR}
   </update>
 </mapper>

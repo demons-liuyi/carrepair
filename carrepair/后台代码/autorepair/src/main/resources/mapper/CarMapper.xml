@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.accp.mapper.CarMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.Car" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="carTypeName" property="cartypename" jdbcType="VARCHAR" />
     <result column="engineId" property="engineid" jdbcType="INTEGER" />
     <result column="price" property="price" jdbcType="REAL" />
@@ -12,6 +12,11 @@
     <result column="fuelLabel" property="fuellabel" jdbcType="VARCHAR" />
     <result column="load" property="load" jdbcType="VARCHAR" />
     <result column="carBrandId" property="carbrandid" jdbcType="INTEGER" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, carTypeName, engineId, price, carYearPrice, power, importOrdomestic, fuelLabel, 
-    load, carBrandId
+    load, carBrandId, otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CarExample" >
     select
@@ -89,15 +94,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from car
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from car
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.accp.domain.CarExample" >
     delete from car
@@ -109,11 +114,15 @@
     insert into car (id, carTypeName, engineId, 
       price, carYearPrice, power, 
       importOrdomestic, fuelLabel, load, 
-      carBrandId)
-    values (#{id,jdbcType=INTEGER}, #{cartypename,jdbcType=VARCHAR}, #{engineid,jdbcType=INTEGER}, 
+      carBrandId, otherone, othertwo, 
+      otherthree, otherfour, otherfive
+      )
+    values (#{id,jdbcType=VARCHAR}, #{cartypename,jdbcType=VARCHAR}, #{engineid,jdbcType=INTEGER}, 
       #{price,jdbcType=REAL}, #{caryearprice,jdbcType=REAL}, #{power,jdbcType=VARCHAR}, 
       #{importordomestic,jdbcType=VARCHAR}, #{fuellabel,jdbcType=VARCHAR}, #{load,jdbcType=VARCHAR}, 
-      #{carbrandid,jdbcType=INTEGER})
+      #{carbrandid,jdbcType=INTEGER}, #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, 
+      #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Car" >
     insert into car
@@ -148,10 +157,25 @@
       <if test="carbrandid != null" >
         carBrandId,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="cartypename != null" >
         #{cartypename,jdbcType=VARCHAR},
@@ -180,6 +204,21 @@
       <if test="carbrandid != null" >
         #{carbrandid,jdbcType=INTEGER},
       </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.accp.domain.CarExample" resultType="java.lang.Integer" >
@@ -192,7 +231,7 @@
     update car
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.cartypename != null" >
         carTypeName = #{record.cartypename,jdbcType=VARCHAR},
@@ -221,6 +260,21 @@
       <if test="record.carbrandid != null" >
         carBrandId = #{record.carbrandid,jdbcType=INTEGER},
       </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -228,7 +282,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update car
-    set id = #{record.id,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=VARCHAR},
       carTypeName = #{record.cartypename,jdbcType=VARCHAR},
       engineId = #{record.engineid,jdbcType=INTEGER},
       price = #{record.price,jdbcType=REAL},
@@ -237,7 +291,12 @@
       importOrdomestic = #{record.importordomestic,jdbcType=VARCHAR},
       fuelLabel = #{record.fuellabel,jdbcType=VARCHAR},
       load = #{record.load,jdbcType=VARCHAR},
-      carBrandId = #{record.carbrandid,jdbcType=INTEGER}
+      carBrandId = #{record.carbrandid,jdbcType=INTEGER},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,8 +331,23 @@
       <if test="carbrandid != null" >
         carBrandId = #{carbrandid,jdbcType=INTEGER},
       </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.Car" >
     update car
@@ -285,7 +359,12 @@
       importOrdomestic = #{importordomestic,jdbcType=VARCHAR},
       fuelLabel = #{fuellabel,jdbcType=VARCHAR},
       load = #{load,jdbcType=VARCHAR},
-      carBrandId = #{carbrandid,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+      carBrandId = #{carbrandid,jdbcType=INTEGER},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

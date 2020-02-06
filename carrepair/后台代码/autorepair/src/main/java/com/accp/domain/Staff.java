@@ -2,24 +2,66 @@ package com.accp.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Staff {
-	private Boolean check;//是否被选中
+	
+private Boolean check;//是否被选中
 	
 	private String departmentname;//部门名称
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")//从前台传入到后台转换的格式
+	@JsonFormat(pattern = "yyyy-MM-dd")//jackson
+	//序列化：将复杂对象转换成字符串（可传输）jackson/fastjson（阿里）
 	private Date dateofentryone;//入职日期区间1
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dateofentrytwo;//入职日期区间2
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date thetrialdateone;//试用日期区间1
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date thetrialdatetwo;//试用日期区间2
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date contractstartdateone;//合同开始区间1
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date contractstartdatetwo;//合同开始区间2
 	
-    public Date getDateofentrytwo() {
+    public Boolean getCheck() {
+		return check;
+	}
+
+	public void setCheck(Boolean check) {
+		this.check = check;
+	}
+
+	public String getDepartmentname() {
+		return departmentname;
+	}
+
+	public void setDepartmentname(String departmentname) {
+		this.departmentname = departmentname;
+	}
+
+	public Date getDateofentryone() {
+		return dateofentryone;
+	}
+
+	public void setDateofentryone(Date dateofentryone) {
+		this.dateofentryone = dateofentryone;
+	}
+
+	public Date getDateofentrytwo() {
 		return dateofentrytwo;
 	}
 
@@ -57,30 +99,6 @@ public class Staff {
 
 	public void setContractstartdatetwo(Date contractstartdatetwo) {
 		this.contractstartdatetwo = contractstartdatetwo;
-	}
-
-	public Date getDateofentryone() {
-		return dateofentryone;
-	}
-
-	public void setDateofentryone(Date dateofentryone) {
-		this.dateofentryone = dateofentryone;
-	}
-
-	public String getDepartmentname() {
-		return departmentname;
-	}
-
-	public void setDepartmentname(String departmentname) {
-		this.departmentname = departmentname;
-	}
-
-	public Boolean getCheck() {
-		return check;
-	}
-
-	public void setCheck(Boolean check) {
-		this.check = check;
 	}
 
 	private String staffno;
@@ -141,14 +159,24 @@ public class Staff {
 
     private String emergencyphone;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateonboard;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date thetrialdue;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthdaydate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date contractstart;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date agreementends;
 
     private String cardnumber;
@@ -180,6 +208,16 @@ public class Staff {
     private Integer roleid;
 
     private Integer isdimission;
+
+    private String otherone;
+
+    private String othertwo;
+
+    private String otherthree;
+
+    private String otherfour;
+
+    private String otherfive;
 
     public String getStaffno() {
         return staffno;
@@ -571,5 +609,45 @@ public class Staff {
 
     public void setIsdimission(Integer isdimission) {
         this.isdimission = isdimission;
+    }
+
+    public String getOtherone() {
+        return otherone;
+    }
+
+    public void setOtherone(String otherone) {
+        this.otherone = otherone;
+    }
+
+    public String getOthertwo() {
+        return othertwo;
+    }
+
+    public void setOthertwo(String othertwo) {
+        this.othertwo = othertwo;
+    }
+
+    public String getOtherthree() {
+        return otherthree;
+    }
+
+    public void setOtherthree(String otherthree) {
+        this.otherthree = otherthree;
+    }
+
+    public String getOtherfour() {
+        return otherfour;
+    }
+
+    public void setOtherfour(String otherfour) {
+        this.otherfour = otherfour;
+    }
+
+    public String getOtherfive() {
+        return otherfive;
+    }
+
+    public void setOtherfive(String otherfive) {
+        this.otherfive = otherfive;
     }
 }

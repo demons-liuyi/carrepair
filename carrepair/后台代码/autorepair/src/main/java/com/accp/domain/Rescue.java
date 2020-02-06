@@ -2,12 +2,16 @@ package com.accp.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Rescue {
     private String number;
 
     private Integer carinfoid;
 
-    private Integer counselorid;
+    private String staffno;
 
     private Integer rescueteamid;
 
@@ -17,8 +21,12 @@ public class Rescue {
 
     private String getman;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date workdate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date nowdate;
 
     private String address;
@@ -27,8 +35,12 @@ public class Rescue {
 
     private Float liche;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date worktime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date overtime;
 
     private String rescueaddress;
@@ -49,6 +61,24 @@ public class Rescue {
 
     private String status;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
+    private Date ordertime;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
+    private Date stockdater;
+
+    private String otherone;
+
+    private String othertwo;
+
+    private String otherthree;
+
+    private String otherfour;
+
+    private String otherfive;
+
     public String getNumber() {
         return number;
     }
@@ -65,12 +95,12 @@ public class Rescue {
         this.carinfoid = carinfoid;
     }
 
-    public Integer getCounselorid() {
-        return counselorid;
+    public String getStaffno() {
+        return staffno;
     }
 
-    public void setCounselorid(Integer counselorid) {
-        this.counselorid = counselorid;
+    public void setStaffno(String staffno) {
+        this.staffno = staffno;
     }
 
     public Integer getRescueteamid() {
@@ -231,5 +261,61 @@ public class Rescue {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getOrdertime() {
+        return ordertime;
+    }
+
+    public void setOrdertime(Date ordertime) {
+        this.ordertime = ordertime;
+    }
+
+    public Date getStockdater() {
+        return stockdater;
+    }
+
+    public void setStockdater(Date stockdater) {
+        this.stockdater = stockdater;
+    }
+
+    public String getOtherone() {
+        return otherone;
+    }
+
+    public void setOtherone(String otherone) {
+        this.otherone = otherone;
+    }
+
+    public String getOthertwo() {
+        return othertwo;
+    }
+
+    public void setOthertwo(String othertwo) {
+        this.othertwo = othertwo;
+    }
+
+    public String getOtherthree() {
+        return otherthree;
+    }
+
+    public void setOtherthree(String otherthree) {
+        this.otherthree = otherthree;
+    }
+
+    public String getOtherfour() {
+        return otherfour;
+    }
+
+    public void setOtherfour(String otherfour) {
+        this.otherfour = otherfour;
+    }
+
+    public String getOtherfive() {
+        return otherfive;
+    }
+
+    public void setOtherfive(String otherfive) {
+        this.otherfive = otherfive;
     }
 }

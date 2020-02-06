@@ -7,9 +7,14 @@
     <result column="predicttime" property="predicttime" jdbcType="TIMESTAMP" />
     <result column="nowtime" property="nowtime" jdbcType="TIMESTAMP" />
     <result column="reason" property="reason" jdbcType="VARCHAR" />
-    <result column="workid" property="workid" jdbcType="INTEGER" />
-    <result column="dutyid" property="dutyid" jdbcType="INTEGER" />
+    <result column="workid" property="workid" jdbcType="VARCHAR" />
+    <result column="dutyid" property="dutyid" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="REAL" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, yesOrno, predicttime, nowtime, reason, workid, dutyid, price
+    id, yesOrno, predicttime, nowtime, reason, workid, dutyid, price, otherone, othertwo, 
+    otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CompletedExample" >
     select
@@ -105,10 +111,14 @@
   <insert id="insert" parameterType="com.accp.domain.Completed" >
     insert into completed (id, yesOrno, predicttime, 
       nowtime, reason, workid, 
-      dutyid, price)
+      dutyid, price, otherone, 
+      othertwo, otherthree, otherfour, 
+      otherfive)
     values (#{id,jdbcType=INTEGER}, #{yesorno,jdbcType=INTEGER}, #{predicttime,jdbcType=TIMESTAMP}, 
-      #{nowtime,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR}, #{workid,jdbcType=INTEGER}, 
-      #{dutyid,jdbcType=INTEGER}, #{price,jdbcType=REAL})
+      #{nowtime,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR}, #{workid,jdbcType=VARCHAR}, 
+      #{dutyid,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{otherone,jdbcType=VARCHAR}, 
+      #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, 
+      #{otherfive,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Completed" >
     insert into completed
@@ -137,6 +147,21 @@
       <if test="price != null" >
         price,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -155,13 +180,28 @@
         #{reason,jdbcType=VARCHAR},
       </if>
       <if test="workid != null" >
-        #{workid,jdbcType=INTEGER},
+        #{workid,jdbcType=VARCHAR},
       </if>
       <if test="dutyid != null" >
-        #{dutyid,jdbcType=INTEGER},
+        #{dutyid,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
         #{price,jdbcType=REAL},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -190,13 +230,28 @@
         reason = #{record.reason,jdbcType=VARCHAR},
       </if>
       <if test="record.workid != null" >
-        workid = #{record.workid,jdbcType=INTEGER},
+        workid = #{record.workid,jdbcType=VARCHAR},
       </if>
       <if test="record.dutyid != null" >
-        dutyid = #{record.dutyid,jdbcType=INTEGER},
+        dutyid = #{record.dutyid,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null" >
         price = #{record.price,jdbcType=REAL},
+      </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -210,9 +265,14 @@
       predicttime = #{record.predicttime,jdbcType=TIMESTAMP},
       nowtime = #{record.nowtime,jdbcType=TIMESTAMP},
       reason = #{record.reason,jdbcType=VARCHAR},
-      workid = #{record.workid,jdbcType=INTEGER},
-      dutyid = #{record.dutyid,jdbcType=INTEGER},
-      price = #{record.price,jdbcType=REAL}
+      workid = #{record.workid,jdbcType=VARCHAR},
+      dutyid = #{record.dutyid,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=REAL},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -233,13 +293,28 @@
         reason = #{reason,jdbcType=VARCHAR},
       </if>
       <if test="workid != null" >
-        workid = #{workid,jdbcType=INTEGER},
+        workid = #{workid,jdbcType=VARCHAR},
       </if>
       <if test="dutyid != null" >
-        dutyid = #{dutyid,jdbcType=INTEGER},
+        dutyid = #{dutyid,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
         price = #{price,jdbcType=REAL},
+      </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -250,9 +325,14 @@
       predicttime = #{predicttime,jdbcType=TIMESTAMP},
       nowtime = #{nowtime,jdbcType=TIMESTAMP},
       reason = #{reason,jdbcType=VARCHAR},
-      workid = #{workid,jdbcType=INTEGER},
-      dutyid = #{dutyid,jdbcType=INTEGER},
-      price = #{price,jdbcType=REAL}
+      workid = #{workid,jdbcType=VARCHAR},
+      dutyid = #{dutyid,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

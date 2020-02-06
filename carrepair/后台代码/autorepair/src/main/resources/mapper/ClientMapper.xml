@@ -26,17 +26,31 @@
     <result column="carNo" property="carno" jdbcType="VARCHAR" />
     <result column="date" property="date" jdbcType="DATE" />
     <result column="Integral" property="integral" jdbcType="INTEGER" />
+    <result column="onCredit" property="oncredit" jdbcType="REAL" />
+    <result column="deposit" property="deposit" jdbcType="REAL" />
+    <result column="petCard" property="petcard" jdbcType="REAL" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap type="com.accp.domain.Client" id="BaseResultPlus" extends="BaseResultMap">
   	 <result column="clienttype" property="clienttype" jdbcType="VARCHAR" />
   	  <result column="staffname" property="staffname" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectMaxNumber" resultMap="BaseResultPlus">
+  	SELECT MAX(number) number FROM CLIENT 
+  </select>
+  
+  <select id="selectClientInfoByNumber" resultMap="BaseResultPlus">
+  	select *,(select name from staff where staff.`staffNo`=client.`staffNo`) staffname from client where number='${number}'
+  </select>
   
   <select id="selectClientInfo" resultMap="BaseResultPlus">
   	select (select clienttype from clienttype where id=typeid) clienttype,
 (select name from staff where staff.staffno=client.`staffNo`) staffname,client.* from client
   </select>
-  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -98,7 +112,8 @@
   <sql id="Base_Column_List" >
     number, name, linkman, phone, address, borndate, paymentDays, paymentSize, staffNo, 
     counselorName, sheng, shi, qv, remark, taxpayerNumber, registerPhone, bank, bankNumber, 
-    registerAddress, other, typeId, carNo, date, Integral
+    registerAddress, other, typeId, carNo, date, Integral, onCredit, deposit, petCard, 
+    otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ClientExample" >
     select
@@ -138,7 +153,10 @@
       qv, remark, taxpayerNumber, 
       registerPhone, bank, bankNumber, 
       registerAddress, other, typeId, 
-      carNo, date, Integral)
+      carNo, date, Integral, 
+      onCredit, deposit, petCard, 
+      otherone, othertwo, otherthree, 
+      otherfour, otherfive)
     values (#{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{borndate,jdbcType=DATE}, 
       #{paymentdays,jdbcType=INTEGER}, #{paymentsize,jdbcType=INTEGER}, #{staffno,jdbcType=VARCHAR}, 
@@ -146,7 +164,10 @@
       #{qv,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{taxpayernumber,jdbcType=VARCHAR}, 
       #{registerphone,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, #{banknumber,jdbcType=VARCHAR}, 
       #{registeraddress,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
-      #{carno,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, #{integral,jdbcType=INTEGER})
+      #{carno,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, #{integral,jdbcType=INTEGER}, 
+      #{oncredit,jdbcType=REAL}, #{deposit,jdbcType=REAL}, #{petcard,jdbcType=REAL}, 
+      #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, 
+      #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Client" >
     insert into client
@@ -223,6 +244,30 @@
       <if test="integral != null" >
         Integral,
       </if>
+      <if test="oncredit != null" >
+        onCredit,
+      </if>
+      <if test="deposit != null" >
+        deposit,
+      </if>
+      <if test="petcard != null" >
+        petCard,
+      </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="number != null" >
@@ -296,6 +341,30 @@
       </if>
       <if test="integral != null" >
         #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="oncredit != null" >
+        #{oncredit,jdbcType=REAL},
+      </if>
+      <if test="deposit != null" >
+        #{deposit,jdbcType=REAL},
+      </if>
+      <if test="petcard != null" >
+        #{petcard,jdbcType=REAL},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -380,6 +449,30 @@
       <if test="record.integral != null" >
         Integral = #{record.integral,jdbcType=INTEGER},
       </if>
+      <if test="record.oncredit != null" >
+        onCredit = #{record.oncredit,jdbcType=REAL},
+      </if>
+      <if test="record.deposit != null" >
+        deposit = #{record.deposit,jdbcType=REAL},
+      </if>
+      <if test="record.petcard != null" >
+        petCard = #{record.petcard,jdbcType=REAL},
+      </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -410,7 +503,15 @@
       typeId = #{record.typeid,jdbcType=INTEGER},
       carNo = #{record.carno,jdbcType=VARCHAR},
       date = #{record.date,jdbcType=DATE},
-      Integral = #{record.integral,jdbcType=INTEGER}
+      Integral = #{record.integral,jdbcType=INTEGER},
+      onCredit = #{record.oncredit,jdbcType=REAL},
+      deposit = #{record.deposit,jdbcType=REAL},
+      petCard = #{record.petcard,jdbcType=REAL},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -487,6 +588,30 @@
       <if test="integral != null" >
         Integral = #{integral,jdbcType=INTEGER},
       </if>
+      <if test="oncredit != null" >
+        onCredit = #{oncredit,jdbcType=REAL},
+      </if>
+      <if test="deposit != null" >
+        deposit = #{deposit,jdbcType=REAL},
+      </if>
+      <if test="petcard != null" >
+        petCard = #{petcard,jdbcType=REAL},
+      </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     where number = #{number,jdbcType=VARCHAR}
   </update>
@@ -514,7 +639,15 @@
       typeId = #{typeid,jdbcType=INTEGER},
       carNo = #{carno,jdbcType=VARCHAR},
       date = #{date,jdbcType=DATE},
-      Integral = #{integral,jdbcType=INTEGER}
+      Integral = #{integral,jdbcType=INTEGER},
+      onCredit = #{oncredit,jdbcType=REAL},
+      deposit = #{deposit,jdbcType=REAL},
+      petCard = #{petcard,jdbcType=REAL},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where number = #{number,jdbcType=VARCHAR}
   </update>
 </mapper>

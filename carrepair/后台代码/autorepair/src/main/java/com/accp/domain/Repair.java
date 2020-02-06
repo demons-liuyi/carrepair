@@ -2,12 +2,16 @@ package com.accp.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Repair {
     private String number;
 
     private Integer carinfoid;
 
-    private Integer counselorid;
+    private String staffno;
 
     private String oil;
 
@@ -17,14 +21,20 @@ public class Repair {
 
     private String getman;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date overworkdate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date nowworkdate;
 
     private String setter;
 
     private String company;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date befor;
 
     private Float price;
@@ -38,6 +48,24 @@ public class Repair {
     private String faultreasult;
 
     private String status;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
+    private Date ordertime;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
+    private Date stockdater;
+
+    private String otherone;
+
+    private String othertwo;
+
+    private String otherthree;
+
+    private String otherfour;
+
+    private String otherfive;
 
     public String getNumber() {
         return number;
@@ -55,12 +83,12 @@ public class Repair {
         this.carinfoid = carinfoid;
     }
 
-    public Integer getCounselorid() {
-        return counselorid;
+    public String getStaffno() {
+        return staffno;
     }
 
-    public void setCounselorid(Integer counselorid) {
-        this.counselorid = counselorid;
+    public void setStaffno(String staffno) {
+        this.staffno = staffno;
     }
 
     public String getOil() {
@@ -181,5 +209,61 @@ public class Repair {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getOrdertime() {
+        return ordertime;
+    }
+
+    public void setOrdertime(Date ordertime) {
+        this.ordertime = ordertime;
+    }
+
+    public Date getStockdater() {
+        return stockdater;
+    }
+
+    public void setStockdater(Date stockdater) {
+        this.stockdater = stockdater;
+    }
+
+    public String getOtherone() {
+        return otherone;
+    }
+
+    public void setOtherone(String otherone) {
+        this.otherone = otherone;
+    }
+
+    public String getOthertwo() {
+        return othertwo;
+    }
+
+    public void setOthertwo(String othertwo) {
+        this.othertwo = othertwo;
+    }
+
+    public String getOtherthree() {
+        return otherthree;
+    }
+
+    public void setOtherthree(String otherthree) {
+        this.otherthree = otherthree;
+    }
+
+    public String getOtherfour() {
+        return otherfour;
+    }
+
+    public void setOtherfour(String otherfour) {
+        this.otherfour = otherfour;
+    }
+
+    public String getOtherfive() {
+        return otherfive;
+    }
+
+    public void setOtherfive(String otherfive) {
+        this.otherfive = otherfive;
     }
 }

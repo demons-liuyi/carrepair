@@ -5,6 +5,11 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="artisanLevelName" property="artisanlevelname" jdbcType="VARCHAR" />
     <result column="artisanLevelWeight" property="artisanlevelweight" jdbcType="INTEGER" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, artisanLevelName, artisanLevelWeight
+    id, artisanLevelName, artisanLevelWeight, otherone, othertwo, otherthree, otherfour, 
+    otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ArtisanlevelExample" >
     select
@@ -98,10 +104,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.accp.domain.Artisanlevel" >
-    insert into artisanlevel (id, artisanLevelName, artisanLevelWeight
-      )
-    values (#{id,jdbcType=INTEGER}, #{artisanlevelname,jdbcType=VARCHAR}, #{artisanlevelweight,jdbcType=INTEGER}
-      )
+    insert into artisanlevel (id, artisanLevelName, artisanLevelWeight, 
+      otherone, othertwo, otherthree, 
+      otherfour, otherfive)
+    values (#{id,jdbcType=INTEGER}, #{artisanlevelname,jdbcType=VARCHAR}, #{artisanlevelweight,jdbcType=INTEGER}, 
+      #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, 
+      #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Artisanlevel" >
     insert into artisanlevel
@@ -115,6 +123,21 @@
       <if test="artisanlevelweight != null" >
         artisanLevelWeight,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -125,6 +148,21 @@
       </if>
       <if test="artisanlevelweight != null" >
         #{artisanlevelweight,jdbcType=INTEGER},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -146,6 +184,21 @@
       <if test="record.artisanlevelweight != null" >
         artisanLevelWeight = #{record.artisanlevelweight,jdbcType=INTEGER},
       </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,7 +208,12 @@
     update artisanlevel
     set id = #{record.id,jdbcType=INTEGER},
       artisanLevelName = #{record.artisanlevelname,jdbcType=VARCHAR},
-      artisanLevelWeight = #{record.artisanlevelweight,jdbcType=INTEGER}
+      artisanLevelWeight = #{record.artisanlevelweight,jdbcType=INTEGER},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,13 +227,33 @@
       <if test="artisanlevelweight != null" >
         artisanLevelWeight = #{artisanlevelweight,jdbcType=INTEGER},
       </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.Artisanlevel" >
     update artisanlevel
     set artisanLevelName = #{artisanlevelname,jdbcType=VARCHAR},
-      artisanLevelWeight = #{artisanlevelweight,jdbcType=INTEGER}
+      artisanLevelWeight = #{artisanlevelweight,jdbcType=INTEGER},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

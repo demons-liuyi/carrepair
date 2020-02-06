@@ -2,6 +2,10 @@ package com.accp.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Artisan {
     private String artisanno;
 
@@ -17,6 +21,8 @@ public class Artisan {
 
     private String address;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     private String wechat;
@@ -31,11 +37,21 @@ public class Artisan {
 
     private Integer artisanlevelid;
 
-    private Boolean groupleader;
+    private Integer groupleader;
 
     private String maintaintype;
 
     private String maintainbrand;
+
+    private String otherone;
+
+    private String othertwo;
+
+    private String otherthree;
+
+    private String otherfour;
+
+    private String otherfive;
 
     public String getArtisanno() {
         return artisanno;
@@ -149,11 +165,11 @@ public class Artisan {
         this.artisanlevelid = artisanlevelid;
     }
 
-    public Boolean getGroupleader() {
+    public Integer getGroupleader() {
         return groupleader;
     }
 
-    public void setGroupleader(Boolean groupleader) {
+    public void setGroupleader(Integer groupleader) {
         this.groupleader = groupleader;
     }
 
@@ -171,5 +187,45 @@ public class Artisan {
 
     public void setMaintainbrand(String maintainbrand) {
         this.maintainbrand = maintainbrand;
+    }
+
+    public String getOtherone() {
+        return otherone;
+    }
+
+    public void setOtherone(String otherone) {
+        this.otherone = otherone;
+    }
+
+    public String getOthertwo() {
+        return othertwo;
+    }
+
+    public void setOthertwo(String othertwo) {
+        this.othertwo = othertwo;
+    }
+
+    public String getOtherthree() {
+        return otherthree;
+    }
+
+    public void setOtherthree(String otherthree) {
+        this.otherthree = otherthree;
+    }
+
+    public String getOtherfour() {
+        return otherfour;
+    }
+
+    public void setOtherfour(String otherfour) {
+        this.otherfour = otherfour;
+    }
+
+    public String getOtherfive() {
+        return otherfive;
+    }
+
+    public void setOtherfive(String otherfive) {
+        this.otherfive = otherfive;
     }
 }

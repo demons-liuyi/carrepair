@@ -5,11 +5,14 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="staffId" property="staffid" jdbcType="VARCHAR" />
     <result column="dimissionDate" property="dimissiondate" jdbcType="DATE" />
+    <result column="dimissionCause" property="dimissioncause" jdbcType="VARCHAR" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.accp.domain.Dimission" extends="BaseResultMap" >
-    <result column="dimissionCause" property="dimissioncause" jdbcType="VARBINARY" />
-  </resultMap>
-  <resultMap type="com.accp.domain.Dimission" id="ResultMapPlus" extends="ResultMapWithBLOBs">
+  <resultMap type="com.accp.domain.Dimission" id="ResultMapPlus" extends="BaseResultMap">
   	<result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
   	<result column="name" property="name" jdbcType="VARCHAR" />
   	<result column="sex" property="sex" jdbcType="VARCHAR" />
@@ -79,27 +82,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, staffId, dimissionDate
+    id, staffId, dimissionDate, dimissionCause, otherone, othertwo, otherthree, otherfour, 
+    otherfive
   </sql>
-  <sql id="Blob_Column_List" >
-    dimissionCause
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.accp.domain.DimissionExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from dimission
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.DimissionExample" >
     select
     <if test="distinct" >
@@ -114,11 +99,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from dimission
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -134,9 +117,13 @@
   </delete>
   <insert id="insert" parameterType="com.accp.domain.Dimission" >
     insert into dimission (id, staffId, dimissionDate, 
-      dimissionCause)
+      dimissionCause, otherone, othertwo, 
+      otherthree, otherfour, otherfive
+      )
     values (#{id,jdbcType=INTEGER}, #{staffid,jdbcType=VARCHAR}, #{dimissiondate,jdbcType=DATE}, 
-      #{dimissioncause,jdbcType=VARBINARY})
+      #{dimissioncause,jdbcType=VARCHAR}, #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, 
+      #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.Dimission" >
     insert into dimission
@@ -153,6 +140,21 @@
       <if test="dimissioncause != null" >
         dimissionCause,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -165,7 +167,22 @@
         #{dimissiondate,jdbcType=DATE},
       </if>
       <if test="dimissioncause != null" >
-        #{dimissioncause,jdbcType=VARBINARY},
+        #{dimissioncause,jdbcType=VARCHAR},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,19 +205,24 @@
         dimissionDate = #{record.dimissiondate,jdbcType=DATE},
       </if>
       <if test="record.dimissioncause != null" >
-        dimissionCause = #{record.dimissioncause,jdbcType=VARBINARY},
+        dimissionCause = #{record.dimissioncause,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update dimission
-    set id = #{record.id,jdbcType=INTEGER},
-      staffId = #{record.staffid,jdbcType=VARCHAR},
-      dimissionDate = #{record.dimissiondate,jdbcType=DATE},
-      dimissionCause = #{record.dimissioncause,jdbcType=VARBINARY}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -209,7 +231,13 @@
     update dimission
     set id = #{record.id,jdbcType=INTEGER},
       staffId = #{record.staffid,jdbcType=VARCHAR},
-      dimissionDate = #{record.dimissiondate,jdbcType=DATE}
+      dimissionDate = #{record.dimissiondate,jdbcType=DATE},
+      dimissionCause = #{record.dimissioncause,jdbcType=VARCHAR},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -224,22 +252,36 @@
         dimissionDate = #{dimissiondate,jdbcType=DATE},
       </if>
       <if test="dimissioncause != null" >
-        dimissionCause = #{dimissioncause,jdbcType=VARBINARY},
+        dimissionCause = #{dimissioncause,jdbcType=VARCHAR},
+      </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.accp.domain.Dimission" >
-    update dimission
-    set staffId = #{staffid,jdbcType=VARCHAR},
-      dimissionDate = #{dimissiondate,jdbcType=DATE},
-      dimissionCause = #{dimissioncause,jdbcType=VARBINARY}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.Dimission" >
     update dimission
     set staffId = #{staffid,jdbcType=VARCHAR},
-      dimissionDate = #{dimissiondate,jdbcType=DATE}
+      dimissionDate = #{dimissiondate,jdbcType=DATE},
+      dimissionCause = #{dimissioncause,jdbcType=VARCHAR},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

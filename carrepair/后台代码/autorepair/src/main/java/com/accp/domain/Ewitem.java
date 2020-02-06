@@ -11,9 +11,19 @@ public class Ewitem {
 
     private String remark;
 
-    private Integer rescueid;
+    private String rescueid;
 
-    private Integer repairid;
+    private String repairid;
+
+    private String otherone;
+
+    private String othertwo;
+
+    private String otherthree;
+
+    private String otherfour;
+
+    private String otherfive;
 
     public Integer getId() {
         return id;
@@ -55,19 +65,59 @@ public class Ewitem {
         this.remark = remark;
     }
 
-    public Integer getRescueid() {
+    public String getRescueid() {
         return rescueid;
     }
 
-    public void setRescueid(Integer rescueid) {
+    public void setRescueid(String rescueid) {
         this.rescueid = rescueid;
     }
 
-    public Integer getRepairid() {
+    public String getRepairid() {
         return repairid;
     }
 
-    public void setRepairid(Integer repairid) {
+    public void setRepairid(String repairid) {
         this.repairid = repairid;
+    }
+
+    public String getOtherone() {
+        return otherone;
+    }
+
+    public void setOtherone(String otherone) {
+        this.otherone = otherone;
+    }
+
+    public String getOthertwo() {
+        return othertwo;
+    }
+
+    public void setOthertwo(String othertwo) {
+        this.othertwo = othertwo;
+    }
+
+    public String getOtherthree() {
+        return otherthree;
+    }
+
+    public void setOtherthree(String otherthree) {
+        this.otherthree = otherthree;
+    }
+
+    public String getOtherfour() {
+        return otherfour;
+    }
+
+    public void setOtherfour(String otherfour) {
+        this.otherfour = otherfour;
+    }
+
+    public String getOtherfive() {
+        return otherfive;
+    }
+
+    public void setOtherfive(String otherfive) {
+        this.otherfive = otherfive;
     }
 }

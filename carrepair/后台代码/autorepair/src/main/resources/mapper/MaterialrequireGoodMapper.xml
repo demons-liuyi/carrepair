@@ -9,6 +9,11 @@
     <result column="item" property="item" jdbcType="VARCHAR" />
     <result column="warehouse" property="warehouse" jdbcType="VARCHAR" />
     <result column="Isget" property="isget" jdbcType="INTEGER" />
+    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
+    <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
+    <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
+    <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, requireid, goodid, count, item, warehouse, Isget
+    id, requireid, goodid, count, item, warehouse, Isget, otherone, othertwo, otherthree, 
+    otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaterialrequireGoodExample" >
     select
@@ -104,10 +110,14 @@
   <insert id="insert" parameterType="com.accp.domain.MaterialrequireGood" >
     insert into materialrequire_good (id, requireid, goodid, 
       count, item, warehouse, 
-      Isget)
+      Isget, otherone, othertwo, 
+      otherthree, otherfour, otherfive
+      )
     values (#{id,jdbcType=INTEGER}, #{requireid,jdbcType=INTEGER}, #{goodid,jdbcType=INTEGER}, 
       #{count,jdbcType=INTEGER}, #{item,jdbcType=VARCHAR}, #{warehouse,jdbcType=VARCHAR}, 
-      #{isget,jdbcType=INTEGER})
+      #{isget,jdbcType=INTEGER}, #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, 
+      #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.MaterialrequireGood" >
     insert into materialrequire_good
@@ -133,6 +143,21 @@
       <if test="isget != null" >
         Isget,
       </if>
+      <if test="otherone != null" >
+        otherone,
+      </if>
+      <if test="othertwo != null" >
+        othertwo,
+      </if>
+      <if test="otherthree != null" >
+        otherthree,
+      </if>
+      <if test="otherfour != null" >
+        otherfour,
+      </if>
+      <if test="otherfive != null" >
+        otherfive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -155,6 +180,21 @@
       </if>
       <if test="isget != null" >
         #{isget,jdbcType=INTEGER},
+      </if>
+      <if test="otherone != null" >
+        #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        #{otherfive,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +228,21 @@
       <if test="record.isget != null" >
         Isget = #{record.isget,jdbcType=INTEGER},
       </if>
+      <if test="record.otherone != null" >
+        otherone = #{record.otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othertwo != null" >
+        othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherthree != null" >
+        otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfour != null" >
+        otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherfive != null" >
+        otherfive = #{record.otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +256,12 @@
       count = #{record.count,jdbcType=INTEGER},
       item = #{record.item,jdbcType=VARCHAR},
       warehouse = #{record.warehouse,jdbcType=VARCHAR},
-      Isget = #{record.isget,jdbcType=INTEGER}
+      Isget = #{record.isget,jdbcType=INTEGER},
+      otherone = #{record.otherone,jdbcType=VARCHAR},
+      othertwo = #{record.othertwo,jdbcType=VARCHAR},
+      otherthree = #{record.otherthree,jdbcType=VARCHAR},
+      otherfour = #{record.otherfour,jdbcType=VARCHAR},
+      otherfive = #{record.otherfive,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +287,21 @@
       <if test="isget != null" >
         Isget = #{isget,jdbcType=INTEGER},
       </if>
+      <if test="otherone != null" >
+        otherone = #{otherone,jdbcType=VARCHAR},
+      </if>
+      <if test="othertwo != null" >
+        othertwo = #{othertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherthree != null" >
+        otherthree = #{otherthree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfour != null" >
+        otherfour = #{otherfour,jdbcType=VARCHAR},
+      </if>
+      <if test="otherfive != null" >
+        otherfive = #{otherfive,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -237,7 +312,12 @@
       count = #{count,jdbcType=INTEGER},
       item = #{item,jdbcType=VARCHAR},
       warehouse = #{warehouse,jdbcType=VARCHAR},
-      Isget = #{isget,jdbcType=INTEGER}
+      Isget = #{isget,jdbcType=INTEGER},
+      otherone = #{otherone,jdbcType=VARCHAR},
+      othertwo = #{othertwo,jdbcType=VARCHAR},
+      otherthree = #{otherthree,jdbcType=VARCHAR},
+      otherfour = #{otherfour,jdbcType=VARCHAR},
+      otherfive = #{otherfive,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

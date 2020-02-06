@@ -811,62 +811,65 @@
 				</div>
 				<div>
 					<h2 id="selectemployeeh2">客户资料编辑</h2>
-					<button id="customerdatamarksure" class="btn btn-default">
+					<button @click="savecustomer()" id="customerdatamarksure" class="btn btn-default">
 						<span class="glyphicon glyphicon-ok"></span> 保存
 					</button>
 					<span @click="closecustomerdata()" id="customerdataremove" class="glyphicon glyphicon-remove"></span>
 				</div>
 				<div id="customerdatacontent">
 					<p style="padding-top: 20px;">
-						<span style="margin-left: 20px;">客户编号：</span><input style="width: 170px;" type="text" />
-						<span style="margin-left: 20px;">客户名称：</span><input style="width: 80px;" type="text" />
-						<span style="margin-left: 20px;">联系人：</span><input style="width: 80px;" type="text" />
-						<span style="margin-left: 20px;">手机：</span><input style="width: 150px;" type="text" />
+						<span style="margin-left: 20px;">客户编号：</span><input readonly="readonly" v-model="addcustomerinfo.number" style="width: 170px;" type="text" />
+						<span style="margin-left: 20px;">客户名称：</span><input v-model="addcustomerinfo.name" style="width: 80px;" type="text" />
+						<span style="margin-left: 20px;">联系人：</span><input v-model="addcustomerinfo.linkman" style="width: 80px;" type="text" />
+						<span style="margin-left: 20px;">手机：</span><input v-model="addcustomerinfo.phone" style="width: 150px;" type="text" />
 					</p>
 					<p style="padding-top: 10px;">
-						<span style="margin-left: 20px;">客户地址：</span><input style="width: 510px;" type="text" />
-						<span style="margin-left: 20px;">客户生日：</span><input type="date" />
+						<span style="margin-left: 20px;">客户地址：</span><input v-model="addcustomerinfo.address" style="width: 510px;" type="text" />
+						<span style="margin-left: 20px;">客户生日：</span><input v-model="addcustomerinfo.borndate" type="date" />
 					</p>
 					<p style="padding-top: 10px;">
-						<span style="margin-left: 20px;">账期(天)：</span><input style="width: 50px;" type="number" />
-						<span style="margin-left: 20px;">挂账额度：</span><input style="width: 80px;" type="text" />
+						<span style="margin-left: 20px;">账期(天)：</span><input v-model="addcustomerinfo.paymentdays" style="width: 50px;" type="number" />
+						<span style="margin-left: 20px;">挂账额度：</span><input v-model="addcustomerinfo.paymentsize" style="width: 80px;" type="text" />
 						<span style="margin-left: 20px;">专属顾问：</span>
-						<select @click="openselectemployee()" style="width: 165px;">
+						<input readonly="readonly" v-model="addcustomerinfo.staffno+addcustomerinfo.staffname" style="width:165px;" />
+						<button @click="openselectemployee()"><span class="caret"></span></button>
 
+						<span style="margin-left: 20px;">顾问电话：</span><input readonly="readonly" v-model="addcustomerinfo.counselorname" style="width: 100px;" type="text" />
+					</p>
+					<p style="padding-top: 10px;" id="example">
+						<select name="sheng" style="width: 120px;margin-left: 20px;" v-model="prov">
+							<option v-for="option in arr" :value="option.name">
+								{{ option.name }}
+							</option>
 						</select>
-						<span style="margin-left: 20px;">顾问电话：</span><input style="width: 145px;" type="text" />
+						<select name="shi" style="width: 220px;margin-left: 20px;" v-model="city">
+							<option v-for="option in cityArr" :value="option.name">
+								{{ option.name }}
+							</option>
+						</select>
+						<select name="qv" style="width: 370px;margin-left: 20px;" v-model="district" v-if="district">
+							<option v-for="option in districtArr" :value="option.name">
+								{{ option.name }}
+							</option>
+						</select>
 					</p>
 					<p style="padding-top: 10px;">
-						<span style="margin-left: 20px;">省：</span><input style="width: 100px;" type="text" />
-						<select @click="openselectcity()" style="width: 105px;">
-
-						</select>
-						<span style="margin-left: 20px;">市：</span><input style="width: 100px;" type="text" />
-						<select style="width: 105px;">
-
-						</select>
-						<span style="margin-left: 20px;">区：</span><input style="width: 100px;" type="text" />
-						<select style="width: 105px;">
-
-						</select>
-					</p>
-					<p style="padding-top: 10px;">
-						<span style="margin-left: 20px;">备注：</span><input style="width: 750px;" type="text" />
+						<span style="margin-left: 20px;">备注：</span><input v-model="addcustomerinfo.remark" style="width: 750px;" type="text" />
 
 					</p>
 					<p style="padding-top: 10px;">
 						<span style="margin-left: 20px;">纳税人识别号：</span>
-						<input style="width: 180px;" type="text" />
+						<input v-model="addcustomerinfo.taxpayernumber" style="width: 180px;" type="text" />
 						<span style="margin-left: 20px;">注册电话：</span>
-						<input style="width: 150px;" type="text" />
+						<input v-model="addcustomerinfo.registerphone" style="width: 150px;" type="text" />
 						<span style="margin-left: 20px;">开户银行：</span>
-						<input style="width: 150px;" type="text" />
+						<input v-model="addcustomerinfo.bank" style="width: 150px;" type="text" />
 					</p>
 					<p style="padding-top: 10px;">
 						<span style="margin-left: 20px;">银行账号：</span>
-						<input style="width: 180px;" type="text" />
+						<input v-model="addcustomerinfo.banknumber" style="width: 180px;" type="text" />
 						<span style="margin-left: 20px;">注册地址：</span>
-						<input style="width: 420px;" type="text" />
+						<input v-model="addcustomerinfo.registeraddress" style="width: 420px;" type="text" />
 					</p>
 					<p style="padding-top: 10px;">
 						<span style="margin-left: 20px;">其他一：</span><input style="width: 120px;" type="text" />
@@ -888,36 +891,43 @@
 				</div>
 				<div id="selectemployeediv">
 					<h2 id="selectemployeeh2">选择员工</h2>
-					<button id="selectemployeemarksure" class="btn btn-default">
+					<button @click="makesurestaff()" id="selectemployeemarksure" class="btn btn-default">
 						<span class="glyphicon glyphicon-ok"></span> 确定
 					</button>
 					<span @click="closeselectemployee()" id="selectemployeeremove" class="glyphicon glyphicon-remove"></span>
 					<div>
 						<div id="selectemployeecontentdiv">
 							<select style="width: 450px;">
-								<option></option>
+								<option>0000-成高</option>
 							</select>
-							<select style="width: 450px;">
-								<option></option>
+							<select @change="updatecondition($event)" style="width: 450px;">
+								<option did="">所有</option>
+								<option v-bind:did="item.id" v-for="item in department">{{item.departmentname}}</option>
 							</select>
-							<table border="1px" class="table">
-								<thead>
-									<tr style="background-color: deepskyblue;">
-										<td></td>
-										<td>部门名称</td>
-										<td>工号</td>
-										<td>姓名</td>
-									</tr>
-								</thead>
-								<tbody>
-									<td style="width: 40px;">
-										<span style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
-									</td>
-									<td>领用日期</td>
-									<td>员工编号</td>
-									<td>员工编号</td>
-								</tbody>
-							</table>
+							<div style="overflow: scroll;">
+								<table border="1px" class="table">
+									<thead>
+										<tr style="background-color: deepskyblue;">
+											<tr>
+												<td></td>
+												<td>部门名称</td>
+												<td>工号</td>
+												<td>姓名</td>
+											</tr>
+										</tr>
+									</thead>
+									<tbody>
+										<tr @dblclick="staffcheck(item)" @click="staffshift(item)" v-for="item in staff">
+											<td style="width: 40px;">
+												<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+											</td>
+											<td>{{item.departmentname}}</td>
+											<td>{{item.staffno}}</td>
+											<td>{{item.name}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1213,18 +1223,21 @@
 							</select>
 							<span id="word">顾问电话：</span><input type="text" />
 						</p>
-						<p>
-							<span id="word">省：</span><input style="width: 100px;" type="text" />
-							<select @click="openselectcity()" style="width: 165px;">
-
+						<p id="example">
+							<select style="width: 100px;margin-left: 30px;" v-model="prov">
+								<option v-for="option in arr" :value="option.name">
+									{{ option.name }}
+								</option>
 							</select>
-							<span id="word">市：</span><input style="width: 100px;" type="text" />
-							<select style="width: 165px;">
-
+							<select style="width: 300px;margin-left: 30px;" v-model="city">
+								<option v-for="option in cityArr" :value="option.name">
+									{{ option.name }}
+								</option>
 							</select>
-							<span id="word">区：</span><input style="width: 100px;" type="text" />
-							<select style="width: 165px;">
-
+							<select style="width: 450px;margin-left: 30px;" v-model="district" v-if="district">
+								<option v-for="option in districtArr" :value="option.name">
+									{{ option.name }}
+								</option>
 							</select>
 						</p>
 						<p>
@@ -1480,7 +1493,7 @@
 					<li>客户编辑</li>
 					<li @click="openaddcustomerandcar()" id="functionli">增加客户和车</li>
 					<li @click="opencustomerdata()" id="functionli">增加客户</li>
-					<li @click="opencustomerdata()" id="functionli">修改客户</li>
+					<li @click="updatecustomerdata()" id="functionli">修改客户</li>
 					<li id="functionli">相关证照</li>
 					<li @click="openupdateword()" id="functionli">设置密码</li>
 				</ul>
@@ -1535,7 +1548,7 @@
 							<td>注册地址</td>
 						</tr>
 					</thead>
-					<tbody>				
+					<tbody>
 						<tr @click="datashift(item)" v-for="item in clientinfo">
 							<td style="width: 40px;">
 								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
@@ -1583,23 +1596,39 @@
 						<tr style="background-color: deepskyblue;">
 							<td></td>
 							<td v-for="item in data">{{item}}</td>
-
 						</tr>
 					</thead>
 					<tbody>
-						<td style="width: 40px;">
-								<span  style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
-						</td>
-						<td>领用日期</td>
-						<td>员工编号</td>
-						<td>员工姓名</td>
-						<td>类别编码</td>
-						<td>类别编码</td>
-						<td>领用日期</td>
-						<td>员工编号</td>
-						<td>员工姓名</td>
-						<td>类别编码</td>
-						<td>类别编码</td>
+						<tr v-for="item in carinfo">
+							<td style="width: 40px;">
+								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+							</td>
+							<td>{{item.carnumber}}</td>
+							<td>{{item.carbrandname}}</td>
+							<td>{{item.cartypename}}</td>
+							<td>{{item.carer}}</td>
+							<td>{{item.carerphone}}</td>
+							<td>{{item.borndate}}</td>
+							<td>{{item.affiliation}}</td>
+							<td>{{item.drivinglicence}}</td>
+							<td>{{item.carnumber1}}</td>
+							<td>{{item.enginenumber}}</td>
+							<td>{{item.enginebrandname}}</td>
+							<td>{{item.yearprice}}</td>
+							<td>{{item.mileage}}</td>
+							<td>{{item.loadnumber}}</td>
+							<td>{{item.buydate}}</td>
+							<td>{{item.dutydate}}</td>
+							<td>{{item.carcheckdate}}</td>
+							<td>{{item.jqinsurance}}</td>
+							<td>{{item.jqinsurancedate}}</td>
+							<td>{{item.syinsurance}}</td>
+							<td>{{item.syinsurancedate}}</td>
+							<td></td>
+							<td>{{item.fueloiltype}}</td>
+							<td>{{item.maintain}}</td>
+							<td>{{item.maintaindate}}</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -1612,7 +1641,46 @@
 		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/map.js" charset="utf-8"></script>
 		<script>
+			//根据条件查询员工
+			function query(departmentname) {
+				$.ajax({
+					url: "http://localhost:8080/exitRegistration/selectStaffByCondition",
+					data: {
+						departmentname: departmentname
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.staff = response;
+						console.log(vm.staff);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//查询所有部门信息
+			function selectAllDepartment() {
+				$.ajax({
+					url: "http://localhost:8080/exitRegistration/selectAllDepartment",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.department = response;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
 			//查询客户资料
 			function selectClientInfo() {
 				$.ajax({
@@ -1625,6 +1693,180 @@
 					success: function(response) {
 						vm.clientinfo = response;
 						console.log(vm.clientinfo);
+						console.log(vm.clientinfo.length);
+						selectCarInfoByClientNumber();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据客户编号修改客户资料
+			function updateClientInfoByNumber(qwe) {
+				var client = JSON.stringify(qwe);
+				console.log(client);		 
+				$.ajax({
+					url: "http://localhost:8080/customerData/updateClientInfoByNumber",
+					data: client,
+					type: "post",
+					dataType: "json",
+					contentType: "application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						selectClientInfo();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//增加客户资料
+			function insertClientInfo(qwe) {
+				var client = JSON.stringify(qwe);
+				console.log(client);		 
+				$.ajax({
+					url: "http://localhost:8080/customerData/insertClientInfo",
+					data: client,
+					type: "post",
+					dataType: "json",
+					contentType: "application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						selectClientInfo();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//查询最大编号客户
+			function selectMaxNumber() {
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectMaxNumber",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response.number);
+						var a = response.number.split("U")[1];
+						var b = response.number.split("U")[0];
+						var c = parseInt(a) + 1;
+						var d = b + "U" + c;
+						vm.addcustomerinfo.number = d;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//查询是否存在相同编号的客户
+			function queryClientByNumber(number) {
+				 
+				$.ajax({
+					url: "http://localhost:8080/customerData/queryClientByNumber",
+					data: {
+						number: number
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						if(response == 0) {		 				 
+							insertClientInfo(vm.addcustomerinfo);		 
+						} else {	 					 
+							updateClientInfoByNumber(vm.addcustomerinfo);
+						}
+						vm.addcustomerinfo = {
+							"number": "",
+							"name": "",
+							"linkman": "",
+							"phone": "",
+							"address": "",
+							"borndate": "",
+							"paymentdays": "",
+							"paymentsize": "",
+							"staffno": "",
+							"counselorname": "",
+							"sheng": "",
+							"shi": "",
+							"qv": "",
+							"remark": "",
+							"taxpayernumber": "",
+							"registerphone": "",
+							"bank": "",
+							"banknumber": "",
+							"registeraddress": "",
+							"staffname": ""
+						};
+						vm.prov = '北京';
+						vm.city = '北京';
+						vm.district = '东城区';
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+				 
+			}
+			//根据客户编号查询客户资料
+			function selectClientInfoByNumber() {
+				var number = 0;
+				for(var i = 0; i < vm.clientinfo.length; i++) {
+					if(vm.clientinfo[i].check == true) {
+						number = vm.clientinfo[i].number;
+						break;
+					}
+				}
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectClientInfoByNumber",
+					data: {
+						number: number
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.addcustomerinfo = response;
+						vm.prov = vm.addcustomerinfo.sheng;
+						vm.city = vm.addcustomerinfo.shi;
+						vm.district = vm.addcustomerinfo.qv;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据客户编号查询车辆资料
+			function selectCarInfoByClientNumber() {
+				var qwe = 0;
+				for(var i = 0; i < vm.clientinfo.length; i++) {
+					if(vm.clientinfo[i].check == true) {
+						qwe = vm.clientinfo[i].number;
+					}
+				}
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectCarInfoByClientNumber",
+					data: {
+						number: qwe
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.carinfo = response;
+						console.log(vm.carinfo);
 					},
 					error: function(error) {
 						console.log(error);
@@ -1635,18 +1877,152 @@
 				el: ".container-fluid",
 				data() {
 					return {
-						clientinfo:{},
+						arr: arrAll,
+						prov: '北京',
+						city: '北京',
+						district: '东城区',
+						cityArr: [],
+						districtArr: [],
+						clientinfo: {},
+						carinfo: {},
 						data: [],
-						carinfo: ["车牌号码", "车辆品牌", "车辆型号", "驾驶员", "驾驶员电话", "出生日期", "车辆归属", "驾证到期", "车架号", "发动机号", "发动机品牌", "车辆年款", "里程", "载重", "购买日期", "上牌日期", "车检到期", "交强险保险公司", "交强险到期", "商业险保险公司", "商业险到期", "在我投保车", "燃油类别", "下次保养里程", "下次保养日期"],
+						department: [],
+						staff: {},
+						sense:{"number":""},
+						addcustomerinfo: {
+							"number": "",
+							"name": "",
+							"linkman": "",
+							"phone": "",
+							"address": "",
+							"borndate": "",
+							"paymentdays": "",
+							"paymentsize": "",
+							"staffno": "",
+							"counselorname": "",
+							"sheng": "",
+							"shi": "",
+							"qv": "",
+							"remark": "",
+							"taxpayernumber": "",
+							"registerphone": "",
+							"bank": "",
+							"banknumber": "",
+							"registeraddress": "",
+							"staffname": ""
+						},
+						addcarinfo: {
+							"carnumber": "",
+							"carbrandid": "",
+							"carid": "",
+							"carer": "",
+							"carerphone": "",
+							"borndate": "",
+							"affiliation": "",
+							"drivinglicence": "",
+							"carnumber1": "",
+							"enginenumber": "",
+							"yearprice": "",
+							"mileage": "",
+							"engineid": "",
+							"load": "",
+							"buydate": "",
+							"dutydate": "",
+							"carcheckdate": "",
+							"fueloiltype": "",
+							"carseries": "",
+							"jqinsurance": "",
+							"jqinsurancedate": "",
+							"syinsurance": "",
+							"syinsurancedate": "",
+							"maintain": "",
+							"maintaindate": ""
+						},
+						carInfo: ["车牌号码", "车辆品牌", "车辆型号", "驾驶员", "驾驶员电话", "出生日期", "车辆归属", "驾证到期", "车架号", "发动机号", "发动机品牌", "车辆年款", "里程", "载重", "购买日期", "上牌日期", "车检到期", "交强险保险公司", "交强险到期", "商业险保险公司", "商业险到期", "在我投保车", "燃油类别", "下次保养里程", "下次保养日期"],
 						pastbuy: ["单据类型", "销售单号", "车牌号", "维修业务", "进厂时间", "完工时间", "结算时间", "消费时间"],
 						pastreview: ["回访时间", "客户编码", "客户名称", "地址", "车牌号", "联系电话", "回访效果", "服务顾问", "详细说明", "开单人"]
 					}
 				},
 				methods: {
+					//省市区三级联动事件
+					updateCity: function() {
+						for(var i in this.arr) {
+							var obj = this.arr[i];
+							if(obj.name == this.prov) {
+								this.cityArr = obj.sub;
+								break;
+							}
+						}
+						if(this.addcustomerinfo.shi && this.addcustomerinfo.shi.length > 0) {
+							this.city = this.addcustomerinfo.shi;
+							return;
+						}
+						this.city = this.cityArr[1].name;
+					},
+					updateDistrict: function() {
+						for(var i in this.cityArr) {
+							var obj = this.cityArr[i];
+							if(obj.name == this.city) {
+								this.districtArr = obj.sub;
+								break;
+							}
+						}
+						if(this.districtArr && this.districtArr.length > 0 && this.districtArr[1].name) {
+							if(this.addcustomerinfo.qv && this.addcustomerinfo.qv.length > 0) {
+								this.district = this.addcustomerinfo.qv;
+								return;
+							}
+							this.district = this.districtArr[1].name;
+						} else {
+							this.district = '';
+						}
+					},
+					//客户资料编辑保存事件
+					savecustomer: function() {
+						console.log(vm.addcustomerinfo.number);		
+						vm.addcustomerinfo.sheng = $("[name=sheng]").val();
+						vm.addcustomerinfo.shi = $("[name=shi]").val();
+						vm.addcustomerinfo.qv = $("[name=qv]").val();
+						queryClientByNumber(vm.addcustomerinfo.number);	
+						$("#customerdata").removeClass("show");
+					},
 					datashift: function(item) {
 						var that = this;
 						for(var i = 0; i < that.clientinfo.length; i++) {
 							that.clientinfo[i].check = false;
+						}
+						item.check = true;
+						selectCarInfoByClientNumber();
+					},
+					makesurestaff: function() {
+						var that = this;
+						for(var i = 0; i < that.staff.length; i++) {
+							if(that.staff[i].check == true) {
+								$("[name=staffname]").val(that.staff[i].staffno + "  " + that.staff[i].name);
+								$("#selectemployee").removeClass("show");
+							}
+						}
+					},
+					updatecondition: function(event) {
+						var departmentname = event.target.value;
+						if(departmentname == "所有") {
+							departmentname = "";
+						}
+						query(departmentname);
+					},
+					//双击选择员工事件
+					staffcheck: function(item) {
+						vm.addcustomerinfo.counselorname = item.phone;
+						vm.addcustomerinfo.staffno = item.staffno;
+						vm.addcustomerinfo.staffname = item.name;
+						console.log(item.staffno);
+						console.log(item.name);
+						$("#selectemployee").removeClass("show");
+					},
+					staffshift: function(item) {
+						var that = this;
+						for(var i = 0; i < that.staff.length; i++) {
+							that.staff[i].check = false;
 						}
 						item.check = true;
 					},
@@ -1662,10 +2038,44 @@
 					closeupdateword: function() {
 						$("#updateword").removeClass("show");
 					},
+					//增加客户资料事件
 					opencustomerdata: function() {
+						selectMaxNumber();
 						$("#customerdata").addClass("show");
 					},
+					//修改客户资料事件
+					updatecustomerdata: function() {
+						selectClientInfoByNumber();
+
+						$("#customerdata").addClass("show");
+					},
+					//关闭客户资料编辑事件
 					closecustomerdata: function() {
+						this.addcustomerinfo = {
+							"number": "",
+							"name": "",
+							"linkman": "",
+							"phone": "",
+							"address": "",
+							"borndate": "",
+							"paymentdays": "",
+							"paymentsize": "",
+							"staffno": "",
+							"counselorname": "",
+							"sheng": "",
+							"shi": "",
+							"qv": "",
+							"remark": "",
+							"taxpayernumber": "",
+							"registerphone": "",
+							"bank": "",
+							"banknumber": "",
+							"registeraddress": "",
+							"staffname": ""
+						};
+						vm.prov = '北京';
+						vm.city = '北京';
+						vm.district = '东城区';
 						$("#customerdata").removeClass("show");
 					},
 					openfueltype: function() {
@@ -1683,6 +2093,8 @@
 					openselectemployee: function() {
 						$("#selectemployee").addClass("show");
 						$("#selectemployee").addClass("qwe");
+						query("");
+						selectAllDepartment();
 					},
 					closeselectemployee: function() {
 						$("#selectemployee").removeClass("show");
@@ -1712,7 +2124,7 @@
 						$("#addcustomerandcar").removeClass("show");
 					},
 					cuttocar: function() {
-						vm.data = vm.carinfo;
+						vm.data = vm.carInfo;
 						$(".carinfo").addClass("color").siblings().removeClass("color");
 					},
 					cuttopastbuy: function() {
@@ -1742,9 +2154,24 @@
 						$("#staffquery").removeClass("show");
 					}
 				},
+				beforeMount: function() {
+					this.updateCity();
+					this.updateDistrict();
+				},
+				watch: {
+					prov: function() {
+						this.updateCity();
+						this.updateDistrict();
+					},
+					city: function() {
+						this.updateDistrict();
+					}
+				},
 				created: function() {
-					this.data = this.carinfo;
+					var that = this;
+					that.data = that.carInfo;
 					selectClientInfo();
+
 				}
 			});
 		</script>
