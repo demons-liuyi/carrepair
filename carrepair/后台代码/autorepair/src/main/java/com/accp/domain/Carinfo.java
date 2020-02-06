@@ -125,7 +125,7 @@ public class Carinfo {
 	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date maintaindate;
 
-    private String otherone;
+    private String clientid;
 
     private String othertwo;
 
@@ -343,12 +343,12 @@ public class Carinfo {
         this.maintaindate = maintaindate;
     }
 
-    public String getOtherone() {
-        return otherone;
+    public String getclientid() {
+        return clientid;
     }
 
-    public void setOtherone(String otherone) {
-        this.otherone = otherone;
+    public void setclientid(String clientid) {
+        this.clientid = clientid;
     }
 
     public String getOthertwo() {

@@ -78,11 +78,11 @@
 			</div>
 			<div class="row navbar navbar-default">
 				<ul class="nav navbar-nav nav-pills" id="cuttab">
-					<select class="form-control">
-						<option>我的接车</option>
-						<option>超过预计完工的车</option>
-						<option>所有接车</option>
-						<option>该客户接车</option>
+					<select id="sel" class="form-control">
+						<option type="getman" value="">我的接车</option>
+						<option type="status" value="超时">超过预计完工的车</option>
+						<option type="getman" value="">所有接车</option>
+						<option type="clientname" value="">该客户接车</option>
 					</select>
 					<li class="active">
 						<a href="#">作业中车辆</a>
@@ -101,7 +101,7 @@
 					</li>
 				</ul>
 				<div class="col-xs-12" style="overflow-y:scroll; height: 637px; padding: 0;">
-					<mytable :head="head"></mytable>
+					<mytable :head="head" :data="list"></mytable>
 				</div>
 			</div>
 		</div>
@@ -110,6 +110,7 @@
 		<script src="static/js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/Myip.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			
 			Vue.component("mytable", {
 				props: ["data", "head"],
 				template: `
@@ -118,40 +119,24 @@
 						<tr>
 							<th v-for="i in head">{{i}}</th>
 						</tr>
-						<tr @dblclick="openTheDocument">
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
+						<tr v-for="item in data" @dblclick="openTheDocument">
+							<td>{{item.status}}</td>
+							<td>{{item.type}}</td>
+							<td>{{item.clientname}}</td>
+							<td>{{item.carNumber}}</td>
+							<td>{{item.phone}}</td>
+							<td>{{item.number}}</td>
+							<td>{{item.tname}}</td>
+							<td>{{item.ordertime}}</td>
+							<td>{{item.overworkdate}}</td>
+							<td>{{item.nowworkdate}}</td>
+							<td>{{item.stockdater}}</td>
+							<td>{{item.price}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.getman}}</td>
+							
 						</tr>
-						<tr @dblclick="openTheDocument">
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-							<td>1</td>
-						</tr>
+
 						</tbody>
 					</table>
 				`,methods:{
@@ -164,7 +149,7 @@
 				el: "#ctx",
 				data() {
 					return {
-						head: ["单据状态", "业务类型", "客户类型", "车牌号", "手机号", "会员卡号", "维修单号", "单据类型", "开单时间", "预计完工", "完工时间", "结算时间", "预估金额", "服务顾问", "接车人"],
+						head: ["单据状态", "业务类型", "客户姓名", "车牌号", "手机号","维修单号", "单据类型", "开单时间", "预计完工", "完工时间", "结算时间", "预估金额", "服务顾问", "接车人"],
 						list: []
 					}
 				}
@@ -175,7 +160,7 @@
 					$(this).addClass("active").siblings().removeClass("active");
 					var data;
 					if(txt == "作业中车辆") {
-						data = ["单据状态", "业务类型", "客户类型", "车牌号", "手机号", "会员卡号", "维修单号", "单据类型", "开单时间", "预计完工", "完工时间", "结算时间", "预估金额", "服务顾问", "接车人"];
+						data = ["单据状态", "业务类型", "客户类型", "车牌号", "手机号", "维修单号", "单据类型", "开单时间", "预计完工", "完工时间", "结算时间", "预估金额", "服务顾问", "接车人"];
 					} else if(txt == "维修历史") {
 						data = ["维修单号", "接车时间", "业务类型", "完工时间", "客户名称", "车牌号", "手机", "会员卡号", "结算时间", "消费金额"];
 					} else if(txt == "维修项目") {
@@ -188,6 +173,36 @@
 					vm.head = data;
 				});
 			});
+			$(function(){
+			
+				function selectRepairAndResuce(type,content){
+					
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectRepairAndRescue",
+						data:{
+							type:type,
+							content:content
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						dataType:"json",
+						success:function(result){
+							vm.list=result
+				}
+			});	
+			}
+			
+				selectRepairAndResuce("")
+				$("#sel").change(function(){
+					var content=$(this).val();
+					var type=$("option:checked").attr("type")
+					console.log(type)
+					selectRepairAndResuce(type,content)
+					
+				})
+			})	
 		</script>
 	</body>
 

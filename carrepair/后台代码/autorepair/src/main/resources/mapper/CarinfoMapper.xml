@@ -28,7 +28,7 @@
     <result column="Syinsurancedate" property="syinsurancedate" jdbcType="DATE" />
     <result column="maintain" property="maintain" jdbcType="REAL" />
     <result column="maintaindate" property="maintaindate" jdbcType="DATE" />
-    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="clientid" property="clientid" jdbcType="VARCHAR" />
     <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
     <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
     <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
@@ -111,7 +111,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
     id, carNumber, carBrandId, carId, carer, carerPhone, bornDate, affiliation, drivingLicence, 
     carNumber1, engineNumber, yearPrice, mileage, engineId, load, buyDate, dutyDate, 
     carCheckDate, fuelOilType, carSeries, Jqinsurance, Jqinsurancedate, Syinsurance, 
-    Syinsurancedate, maintain, maintaindate, otherone, othertwo, otherthree, otherfour, 
+    Syinsurancedate, maintain, maintaindate, clientid, othertwo, otherthree, otherfour, 
     otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CarinfoExample" >
@@ -153,7 +153,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       buyDate, dutyDate, carCheckDate, 
       fuelOilType, carSeries, Jqinsurance, 
       Jqinsurancedate, Syinsurance, Syinsurancedate, 
-      maintain, maintaindate, otherone, 
+      maintain, maintaindate, clientid, 
       othertwo, otherthree, otherfour, 
       otherfive)
     values (#{id,jdbcType=INTEGER}, #{carnumber,jdbcType=VARCHAR}, #{carbrandid,jdbcType=INTEGER}, 
@@ -164,7 +164,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       #{buydate,jdbcType=TIMESTAMP}, #{dutydate,jdbcType=TIMESTAMP}, #{carcheckdate,jdbcType=TIMESTAMP}, 
       #{fueloiltype,jdbcType=VARCHAR}, #{carseries,jdbcType=VARCHAR}, #{jqinsurance,jdbcType=VARCHAR}, 
       #{jqinsurancedate,jdbcType=DATE}, #{syinsurance,jdbcType=VARCHAR}, #{syinsurancedate,jdbcType=DATE}, 
-      #{maintain,jdbcType=REAL}, #{maintaindate,jdbcType=DATE}, #{otherone,jdbcType=VARCHAR}, 
+      #{maintain,jdbcType=REAL}, #{maintaindate,jdbcType=DATE}, #{clientid,jdbcType=VARCHAR}, 
       #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, 
       #{otherfive,jdbcType=VARCHAR})
   </insert>
@@ -249,8 +249,8 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       <if test="maintaindate != null" >
         maintaindate,
       </if>
-      <if test="otherone != null" >
-        otherone,
+      <if test="clientid != null" >
+        clientid,
       </if>
       <if test="othertwo != null" >
         othertwo,
@@ -344,8 +344,8 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       <if test="maintaindate != null" >
         #{maintaindate,jdbcType=DATE},
       </if>
-      <if test="otherone != null" >
-        #{otherone,jdbcType=VARCHAR},
+      <if test="clientid != null" >
+        #{clientid,jdbcType=VARCHAR},
       </if>
       <if test="othertwo != null" >
         #{othertwo,jdbcType=VARCHAR},
@@ -448,8 +448,8 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       <if test="record.maintaindate != null" >
         maintaindate = #{record.maintaindate,jdbcType=DATE},
       </if>
-      <if test="record.otherone != null" >
-        otherone = #{record.otherone,jdbcType=VARCHAR},
+      <if test="record.clientid != null" >
+        clientid = #{record.clientid,jdbcType=VARCHAR},
       </if>
       <if test="record.othertwo != null" >
         othertwo = #{record.othertwo,jdbcType=VARCHAR},
@@ -496,7 +496,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       Syinsurancedate = #{record.syinsurancedate,jdbcType=DATE},
       maintain = #{record.maintain,jdbcType=REAL},
       maintaindate = #{record.maintaindate,jdbcType=DATE},
-      otherone = #{record.otherone,jdbcType=VARCHAR},
+      clientid = #{record.clientid,jdbcType=VARCHAR},
       othertwo = #{record.othertwo,jdbcType=VARCHAR},
       otherthree = #{record.otherthree,jdbcType=VARCHAR},
       otherfour = #{record.otherfour,jdbcType=VARCHAR},
@@ -583,8 +583,8 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       <if test="maintaindate != null" >
         maintaindate = #{maintaindate,jdbcType=DATE},
       </if>
-      <if test="otherone != null" >
-        otherone = #{otherone,jdbcType=VARCHAR},
+      <if test="clientid != null" >
+        clientid = #{clientid,jdbcType=VARCHAR},
       </if>
       <if test="othertwo != null" >
         othertwo = #{othertwo,jdbcType=VARCHAR},
@@ -628,7 +628,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       Syinsurancedate = #{syinsurancedate,jdbcType=DATE},
       maintain = #{maintain,jdbcType=REAL},
       maintaindate = #{maintaindate,jdbcType=DATE},
-      otherone = #{otherone,jdbcType=VARCHAR},
+      clientid = #{clientid,jdbcType=VARCHAR},
       othertwo = #{othertwo,jdbcType=VARCHAR},
       otherthree = #{otherthree,jdbcType=VARCHAR},
       otherfour = #{otherfour,jdbcType=VARCHAR},

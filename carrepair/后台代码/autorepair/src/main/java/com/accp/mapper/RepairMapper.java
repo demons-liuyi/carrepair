@@ -27,4 +27,5 @@ public interface RepairMapper {
     int updateByPrimaryKeySelective(Repair record);
 
     int updateByPrimaryKey(Repair record);
+    List<Repair> selectRepairAndRescue(@Param("type") String type,@Param("content")String content);
 }
