@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.accp.domain.Client;
+import com.accp.domain.ClientExample;
+import com.accp.domain.ClientExample.Criteria;
 import com.accp.mapper.ClientMapper;
 
 
@@ -20,6 +22,52 @@ public class clientService {
 	
 	public List<Client> selectClientInfo(){
 		List<Client> list=cm.selectClientInfo();
+		return list;
+	}
+	
+	public List<Client> selectClientByCondition(Client client){
+		ClientExample example=new ClientExample();
+		Criteria cra=example.createCriteria();
+		if(client.getNumber()!=null&&client.getNumber().length()>0) {
+			cra.andNumberEqualTo(client.getNumber());
+		}
+		if(client.getName()!=null&&client.getName().length()>0) {
+			cra.andNameLike("%"+client.getName()+"%");
+		}
+		if(client.getTypeid()!=null&&client.getTypeid()>0) {
+			cra.andTypeidEqualTo(client.getTypeid());
+		}
+		if(client.getLinkman()!=null&&client.getLinkman().length()>0) {
+			cra.andLinkmanLike("%"+client.getLinkman()+"%");
+		}
+		if(client.getPhone()!=null&&client.getPhone().length()>0) {
+			cra.andPhoneEqualTo(client.getPhone());
+		}
+		if(client.getAddress()!=null&&client.getAddress().length()>0) {
+			cra.andAddressEqualTo(client.getAddress());
+		}
+		if(client.getRemark()!=null&&client.getRemark().length()>0) {
+			cra.andRemarkEqualTo(client.getRemark());
+		}
+		if(client.getBorndate()!=null) {
+			cra.andBorndateEqualTo(client.getBorndate());
+		}
+		if(client.getStaffno()!=null&&client.getStaffno().length()>0) {
+			cra.andStaffnoEqualTo(client.getStaffno());
+		}
+		if(client.getCounselorname()!=null&&client.getCounselorname().length()>0) {
+			cra.andCounselornameEqualTo(client.getCounselorname());
+		}
+		if(client.getSheng()!=null&&client.getSheng().length()>0) {
+			cra.andShengEqualTo(client.getSheng());
+		}
+		if(client.getShi()!=null&&client.getShi().length()>0) {
+			cra.andShiEqualTo(client.getShi());
+		}
+		if(client.getQv()!=null&&client.getQv().length()>0) {
+			cra.andQvEqualTo(client.getQv());
+		}
+		List<Client> list=cm.selectByExample(example);
 		return list;
 	}
 	

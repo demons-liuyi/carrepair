@@ -1,7 +1,17 @@
 package com.accp.domain;
 
 public class Car {
-    private String id;
+	private Boolean check;
+	
+    public Boolean getCheck() {
+		return check;
+	}
+
+	public void setCheck(Boolean check) {
+		this.check = check;
+	}
+
+	private String id;
 
     private String cartypename;
 

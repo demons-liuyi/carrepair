@@ -8,12 +8,22 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Client {
 	
-	private String clienttype;//客户类别
+	private String clienttype;//瀹㈡埛绫诲埆
 	
-	private String staffname;//员工姓名
+	private String staffname;//鍛樺伐濮撳悕
 	
-	private Boolean check;//是否被选中
+	private Boolean check;//鏄惁琚�変腑
 	
+	private Carinfo carinfo;
+	
+	public Carinfo getCarinfo() {
+		return carinfo;
+	}
+
+	public void setCarinfo(Carinfo carinfo) {
+		this.carinfo = carinfo;
+	}
+
 	public Boolean getCheck() {
 		return check;
 	}

@@ -1,5 +1,6 @@
 package com.accp.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,10 +9,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accp.domain.Car;
+import com.accp.domain.Carbrand;
 import com.accp.domain.Carinfo;
 import com.accp.domain.Client;
+import com.accp.domain.Clienttype;
+import com.accp.domain.Coll;
+import com.accp.domain.Dimission;
+import com.accp.domain.Enginebrand;
+import com.accp.domain.Staff;
+import com.accp.service.carBrandService;
 import com.accp.service.carInfoService;
+import com.accp.service.carService;
 import com.accp.service.clientService;
+import com.accp.service.clientTypeService;
+import com.accp.service.engineBrandService;
 
 
 //客户资料Controller
@@ -23,6 +35,125 @@ public class customerDataController {
 	clientService cs;
 	@Autowired
 	carInfoService cis;
+	@Autowired
+	clientTypeService cts;
+	@Autowired
+	engineBrandService ebs;
+	@Autowired
+	carBrandService cbs;
+	@Autowired
+	carService cars;
+	
+	@RequestMapping("/selectCarByCarBrandId")
+	public List<Car> selectCarByCarBrandId(int carbrandid){
+		List<Car> list=cars.selectCarByCarBrandId(carbrandid);
+		for(int i=0;i<list.size();i++) {
+			if(i==0) {
+				list.get(i).setCheck(true);
+			}else {
+				list.get(i).setCheck(false);	
+			}
+		}
+		return list;
+	}
+	
+	@RequestMapping("/selectCarBrandByCondition")
+	public List<Carbrand> selectCarBrandByCondition(String condition){
+		List<Carbrand> list=cbs.selectCarBrandByCondition(condition);
+		for(int i=0;i<list.size();i++) {
+			if(i==0) {
+				list.get(i).setCheck(true);
+			}else {
+				list.get(i).setCheck(false);	
+			}
+		}
+		return list;
+	}
+	
+	@RequestMapping("/selectCarByCondition")
+	public List<Car> selectCarByCondition(String condition,int carbrandid){
+		List<Car> list=cars.selectCarByCondition(condition, carbrandid);
+		for(int i=0;i<list.size();i++) {
+			if(i==0) {
+				list.get(i).setCheck(true);
+			}else {
+				list.get(i).setCheck(false);	
+			}
+		}
+		return list;
+	}
+	
+	@RequestMapping("/selectAllCarBrand")
+	public List<Carbrand> selectAllCarBrand(){
+		List<Carbrand> list=cbs.selectAllCarBrand();
+		for(int i=0;i<list.size();i++) {
+			if(i==0) {
+				list.get(i).setCheck(true);
+			}else {
+				list.get(i).setCheck(false);	
+			}
+		}
+		return list;
+	}
+	
+	@RequestMapping("/selectClientInfoByCondition")
+	public List<Client> selectClientInfoByCondition(@RequestBody Coll coll){
+		List<Client> list=cs.selectClientInfo();
+		List<Client> firstlist=new ArrayList<Client>();
+		List<Client> qwelist=new ArrayList<Client>();
+		List<Client> lastlist=new ArrayList<Client>();
+		if(coll.getClient()!=null) {
+			List<Client> clientList=cs.selectClientByCondition(coll.getClient());
+			for(int a=0;a<list.size();a++) {	 
+				for(int b=0;b<clientList.size();b++) {
+					if(list.get(a).getNumber().equals(clientList.get(b).getNumber())) {			
+						firstlist.add(list.get(a));
+						break;
+					}				
+				}			 
+			}
+			if(coll.getCarInfo()!=null) {
+				 
+				List<Carinfo> carinfolist=cis.selectClientByCondition(coll.getCarInfo());
+				for(int a=0;a<firstlist.size();a++) {	 
+					for(int b=0;b<carinfolist.size();b++) {
+						if(firstlist.get(a).getNumber().equals(carinfolist.get(b).getOtherone())) {	
+							int d=0;
+							for(int c=0;c<qwelist.size();c++) {
+								if(qwelist.get(c).getNumber().equals(firstlist.get(a).getNumber())) {
+									d=1;
+									break;
+								}
+							}
+							if(d==1) {
+								break;
+							}
+							qwelist.add(firstlist.get(a));
+							break;
+						}				
+					}			 
+				}
+				lastlist=qwelist;
+			}else {
+				lastlist=firstlist;
+			}		
+		}else {
+			lastlist=list;
+		}
+		return lastlist;
+	}
+	
+	@RequestMapping("/selectAllClientType")
+	public List<Clienttype> selectAllClientType(){
+		List<Clienttype> list=cts.selectAllClientType();
+		return list;
+	}
+	
+	@RequestMapping("/selectAllEngineBrand")
+	public List<Enginebrand> selectAllEngineBrand(){
+		List<Enginebrand> list=ebs.selectAllEngineBrand();
+		return list;
+	}
 	
 	@RequestMapping("/selectClientInfo")
 	public List<Client> selectClientInfo(){

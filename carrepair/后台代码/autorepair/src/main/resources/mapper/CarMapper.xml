@@ -78,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, carTypeName, engineId, price, carYearPrice, power, importOrdomestic, fuelLabel, 
-    load, carBrandId, otherone, othertwo, otherthree, otherfour, otherfive
+    carBrandId, otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CarExample" >
     select

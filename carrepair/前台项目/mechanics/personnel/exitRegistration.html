@@ -933,8 +933,7 @@
 				var arr=vm.employeeinfo.departmentid.split(" ");
 				vm.employeeinfo.departmentid=arr[0];
 				var staff=JSON.stringify(vm.employeeinfo);
-				//console.log(staff);
-			 
+				console.log(staff); 
 				$.ajax({
 					url: "http://localhost:8080/exitRegistration/queryDimissionInfoByCondition",
 					data:staff,
