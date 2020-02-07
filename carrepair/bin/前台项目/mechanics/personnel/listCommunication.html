@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="fonts/css/vendor.bundle.base.css" />
+		<link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.css" />
+		<link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.min.css" />
+		<style>
+			#header {
+				width: auto;
+				height: 70px;
+				border: 1px solid red;
+				background-color: aliceblue;
+			}
+			
+			#buttondiv {
+				width: auto;
+				height: 50px;
+				border: 1px solid red;
+				background-color: -webkit-activelink;
+			}
+			
+			h2 {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			#selectdiv {
+				float: right;
+				display: inline-block;
+				height: 40px;
+				width: 480px;
+				border: 0px solid red;
+				margin-top: 18px;
+			}
+			
+			#rightbuttondiv {
+				float: right;
+			}
+			
+			ul {
+				list-style-type: none;
+				margin-top: 13px;
+				margin-right: 40px;
+			}
+			
+			li {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			#font {
+				font-size: 18px;
+			}
+			
+			#img {
+				color: orange;
+			}
+			
+			#selectbtn {
+				background-color: orange;
+				color: white;
+			}
+			
+			#staffquery {
+				display: none;
+				border: 1px solid green;
+				position: absolute;
+				left: 450px;
+				top: 150px;
+				width: 750px;
+				height: 430px;
+				background-color: white;
+			}
+			
+			#staffqueryspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#staffqueryh2 {
+				margin-bottom: 15px;
+			}
+			
+			#staffquerylinediv {
+				background-color: darkblue;
+				width: 750px;
+				height: 20px;
+				color: white;
+			}
+			
+			#staffquerymarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 500px;
+				top: 36px;
+			}
+			
+			#staffqueryfork {
+				font-size: 32px;
+				position: absolute;
+				left: 680px;
+				top: 40px;
+			}
+			
+			#staffquerycontent {
+				width: 680px;
+				height: 330px;
+				margin-left: 21px;
+				background-color: wheat;
+			}
+			#departmentchoice {
+				border: 1px solid green;
+				position: absolute;
+				left: 570px;
+				top: 100px;
+				width: 500px;
+				height: 585px;
+				background-color: lightgray;
+				display: none;
+				z-index: 888;
+			}
+			
+			#departmentchoiceh2 {
+				margin-bottom: 15px;
+			}
+			
+			#departmentchoicespan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#departmentchoicelinediv {
+				background-color: darkblue;
+				width: 500px;
+				height: 20px;
+			}
+			
+			#departmentchoicediv {
+				border: 0px solid deepskyblue;
+			}
+			
+			#departmentchoicecontentdiv {
+				border: 1px solid deepskyblue;
+				width: 450px;
+				height: 450px;
+				margin-left: 20px;
+			}
+			
+			#departmentchoiceremove {
+				font-size: 32px;
+				position: absolute;
+				left: 440px;
+				top: 45px;
+			}
+			
+			#departmentchoicemarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 300px;
+				top: 42px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+
+			<div id="staffquery">
+				<div id="staffquerylinediv">
+					<span id="staffqueryspan">员工查询</span>
+				</div>
+				<div id="staffquerybodydiv">
+					<h2 id="staffqueryh2">员工查询</h2>
+					<button @click="employeeinfomakesure()" id="staffquerymarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 确定
+					</button>
+					<span id="staffqueryfork" @click="closestaffquery()" class="glyphicon glyphicon-remove"></span>
+					<div id="staffquerycontent">
+						<p style="padding-top: 10px;">
+							<span style="margin-left: 10px;">员工编号：</span>
+							<input v-model="employeeinfo.staffno" style="width: 140px;" type="text">
+							<span style="margin-left: 20px;">员工姓名：</span>
+							<input v-model="employeeinfo.name" style="width: 140px;" type="text">
+							<span style="margin-left: 20px;">性别：</span>
+							<input v-model="employeeinfo.sex" style="width: 100px;" type="text">
+						</p>
+						<p>
+							<span style="margin-left: 10px;">岗位：</span>
+							<select name="postselect">
+								<option postid=""></option>
+								<option v-bind:postid="item.id" v-for="item in posts">{{item.postname}}</option>
+							</select>
+							<span style="margin-left: 20px;">所在部门：</span>
+							<input name="departmentidanddepartmentname" v-model="employeeinfo.departmentid" type="text" />
+							<button @click="opendepartmentchoice()"><span class="caret"></span></button>
+						</p>
+						<p>
+							<span style="margin-left: 10px;">身体状况：</span>
+							<input v-model="employeeinfo.physicalcondition" style="width: 160px;" type="text">
+							<span style="margin-left: 20px;">身高：</span>
+							<input v-model="employeeinfo.height" style="width: 100px;" type="text">
+							<span style="margin-left: 20px;">籍贯：</span>
+							<input v-model="employeeinfo.nativeplace" type="text" />
+						</p>
+						<p>
+							<span style="margin-left: 10px;">民族：</span>
+							<input v-model="employeeinfo.nation" type="text" />
+							<span style="margin-left: 20px;">婚姻状况：</span>
+							<input v-model="employeeinfo.maritalstatus" type="text" />
+							<span style="margin-left: 20px;">学历：</span>
+							<input style="width: 120px;" v-model="employeeinfo.educationbackground" type="text" />
+						</p>
+						<p>
+							<span style="margin-left: 10px;">毕业学校：</span>
+							<input v-model="employeeinfo.school" type="text" />
+							<span style="margin-left: 20px;">专业：</span>
+							<input v-model="employeeinfo.major" type="text" />
+							<span style="margin-left: 20px;">专业资格：</span>
+							<input style="width: 120px;" v-model="employeeinfo.professionalqualification" type="text" />
+						</p>
+						<p>
+							<span style="margin-left: 10px;">生日：</span>
+							<input v-model="employeeinfo.birthdaydate" type="date" />
+							<span style="margin-left: 20px;">学位：</span>
+							<input type="text" v-model="employeeinfo.degree" />
+							<span style="margin-left: 20px;">编制：</span>
+							<input type="text" v-model="employeeinfo.authorizedstrength" />
+						</p>
+						<p>
+							<span style="margin-left: 10px;">身份证号：</span>
+							<input v-model="employeeinfo.idcardno" type="text" />
+							<span style="margin-left: 20px;">入职日期 从：</span>
+							<input v-model="employeeinfo.dateofentryone" type="date" />
+							<span style="margin-left: 20px;">至：</span>
+							<input v-model="employeeinfo.dateofentrytwo" type="date" />
+						</p>
+						<p>
+							<span style="margin-left: 10px;">试用日期 从：</span>
+							<input v-model="employeeinfo.thetrialdateone" type="date" />
+							<span style="margin-left: 20px;">至：</span>
+							<input v-model="employeeinfo.thetrialdatetwo" type="date" />
+							<span style="margin-left: 20px;">属性：</span>
+							<input type="text" v-model="employeeinfo.property" />
+						</p>
+						<p>
+							<span style="margin-left: 10px;">合同开始 从：</span>
+							<input v-model="employeeinfo.contractstartdateone" type="date" />
+							<span style="margin-left: 20px;">至：</span>
+							<input v-model="employeeinfo.contractstartdatetwo" type="date" />
+						</p>
+					</div>
+				</div>
+			</div>
+			
+			<div id="departmentchoice">
+				<div id="departmentchoicelinediv">
+					<span id="departmentchoicespan">部门定义</span>
+				</div>
+				<div id="departmentchoicediv">
+					<h2 id="departmentchoiceh2">部门选择</h2>
+					<button @click="departmentchoiceqwe()" id="departmentchoicemarksure" class="btn btn-default">
+						<span class="glyphicon glyphicon-ok"></span> 选择
+					</button>
+					<span @click="closedepartmentchoice()" id="departmentchoiceremove" class="glyphicon glyphicon-remove"></span>
+					<div>
+						<div id="departmentchoicecontentdiv">
+							<select style="width: 450px;">
+								<option>0000-成高</option>
+							</select>
+							<div style="overflow: scroll;">
+								<table border="1px" class="table">
+									<thead>
+										<tr style="background-color: deepskyblue;">
+											<tr>
+												<td></td>
+												<td>部门编号</td>
+												<td>部门名称</td>
+												<td>部门分类</td>
+											</tr>
+										</tr>
+									</thead>
+									<tbody>
+										<tr @dblclick="departmentcheck(item)" @click="departmentshift(item)" v-for="item in department">
+											<td style="width: 40px;">
+												<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+											</td>
+											<td>{{item.id}}</td>
+											<td>{{item.departmentname}}</td>
+											<td>{{item.departmenttypename}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="border: 0px solid red;margin-top: 20px;margin-left: 20px;">
+					<span>合计:<span>{{department.length}}</span>条记录</span>
+				</div>
+			</div>
+
+			<div id="header">
+				<h2>通讯名录</h2>
+				<div id="selectdiv">
+					<input name="condition" placeholder="匹配工号/姓名" style="display: inline-block; width: 300px;" class="form-control" type="text" />
+					<button @click="selectdata()" id="selectbtn" class="btn btn-default">搜索</button>
+					<button id="closebtn" class="btn btn-default">关闭</button>
+				</div>
+			</div>
+			<div id="buttondiv">
+				<div id="rightbuttondiv">
+					<ul>
+						<li>
+							<span id="img" class="glyphicon glyphicon-save-file"></span>
+							<span id="font">保存</span>
+						</li>
+						<li>
+							<span id="img" class="glyphicon glyphicon-list-alt"></span>
+							<span @click="openstaffquery()" id="font">查询</span>
+						</li>
+						<li>
+							<span id="img" class="glyphicon glyphicon-share"></span>
+							<span id="font">导出</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="tablediv">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<td></td>
+							<td>部门</td>
+							<td>员工编号</td>
+							<td>姓名</td>
+							<td>分机/短号</td>
+							<td>直拨</td>
+							<td>手机</td>
+							<td>邮箱</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr @click="datashift(item)" v-for="item in data">
+							<td style="width: 40px;">
+								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+							</td>
+							<td>{{item.departmentname}}</td>
+							<td>{{item.staffno}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.emergencyphone}}</td>
+							<td>{{item.contactnumber}}</td>
+							<td>{{item.phone}}</td>
+							<td>{{item.email}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div><span>合计：<span>{{data.length}}</span>条记录</span>
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script>
+			//查询员工通讯名录信息
+			function selectStaffPhone() {
+				$.ajax({
+					url: "http://localhost:8080/listCommunication/selectStaffPhone",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.data = response;
+						
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//查询所有部门信息
+			function selectAllDepartment() {
+				$.ajax({
+					url: "http://localhost:8080/exitRegistration/selectAllDepartment",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.department = response;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据编号或姓名查询员工通讯名录信息
+			function selectStaffPhoneByStaffNoOrName(condition) {		 
+				$.ajax({
+					url: "http://localhost:8080/listCommunication/selectStaffPhoneByStaffNoOrName",
+					data:{condition:condition},
+					type: "post",
+					dataType: "json",		
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.data = response;
+						console.log(vm.data);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//查询所有岗位
+			function selectAllPost() {
+				$.ajax({
+					url: "http://localhost:8080/exitRegistration/selectAllPost",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.posts = response;
+						//console.log(response);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据条件查询员工通讯名录信息
+			function selectStaffPhoneByCondition() {
+				var postid=$("[name=postselect]").find("option:selected").attr("postid");
+				vm.employeeinfo.postid=postid;
+				var arr=vm.employeeinfo.departmentid.split(" ");
+				vm.employeeinfo.departmentid=arr[0];
+				var staff=JSON.stringify(vm.employeeinfo);
+				$.ajax({
+					url: "http://localhost:8080/listCommunication/selectStaffPhoneByCondition",
+					data:staff,
+					type: "post",
+					dataType: "json",
+					contentType:"application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.data = response;
+						//console.log(vm.data);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			var vm = new Vue({
+				el: ".container-fluid",
+				data() {
+					return {
+						data:{},
+						employeeinfo:{"staffno":"","name":"","sex":"","postid":"","departmentid":""
+						,"physicalcondition":"","height":"","nativeplace":"","nation":"","maritalstatus":""
+						,"educationbackground":"","school":"","major":"","professionalqualification":""
+						,"birthdaydate":"","degree":"","authorizedstrength":"","idcardno":"","dateofentryone":""
+						,"dateofentrytwo":"","contractstartdateone":"","contractstartdatetwo":"","property":""
+						,"thetrialdateone":"","thetrialdatetwo":""},
+						posts: {},
+						department: []
+					}
+				},
+				created: function() {				 
+					selectStaffPhone();
+				},
+				methods: {
+					opendepartmentchoice: function() {				 
+						selectAllDepartment();
+						$("#departmentchoice").addClass("show");
+					},
+					departmentchoiceqwe: function() {
+						for(var i = 0; i < vm.department.length; i++) {
+							if(vm.department[i].check == true) {
+								vm.employeeinfo.departmentid=vm.department[i].id+" "+vm.department[i].departmentname;	
+							}
+						}	 				 
+						$("#departmentchoice").removeClass("show");
+					},
+					closedepartmentchoice: function() {
+						$("#departmentchoice").removeClass("show");
+					},
+					departmentcheck: function(item) {
+						for(var i = 0; i < vm.department.length; i++) {
+							if(vm.department[i].check == true) {
+								vm.employeeinfo.departmentid=vm.department[i].id+" "+vm.department[i].departmentname;
+							}
+						}					 
+						$("#departmentchoice").removeClass("show");
+					},
+					departmentshift: function(item) {
+						var that = this;
+						for(var i = 0; i < that.department.length; i++) {
+							that.department[i].check = false;
+						}
+						item.check = true;
+					},
+					employeeinfomakesure:function(){
+						selectStaffPhoneByCondition();
+						$("#staffquery").removeClass("show");
+					},
+					selectdata:function(){
+						var condition=$("[name=condition]").val();
+						console.log(condition);
+						selectStaffPhoneByStaffNoOrName(condition);
+					},
+					datashift: function(item) {
+						var that = this;
+						for(var i = 0; i < that.data.length; i++) {
+							that.data[i].check = false;
+						}
+						item.check = true;
+					},
+					openstaffquery: function() {
+						selectAllPost();
+						vm.employeeinfo={"staffno":"","name":"","sex":"","postid":"","departmentid":""
+						,"physicalcondition":"","height":"","nativeplace":"","nation":"","maritalstatus":""
+						,"educationbackground":"","school":"","major":"","professionalqualification":""
+						,"birthdaydate":"","degree":"","authorizedstrength":"","idcardno":"","dateofentryone":""
+						,"dateofentrytwo":"","contractstartdateone":"","contractstartdatetwo":"","property":""
+						,"thetrialdateone":"","thetrialdatetwo":""};
+						$("#staffquery").addClass("show");
+					},
+					closestaffquery: function() {
+						$("#staffquery").removeClass("show");
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>
