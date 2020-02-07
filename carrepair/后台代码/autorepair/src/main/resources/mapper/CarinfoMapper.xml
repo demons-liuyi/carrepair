@@ -46,8 +46,7 @@
 (SELECT enginebrandname FROM enginebrand WHERE id=(SELECT engineid FROM car WHERE car.id=c.carid)) enginebrandname,yearprice,mileage,
 (SELECT car.load FROM car WHERE car.id=c.carid) 
 loadnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance,syinsurancedate,fueloiltype,maintain,maintaindate
- FROM car_client cc
-INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
+ FROM carinfo c WHERE otherone='${number}'
   </select>
   <sql id="Example_Where_Clause" >
     <where >
@@ -109,7 +108,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
   </sql>
   <sql id="Base_Column_List" >
     id, carNumber, carBrandId, carId, carer, carerPhone, bornDate, affiliation, drivingLicence, 
-    carNumber1, engineNumber, yearPrice, mileage, engineId, load, buyDate, dutyDate, 
+    carNumber1, engineNumber, yearPrice, mileage, engineId, buyDate, dutyDate, 
     carCheckDate, fuelOilType, carSeries, Jqinsurance, Jqinsurancedate, Syinsurance, 
     Syinsurancedate, maintain, maintaindate, otherone, othertwo, otherthree, otherfour, 
     otherfive

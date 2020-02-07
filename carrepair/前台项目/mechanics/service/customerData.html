@@ -833,8 +833,8 @@
 						<span style="margin-left: 20px;">专属顾问：</span>
 						<input readonly="readonly" v-model="addcustomerinfo.staffno+addcustomerinfo.staffname" style="width:165px;" />
 						<button @click="openselectemployee()"><span class="caret"></span></button>
-
-						<span style="margin-left: 20px;">顾问电话：</span><input readonly="readonly" v-model="addcustomerinfo.counselorname" style="width: 100px;" type="text" />
+						<span style="margin-left: 20px;">顾问电话：</span>
+						<input readonly="readonly" v-model="addcustomerinfo.counselorname" style="width: 100px;" type="text" />
 					</p>
 					<p style="padding-top: 10px;" id="example">
 						<select name="sheng" style="width: 120px;margin-left: 20px;" v-model="prov">
@@ -1094,16 +1094,16 @@
 				</div>
 				<div>
 					<h2 id="brandmodelsh2">品牌车型</h2>
-					<button id="brandmodelsmarksure" class="btn btn-default">
+					<button @click="checkcarBrandAndCarType()" id="brandmodelsmarksure" class="btn btn-default">
 						<span class="glyphicon glyphicon-ok"></span> 选择
 					</button>
 					<button @click="closebrandmodels()" id="brandmodelscolse" class="btn btn-default">关闭</button>
 					<div>
 						<div>
-							<input style="width: 150px;margin-left: 30px;" value="品牌编码/品牌名称" type="text" />
-							<button id="select" class="btn btn-default">搜索</button>
-							<input style="width: 150px;margin-left: 122px;" value="车型编码/车型名称" type="text" />
-							<button id="select" class="btn btn-default">搜索</button>
+							<input name="carBrandCondition" style="width: 150px;margin-left: 30px;" placeholder="品牌编码/品牌名称" type="text" />
+							<button @click="selectCarBrandByCondition()" id="select" class="btn btn-default">搜索</button>
+							<input name="carCondition" style="width: 150px;margin-left: 122px;" placeholder="车型编码/车型名称" type="text" />
+							<button @click="selectCarByCondition()" id="select" class="btn btn-default">搜索</button>
 						</div>
 						<div id="carbrand">
 							<table border="1px" class="table">
@@ -1116,10 +1116,14 @@
 									</tr>
 								</thead>
 								<tbody>
-									<td></td>
-									<td>编码</td>
-									<td>品牌名称</td>
-									<td>首字母</td>
+									<tr @click="carBrandCheck(item)" v-for="item in carBrand">
+										<td style="width: 40px;">
+											<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+										</td>
+										<td>{{item.id}}</td>
+										<td>{{item.carbrandname}}</td>
+										<td>{{item.firstletter}}</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -1139,15 +1143,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<td></td>
-									<td>车型ID</td>
-									<td>车型名称</td>
-									<td>参考价格</td>
-									<td>车辆年款</td>
-									<td>排气量</td>
-									<td>进口国产</td>
-									<td>燃油标号</td>
-									<td>四驱类型</td>
+									<tr @click="carCheck(item)" v-for="item in car">
+										<td style="width: 40px;">
+											<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+										</td>
+										<td>{{item.id}}</td>
+										<td>{{item.cartypename}}</td>
+										<td>{{item.price}}</td>
+										<td>{{item.caryearprice}}</td>
+										<td></td>
+										<td>{{item.importordomestic}}</td>
+										<td>{{item.fuelLabel}}</td>
+										<td></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -1317,37 +1325,38 @@
 				</div>
 				<div id="staffquerybodydiv">
 					<h2 id="staffqueryh2">客户查询</h2>
-					<button id="staffquerymarksure" class="btn btn-default">
+					<button @click="selectClientInfoByCondition()" id="staffquerymarksure" class="btn btn-default">
 						<span class="glyphicon glyphicon-ok"></span> 确定
 					</button>
 					<span id="staffqueryfork" @click="closestaffquery()" class="glyphicon glyphicon-remove"></span>
 					<div id="staffquerycontent">
 						<p style="padding-top: 25px;">
 							<span style="margin-left: 20px;">客户编号：</span>
-							<input style="width: 170px;" type="text">
+							<input v-model="Client.number" style="width: 170px;" type="text">
 							<span style="margin-left: 20px;">客户名称：</span>
-							<input style="width: 170px;" type="text">
+							<input v-model="Client.name" style="width: 170px;" type="text">
 							<span style="margin-left: 20px;">客户类别：</span>
 							<select style="width: 135px;">
 								<option></option>
+								<option :ctid="item.id	" v-for="item in clientType">{{item.clienttype}}</option>
 							</select>
 						</p>
 						<p>
 							<span style="margin-left: 20px;">联系人：</span>
-							<input style="width: 170px;" type="text">
+							<input v-model="Client.linkman" style="width: 170px;" type="text">
 							<span style="margin-left: 20px;">手机号码：</span>
-							<input style="width: 170px;" type="text">
+							<input v-model="Client.phone" style="width: 170px;" type="text">
 							<span style="margin-left: 20px;">客户地址：</span>
-							<input style="width: 170px;" type="text">
+							<input v-model="Client.address" style="width: 170px;" type="text">
 						</p>
 						<p>
 							<span style="margin-left: 20px;">备注：</span>
-							<input style="width: 160px;" type="text">
+							<input v-model="Client.remake" style="width: 160px;" type="text">
 							<span style="margin-left: 20px;">会员卡号：</span>
 							<input style="width: 100px;" type="text">
 							<span style="margin-left: 20px;">客户生日：</span>
-							<input style="width: 100px;" type="number">
-							<input style="width: 100px;" type="number">
+							<input v-model="Client.borndate" style="width: 120px;" type="date">
+
 							<span style="margin-left: 20px;">在我投保车：</span>
 							<input style="width: 10px;" type="checkbox">
 						</p>
@@ -1355,42 +1364,45 @@
 							<span style="margin-left: 20px;">超过X月没自修：</span>
 							<input style="width: 160px;" type="text">
 							<span style="margin-left: 20px;">专属顾问：</span>
-							<select @click="openselectemployee()" style="width: 135px;">
-							</select>
+							<input readonly="readonly" v-model="Client.staffno+Client.staffname" style="width:165px;" />
+							<button @click="openselectemployee()"><span class="caret"></span></button>
 							<span style="margin-left: 20px;">顾问电话：</span>
-							<input style="width: 160px;" type="text">
+							<input readonly="readonly" v-model="Client.counselorname" style="width: 100px;" type="text" />
 						</p>
-						<p>
-							<span style="margin-left: 20px;">省：</span><input style="width: 100px;" type="text" />
-							<select @click="openselectcity()" style="width: 135px;">
-
+						<p style="padding-top: 10px;" id="example">
+							<select name="sheng" style="width: 120px;margin-left: 20px;" v-model="prov">
+								<option v-for="option in arr" :value="option.name">
+									{{ option.name }}
+								</option>
 							</select>
-							<span style="margin-left: 20px;">市：</span><input style="width: 100px;" type="text" />
-							<select style="width: 135px;">
-								<option></option>
+							<select name="shi" style="width: 220px;margin-left: 20px;" v-model="city">
+								<option v-for="option in cityArr" :value="option.name">
+									{{ option.name }}
+								</option>
 							</select>
-							<span style="margin-left: 20px;">区：</span><input style="width: 100px;" type="text" />
-							<select style="width: 135px;">
-								<option></option>
+							<select name="qv" style="width: 370px;margin-left: 20px;" v-model="district" v-if="district">
+								<option v-for="option in districtArr" :value="option.name">
+									{{ option.name }}
+								</option>
 							</select>
 						</p>
 						<p>
 							<span style="margin-left: 20px;">车牌号码：</span>
-							<input type="text" />
-							<span style="margin-left: 20px;">车辆品牌：</span>
-							<select @click="openbrandmodels()" style="width: 165px;">
-
-							</select>
+							<input v-model="CarInfo.carnumber" type="text" />
+							<span style="margin-left: 20px;">车辆品牌：</span>		
+							<input name="carBrand" readonly="readonly"  style="width:165px;" />
+							<button @click="openbrandmodels()"><span class="caret"></span></button>
 							<span style="margin-left: 20px;">车辆型号：</span>
-							<input type="text" />
+							<input name="carType" readonly="readonly"  type="text" />
 						</p>
 						<p>
 							<span style="margin-left: 20px;">车架号：</span>
-							<input type="text" />
+							<input v-model="CarInfo.carnumber1" type="text" />
 							<span style="margin-left: 20px;">发动机号：</span>
-							<input type="text" />
+							<input v-model="CarInfo.enginenumber" type="text" />
 							<span style="margin-left: 20px;">保险公司：</span>
 							<select style="width: 150px;margin-left: 20px;">
+								<option></option>
 								<option>阳光保险</option>
 								<option>太平洋保险</option>
 							</select>
@@ -1398,14 +1410,13 @@
 						<p>
 							<span style="margin-left: 20px;">发动机品牌：</span>
 							<select style="width: 230px;margin-left: 20px;">
-								<option>所有</option>
-								<option>00-地洞</option>
-								<option>12-中国重汽动力</option>
+								<option></option>
+								<option v-for="item in engineBrand">{{item.enginebrandname}}</option>
 							</select>
 							<span style="margin-left: 20px;">驾驶员：</span>
-							<input type="text" />
+							<input v-model="CarInfo.carer" type="text" />
 							<span style="margin-left: 20px;">驾驶员电话：</span>
-							<input type="text" />
+							<input v-model="CarInfo.carerphone" type="text" />
 						</p>
 						<p>
 							<select style="width: 85px;margin-left: 20px;">
@@ -1681,6 +1692,137 @@
 					}
 				});
 			}
+			//查询所有客户类型
+			function selectAllClientType() {
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectAllClientType",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.clientType = response;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//查询所有品牌车型
+			function selectAllCarBrand() {
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectAllCarBrand",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.carBrand = response;
+						selectCarByCarBrandId();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//查询所有发动机品牌
+			function selectAllEngineBrand() {
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectAllEngineBrand",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.engineBrand = response;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据条件查询车辆品牌
+			function selectCarBrandByCondition() {
+				var condition = $("[name=carBrandCondition]").val();
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectCarBrandByCondition",
+					data: {
+						condition: condition
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.carBrand = response;
+						selectCarByCarBrandId();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据条件查询车辆车型
+			function selectCarByCondition() {
+				var condition = $("[name=carCondition]").val();
+				var carbrandid = 0;
+				for(var i = 0; i < vm.carBrand.length; i++) {
+					if(vm.carBrand[i].check == true) {
+						carbrandid = vm.carBrand[i].id;
+						break;
+					}
+				}
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectCarByCondition",
+					data: {
+						condition: condition,
+						carbrandid: carbrandid
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.car = response;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据车辆品牌编号查询车型
+			function selectCarByCarBrandId() {
+				var carbrandid = 0;
+				for(var i = 0; i < vm.carBrand.length; i++) {
+					if(vm.carBrand[i].check == true) {
+						carbrandid = vm.carBrand[i].id;
+						break;
+					}
+				}
+				console.log(carbrandid);
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectCarByCarBrandId",
+					data: {
+						carbrandid: carbrandid
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.car = response;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
 			//查询客户资料
 			function selectClientInfo() {
 				$.ajax({
@@ -1692,8 +1834,6 @@
 					},
 					success: function(response) {
 						vm.clientinfo = response;
-						console.log(vm.clientinfo);
-						console.log(vm.clientinfo.length);
 						selectCarInfoByClientNumber();
 					},
 					error: function(error) {
@@ -1701,10 +1841,11 @@
 					}
 				});
 			}
+
 			//根据客户编号修改客户资料
 			function updateClientInfoByNumber(qwe) {
 				var client = JSON.stringify(qwe);
-				console.log(client);		 
+				console.log(client);
 				$.ajax({
 					url: "http://localhost:8080/customerData/updateClientInfoByNumber",
 					data: client,
@@ -1725,7 +1866,7 @@
 			//增加客户资料
 			function insertClientInfo(qwe) {
 				var client = JSON.stringify(qwe);
-				console.log(client);		 
+				console.log(client);
 				$.ajax({
 					url: "http://localhost:8080/customerData/insertClientInfo",
 					data: client,
@@ -1753,7 +1894,6 @@
 						withCredentials: true
 					},
 					success: function(response) {
-						console.log(response.number);
 						var a = response.number.split("U")[1];
 						var b = response.number.split("U")[0];
 						var c = parseInt(a) + 1;
@@ -1767,7 +1907,6 @@
 			}
 			//查询是否存在相同编号的客户
 			function queryClientByNumber(number) {
-				 
 				$.ajax({
 					url: "http://localhost:8080/customerData/queryClientByNumber",
 					data: {
@@ -1779,9 +1918,9 @@
 						withCredentials: true
 					},
 					success: function(response) {
-						if(response == 0) {		 				 
-							insertClientInfo(vm.addcustomerinfo);		 
-						} else {	 					 
+						if(response == 0) {
+							insertClientInfo(vm.addcustomerinfo);
+						} else {
 							updateClientInfoByNumber(vm.addcustomerinfo);
 						}
 						vm.addcustomerinfo = {
@@ -1806,15 +1945,15 @@
 							"registeraddress": "",
 							"staffname": ""
 						};
-						vm.prov = '北京';
-						vm.city = '北京';
-						vm.district = '东城区';
+						vm.prov = '';
+						vm.city = '';
+						vm.district = '';
 					},
 					error: function(error) {
 						console.log(error);
 					}
 				});
-				 
+
 			}
 			//根据客户编号查询客户资料
 			function selectClientInfoByNumber() {
@@ -1866,7 +2005,30 @@
 					},
 					success: function(response) {
 						vm.carinfo = response;
-						console.log(vm.carinfo);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据条件查询客户信息
+			function selectClientInfoByCondition() {
+				vm.coll.carInfo = vm.CarInfo;
+				vm.coll.client = vm.Client;
+				var coll = JSON.stringify(vm.coll);
+				console.log(coll);
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectClientInfoByCondition",
+					data: coll,
+					type: "post",
+					dataType: "json",
+					contentType: "application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						vm.clientinfo = response;
 					},
 					error: function(error) {
 						console.log(error);
@@ -1886,9 +2048,65 @@
 						clientinfo: {},
 						carinfo: {},
 						data: [],
+						car: [],
+						carBrand: [],
 						department: [],
+						clientType: [],
+						engineBrand: [],
 						staff: {},
-						sense:{"number":""},
+						coll: {},
+						sense: {
+							"number": ""
+						},
+						Client: {
+							"number": "",
+							"name": "",
+							"linkman": "",
+							"phone": "",
+							"address": "",
+							"borndate": "",
+							"paymentdays": "",
+							"paymentsize": "",
+							"staffno": "",
+							"counselorname": "",
+							"sheng": "",
+							"shi": "",
+							"qv": "",
+							"remark": "",
+							"taxpayernumber": "",
+							"registerphone": "",
+							"bank": "",
+							"banknumber": "",
+							"registeraddress": "",
+							"staffname": ""
+						},
+						CarInfo: {
+							"carnumber": "",
+							"carbrandid": "",
+							"carid": "",
+							"carer": "",
+							"carerphone": "",
+							"borndate": "",
+							"affiliation": "",
+							"drivinglicence": "",
+							"carnumber1": "",
+							"enginenumber": "",
+							"yearprice": "",
+							"mileage": "",
+							"engineid": "",
+							"load": "",
+							"buydate": "",
+							"dutydate": "",
+							"carcheckdate": "",
+							"fueloiltype": "",
+							"carseries": "",
+							"jqinsurance": "",
+							"jqinsurancedate": "",
+							"syinsurance": "",
+							"syinsurancedate": "",
+							"maintain": "",
+							"maintaindate": ""
+						},
 						addcustomerinfo: {
 							"number": "",
 							"name": "",
@@ -1979,12 +2197,52 @@
 					},
 					//客户资料编辑保存事件
 					savecustomer: function() {
-						console.log(vm.addcustomerinfo.number);		
 						vm.addcustomerinfo.sheng = $("[name=sheng]").val();
 						vm.addcustomerinfo.shi = $("[name=shi]").val();
 						vm.addcustomerinfo.qv = $("[name=qv]").val();
-						queryClientByNumber(vm.addcustomerinfo.number);	
+						queryClientByNumber(vm.addcustomerinfo.number);
 						$("#customerdata").removeClass("show");
+					},
+					//选择车辆品牌和车型
+					checkcarBrandAndCarType:function(){
+						var that=this;
+						for(var i=0;i<that.carBrand.length;i++){
+							if(that.carBrand[i].check==true){
+								$("[name=carBrand]").val(that.carBrand[i].carbrandname);
+							}
+						}
+						for(var j=0;j<that.car.length;j++){
+							if(that.car[j].check==true){
+								$("[name=carType]").val(that.car[j].cartypename);
+							}
+						}
+						$("#brandmodels").removeClass("show");
+					},
+					//根据条件查询车辆品牌
+					selectCarBrandByCondition: function() {
+						selectCarBrandByCondition();
+
+					},
+					//根据条件查询车辆车型
+					selectCarByCondition: function() {
+						selectCarByCondition();
+					},
+					//车辆品牌切换
+					carBrandCheck: function(item) {
+						var that = this;
+						for(var i = 0; i < that.carBrand.length; i++) {
+							that.carBrand[i].check = false;
+						}
+						item.check = true;
+						selectCarByCarBrandId();
+					},
+					//车型切换
+					carCheck: function(item) {
+						var that = this;
+						for(var i = 0; i < that.car.length; i++) {
+							that.car[i].check = false;
+						}
+						item.check = true;
 					},
 					datashift: function(item) {
 						var that = this;
@@ -2003,6 +2261,14 @@
 							}
 						}
 					},
+					//按条件查询客户资料
+					selectClientInfoByCondition: function() {
+						vm.Client.sheng = $("[name=sheng]").val();
+						vm.Client.shi = $("[name=shi]").val();
+						vm.Client.qv = $("[name=qv]").val();
+						selectClientInfoByCondition();
+						$("#staffquery").removeClass("show");
+					},
 					updatecondition: function(event) {
 						var departmentname = event.target.value;
 						if(departmentname == "所有") {
@@ -2015,8 +2281,9 @@
 						vm.addcustomerinfo.counselorname = item.phone;
 						vm.addcustomerinfo.staffno = item.staffno;
 						vm.addcustomerinfo.staffname = item.name;
-						console.log(item.staffno);
-						console.log(item.name);
+						vm.Client.counselorname = item.phone;
+						vm.Client.staffno = item.staffno;
+						vm.Client.staffname = item.name;
 						$("#selectemployee").removeClass("show");
 					},
 					staffshift: function(item) {
@@ -2073,9 +2340,9 @@
 							"registeraddress": "",
 							"staffname": ""
 						};
-						vm.prov = '北京';
-						vm.city = '北京';
-						vm.district = '东城区';
+						vm.prov = '';
+						vm.city = '';
+						vm.district = '';
 						$("#customerdata").removeClass("show");
 					},
 					openfueltype: function() {
@@ -2171,7 +2438,9 @@
 					var that = this;
 					that.data = that.carInfo;
 					selectClientInfo();
-
+					selectAllClientType();
+					selectAllEngineBrand();
+					selectAllCarBrand();
 				}
 			});
 		</script>
