@@ -20,7 +20,7 @@ import com.accp.interceptor.myInterceptor;
 public class MywebMvcConfig extends WebMvcConfigurationSupport{
 	
 	
-	//添加拦截器
+	//娣诲姞鎷︽埅鍣�
 	@Override
 	protected void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
@@ -36,15 +36,15 @@ public class MywebMvcConfig extends WebMvcConfigurationSupport{
 		super.addCorsMappings(registry);
 	}
 	
-	//重写此方法后会覆盖原有的默认消息转换器，所以需要的其它转换器
-		//都需要重写构建
+	//閲嶅啓姝ゆ柟娉曞悗浼氳鐩栧師鏈夌殑榛樿娑堟伅杞崲鍣紝鎵�浠ラ渶瑕佺殑鍏跺畠杞崲鍣�
+		//閮介渶瑕侀噸鍐欐瀯寤�
 		@Override
 		protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-			//普通字符串转码
+			//鏅�氬瓧绗︿覆杞爜
 			StringHttpMessageConverter shc = 
 					new StringHttpMessageConverter(StandardCharsets.UTF_8);
 			converters.add(shc);
-			//json格式转换器
+			//json鏍煎紡杞崲鍣�
 			MappingJackson2HttpMessageConverter jackson =
 					new MappingJackson2HttpMessageConverter();
 			converters.add(jackson);
@@ -54,11 +54,11 @@ public class MywebMvcConfig extends WebMvcConfigurationSupport{
 
 	
 	
-	//覆盖原有的静态资源配置，必须重新配置
+	//瑕嗙洊鍘熸湁鐨勯潤鎬佽祫婧愰厤缃紝蹇呴』閲嶆柊閰嶇疆
 	@Override
 	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// TODO Auto-generated method stub
-		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/").addResourceLocations("file:/d");
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/").addResourceLocations("file://d://images/");
 		super.addResourceHandlers(registry);
 	}
 	

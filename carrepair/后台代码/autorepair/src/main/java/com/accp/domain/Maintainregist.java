@@ -14,7 +14,7 @@ public class Maintainregist {
     private Float mileage;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date mileagedate;
 
     private String remark;
@@ -22,7 +22,7 @@ public class Maintainregist {
     private Float sjmileage;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date sjmileagedate;
 
     private String otherone;

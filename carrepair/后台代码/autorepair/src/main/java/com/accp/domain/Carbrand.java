@@ -1,6 +1,7 @@
 package com.accp.domain;
 
 public class Carbrand {
+	
 	private Boolean check;
 	
     public Boolean getCheck() {
@@ -10,8 +11,8 @@ public class Carbrand {
 	public void setCheck(Boolean check) {
 		this.check = check;
 	}
-
-	private Integer id;
+	
+    private Integer id;
 
     private String carbrandname;
 

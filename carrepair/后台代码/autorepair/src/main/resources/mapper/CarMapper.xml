@@ -10,7 +10,7 @@
     <result column="power" property="power" jdbcType="VARCHAR" />
     <result column="importOrdomestic" property="importordomestic" jdbcType="VARCHAR" />
     <result column="fuelLabel" property="fuellabel" jdbcType="VARCHAR" />
-    <result column="load" property="load" jdbcType="VARCHAR" />
+    <result column="deadweight" property="deadweight" jdbcType="VARCHAR" />
     <result column="carBrandId" property="carbrandid" jdbcType="INTEGER" />
     <result column="otherone" property="otherone" jdbcType="VARCHAR" />
     <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
@@ -78,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, carTypeName, engineId, price, carYearPrice, power, importOrdomestic, fuelLabel, 
-    carBrandId, otherone, othertwo, otherthree, otherfour, otherfive
+    deadweight, carBrandId, otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CarExample" >
     select
@@ -113,13 +113,13 @@
   <insert id="insert" parameterType="com.accp.domain.Car" >
     insert into car (id, carTypeName, engineId, 
       price, carYearPrice, power, 
-      importOrdomestic, fuelLabel, load, 
+      importOrdomestic, fuelLabel, deadweight, 
       carBrandId, otherone, othertwo, 
       otherthree, otherfour, otherfive
       )
     values (#{id,jdbcType=VARCHAR}, #{cartypename,jdbcType=VARCHAR}, #{engineid,jdbcType=INTEGER}, 
       #{price,jdbcType=REAL}, #{caryearprice,jdbcType=REAL}, #{power,jdbcType=VARCHAR}, 
-      #{importordomestic,jdbcType=VARCHAR}, #{fuellabel,jdbcType=VARCHAR}, #{load,jdbcType=VARCHAR}, 
+      #{importordomestic,jdbcType=VARCHAR}, #{fuellabel,jdbcType=VARCHAR}, #{deadweight,jdbcType=VARCHAR}, 
       #{carbrandid,jdbcType=INTEGER}, #{otherone,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, 
       #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR}
       )
@@ -151,8 +151,8 @@
       <if test="fuellabel != null" >
         fuelLabel,
       </if>
-      <if test="load != null" >
-        load,
+      <if test="deadweight != null" >
+        deadweight,
       </if>
       <if test="carbrandid != null" >
         carBrandId,
@@ -198,8 +198,8 @@
       <if test="fuellabel != null" >
         #{fuellabel,jdbcType=VARCHAR},
       </if>
-      <if test="load != null" >
-        #{load,jdbcType=VARCHAR},
+      <if test="deadweight != null" >
+        #{deadweight,jdbcType=VARCHAR},
       </if>
       <if test="carbrandid != null" >
         #{carbrandid,jdbcType=INTEGER},
@@ -254,8 +254,8 @@
       <if test="record.fuellabel != null" >
         fuelLabel = #{record.fuellabel,jdbcType=VARCHAR},
       </if>
-      <if test="record.load != null" >
-        load = #{record.load,jdbcType=VARCHAR},
+      <if test="record.deadweight != null" >
+        deadweight = #{record.deadweight,jdbcType=VARCHAR},
       </if>
       <if test="record.carbrandid != null" >
         carBrandId = #{record.carbrandid,jdbcType=INTEGER},
@@ -290,7 +290,7 @@
       power = #{record.power,jdbcType=VARCHAR},
       importOrdomestic = #{record.importordomestic,jdbcType=VARCHAR},
       fuelLabel = #{record.fuellabel,jdbcType=VARCHAR},
-      load = #{record.load,jdbcType=VARCHAR},
+      deadweight = #{record.deadweight,jdbcType=VARCHAR},
       carBrandId = #{record.carbrandid,jdbcType=INTEGER},
       otherone = #{record.otherone,jdbcType=VARCHAR},
       othertwo = #{record.othertwo,jdbcType=VARCHAR},
@@ -325,8 +325,8 @@
       <if test="fuellabel != null" >
         fuelLabel = #{fuellabel,jdbcType=VARCHAR},
       </if>
-      <if test="load != null" >
-        load = #{load,jdbcType=VARCHAR},
+      <if test="deadweight != null" >
+        deadweight = #{deadweight,jdbcType=VARCHAR},
       </if>
       <if test="carbrandid != null" >
         carBrandId = #{carbrandid,jdbcType=INTEGER},
@@ -358,7 +358,7 @@
       power = #{power,jdbcType=VARCHAR},
       importOrdomestic = #{importordomestic,jdbcType=VARCHAR},
       fuelLabel = #{fuellabel,jdbcType=VARCHAR},
-      load = #{load,jdbcType=VARCHAR},
+      deadweight = #{deadweight,jdbcType=VARCHAR},
       carBrandId = #{carbrandid,jdbcType=INTEGER},
       otherone = #{otherone,jdbcType=VARCHAR},
       othertwo = #{othertwo,jdbcType=VARCHAR},

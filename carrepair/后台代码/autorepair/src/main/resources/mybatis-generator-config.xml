@@ -43,9 +43,9 @@
 			<table schema="carinfo" tableName="carinfo"></table>
 			<table schema="cashier" tableName="cashier"></table>
 			<table schema="client" tableName="client"></table>
-			
+		
 			<table schema="clienttype" tableName="clienttype"></table>
-			<table schema="coinspray" tableName="coinspray"></table>
+			<table schema="itemtype" tableName="itemtype"></table>
 			<table schema="commodity" tableName="commodity"></table>
 			<table schema="commoditytype" tableName="commoditytype"></table>
 			
@@ -62,7 +62,7 @@
 			<table schema="jurisdiction" tableName="jurisdiction"></table>
 			<table schema="legworkcat" tableName="legworkcat"></table>
 			<table schema="linkman" tableName="linkman"></table>
-			<table schema="maintain" tableName="maintain"></table>
+			 
 			
 			
 			
@@ -72,7 +72,7 @@
 			<table schema="manufacturer" tableName="manufacturer"></table>
 			<table schema="materialrequire_good" tableName="materialrequire_good"></table>
 			
-			<table schema="minorrepair" tableName="minorrepair"></table>
+			 
 			<table schema="post" tableName="post"></table>
 			<table schema="repair" tableName="repair"></table>
 			<table schema="rescue" tableName="rescue"></table>

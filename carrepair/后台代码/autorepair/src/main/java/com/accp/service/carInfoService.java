@@ -18,6 +18,11 @@ public class carInfoService {
 	@Autowired
 	CarinfoMapper cm;
 	
+	public Carinfo selectCarInfoByCarNumber(String number) {
+		Carinfo ci=cm.selectCarInfoByCarNumber(number);
+		return ci;
+	}
+	
 	
 	public List<Carinfo> selectClientByCondition(Carinfo carinfo){
 		CarinfoExample example=new CarinfoExample();

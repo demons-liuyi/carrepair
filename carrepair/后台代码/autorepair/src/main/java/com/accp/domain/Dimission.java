@@ -7,17 +7,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Dimission {
-	private String departmentname;// 部门名称
-
-	private String name;// 员工姓名
-
-	private String sex;// 性别
-
-	private String postname;// 岗位名称
-
-	private Boolean check;// 是否被选中
 	
-	public String getDepartmentname() {
+	private String departmentname;
+
+	private String name;
+
+	private String sex;
+
+	private String postname;
+
+	private Boolean check;
+	
+    public String getDepartmentname() {
 		return departmentname;
 	}
 
@@ -59,93 +60,93 @@ public class Dimission {
 
 	private Integer id;
 
-	private String staffid;
+    private String staffid;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date dimissiondate;
+    private Date dimissiondate;
 
-	private String dimissioncause;
+    private String dimissioncause;
 
-	private String otherone;
+    private String otherone;
 
-	private String othertwo;
+    private String othertwo;
 
-	private String otherthree;
+    private String otherthree;
 
-	private String otherfour;
+    private String otherfour;
 
-	private String otherfive;
+    private String otherfive;
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getStaffid() {
-		return staffid;
-	}
+    public String getStaffid() {
+        return staffid;
+    }
 
-	public void setStaffid(String staffid) {
-		this.staffid = staffid;
-	}
+    public void setStaffid(String staffid) {
+        this.staffid = staffid;
+    }
 
-	public Date getDimissiondate() {
-		return dimissiondate;
-	}
+    public Date getDimissiondate() {
+        return dimissiondate;
+    }
 
-	public void setDimissiondate(Date dimissiondate) {
-		this.dimissiondate = dimissiondate;
-	}
+    public void setDimissiondate(Date dimissiondate) {
+        this.dimissiondate = dimissiondate;
+    }
 
-	public String getDimissioncause() {
-		return dimissioncause;
-	}
+    public String getDimissioncause() {
+        return dimissioncause;
+    }
 
-	public void setDimissioncause(String dimissioncause) {
-		this.dimissioncause = dimissioncause;
-	}
+    public void setDimissioncause(String dimissioncause) {
+        this.dimissioncause = dimissioncause;
+    }
 
-	public String getOtherone() {
-		return otherone;
-	}
+    public String getOtherone() {
+        return otherone;
+    }
 
-	public void setOtherone(String otherone) {
-		this.otherone = otherone;
-	}
+    public void setOtherone(String otherone) {
+        this.otherone = otherone;
+    }
 
-	public String getOthertwo() {
-		return othertwo;
-	}
+    public String getOthertwo() {
+        return othertwo;
+    }
 
-	public void setOthertwo(String othertwo) {
-		this.othertwo = othertwo;
-	}
+    public void setOthertwo(String othertwo) {
+        this.othertwo = othertwo;
+    }
 
-	public String getOtherthree() {
-		return otherthree;
-	}
+    public String getOtherthree() {
+        return otherthree;
+    }
 
-	public void setOtherthree(String otherthree) {
-		this.otherthree = otherthree;
-	}
+    public void setOtherthree(String otherthree) {
+        this.otherthree = otherthree;
+    }
 
-	public String getOtherfour() {
-		return otherfour;
-	}
+    public String getOtherfour() {
+        return otherfour;
+    }
 
-	public void setOtherfour(String otherfour) {
-		this.otherfour = otherfour;
-	}
+    public void setOtherfour(String otherfour) {
+        this.otherfour = otherfour;
+    }
 
-	public String getOtherfive() {
-		return otherfive;
-	}
+    public String getOtherfive() {
+        return otherfive;
+    }
 
-	public void setOtherfive(String otherfive) {
-		this.otherfive = otherfive;
-	}
+    public void setOtherfive(String otherfive) {
+        this.otherfive = otherfive;
+    }
 }

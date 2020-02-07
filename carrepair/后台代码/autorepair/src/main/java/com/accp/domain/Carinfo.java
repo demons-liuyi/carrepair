@@ -2,20 +2,17 @@ package com.accp.domain;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class Carinfo {
-	private String carbrandname;//车辆品牌名称
 	
-	private String cartypename;//车型名称
+	private String carbrandname;
 	
-	private String enginebrandname;//发动机名称
+	private String cartypename;
 	
-	private String loadnumber;//载重
+	private String enginebrandname;
 	
-	private Boolean check;//是否被选中
+	private String loadnumber;
+	
+	private Boolean check;
 	
     public String getCarbrandname() {
 		return carbrandname;
@@ -69,14 +66,10 @@ public class Carinfo {
 
     private String carerphone;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date borndate;
 
     private String affiliation;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date drivinglicence;
 
     private String carnumber1;
@@ -89,18 +82,12 @@ public class Carinfo {
 
     private Integer engineid;
 
-    private String load;
+    private String deadweight;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date buydate;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date dutydate;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date carcheckdate;
 
     private String fueloiltype;
@@ -109,21 +96,19 @@ public class Carinfo {
 
     private String jqinsurance;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date jqinsurancedate;
 
     private String syinsurance;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date syinsurancedate;
 
     private Float maintain;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date maintaindate;
+
+    private String clientid;
+
+    private String insuredcar;
 
     private String otherone;
 
@@ -247,12 +232,12 @@ public class Carinfo {
         this.engineid = engineid;
     }
 
-    public String getLoad() {
-        return load;
+    public String getDeadweight() {
+        return deadweight;
     }
 
-    public void setLoad(String load) {
-        this.load = load;
+    public void setDeadweight(String deadweight) {
+        this.deadweight = deadweight;
     }
 
     public Date getBuydate() {
@@ -341,6 +326,22 @@ public class Carinfo {
 
     public void setMaintaindate(Date maintaindate) {
         this.maintaindate = maintaindate;
+    }
+
+    public String getClientid() {
+        return clientid;
+    }
+
+    public void setClientid(String clientid) {
+        this.clientid = clientid;
+    }
+
+    public String getInsuredcar() {
+        return insuredcar;
+    }
+
+    public void setInsuredcar(String insuredcar) {
+        this.insuredcar = insuredcar;
     }
 
     public String getOtherone() {

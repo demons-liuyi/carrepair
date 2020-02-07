@@ -8,30 +8,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Client {
 	
-	private String clienttype;//瀹㈡埛绫诲埆
+	private String clienttype;
 	
-	private String staffname;//鍛樺伐濮撳悕
+	private String staffname;
 	
-	private Boolean check;//鏄惁琚�変腑
-	
-	private Carinfo carinfo;
-	
-	public Carinfo getCarinfo() {
-		return carinfo;
-	}
-
-	public void setCarinfo(Carinfo carinfo) {
-		this.carinfo = carinfo;
-	}
-
-	public Boolean getCheck() {
-		return check;
-	}
-
-	public void setCheck(Boolean check) {
-		this.check = check;
-	}
-
+	private Boolean check;
 	
     public String getClienttype() {
 		return clienttype;
@@ -48,8 +29,16 @@ public class Client {
 	public void setStaffname(String staffname) {
 		this.staffname = staffname;
 	}
-	
-    private String number;
+
+	public Boolean getCheck() {
+		return check;
+	}
+
+	public void setCheck(Boolean check) {
+		this.check = check;
+	}
+
+	private String number;
 
     private String name;
 
@@ -60,7 +49,7 @@ public class Client {
     private String address;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date borndate;
 
     private Integer paymentdays;
@@ -96,7 +85,7 @@ public class Client {
     private String carno;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     private Integer integral;

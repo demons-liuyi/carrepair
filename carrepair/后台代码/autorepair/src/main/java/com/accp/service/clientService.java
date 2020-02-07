@@ -1,5 +1,6 @@
 package com.accp.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accp.domain.Client;
 import com.accp.domain.ClientExample;
 import com.accp.domain.ClientExample.Criteria;
+import com.accp.domain.Coll;
+import com.accp.mapper.CarinfoMapper;
 import com.accp.mapper.ClientMapper;
 
 
@@ -19,10 +22,41 @@ public class clientService {
 	
 	@Autowired
 	ClientMapper cm;
+	@Autowired
+	CarinfoMapper cim;
+	
+	
+	
+	
+	public int insertClientAndCarinfo(Coll coll) {
+		Date date=new Date();
+		coll.getClient().setDate(date);
+		int i=cm.insertSelective(coll.getClient());
+		if(i>0) {
+			coll.getCarInfo().setOtherone(coll.getClient().getNumber());
+			int j=cim.insertSelective(coll.getCarInfo());
+			i+=j;
+		}
+		return i;
+	}
 	
 	public List<Client> selectClientInfo(){
 		List<Client> list=cm.selectClientInfo();
 		return list;
+	}
+	
+	public List<Client> queryClientInfoByCondition(String condition){
+		ClientExample example=new ClientExample();
+		Criteria cra=example.createCriteria();
+		 if(condition==null) {
+				return null;
+			}
+		 cra.andNameLike("%"+condition+"%");
+		 Criteria cra2=example.createCriteria();
+		 cra2.andPhoneLike("%"+condition+"%");	 
+		  example.or(cra2);
+		  List<Client> list=cm.selectByExample(example);
+		  return list;
 	}
 	
 	public List<Client> selectClientByCondition(Client client){

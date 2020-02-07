@@ -18,7 +18,7 @@ public class Cashier {
     private String invoiceno;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date cashiertime;
 
     private String staffid;

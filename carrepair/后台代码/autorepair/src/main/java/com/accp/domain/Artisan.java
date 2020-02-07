@@ -20,7 +20,7 @@ public class Artisan {
     private String account;
 
     private String address;
-
+  
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;

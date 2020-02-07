@@ -18,7 +18,7 @@ public class Work {
     private Integer outsideblack;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date worktime;
 
     private Integer artisanclassid;

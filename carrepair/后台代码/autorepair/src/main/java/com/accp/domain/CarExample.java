@@ -634,73 +634,73 @@ public class CarExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoadIsNull() {
-            addCriterion("load is null");
+        public Criteria andDeadweightIsNull() {
+            addCriterion("deadweight is null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadIsNotNull() {
-            addCriterion("load is not null");
+        public Criteria andDeadweightIsNotNull() {
+            addCriterion("deadweight is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadEqualTo(String value) {
-            addCriterion("load =", value, "load");
+        public Criteria andDeadweightEqualTo(String value) {
+            addCriterion("deadweight =", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotEqualTo(String value) {
-            addCriterion("load <>", value, "load");
+        public Criteria andDeadweightNotEqualTo(String value) {
+            addCriterion("deadweight <>", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadGreaterThan(String value) {
-            addCriterion("load >", value, "load");
+        public Criteria andDeadweightGreaterThan(String value) {
+            addCriterion("deadweight >", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadGreaterThanOrEqualTo(String value) {
-            addCriterion("load >=", value, "load");
+        public Criteria andDeadweightGreaterThanOrEqualTo(String value) {
+            addCriterion("deadweight >=", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadLessThan(String value) {
-            addCriterion("load <", value, "load");
+        public Criteria andDeadweightLessThan(String value) {
+            addCriterion("deadweight <", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadLessThanOrEqualTo(String value) {
-            addCriterion("load <=", value, "load");
+        public Criteria andDeadweightLessThanOrEqualTo(String value) {
+            addCriterion("deadweight <=", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadLike(String value) {
-            addCriterion("load like", value, "load");
+        public Criteria andDeadweightLike(String value) {
+            addCriterion("deadweight like", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotLike(String value) {
-            addCriterion("load not like", value, "load");
+        public Criteria andDeadweightNotLike(String value) {
+            addCriterion("deadweight not like", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadIn(List<String> values) {
-            addCriterion("load in", values, "load");
+        public Criteria andDeadweightIn(List<String> values) {
+            addCriterion("deadweight in", values, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotIn(List<String> values) {
-            addCriterion("load not in", values, "load");
+        public Criteria andDeadweightNotIn(List<String> values) {
+            addCriterion("deadweight not in", values, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadBetween(String value1, String value2) {
-            addCriterion("load between", value1, value2, "load");
+        public Criteria andDeadweightBetween(String value1, String value2) {
+            addCriterion("deadweight between", value1, value2, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotBetween(String value1, String value2) {
-            addCriterion("load not between", value1, value2, "load");
+        public Criteria andDeadweightNotBetween(String value1, String value2) {
+            addCriterion("deadweight not between", value1, value2, "deadweight");
             return (Criteria) this;
         }
 

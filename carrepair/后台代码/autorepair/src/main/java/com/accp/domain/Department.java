@@ -2,7 +2,7 @@ package com.accp.domain;
 
 public class Department {
 	
-	private Boolean check;//是否被选中
+	private Boolean check; 
 
 	public Boolean getCheck() {
 		return check;
@@ -11,7 +11,7 @@ public class Department {
 	public void setCheck(Boolean check) {
 		this.check = check;
 	}
-
+	
     private Integer id;
 
     private String departmentname;

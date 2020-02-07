@@ -44,6 +44,17 @@ public class customerDataController {
 	@Autowired
 	carService cars;
 	
+	@RequestMapping("/insertClientAndCarInfo")
+	public String insertClientAndCarInfo(@RequestBody Coll coll) {
+		int i=cs.insertClientAndCarinfo(coll);
+		if(i>=2) {
+			return "1";
+		}else {
+			return "0";
+		}
+		
+	}
+	
 	@RequestMapping("/selectCarByCarBrandId")
 	public List<Car> selectCarByCarBrandId(int carbrandid){
 		List<Car> list=cars.selectCarByCarBrandId(carbrandid);
@@ -55,6 +66,12 @@ public class customerDataController {
 			}
 		}
 		return list;
+	}
+	
+	@RequestMapping("/selectCarInfoByCarNumber")
+	public Carinfo selectCarInfoByCarNumber(String number) {	
+		Carinfo ci=cis.selectCarInfoByCarNumber(number); 
+		return ci;
 	}
 	
 	@RequestMapping("/selectCarBrandByCondition")
@@ -96,13 +113,26 @@ public class customerDataController {
 		return list;
 	}
 	
+	@RequestMapping("/queryClientInfoByCondition")
+	public List<Client> queryClientInfoByCondition(String condition){
+		List<Client> list=cs.queryClientInfoByCondition(condition);
+		for(int i=0;i<list.size();i++) {
+			if(i==0) {
+				list.get(i).setCheck(true);
+			}else {
+				list.get(i).setCheck(false);	
+			}
+		}
+		return list;
+	}
+	
 	@RequestMapping("/selectClientInfoByCondition")
 	public List<Client> selectClientInfoByCondition(@RequestBody Coll coll){
 		List<Client> list=cs.selectClientInfo();
 		List<Client> firstlist=new ArrayList<Client>();
 		List<Client> qwelist=new ArrayList<Client>();
 		List<Client> lastlist=new ArrayList<Client>();
-		if(coll.getClient()!=null) {
+		if(coll.getClient()!=null&&coll!=null) {
 			List<Client> clientList=cs.selectClientByCondition(coll.getClient());
 			for(int a=0;a<list.size();a++) {	 
 				for(int b=0;b<clientList.size();b++) {
@@ -112,8 +142,7 @@ public class customerDataController {
 					}				
 				}			 
 			}
-			if(coll.getCarInfo()!=null) {
-				 
+			if(coll.getCarInfo()!=null) {			 
 				List<Carinfo> carinfolist=cis.selectClientByCondition(coll.getCarInfo());
 				for(int a=0;a<firstlist.size();a++) {	 
 					for(int b=0;b<carinfolist.size();b++) {
@@ -139,6 +168,13 @@ public class customerDataController {
 			}		
 		}else {
 			lastlist=list;
+		}	
+		for(int i=0;i<lastlist.size();i++) {
+			if(i==0) {
+				lastlist.get(i).setCheck(true);
+			}else {
+				lastlist.get(i).setCheck(false);	
+			}
 		}
 		return lastlist;
 	}

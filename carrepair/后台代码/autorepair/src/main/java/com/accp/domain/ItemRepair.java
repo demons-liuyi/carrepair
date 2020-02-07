@@ -11,6 +11,10 @@ public class ItemRepair {
 
     private Integer teamid;
 
+    private Integer count;
+
+    private String pricetype;
+
     private String otherone;
 
     private String othertwo;
@@ -59,6 +63,22 @@ public class ItemRepair {
 
     public void setTeamid(Integer teamid) {
         this.teamid = teamid;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public String getPricetype() {
+        return pricetype;
+    }
+
+    public void setPricetype(String pricetype) {
+        this.pricetype = pricetype;
     }
 
     public String getOtherone() {

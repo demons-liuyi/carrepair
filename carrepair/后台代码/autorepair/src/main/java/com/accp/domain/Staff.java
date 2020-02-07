@@ -8,36 +8,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Staff {
 	
-private Boolean check;//是否被选中
+	private Boolean check;
 	
-	private String departmentname;//部门名称
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")//从前台传入到后台转换的格式
-	@JsonFormat(pattern = "yyyy-MM-dd")//jackson
-	//序列化：将复杂对象转换成字符串（可传输）jackson/fastjson（阿里）
-	private Date dateofentryone;//入职日期区间1
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date dateofentrytwo;//入职日期区间2
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date thetrialdateone;//试用日期区间1
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date thetrialdatetwo;//试用日期区间2
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date contractstartdateone;//合同开始区间1
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date contractstartdatetwo;//合同开始区间2
-	
-    public Boolean getCheck() {
+	public Boolean getCheck() {
 		return check;
 	}
 
@@ -45,7 +18,33 @@ private Boolean check;//是否被选中
 		this.check = check;
 	}
 
-	public String getDepartmentname() {
+	private String departmentname;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date dateofentryone;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date dateofentrytwo;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date thetrialdateone;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date thetrialdatetwo;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date contractstartdateone;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date contractstartdatetwo;
+	
+    public String getDepartmentname() {
 		return departmentname;
 	}
 
@@ -160,23 +159,23 @@ private Boolean check;//是否被选中
     private String emergencyphone;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateonboard;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date thetrialdue;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthdaydate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date contractstart;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date agreementends;
 
     private String cardnumber;

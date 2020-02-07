@@ -1,6 +1,7 @@
 package com.accp.domain;
 
 public class Car {
+	
 	private Boolean check;
 	
     public Boolean getCheck() {
@@ -10,8 +11,8 @@ public class Car {
 	public void setCheck(Boolean check) {
 		this.check = check;
 	}
-
-	private String id;
+	
+    private String id;
 
     private String cartypename;
 
@@ -27,7 +28,7 @@ public class Car {
 
     private String fuellabel;
 
-    private String load;
+    private String deadweight;
 
     private Integer carbrandid;
 
@@ -105,12 +106,12 @@ public class Car {
         this.fuellabel = fuellabel;
     }
 
-    public String getLoad() {
-        return load;
+    public String getDeadweight() {
+        return deadweight;
     }
 
-    public void setLoad(String load) {
-        this.load = load;
+    public void setDeadweight(String deadweight) {
+        this.deadweight = deadweight;
     }
 
     public Integer getCarbrandid() {

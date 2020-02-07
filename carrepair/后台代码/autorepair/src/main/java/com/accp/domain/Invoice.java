@@ -14,7 +14,7 @@ public class Invoice {
     private String invoicetype;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-   	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date invoicedate;
 
     private String otherone;

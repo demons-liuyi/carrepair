@@ -404,6 +404,136 @@ public class ItemRepairExample {
             return (Criteria) this;
         }
 
+        public Criteria andCountIsNull() {
+            addCriterion("count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountIsNotNull() {
+            addCriterion("count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountEqualTo(Integer value) {
+            addCriterion("count =", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountNotEqualTo(Integer value) {
+            addCriterion("count <>", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountGreaterThan(Integer value) {
+            addCriterion("count >", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("count >=", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountLessThan(Integer value) {
+            addCriterion("count <", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountLessThanOrEqualTo(Integer value) {
+            addCriterion("count <=", value, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountIn(List<Integer> values) {
+            addCriterion("count in", values, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountNotIn(List<Integer> values) {
+            addCriterion("count not in", values, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountBetween(Integer value1, Integer value2) {
+            addCriterion("count between", value1, value2, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("count not between", value1, value2, "count");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeIsNull() {
+            addCriterion("priceType is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeIsNotNull() {
+            addCriterion("priceType is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeEqualTo(String value) {
+            addCriterion("priceType =", value, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeNotEqualTo(String value) {
+            addCriterion("priceType <>", value, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeGreaterThan(String value) {
+            addCriterion("priceType >", value, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeGreaterThanOrEqualTo(String value) {
+            addCriterion("priceType >=", value, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeLessThan(String value) {
+            addCriterion("priceType <", value, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeLessThanOrEqualTo(String value) {
+            addCriterion("priceType <=", value, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeLike(String value) {
+            addCriterion("priceType like", value, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeNotLike(String value) {
+            addCriterion("priceType not like", value, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeIn(List<String> values) {
+            addCriterion("priceType in", values, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeNotIn(List<String> values) {
+            addCriterion("priceType not in", values, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeBetween(String value1, String value2) {
+            addCriterion("priceType between", value1, value2, "pricetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPricetypeNotBetween(String value1, String value2) {
+            addCriterion("priceType not between", value1, value2, "pricetype");
+            return (Criteria) this;
+        }
+
         public Criteria andOtheroneIsNull() {
             addCriterion("otherone is null");
             return (Criteria) this;

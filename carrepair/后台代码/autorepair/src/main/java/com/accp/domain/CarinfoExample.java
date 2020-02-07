@@ -1032,73 +1032,73 @@ public class CarinfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoadIsNull() {
-            addCriterion("load is null");
+        public Criteria andDeadweightIsNull() {
+            addCriterion("deadweight is null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadIsNotNull() {
-            addCriterion("load is not null");
+        public Criteria andDeadweightIsNotNull() {
+            addCriterion("deadweight is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadEqualTo(String value) {
-            addCriterion("load =", value, "load");
+        public Criteria andDeadweightEqualTo(String value) {
+            addCriterion("deadweight =", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotEqualTo(String value) {
-            addCriterion("load <>", value, "load");
+        public Criteria andDeadweightNotEqualTo(String value) {
+            addCriterion("deadweight <>", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadGreaterThan(String value) {
-            addCriterion("load >", value, "load");
+        public Criteria andDeadweightGreaterThan(String value) {
+            addCriterion("deadweight >", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadGreaterThanOrEqualTo(String value) {
-            addCriterion("load >=", value, "load");
+        public Criteria andDeadweightGreaterThanOrEqualTo(String value) {
+            addCriterion("deadweight >=", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadLessThan(String value) {
-            addCriterion("load <", value, "load");
+        public Criteria andDeadweightLessThan(String value) {
+            addCriterion("deadweight <", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadLessThanOrEqualTo(String value) {
-            addCriterion("load <=", value, "load");
+        public Criteria andDeadweightLessThanOrEqualTo(String value) {
+            addCriterion("deadweight <=", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadLike(String value) {
-            addCriterion("load like", value, "load");
+        public Criteria andDeadweightLike(String value) {
+            addCriterion("deadweight like", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotLike(String value) {
-            addCriterion("load not like", value, "load");
+        public Criteria andDeadweightNotLike(String value) {
+            addCriterion("deadweight not like", value, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadIn(List<String> values) {
-            addCriterion("load in", values, "load");
+        public Criteria andDeadweightIn(List<String> values) {
+            addCriterion("deadweight in", values, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotIn(List<String> values) {
-            addCriterion("load not in", values, "load");
+        public Criteria andDeadweightNotIn(List<String> values) {
+            addCriterion("deadweight not in", values, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadBetween(String value1, String value2) {
-            addCriterion("load between", value1, value2, "load");
+        public Criteria andDeadweightBetween(String value1, String value2) {
+            addCriterion("deadweight between", value1, value2, "deadweight");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotBetween(String value1, String value2) {
-            addCriterion("load not between", value1, value2, "load");
+        public Criteria andDeadweightNotBetween(String value1, String value2) {
+            addCriterion("deadweight not between", value1, value2, "deadweight");
             return (Criteria) this;
         }
 
@@ -1799,6 +1799,146 @@ public class CarinfoExample {
 
         public Criteria andMaintaindateNotBetween(Date value1, Date value2) {
             addCriterionForJDBCDate("maintaindate not between", value1, value2, "maintaindate");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidIsNull() {
+            addCriterion("clientid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidIsNotNull() {
+            addCriterion("clientid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidEqualTo(String value) {
+            addCriterion("clientid =", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidNotEqualTo(String value) {
+            addCriterion("clientid <>", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidGreaterThan(String value) {
+            addCriterion("clientid >", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidGreaterThanOrEqualTo(String value) {
+            addCriterion("clientid >=", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidLessThan(String value) {
+            addCriterion("clientid <", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidLessThanOrEqualTo(String value) {
+            addCriterion("clientid <=", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidLike(String value) {
+            addCriterion("clientid like", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidNotLike(String value) {
+            addCriterion("clientid not like", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidIn(List<String> values) {
+            addCriterion("clientid in", values, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidNotIn(List<String> values) {
+            addCriterion("clientid not in", values, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidBetween(String value1, String value2) {
+            addCriterion("clientid between", value1, value2, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidNotBetween(String value1, String value2) {
+            addCriterion("clientid not between", value1, value2, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarIsNull() {
+            addCriterion("insuredcar is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarIsNotNull() {
+            addCriterion("insuredcar is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarEqualTo(String value) {
+            addCriterion("insuredcar =", value, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarNotEqualTo(String value) {
+            addCriterion("insuredcar <>", value, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarGreaterThan(String value) {
+            addCriterion("insuredcar >", value, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarGreaterThanOrEqualTo(String value) {
+            addCriterion("insuredcar >=", value, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarLessThan(String value) {
+            addCriterion("insuredcar <", value, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarLessThanOrEqualTo(String value) {
+            addCriterion("insuredcar <=", value, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarLike(String value) {
+            addCriterion("insuredcar like", value, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarNotLike(String value) {
+            addCriterion("insuredcar not like", value, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarIn(List<String> values) {
+            addCriterion("insuredcar in", values, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarNotIn(List<String> values) {
+            addCriterion("insuredcar not in", values, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarBetween(String value1, String value2) {
+            addCriterion("insuredcar between", value1, value2, "insuredcar");
+            return (Criteria) this;
+        }
+
+        public Criteria andInsuredcarNotBetween(String value1, String value2) {
+            addCriterion("insuredcar not between", value1, value2, "insuredcar");
             return (Criteria) this;
         }
 

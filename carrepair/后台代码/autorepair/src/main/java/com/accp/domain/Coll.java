@@ -22,9 +22,4 @@ public class Coll {
 		this.carInfo = carInfo;
 	}
 
-	
-
-	 
-	
-
 }
