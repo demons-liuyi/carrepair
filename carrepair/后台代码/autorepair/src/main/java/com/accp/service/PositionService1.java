@@ -20,17 +20,17 @@ public class PositionService1 {
 	 * 查询所有的
 	 * @return
 	 */
-	public List<Post> selectPost(Post po) {
-		
+	public List<Post> selectPost(Post po ) {
+		System.out.println(po.getPostname()+po.getId());
 		PostExample example = new PostExample();
 		PostExample.Criteria criteria = example.createCriteria();
 		if (po.getId()!=null ) {
 			criteria.andIdEqualTo(po.getId());
 		}
 		if (po.getPostname()!=null) {
-			criteria.andPostnameLike(po.getPostname());
+			criteria.andPostnameLike("%"+po.getPostname()+"%");
 		}
-		return post.selectByExample(null);
+		return post.selectByExample(example);
 		
 		
 	}

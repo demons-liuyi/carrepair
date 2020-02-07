@@ -52,8 +52,6 @@ public class MywebMvcConfig extends WebMvcConfigurationSupport{
 			super.configureMessageConverters(converters);
 		}
 
-	
-	
 	//覆盖原有的静态资源配置，必须重新配置
 	@Override
 	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
