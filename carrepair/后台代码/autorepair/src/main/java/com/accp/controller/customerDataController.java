@@ -26,7 +26,7 @@ import com.accp.service.clientTypeService;
 import com.accp.service.engineBrandService;
 
 
-//客户资料Controller
+
 @RestController
 @RequestMapping("/customerData")
 public class customerDataController {
@@ -54,7 +54,6 @@ public class customerDataController {
 		}	
 	}
 	
-	 
 	
 	@RequestMapping("/deleteCarInfoByCarNumber")
 	public String deleteCarInfoByCarNumber(String number) {
