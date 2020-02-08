@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.accp.domain.Carinfo;
 import com.accp.domain.CarinfoExample;
+import com.accp.domain.Coll;
 import com.accp.domain.CarinfoExample.Criteria;
 import com.accp.mapper.CarinfoMapper;
 
@@ -23,6 +25,29 @@ public class carInfoService {
 		return ci;
 	}
 	
+	public int deleteCarInfoByCarNumber(String number) {
+		CarinfoExample example=new CarinfoExample();
+		example.createCriteria().andCarnumberEqualTo(number);
+		int i=cm.deleteByExample(example);
+		return i;	
+	}
+	
+	public Carinfo 	queryCarInfoByCarNumber(String number) {
+		Carinfo ci=cm.queryCarInfoByCarNumber(number);
+		return ci;
+	}
+	
+	public int insertCarInfo(Carinfo carinfo) {
+		int i=cm.insertSelective(carinfo);
+		return i;	
+	}
+	
+	public int updateCarInfo(Carinfo carinfo) {
+		CarinfoExample example=new CarinfoExample();
+		example.createCriteria().andCarnumberEqualTo(carinfo.getCarnumber());
+		int i=cm.updateByExample(carinfo, example);
+		return i;	
+	}
 	
 	public List<Carinfo> selectClientByCondition(Carinfo carinfo){
 		CarinfoExample example=new CarinfoExample();

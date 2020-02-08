@@ -33,7 +33,7 @@ public class clientService {
 		coll.getClient().setDate(date);
 		int i=cm.insertSelective(coll.getClient());
 		if(i>0) {
-			coll.getCarInfo().setOtherone(coll.getClient().getNumber());
+			coll.getCarInfo().setClientid(coll.getClient().getNumber());
 			int j=cim.insertSelective(coll.getCarInfo());
 			i+=j;
 		}

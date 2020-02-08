@@ -2,6 +2,10 @@ package com.accp.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Carinfo {
 	
 	private String carbrandname;
@@ -14,7 +18,17 @@ public class Carinfo {
 	
 	private Boolean check;
 	
-    public String getCarbrandname() {
+	private String clientname;
+	
+    public String getClientname() {
+		return clientname;
+	}
+
+	public void setClientname(String clientname) {
+		this.clientname = clientname;
+	}
+
+	public String getCarbrandname() {
 		return carbrandname;
 	}
 
@@ -66,10 +80,14 @@ public class Carinfo {
 
     private String carerphone;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date borndate;
 
     private String affiliation;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date drivinglicence;
 
     private String carnumber1;
@@ -84,10 +102,16 @@ public class Carinfo {
 
     private String deadweight;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date buydate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date dutydate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date carcheckdate;
 
     private String fueloiltype;
@@ -96,14 +120,20 @@ public class Carinfo {
 
     private String jqinsurance;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date jqinsurancedate;
 
     private String syinsurance;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date syinsurancedate;
 
     private Float maintain;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date maintaindate;
 
     private String clientid;

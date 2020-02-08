@@ -41,16 +41,22 @@
   	<result column="cartypename" property="cartypename" jdbcType="VARCHAR" />
   	<result column="enginebrandname" property="enginebrandname" jdbcType="VARCHAR" />
   	<result column="loadnumber" property="loadnumber" jdbcType="VARCHAR" />
+  	<result column="clientname" property="clientname" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="queryCarInfoByCarNumber" resultMap="BaseResultPlus">
+  	 SELECT *,(SELECT carbrandname FROM carbrand WHERE id=carbrandid) carbrandname,(SELECT cartypename FROM car WHERE id=carid) cartypename,
+ (SELECT NAME FROM CLIENT WHERE number=clientid) clientname
+  FROM carinfo WHERE carnumber='${number}'
+  </select>
   <select id="selectCarInfoByCarNumber" resultMap="BaseResultPlus">
   	SELECT * FROM carinfo WHERE carinfo.`carNumber`='${number}'
   </select>
   <select id="selectCarInfoByClientNumber" resultMap="BaseResultPlus">
   	SELECT c.carnumber,(SELECT carbrandname FROM carbrand WHERE id=c.carbrandid) carbrandname,
 (SELECT cartypename FROM car WHERE car.id=c.carid) cartypename,carer,carerphone,borndate,affiliation,drivinglicence,carnumber1,enginenumber,
-(SELECT enginebrandname FROM enginebrand WHERE id=(SELECT engineid FROM car WHERE car.id=c.carid)) enginebrandname,yearprice,mileage,
+(SELECT enginebrandname FROM enginebrand WHERE id=c.engineid) enginebrandname,yearprice,mileage,
 (SELECT car.deadweight FROM car WHERE car.id=c.carid) 
-loadnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance,syinsurancedate,fueloiltype,maintain,maintaindate
+loadnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance,syinsurancedate,fueloiltype,maintain,maintaindate,insuredcar,deadweight
  FROM carinfo c WHERE clientid='${number}'
   </select>
   <sql id="Example_Where_Clause" >

@@ -51,8 +51,69 @@ public class customerDataController {
 			return "1";
 		}else {
 			return "0";
-		}
-		
+		}	
+	}
+	
+	 
+	
+	@RequestMapping("/deleteCarInfoByCarNumber")
+	public String deleteCarInfoByCarNumber(String number) {
+		int i=cis.deleteCarInfoByCarNumber(number);
+		if(i>0) {
+			return "1";
+		}else {
+			return "0";
+		}	
+	}
+	
+	@RequestMapping("/insertCarInfo")
+	public String insertCarInfo(@RequestBody Carinfo carinfo) {
+		int i=cis.insertCarInfo(carinfo);
+		if(i>0) {
+			return "1";
+		}else {
+			return "0";
+		}	
+	}
+	
+	@RequestMapping("/updateCarInfo")
+	public String updateCarInfo(@RequestBody Carinfo carinfo) {
+		int i=cis.updateCarInfo(carinfo);
+		if(i>0) {
+			return "1";
+		}else {
+			return "0";
+		}	
+	}
+	
+	@RequestMapping("/insertClientType")
+	public String insertClientType(@RequestBody Clienttype clienttype) {
+		int i=cts.insertClientType(clienttype);
+		if(i>0) {
+			return "1";
+		}else {
+			return "0";
+		}	
+	}
+	
+	@RequestMapping("/updateClientType")
+	public String updateClientType(@RequestBody Clienttype clienttype) {
+		int i=cts.updateClientType(clienttype);
+		if(i>0) {
+			return "1";
+		}else {
+			return "0";
+		}	
+	}
+	
+	@RequestMapping("/deleteClientType")
+	public String deleteClientType(int id) {
+		int i=cts.deleteClientType(id);
+		if(i>0) {
+			return "1";
+		}else {
+			return "0";
+		}	
 	}
 	
 	@RequestMapping("/selectCarByCarBrandId")
@@ -69,8 +130,18 @@ public class customerDataController {
 	}
 	
 	@RequestMapping("/selectCarInfoByCarNumber")
-	public Carinfo selectCarInfoByCarNumber(String number) {	
+	public String selectCarInfoByCarNumber(String number) {	
 		Carinfo ci=cis.selectCarInfoByCarNumber(number); 
+		if(ci!=null) {
+			return "1";
+		}else {
+			return "0";
+		}	
+	}
+	
+	@RequestMapping("/queryCarInfoByCarNumber")
+	public Carinfo queryCarInfoByCarNumber(String number) {	
+		Carinfo ci=cis.queryCarInfoByCarNumber(number); 
 		return ci;
 	}
 	
@@ -182,6 +253,13 @@ public class customerDataController {
 	@RequestMapping("/selectAllClientType")
 	public List<Clienttype> selectAllClientType(){
 		List<Clienttype> list=cts.selectAllClientType();
+		for(int i=0;i<list.size();i++) {
+			if(i==0) {
+				list.get(i).setCheck(true);
+			}else {
+				list.get(i).setCheck(false);	
+			}
+		}
 		return list;
 	}
 	

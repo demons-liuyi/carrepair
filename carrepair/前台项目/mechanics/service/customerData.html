@@ -509,37 +509,37 @@
 				background-color: whitesmoke;
 			}
 			
-			#fueltype {
+			#selectcustomer {
 				width: 700px;
-				height: 600px;
+				height: 400px;
 				position: absolute;
-				left: 500px;
-				top: 60px;
+				left: 480px;
+				top: 180px;
 				background-color: white;
 				z-index: 999;
 				display: none;
 			}
 			
-			#fueltypeheader {
+			#selectcustomerheader {
 				width: 700px;
 				height: 80px;
 				background-color: whitesmoke;
 			}
 			
-			#fueltyperemove {
+			#selectcustomerremove {
 				font-size: 32px;
 				position: absolute;
 				left: 650px;
 				top: 25px;
 			}
 			
-			#fueltypefunction {
+			#selectcustomerfunction {
 				width: 700px;
 				background-color: darkgray;
 				height: 50px;
 			}
 			
-			#fueltypemarksure {
+			#selectcustomermarksure {
 				background-color: lawngreen;
 				color: white;
 				width: 100px;
@@ -548,7 +548,7 @@
 				top: 24px;
 			}
 			
-			#fueltypetable {
+			#selectcustomertable {
 				overflow: scroll;
 			}
 			
@@ -700,7 +700,7 @@
 				<div id="carinfoeditcontent">
 					<p style="padding-top: 15px;">
 						<span style="margin-left: 20px;">车牌号码：</span>
-						<input style="width: 135px;" v-model="CarInfo.carnumber" type="text" /> 
+						<input name="carnumber" style="width: 135px;" v-model="CarInfo.carnumber" type="text" />
 						<span style="margin-left: 20px;">车辆品牌：</span>
 						<input style="width: 115px;" name="carBrand" readonly="readonly" style="width:165px;" />
 						<button @click="openbrandmodels()"><span class="caret"></span></button>
@@ -714,8 +714,8 @@
 						<span style="margin-left: 20px;">出生日期：</span><input v-model="CarInfo.borndate" type="date" />
 						<span style="margin-left: 20px;">车辆归属：</span>
 						<select name="affiliation" style="width: 165px;">
-								<option>公司车</option>
-								<option>个人车</option>
+							<option value="公司车">公司车</option>
+							<option value="个人车">个人车</option>
 						</select>
 						<span style="margin-left: 20px;">驾证到期：</span><input v-model="CarInfo.drivinglicence" type="date" />
 					</p>
@@ -727,11 +727,11 @@
 					</p>
 					<p style="padding-top: 10px;">
 						<span style="margin-left: 20px;">发动机品牌：</span>
-						<select name="engine" style="width: 230px;margin-left: 20px;">				
-								<option :engineid="item.id" v-for="item in engineBrand">{{item.enginebrandname}}</option>
-							</select>
+						<select name="engine" style="width: 230px;margin-left: 20px;">
+							<option :engineid="item.id" v-for="item in engineBrand">{{item.enginebrandname}}</option>
+						</select>
 						<span style="margin-left: 20px;">载重：</span>
-						<input v-model="CarInfo.load" type="text" />
+						<input v-model="CarInfo.deadweight" type="text" />
 						<span style="margin-left: 20px;">购买日期：</span>
 						<input v-model="CarInfo.buydate" type="date" />
 					</p>
@@ -743,29 +743,29 @@
 						<span style="margin-left: 20px;">燃油类别：</span>
 						<input v-model="CarInfo.fueloiltype" type="text" />
 						<span style="margin-left: 20px;">车系：</span>
-						<input v-model="CarInfo.carseries" type="text" />					
+						<input v-model="CarInfo.carseries" type="text" />
 					</p>
 					<p style="padding-top: 10px;">
 						<span style="margin-left: 20px;">保险：交强险保险公司：</span>
-						<select name="qbaoxian" style="width: 150px;margin-left: 20px;">	
-								<option>阳光人寿保险</option>
-								<option>太平洋保险</option>
-								<option>人寿保险</option>
-								<option>平安人寿保险</option>
-							</select>
+						<select name="qbaoxian" style="width: 150px;margin-left: 20px;">
+							<option value="阳光人寿保险">阳光人寿保险</option>
+							<option value="太平洋保险">太平洋保险</option>
+							<option value="人寿保险">人寿保险</option>
+							<option value="平安人寿保险">平安人寿保险</option>
+						</select>
 						<span style="margin-left: 20px;">交强险到期：</span>
 						<input v-model="CarInfo.jqinsurancedate" type="date" />
 						<span style="margin-left: 20px;">在我投保车：</span>
-						<input type="checkbox" />
-					</p> 
+						<input name="insuredcar" type="checkbox" />
+					</p>
 					<p style="padding-top: 10px;">
 						<span style="margin-left: 20px;">商业险保险公司：</span>
-						<select name="sbaoxian" style="width: 150px;margin-left: 20px;">					
-								<option>阳光人寿保险</option>
-								<option>太平洋保险</option>
-								<option>人寿保险</option>
-								<option>平安人寿保险</option>
-							</select>
+						<select name="sbaoxian" style="width: 150px;margin-left: 20px;">
+							<option value="阳光人寿保险">阳光人寿保险</option>
+							<option value="太平洋保险">太平洋保险</option>
+							<option value="人寿保险">人寿保险</option>
+							<option value="平安人寿保险">平安人寿保险</option>
+						</select>
 						<span style="margin-left: 20px;">商业险到期：</span>
 						<input v-model="CarInfo.syinsurancedate" type="date" />
 					</p>
@@ -775,7 +775,9 @@
 						<span style="margin-left: 20px;">下次保养日期：</span>
 						<input v-model="CarInfo.maintaindate" type="date" />
 						<span style="margin-left: 20px;">客户名称：</span>
-						<input style="width: 255px;" type="text" />
+						<input readonly="readonly" name="customernumberandname" style="width: 155px;" type="text" />
+						<button @click="openselectcustomer()">
+							<span class="caret"></span></button>
 					</p>
 				</div>
 			</div>
@@ -948,41 +950,81 @@
 			<!--
             	作者：1424432629@qq.com
             	时间：2020-01-04
-            	描述：燃油类别
+            	描述：选择客户
             -->
-			<div id="fueltype">
-				<div id="fueltypeheader">
-					<h2>选择内容设置</h2>
-					<button id="fueltypemarksure" class="btn btn-default">
+			<div id="selectcustomer">
+				<div id="selectcustomerheader">
+					<h2>选择客户</h2>
+					<button @click="checkcustomer()" id="selectcustomermarksure" class="btn btn-default">
 						<span class="glyphicon glyphicon-ok"></span> 选择
 					</button>
-					<span @click="closefueltype()" id="fueltyperemove" class="glyphicon glyphicon-remove"></span>
+					<span @click="closeselectcustomer()" id="selectcustomerremove" class="glyphicon glyphicon-remove"></span>
 				</div>
-				<div id="fueltypefunction">
-					<ul style="border: 0px solid red;float: right; margin-right: 60px;margin-top: 15px;">
-						<li>
-							<span id="img" class="glyphicon glyphicon-edit"></span>
-							<span id="font">修改</span>
-						</li>
-						<li>
-							<span id="img" class="glyphicon glyphicon-save-file"></span>
-							<span id="font">保存</span>
-						</li>
-					</ul>
-				</div>
-				<div id="fueltypetable">
-					<table border="1px" class="table">
+				<div id="selectcustomertable">
+					<table border="1px" class="table" style="min-width:2500px;">
 						<thead>
 							<tr style="background-color: deepskyblue;">
 								<td></td>
-								<td>序号</td>
-								<td>燃油类别</td>
+								<td>客户编号</td>
+								<td>客户名称</td>
+								<td>详细地址</td>
+								<td>联系人</td>
+								<td>手机</td>
+								<td>客户生日</td>
+								<td>客户类别</td>
+								<td>会员卡号</td>
+								<td>入会日期</td>
+								<td>会员到期</td>
+								<td>备注</td>
+								<td>建档日期</td>
+								<td>服务顾问</td>
+								<td>业务员电话</td>
+								<td>账期(天)</td>
+								<td>挂账额度</td>
+								<td>累计积分</td>
+								<td>定金金额</td>
+								<td>客户省</td>
+								<td>客户市</td>
+								<td>客户区</td>
+								<td>纳税人识别号</td>
+								<td>注册电话</td>
+								<td>开户银行</td>
+								<td>银行账号</td>
+								<td>注册地址</td>
 							</tr>
 						</thead>
 						<tbody>
-							<td></td>
-							<td>序号</td>
-							<td>燃油类别</td>
+							<tr @dblclick="doublecheckcustomer(item)" @click="datashift(item)" v-for="item in clientinfo">
+								<td style="width: 40px;">
+									<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+								</td>
+								<td>{{item.number}}</td>
+								<td>{{item.name}}</td>
+								<td>{{item.address}}</td>
+								<td>{{item.linkman}}</td>
+								<td>{{item.phone}}</td>
+								<td>{{item.borndate}}</td>
+								<td>{{item.clienttype}}</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>{{item.remark}}</td>
+								<td>{{item.date}}</td>
+								<td>{{item.staffname}}</td>
+								<td>{{item.counselorname}}</td>
+								<td>{{item.paymentdays}}</td>
+								<td>{{item.paymentsize}}</td>
+								<td>{{item.integral}}</td>
+								<td></td>
+								<td>{{item.sheng}}</td>
+								<td>{{item.shi}}</td>
+								<td>{{item.qv}}</td>
+								<td>{{item.taxpayernumber}}</td>
+								<td>{{item.registerphone}}</td>
+								<td>{{item.bank}}</td>
+								<td>{{item.banknumber}}</td>
+								<td>{{item.registeraddress}}</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -1033,35 +1075,44 @@
 						<ul style="border: 0px solid red;float: right; margin-right: 60px;margin-top: 20px;">
 							<li>
 								<span id="img" class="glyphicon glyphicon-plus"></span>
-								<span id="font">增加</span>
+								<span @click="insertclienttype()" id="font">增加</span>
 							</li>
 							<li>
 								<span id="img" class="glyphicon glyphicon-remove"></span>
-								<span id="font">删除</span>
+								<span @click="deleteclienttype()" id="font">删除</span>
 							</li>
 							<li>
 								<span id="img" class="glyphicon glyphicon-save-file"></span>
-								<span id="font">保存</span>
+								<span @click="saveclienttype()" id="font">保存</span>
 							</li>
 						</ul>
 					</div>
 					<div style="clear: both;padding-top: 10px;">
 						<p>
-							<span style="padding-left: 30px;">分类代码：</span><input type="text" />
-							<span style="padding-left: 20px;">客户类别：</span><input type="text" />
+							<span style="padding-left: 30px;">分类代码：</span>
+							<input readonly="readonly" v-model="clienttypeinfo.id" type="text" />
+							<span style="padding-left: 20px;">客户类别：</span>
+							<input name="clienttype" type="text" />
 							<span style="padding-left: 20px;">价格类型：</span>
-							<select>
-								<option>标准价</option>
-								<option>会员价</option>
+							<select name="type">
+								<option value="标准价">标准价</option>
+								<option value="会员价">会员价</option>
+								<option value="VIP价">VIP价</option>
+								<option value="协议价">协议价</option>
+								<option value="会员价">会员价</option>
+								<option value="索赔价">索赔价</option>
+								<option value="保险价">保险价</option>
 							</select>
 						</p>
 						<p>
-							<span style="padding-left: 30px;">有效期(年)：</span><input type="text" />
-							<span style="padding-left: 20px;">会费：</span><input type="text" />
+							<span style="padding-left: 30px;">有效期(年)：</span>
+							<input name="validity" type="text" />
+							<span style="padding-left: 20px;">会费：</span>
+							<input name="cost" type="text" />
 							<span style="padding-left: 20px;">类别：</span>
-							<select>
-								<option>会员</option>
-								<option>非会员</option>
+							<select name="otherone">
+								<option value="会员">会员</option>
+								<option value="非会员">非会员</option>
 							</select>
 						</p>
 					</div>
@@ -1075,22 +1126,26 @@
 									<td>价格类型</td>
 									<td>有效期(年)</td>
 									<td>会费</td>
-									<td>类别</td>
+									<td>会员</td>
 								</tr>
 							</thead>
 							<tbody>
-								<td></td>
-								<td>分类编码</td>
-								<td>客户类别</td>
-								<td>价格类型</td>
-								<td>有效期(年)</td>
-								<td>会费</td>
-								<td>类别</td>
+								<tr @click="switchclienttype(item)" v-for="item in clientType">
+									<td style="width: 40px;">
+										<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+									</td>
+									<td>{{item.id}}</td>
+									<td>{{item.clienttype}}</td>
+									<td>{{item.type}}</td>
+									<td>{{item.validity}}</td>
+									<td>{{item.cost}}</td>
+									<td>{{item.otherone}}</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div style="margin-left: 25px;">
-						<span>合计：<span></span>条记录</span>
+						<span>合计：<span>{{clientType.length}}</span>条记录</span>
 					</div>
 				</div>
 			</div>
@@ -1309,7 +1364,7 @@
 						</p>
 						<p>
 							<span id="word">发动机品牌：</span>
-							<select name="engine" style="width: 230px;margin-left: 20px;">							 
+							<select name="engine" style="width: 230px;margin-left: 20px;">
 								<option :engineid="item.id" v-for="item in engineBrand">{{item.enginebrandname}}</option>
 							</select>
 							<span id="word">载重：</span>
@@ -1324,11 +1379,12 @@
 							<input v-model="CarInfo.carcheckdate" type="date" />
 							<span id="word">燃油类别：</span>
 							<input v-model="CarInfo.fueloiltype" type="text" />
-							<span id="word">在我投保车：</span><input type="checkbox" />
+							<span id="word">在我投保车：</span>
+							<input name="insuredcar" type="checkbox" />
 						</p>
 						<p>
 							<span id="word">保险：交强险保险公司：</span>
-							<select name="qbaoxian" style="width: 150px;margin-left: 20px;">						
+							<select name="qbaoxian" style="width: 150px;margin-left: 20px;">
 								<option>阳光人寿保险</option>
 								<option>太平洋保险</option>
 								<option>人寿保险</option>
@@ -1339,7 +1395,7 @@
 						</p>
 						<p>
 							<span id="word">商业险保险公司：</span>
-							<select name="sbaoxian" style="width: 150px;margin-left: 20px;">				
+							<select name="sbaoxian" style="width: 150px;margin-left: 20px;">
 								<option>阳光人寿保险</option>
 								<option>太平洋保险</option>
 								<option>人寿保险</option>
@@ -1557,9 +1613,9 @@
 			<div class="car" id="fnuctiondiv">
 				<ul id="functionul">
 					<li>车资料</li>
-					<li @click="opencarinfoedit()" id="functionli">增加车资料</li>
-					<li @click="opencarinfoedit()" id="functionli">修改车资料</li>
-					<li id="functionli">删除车资料</li>
+					<li @click="openinsertcarinfoedit()" id="functionli">增加车资料</li>
+					<li @click="openupdatecarinfoedit()" id="functionli">修改车资料</li>
+					<li @click="deletecarinfo()" id="functionli">删除车资料</li>
 				</ul>
 				<div @click="carup()" id="functionupdiv">
 					<span id="trigon">▲</span>
@@ -1651,7 +1707,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="item in carinfo">
+						<tr @click="updatecarinfocheck(item)" v-for="item in carinfo">
 							<td style="width: 40px;">
 								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
 							</td>
@@ -1668,7 +1724,7 @@
 							<td>{{item.enginebrandname}}</td>
 							<td>{{item.yearprice}}</td>
 							<td>{{item.mileage}}</td>
-							<td>{{item.loadnumber}}</td>
+							<td>{{item.deadweight}}</td>
 							<td>{{item.buydate}}</td>
 							<td>{{item.dutydate}}</td>
 							<td>{{item.carcheckdate}}</td>
@@ -1676,7 +1732,8 @@
 							<td>{{item.jqinsurancedate}}</td>
 							<td>{{item.syinsurance}}</td>
 							<td>{{item.syinsurancedate}}</td>
-							<td></td>
+							<td v-if="item.insuredcar=='1'">投保车</td>
+							<td v-else>非投保车</td>
 							<td>{{item.fueloiltype}}</td>
 							<td>{{item.maintain}}</td>
 							<td>{{item.maintaindate}}</td>
@@ -2047,6 +2104,7 @@
 					},
 					success: function(response) {
 						vm.carinfo = response;
+
 					},
 					error: function(error) {
 						console.log(error);
@@ -2064,11 +2122,17 @@
 				vm.CarInfo.engineid = $("[name=engine]").find(":checked").attr("engineid");
 				vm.CarInfo.jqinsurance = $("[name=qbaoxian").val();
 				vm.CarInfo.syinsurance = $("[name=sbaoxian").val();
+				var bool = $("[name=insuredcar]").prop("checked");
+				if(bool == true) {
+					vm.CarInfo.insuredcar = 1;
+				} else {
+					vm.CarInfo.insuredcar = 2;
+				}
 				vm.coll.carInfo = vm.CarInfo;
 				vm.coll.client = vm.Client;
 				var coll = JSON.stringify(vm.coll);
 				console.log(coll);
-
+				return;
 				$.ajax({
 					url: "http://localhost:8080/customerData/insertClientAndCarInfo",
 					data: coll,
@@ -2141,8 +2205,104 @@
 					}
 				});
 			}
+			//增加车辆资料
+			function insertCarInfo(carinfo) {
+				$.ajax({
+					url: "http://localhost:8080/customerData/insertCarInfo",
+					data: carinfo,
+					type: "post",
+					dataType: "json",
+					contentType: "application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						selectClientInfo();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//修改车辆资料
+			function updateCarInfo(carinfo) {
+				console.log(carinfo);
+				$.ajax({
+					url: "http://localhost:8080/customerData/updateCarInfo",
+					data: carinfo,
+					type: "post",
+					dataType: "json",
+					contentType: "application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						selectClientInfo();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据车牌号查询车辆指定资料
+			function queryCarInfoByCarNumber(number) {
+				$.ajax({
+					url: "http://localhost:8080/customerData/queryCarInfoByCarNumber",
+					data: {
+						number: number
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.CarInfo = response;
+						console.log(vm.CarInfo);
+						$("[name=carBrand]").attr("carbrandid", response.carbrandid);
+						$("[name=carType]").attr("carid", response.carid);
+						$("[name=carBrand]").val(vm.CarInfo.carbrandname);
+						$("[name=carType]").val(vm.CarInfo.cartypename);
+						$("[name=customernumberandname]").val(vm.CarInfo.clientid + vm.CarInfo.clientname);
+						$("[name=affiliation]").find("option[value=" + vm.CarInfo.affiliation + "]").prop("selected", true);
+						$("[name=qbaoxian]").find("option[value=" + vm.CarInfo.jqinsurance + "]").prop("selected", true);
+						$("[name=sbaoxian]").find("option[value=" + vm.CarInfo.syinsurance + "]").prop("selected", true);
+						console.log($("[name=qbaoxian]").val());
+						console.log($("[name=sbaoxian]").val());
+						if(vm.CarInfo.insuredcar == "1") {
+							$("[name=insuredcar]").prop("checked", "checked");
+						} else {
+							$("[name=insuredcar]").removeProp("checked");
+						}
+					},
+					error: function(response) {
+						console.log(response);
+					}
+				})
+			}
+
+			//根据车牌号删除车辆资料
+			function deleteCarInfoByCarNumber(number) {
+				$.ajax({
+					url: "http://localhost:8080/customerData/deleteCarInfoByCarNumber",
+					data: {
+						number: number
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						selectClientInfo();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
 			//根据车牌号查询车辆资料
-			function selectCarInfoByCarNumber(number) {			 
+			function selectCarInfoByCarNumber(number) {
 				$.ajax({
 					url: "http://localhost:8080/customerData/selectCarInfoByCarNumber",
 					data: {
@@ -2154,7 +2314,96 @@
 						withCredentials: true
 					},
 					success: function(response) {
-						console.log(response);					 
+						console.log(response);
+						console.log($("[name=insuredcar]").is(":checked"));
+						var bool = $("[name=insuredcar]").prop("checked");
+						if(bool == true) {
+							vm.CarInfo.insuredcar = 1;
+						} else {
+							vm.CarInfo.insuredcar = 2;
+						}
+						for(var i = 0; i < vm.clientinfo.length; i++) {
+							if(vm.clientinfo[i].check == true) {
+								vm.CarInfo.clientid = vm.clientinfo[i].number;
+							}
+						}
+						vm.CarInfo.affiliation = $("[name=affiliation]").val();
+						vm.CarInfo.affiliation = $("[name=affiliation]").val();
+						vm.CarInfo.engineid = $("[name=engine]").find(":checked").attr("engineid");
+						vm.CarInfo.carbrandid = $("[name=carBrand]").attr("carbrandid");
+						vm.CarInfo.carid = $("[name=carType]").attr("carid");
+						var bool = $("[name=insuredcar]").prop("checked");
+						console.log(bool);
+						if(bool == true) {
+							vm.CarInfo.insuredcar = 1;
+						} else {
+							vm.CarInfo.insuredcar = 2;
+						}
+						vm.CarInfo.jqinsurance = $("[name=qbaoxian]").val();
+						vm.CarInfo.syinsurance = $("[name=sbaoxian]").val();
+						var carinfo = JSON.stringify(vm.CarInfo);
+						console.log(carinfo);
+						if(response > 0) {
+							updateCarInfo(carinfo);
+						} else {
+							insertCarInfo(carinfo);
+						}
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//新增客户分类
+			function insertClientType(clienttype) {
+				$.ajax({
+					url: "http://localhost:8080/customerData/insertClientType",
+					data: clienttype,
+					type: "post",
+					dataType: "json",
+					contentType: "application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						 selectAllClientType();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//修改客户分类
+			function updateClientType(clienttype) {
+				$.ajax({
+					url: "http://localhost:8080/customerData/updateClientType",
+					data: clienttype,
+					type: "post",
+					dataType: "json",
+					contentType: "application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						 selectAllClientType();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//删除客户分类
+			function deleteClientType(id) {
+				$.ajax({
+					url: "http://localhost:8080/customerData/deleteClientType",
+					data: {id:id},
+					type: "post",
+					dataType: "json",			 
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						 selectAllClientType();
 					},
 					error: function(error) {
 						console.log(error);
@@ -2205,8 +2454,15 @@
 							"banknumber": "",
 							"registeraddress": "",
 							"staffname": ""
-						}, //qqqq
-
+						},
+						clienttypeinfo: {
+							"id": "",
+							"clienttype": "",
+							"validity": "",
+							"cost": "",
+							"type": "",
+							"otherone": ""
+						},
 						CarInfo: {
 							"carnumber": "",
 							"carbrandid": "",
@@ -2331,9 +2587,10 @@
 						}
 					},
 					//保存车辆资料
-					saveCarInfo:function(){
+					saveCarInfo: function() {
 						console.log(vm.CarInfo.carnumber);
 						selectCarInfoByCarNumber(vm.CarInfo.carnumber);
+						$("#carinfoedit").removeClass("show");
 					},
 					//根据条件查询客户资料
 					queryClientInfoByCondition: function() {
@@ -2343,6 +2600,7 @@
 					//增加客户资料和车资料事件
 					insertClientAndCarInfo: function() {
 						insertClientAndCarInfo();
+						$("#addcustomerandcar").removeClass("show");
 					},
 					//客户资料编辑保存事件
 					savecustomer: function() {
@@ -2395,6 +2653,14 @@
 						var that = this;
 						for(var i = 0; i < that.car.length; i++) {
 							that.car[i].check = false;
+						}
+						item.check = true;
+					},
+					//切换车辆资料
+					updatecarinfocheck: function(item) {
+						var that = this;
+						for(var i = 0; i < that.carinfo.length; i++) {
+							that.carinfo[i].check = false;
 						}
 						item.check = true;
 					},
@@ -2453,16 +2719,74 @@
 						}
 						item.check = true;
 					},
-					//打开车资料窗体
-					opencarinfoedit: function() {
+					//打开增加车资料窗体
+					openinsertcarinfoedit: function() {
+						$("[name=insuredcar]").removeProp("checked");
+						$("[name=carnumber]").removeAttr("readonly");
+						vm.CarInfo = {
+							"carnumber": "",
+							"carbrandid": "",
+							"carid": "",
+							"carer": "",
+							"carerphone": "",
+							"borndate": "",
+							"affiliation": "",
+							"drivinglicence": "",
+							"carnumber1": "",
+							"enginenumber": "",
+							"yearprice": "",
+							"mileage": "",
+							"engineid": "",
+							"load": "",
+							"buydate": "",
+							"dutydate": "",
+							"carcheckdate": "",
+							"fueloiltype": "",
+							"carseries": "",
+							"jqinsurance": "",
+							"jqinsurancedate": "",
+							"syinsurance": "",
+							"syinsurancedate": "",
+							"maintain": "",
+							"maintaindate": ""
+						}
 						this.Client.staffno = "";
 						this.Client.staffname = "";
 						this.Client.counselorname = "";
 						$("[name=carBrand]").val("");
 						$("[name=carType]").val("");
+						$("[name=customernumberandname]").val("");
 						vm.prov = "";
 						vm.city = "";
 						vm.district = "";
+						$("#carinfoedit").addClass("show");
+					},
+					//删除车辆资料事件
+					deletecarinfo: function() {
+						if(confirm("确定删除此车辆资料吗？") == true) {
+							for(var i = 0; i < vm.carinfo.length; i++) {
+								if(vm.carinfo[i].check == true) {
+									deleteCarInfoByCarNumber(vm.carinfo[i].carnumber);
+								}
+							}
+						}
+					},
+					//打开修改车资料窗体
+					openupdatecarinfoedit: function() {
+						$("[name=insuredcar]").removeProp("checked");
+						$("[name=carnumber]").attr("readonly", "readonly");
+						var i = 0;
+						var that = this;
+						for(var i = 0; i < that.carinfo.length; i++) {
+							if(that.carinfo[i].check == true) {
+								queryCarInfoByCarNumber(that.carinfo[i].carnumber);
+								i++;
+							}
+						}
+						if(i == 0) {
+							alert("无可修改的车辆！")
+							return;
+						}
 						$("#carinfoedit").addClass("show");
 					},
 					closecarinfoedit: function() {
@@ -2516,11 +2840,27 @@
 						vm.district = "";
 						$("#customerdata").removeClass("show");
 					},
-					openfueltype: function() {
-						$("#fueltype").addClass("show");
+					//选择客户
+					checkcustomer: function() {
+						for(var i = 0; i < vm.clientinfo.length; i++) {
+							if(vm.clientinfo[i].check == true) {
+								$("[name=customernumberandname]").val(vm.clientinfo[i].number + vm.clientinfo[i].name);
+							}
+						}
+						$("#selectcustomer").removeClass("show");
 					},
-					closefueltype: function() {
-						$("#fueltype").removeClass("show");
+					//双击选择客户
+					doublecheckcustomer: function(item) {
+						$("[name=customernumberandname]").val(item.number + item.name);
+						$("#selectcustomer").removeClass("show");
+					},
+					//打开选择客户窗体
+					openselectcustomer: function() {
+						$("#selectcustomer").addClass("show");
+					},
+					//关闭选择客户窗体
+					closeselectcustomer: function() {
+						$("#selectcustomer").removeClass("show");
 					},
 					opencarnumber: function() {
 						$("#carnumber").addClass("show");
@@ -2537,15 +2877,96 @@
 					closeselectemployee: function() {
 						$("#selectemployee").removeClass("show");
 					},
+					//打开客户分类窗体
 					opencustomerclassify: function() {
+						console.log(vm.clientType);
+						for(var i = 0; i < vm.clientType.length; i++) {
+							if(vm.clientType[i].check == true) {
+								vm.clienttypeinfo.id = vm.clientType[i].id;
+								$("[name=cost]").val(vm.clientType[i].cost);
+								$("[name=validity]").val(vm.clientType[i].validity);
+								$("[name=clienttype]").val(vm.clientType[i].clienttype);
+								$("[name=type]").find("option[value=" + vm.clientType[i].type + "]").prop("selected", true);
+								$("[name=otherone]").find("option[value=" + vm.clientType[i].otherone + "]").prop("selected", true);
+							}
+						}
+
 						$("#customerclassify").addClass("show");
 					},
+					//关闭客户分类窗体
 					closecustomerclassify: function() {
 						$("#customerclassify").removeClass("show");
 					},
+					//删除客户分类
+					deleteclienttype: function() {
+						if(confirm("确定要删除吗？") == true) {
+							for(var i = 0; i < vm.clientType.length; i++) {
+								if(vm.clientType[i].check == true) {
+									deleteClientType(vm.clientType[i].id);
+									
+								}
+							}
+						}
+						$("[name=cost]").val("");
+						$("[name=validity]").val("");
+						$("[name=clienttype]").val("");
+						vm.clienttypeinfo.id = "";
+					},
+					//保存客户分类
+					saveclienttype: function() {
+						vm.clienttypeinfo.type = $("[name=type]").val();
+						vm.clienttypeinfo.otherone = $("[name=otherone]").val();
+						vm.clienttypeinfo.clienttype = $("[name=clienttype]").val();
+						vm.clienttypeinfo.cost = $("[name=cost]").val();
+						vm.clienttypeinfo.validity = $("[name=validity]").val();
+						var clienttypeinfo = JSON.stringify(vm.clienttypeinfo);
+						console.log(clienttypeinfo);
+						 
+						if(vm.clienttypeinfo.id > vm.clientType.length) {
+							//新增
+							insertClientType(clienttypeinfo);
+						} else {
+							//修改
+							updateClientType(clienttypeinfo);
+						}
+						$("[name=cost]").val("");
+						$("[name=validity]").val("");
+						$("[name=clienttype]").val("");
+						vm.clienttypeinfo.id = "";
+					},
+					//增加客户分类
+					insertclienttype: function() {
+						var that = this;
+						$("[name=cost]").val("");
+						$("[name=validity]").val("");
+						$("[name=clienttype]").val("");
+						vm.clienttypeinfo.id = that.clientType.length + 1;
+						console.log(vm.clienttype);
+					},
+					//切换客户分类
+					switchclienttype: function(item) {
+						var that = this;
+						for(var i = 0; i < that.clientType.length; i++) {
+							that.clientType[i].check = false;
+						}
+						item.check = true;
+						for(var i = 0; i < vm.clientType.length; i++) {
+							if(vm.clientType[i].check == true) {
+								vm.clienttypeinfo.id = vm.clientType[i].id;
+								$("[name=cost]").val(vm.clientType[i].cost);
+								$("[name=validity]").val(vm.clientType[i].validity);
+								$("[name=clienttype]").val(vm.clientType[i].clienttype);
+								$("[name=type]").find("option[value=" + vm.clientType[i].type + "]").prop("selected", true);
+								$("[name=otherone]").find("option[value=" + vm.clientType[i].otherone + "]").prop("selected", true);
+							}
+						}
+
+					},
+					//打开品牌车型弹窗
 					openbrandmodels: function() {
 						$("#brandmodels").addClass("show");
 					},
+					//关闭品牌车型弹窗
 					closebrandmodels: function() {
 						$("#brandmodels").removeClass("show");
 					},
@@ -2557,6 +2978,7 @@
 					},
 					//打开增加客户和车窗体
 					openaddcustomerandcar: function() {
+						$("[name=insuredcar]").removeProp("checked");
 						this.Client.staffno = "";
 						this.Client.staffname = "";
 						this.Client.counselorname = "";
