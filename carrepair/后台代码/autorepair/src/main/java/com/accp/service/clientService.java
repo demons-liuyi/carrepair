@@ -25,7 +25,10 @@ public class clientService {
 	@Autowired
 	CarinfoMapper cim;
 	
-	
+	public List<Client> selectClientInformationByClientId(String clientId){	 	 
+		List<Client> list=cm.selectClientInformationByClientId(clientId);
+		return list;
+	}
 	
 	
 	public int insertClientAndCarinfo(Coll coll) {

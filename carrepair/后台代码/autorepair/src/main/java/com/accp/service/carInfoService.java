@@ -20,6 +20,25 @@ public class carInfoService {
 	@Autowired
 	CarinfoMapper cm;
 	
+	public List<Carinfo> queryCarInformationByCondition(String condition){
+		CarinfoExample example=new CarinfoExample();
+		Criteria cra=example.createCriteria();
+		cra.andCarerLike("%"+condition+"%");
+		Criteria cra2=example.createCriteria();
+		cra2.andCarerphoneLike("%"+condition+"%");
+		Criteria cra3=example.createCriteria();
+		cra3.andCarnumberLike("%"+condition+"%");
+		 example.or(cra2);
+		 example.or(cra3);
+		 List<Carinfo> list=cm.selectByExample(example);
+		return list;
+	}
+	
+	public List<Carinfo> selectAllCarInfo(){
+		List<Carinfo> list=cm.selectAllCarInfo();
+		return list;
+	}
+	
 	public Carinfo selectCarInfoByCarNumber(String number) {
 		Carinfo ci=cm.selectCarInfoByCarNumber(number);
 		return ci;
@@ -53,7 +72,7 @@ public class carInfoService {
 		CarinfoExample example=new CarinfoExample();
 		Criteria cra=example.createCriteria();
 		if(carinfo.getCarnumber()!=null&&carinfo.getCarnumber().length()>0) {
-			cra.andCarnumber1EqualTo(carinfo.getCarnumber());
+			cra.andCarnumberEqualTo(carinfo.getCarnumber());
 		}
 		if(carinfo.getCarbrandid()!=null&&carinfo.getCarbrandid()>0) {
 			cra.andCarbrandidEqualTo(carinfo.getCarbrandid());

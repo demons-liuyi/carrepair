@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CarinfoMapper {
+	List<Carinfo> selectAllCarInfo();
+	
 	Carinfo queryCarInfoByCarNumber(String number);
 	
 	Carinfo selectCarInfoByCarNumber(String number);
