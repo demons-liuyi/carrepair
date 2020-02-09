@@ -81,7 +81,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-2">
-					<span style="font-size: 18px;">单号：<span>12312312312312312</span></span>
+					<span style="font-size: 18px;">单号：<span class="number">12312312312312312</span></span>
 				</div>
 				<div class="col-xs-offset-6 col-xs-4 text-center car">
 					<div class="col-xs-3">
@@ -283,7 +283,7 @@
 						</div>
 						<div class="modal-body form-inline">
 							<div class="col-xs-5">
-								<span>单号：<span>12312312312312312</span></span>
+								<span>单号：<span class="number">12312312312312312</span></span>
 							</div>
 							<div class="col-xs-offset-1 col-xs-6 text-center car">
 								<div class="col-xs-offset-6 col-xs-2">
@@ -401,7 +401,7 @@
 						</div>
 						<div class="modal-body form-inline">
 							<div class="col-xs-5">
-								<span>单号：<span>12312312312312312</span></span>
+								<span>单号：<span class="number">12312312312312312</span></span>
 							</div>
 							<div class="col-xs-offset-1 col-xs-6 text-center car">
 								<div class="col-xs-2">
@@ -467,7 +467,7 @@
 						</div>
 						<div class="modal-body form-inline">
 							<div class="col-xs-5">
-								<span>单号：<span>12312312312312312</span></span>
+								<span>单号：<span class="number">12312312312312312</span></span>
 							</div>
 							<div class="col-xs-offset-1 col-xs-6 text-center car">
 								<div class="col-xs-offset-6 col-xs-2">
@@ -660,9 +660,33 @@
 				data() {
 					return {
 						head: ["选择", "项目编码", "项目名称", "数量", "价类", "优惠前单价", "优惠后单价", "优惠后金额", "故障描述", "故障原因", "维修班组", "作业人员", "服务顾问", "工单号", "免单原因"],
-						list: []
+						list: [],
+						carInfo:{}
 					}
 				},
+				created:function(){
+						 var ss=decodeURI(location.search);
+				 	     var carNumber=ss.substring(ss.indexOf("=")+1,ss.length)
+				 	     $.ajax({
+				 	     	type:"post",
+				 	     	url:"http://localhost:8080/repair/selectCarInfo",
+				 	     	async:true,
+				 	     	data:{
+				 	     		carNumber:carNumber
+				 	     	},
+				 	     	xhrFields: {
+							withCredentials:true
+							},
+				 	     	dataType:"json",
+				 	     	success:function(result){
+				 	     		console.log("11"+result)
+				 	     		vm.carInfo=result
+				 	     	}
+				 	     });
+					}
+					
+				
+				,
 				methods: {
 					openStaff() {
 						window.open("rs.html");
@@ -685,6 +709,38 @@
 				}
 			});
 			$(function() {
+				
+			
+				function dateToString(now){
+					    var year = now.getFullYear();
+					    var month =(now.getMonth() + 1).toString();
+					    var day = (now.getDate()).toString();
+					    var hour = (now.getHours()).toString();
+					    var minute = (now.getMinutes()).toString();
+					    var second = (now.getSeconds()).toString();
+					    if (month.length == 1) {
+					        month = "0" + month;
+					    }
+					    if (day.length == 1) {
+					        day = "0" + day;
+					    }
+					    if (hour.length == 1) {
+					    	hour = "0" + hour;
+					    }
+					    if (minute.length == 1) {
+					    	minute = "0" + minute;
+					    }
+					    if (second.length == 1) {
+					    	second = "0" + second;
+					    }
+					     var dateTime ="WGQ"+year + month+ day+ hour+minute+second;
+					     return dateTime;
+					  }
+
+				var myDate = new Date();
+				 var number=dateToString(myDate)
+				 $(".number").html(number)
+					
 				$("#cuttab li").click(function() {
 					var txt = $(this).find("a").html();
 					$(this).addClass("active").siblings().removeClass("active");

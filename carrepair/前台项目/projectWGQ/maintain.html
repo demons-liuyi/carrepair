@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title></title>
+		<title>维修接车</title>
 		<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css" />
 		<style type="text/css">
 			.icon {
@@ -32,7 +32,7 @@
 						<label style="font-size: 28px; font-family: '微软雅黑'; font-weight: normal;">接车登记</label>
 					</div>
 					<div class="col-xs-3 form-inline">
-						<input type="text" class="form-control" style="width: 280px; " placeholder="车牌号/车架号/手机/客户" />
+						<input id="cpc" type="text" class="form-control" style="width: 280px; " placeholder="车牌号/手机/客户" />
 						<input type="button" value="搜索" class="btn btn-success" />
 						<input type="button" value="关闭" class="btn btn-warning" />
 					</div>
@@ -41,7 +41,7 @@
 			<div class="row">
 				<div class="col-xs-offset-9 col-xs-3 text-center">
 					<div class="col-xs-4 text-center">
-						<a href="javascript:;" style="text-indent: 1.5em; font-size: 20px; background-image: url(static/images/维修.png);" class="icon">维修接车</a>
+						<a id="tokd" href="javascript:;" style="text-indent: 1.5em; font-size: 20px; background-image: url(static/images/维修.png);" class="icon">维修接车</a>
 					</div>
 					<div class="col-xs-4">
 						<a href="javascript:;" style="text-indent: 1.5em; font-size: 20px; background-image: url(static/images/开单.png);" class="icon">救援开单</a>
@@ -52,33 +52,33 @@
 				<div class="col-xs-offset-1 col-xs-2">
 					<div class="form-inline">
 						<span style="font-size: 18px;">车牌号</span>
-						<input type="text" class="form-control" placeholder="车牌号" />
-						<button class="btn btn-success">选择</button>
+						<input id="carNumber" v-model="clientInfo.carnumber" type="text" class="form-control" placeholder="车牌号" />
+						<button id="queryCarNumber"  class="btn btn-success">选择</button>
 						<br /><br />
 					</div>
 				</div>
 				<div class="col-xs-2">
-					<p style="color: #4FD6E3; font-size: 16px;">车主信息&nbsp;&nbsp;&nbsp;&nbsp;<span>客户类别</span></p>
-					<p>车主：<span>123</span></p>
-					<p>地址：<span>123</span></p>
-					<p>驾驶员：<span>123</span>&nbsp;&nbsp;联系电话：<span>123</span></p>
+					<p style="color: #4FD6E3; font-size: 16px;">车主信息&nbsp;&nbsp;&nbsp;&nbsp;<span>{{clientInfo.clientType}}</span></p>
+					<p>车主：<span>{{clientInfo.name}}</span></p>
+					<p>地址：<span>{{clientInfo.address}}</span></p>
+					<p>驾驶员：<span>{{clientInfo.carer}}</span>&nbsp;&nbsp;联系电话：<span>{{clientInfo.carerphone}}</span></p>
 				</div>
 				<div class="col-xs-2">
 					<p style="color: #4FD6E3; font-size: 16px;">车辆信息</p>
-					<p>品牌：<span>123</span>&nbsp;&nbsp;车型：<span>123</span></p>
-					<p>发动机品牌：<span>123</span>&nbsp;&nbsp;发动机号：<span>123</span></p>
-					<p>保险日期：<span>123</span>&nbsp;&nbsp;保养日期：<span>123</span></p>
+					<p>品牌：<span>{{clientInfo.carBrandName}}</span>&nbsp;&nbsp;车型：<span>{{clientInfo.carTypeName}}</span></p>
+					<p>发动机品牌：<span>{{clientInfo.engineBrandName}}</span>&nbsp;&nbsp;发动机号：<span>{{clientInfo.enginenumber}}</span></p>
+					<p>保险日期：<span>{{clientInfo.jqinsurancedate}}</span>&nbsp;&nbsp;保养日期：<span>{{clientInfo.maintaindate}}</span></p>
 				</div>
 				<div class="col-xs-1" style="color: red;">
-					<p>积分：<span>123</span>分</p>
-					<p>挂账金额：<span>123</span>元</p>
-					<p>定金金额：<span>123</span>元</p>
-					<p>VIP卡余额：<span>123</span>元</p>
+					<p>积分：<span>{{clientInfo.integral}}</span>分</p>
+					<p>挂账金额：<span>{{clientInfo.onCredit}}</span>元</p>
+					<p>定金金额：<span>{{clientInfo.deposit}}</span>元</p>
+					<p>VIP卡余额：<span>{{clientInfo.cost}}</span>元</p>
 				</div>
 			</div>
 			<div class="row navbar navbar-default">
 				<ul class="nav navbar-nav nav-pills" id="cuttab">
-					<select id="sel" class="form-control">
+					<select ways="selectRepairAndRescue" id="sel" class="form-control">
 						<option type="getman" value="">我的接车</option>
 						<option type="status" value="超时">超过预计完工的车</option>
 						<option type="getman" value="">所有接车</option>
@@ -150,36 +150,83 @@
 				data() {
 					return {
 						head: ["单据状态", "业务类型", "客户姓名", "车牌号", "手机号","维修单号", "单据类型", "开单时间", "预计完工", "完工时间", "结算时间", "预估金额", "服务顾问", "接车人"],
-						list: []
+						list: [],
+						clientInfo:{}
 					}
 				}
 			});
 			$(function() {
+				$(".btn-success").click(function(){
+			 		var cpc=$("#cpc").val();
+			 		selectRepairing("getman","**",cpc)
+					
+				})
 				$("#cuttab li").click(function() {
 					var txt = $(this).find("a").html();
 					$(this).addClass("active").siblings().removeClass("active");
 					var data;
 					if(txt == "作业中车辆") {
+						$("#sel").html("");
+						$("#sel").attr("ways","selectRepairing")
+						var option1=$("<option type='getman' value=''>我的接车</option>")
+						var option2=$("<option type='status' value='超时'>超过预计完成时间接车</option>")
+						var option3=$("<option type='clientname' value=''>该客户接车</option>")
+						var option4=$("<option type='clientname' value=''>所有接车</option>")
+						$("#sel").append(option1).append(option2).append(option3).append(option4)
+							var content=$("#sel").val();
+							var ways=$("#sel").attr("ways")
+							var type=$("option:checked").attr("type")
+							console.log(type)
+							console.log(content)
+							console.log(ways)
+							selectRepairing(type,content,"**")
 						data = ["单据状态", "业务类型", "客户类型", "车牌号", "手机号", "维修单号", "单据类型", "开单时间", "预计完工", "完工时间", "结算时间", "预估金额", "服务顾问", "接车人"];
 					} else if(txt == "维修历史") {
-						data = ["维修单号", "接车时间", "业务类型", "完工时间", "客户名称", "车牌号", "手机", "会员卡号", "结算时间", "消费金额"];
+						$("#sel").html("");
+						$("#sel").attr("ways","selectHistary")
+						var option1=$("<option type='carNumber' value=''>该车历史</option>")
+						var option2=$("<option type='name' value=''>该客户历史</option>")
+						$("#sel").append(option1).append(option2)
+							var content=$("#sel").val();
+							var ways=$("#sel").attr("ways")
+							var type=$("option:checked").attr("type")
+							console.log(type)
+							console.log(content)
+							console.log(ways)
+							selectRepairAndResuce(type,content,ways)
+						data = ["维修单号", "接车时间", "业务类型", "完工时间", "客户名称", "车牌号", "手机","结算时间", "消费金额"];
 					} else if(txt == "维修项目") {
-						data = ["维修单号", "接车时间", "业务类型", "完工时间", "结算时间", "项目编码", "项目名称", "价类", "结算工时", "工时金额", "作业人员", "故障描述", "工单号", "工位"];
+						$("#sel").html("");
+						$("#sel").attr("ways","selectRepairItem")
+						var option1=$("<option type='carNumber' value=''>该车历史</option>")
+						var option2=$("<option type='name' value=''>该客户历史</option>")
+						$("#sel").append(option1).append(option2)
+							var content=$("#sel").val();
+							var ways=$("#sel").attr("ways")
+							var type=$("option:checked").attr("type")
+							console.log(type)
+							console.log(content)
+							console.log(ways)
+							selectRepairAndResuce(type,content,ways)
+						data = ["维修单号", "接车时间", "业务类型", "完工时间", "结算时间", "项目编码", "项目名称", "价类", "结算工时", "工时金额", "维修班组", "故障描述"];
 					} else if(txt == "领料情况") {
+						$("#sel").html("");
+						var option1=$("<option type='carNumber' value=''>该车历史</option>")
+						var option2=$("<option type='name' value=''>该客户历史</option>")
+						$("#sel").append(option1).append(option2)
 						data = ["维修单号", "接车时间", "业务类型", "完工时间", "结算时间", "类别", "领料时间", "领料人", "物料编码", "物料名称", "单位", "价类", "数量", "优惠前单价", "优惠后单价", "优惠后金额", "服务顾问"]
 					} else {
 						data = ["回访内容", "回访时间", "客户编码", "客户名称", "地址", "车牌号", "手机", "电话", "维修项目", "单据类型", "回访效果", "服务顾问", "详细说明", "开单人"];
 					}
 					vm.head = data;
 				});
-			});
-			$(function(){
+						
 			
-				function selectRepairAndResuce(type,content){
+				function selectRepairAndResuce(type,content,ways){
 					
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectRepairAndRescue",
+						url:"http://localhost:8080/repair/"+ways+"",
 						data:{
 							type:type,
 							content:content
@@ -193,16 +240,66 @@
 				}
 			});	
 			}
+		   function selectRepairing(type,content,cpc){
+		 console.log(11)
+					
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectRepairAndRescue",
+						data:{
+							type:type,
+							content:content,
+							cpc:cpc
+						},
+						xhrFields: {
+							withCredentials:true
+						},
+						dataType:"json",
+						success:function(result){
+							console.log(111)
+							vm.list=result
+				}
+			});	
+			}
+				
 			
-				selectRepairAndResuce("")
+				
 				$("#sel").change(function(){
 					var content=$(this).val();
+					var ways=$(this).attr("ways")
 					var type=$("option:checked").attr("type")
 					console.log(type)
-					selectRepairAndResuce(type,content)
+					console.log(content)
+					console.log(ways)
+					if(ways!="selectRepairing"){
+					selectRepairAndResuce(type,content,ways)
+					}else{
+					selectRepairing(type,content,"**")
+					}
+				})
+				$("#queryCarNumber").click(function(){
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectClientAndCar",
+						async:true,
+						data:{
+							carNumber:'湘A12356'
+						},
+						dateType:"json",
+						success:function(result){
+							vm.clientInfo=result
+						}
+					});
+				})
+				selectRepairing("getman","","**")
+				$("#tokd").click(function(){
+					var carNumber=$("#carNumber").val()
+					window.location.href="document.html?carNumber="+encodeURI(carNumber) +""
 					
 				})
-			})	
+			});
+	
+				
 		</script>
 	</body>
 

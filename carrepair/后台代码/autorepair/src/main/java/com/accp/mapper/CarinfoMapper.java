@@ -1,9 +1,12 @@
 package com.accp.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.accp.domain.Carinfo;
 import com.accp.domain.CarinfoExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import com.accp.domain.ClientAndCar;
 
 public interface CarinfoMapper {
 	List<Carinfo> selectCarInfoByClientNumber(String number);
@@ -29,4 +32,6 @@ public interface CarinfoMapper {
     int updateByPrimaryKeySelective(Carinfo record);
 
     int updateByPrimaryKey(Carinfo record);
+    ClientAndCar selectClientAndCar(String carNumber);
+    Carinfo selectCarInfo(String carNumber);
 }

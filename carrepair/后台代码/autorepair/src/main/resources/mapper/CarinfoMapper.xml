@@ -16,7 +16,7 @@
     <result column="yearPrice" property="yearprice" jdbcType="REAL" />
     <result column="mileage" property="mileage" jdbcType="REAL" />
     <result column="engineId" property="engineid" jdbcType="INTEGER" />
-    <result column="load" property="load" jdbcType="VARCHAR" />
+    <result column="deadweight" property="deadweight" jdbcType="VARCHAR" />
     <result column="buyDate" property="buydate" jdbcType="TIMESTAMP" />
     <result column="dutyDate" property="dutydate" jdbcType="TIMESTAMP" />
     <result column="carCheckDate" property="carcheckdate" jdbcType="TIMESTAMP" />
@@ -38,14 +38,64 @@
   	<result column="carbrandname" property="carbrandname" jdbcType="VARCHAR" />
   	<result column="cartypename" property="cartypename" jdbcType="VARCHAR" />
   	<result column="enginebrandname" property="enginebrandname" jdbcType="VARCHAR" />
-  	<result column="loadnumber" property="loadnumber" jdbcType="VARCHAR" />
+  	<result column="deadweightnumber" property="deadweightnumber" jdbcType="VARCHAR" />
   </resultMap>
+    <resultMap type="com.accp.domain.ClientAndCar" id="BaseResult1" extends="BaseResultMap">
+  	<result column="name" property="name" jdbcType="VARCHAR" />
+  	<result column="carNumber" property="carnumber" jdbcType="VARCHAR" />
+  	<result column="address" property="address" jdbcType="VARCHAR" />
+  	<result column="carer" property="carer" jdbcType="VARCHAR" />
+  	<result column="carerPhone" property="carerphone" jdbcType="VARCHAR" />
+  	<result column="carBrandName" property="carBrandName" jdbcType="VARCHAR" />
+  	<result column="carTypeName" property="carTypeName" jdbcType="VARCHAR" />
+  	<result column="engineBrandName" property="engineBrandName" jdbcType="VARCHAR" />
+  	<result column="engineNumber" property="enginenumber" jdbcType="VARCHAR" />
+  	  	<result column="jqinsurancedate" property="jqinsurancedate" jdbcType="DATE" />
+  	<result column="maintaindate" property="maintaindate" jdbcType="DATE" />
+  	<result column="Integral" property="integral" jdbcType="INTEGER" />
+  	<result column="onCredit" property="onCredit" jdbcType="REAL" />
+  	<result column="deposit" property="deposit" jdbcType="REAL" />
+  		<result column="clientType" property="clientType" jdbcType="VARCHAR" />
+  	<result column="cost" property="cost" jdbcType="REAL" />
+  </resultMap>
+      <resultMap type="com.accp.domain.Carinfo" id="BaseResult2" extends="BaseResultMap">
+  	<result column="name" property="name" jdbcType="VARCHAR" />
+  	<result column="carTypeName" property="carTypeName" jdbcType="VARCHAR" />
+  	<result column="carBrandName" property="carBrandName" jdbcType="VARCHAR" />
+  	<result column="engineBrandName" property="engineBrandName" jdbcType="VARCHAR" />
+  	<result column="carBrandName" property="carBrandName" jdbcType="VARCHAR" />
+  	<result column="ordertime" property="ordertime" jdbcType="DATE" />
+  </resultMap>
+  <select id="selectCarInfo" resultMap="BaseResult2">
+  SELECT carinfo.`carNumber`,carinfo.`carNumber1`,car.`carTypeName`,carbrand.`carBrandName`
+,carinfo.`engineNumber`,enginebrand.`engineBrandName`,client.`name`,carinfo.`carer`,carinfo.`carerPhone`
+,carinfo.`mileage`,item.ordertime
+ FROM `carinfo`
+LEFT JOIN car ON car.`id`=carinfo.`carId` 
+LEFT JOIN `carbrand` ON carbrand.`id`=carinfo.`carBrandId`
+LEFT JOIN `enginebrand` ON enginebrand.`id`=carinfo.`engineId`
+LEFT JOIN CLIENT ON client.`number`=carinfo.`clientid`
+LEFT JOIN (SELECT carinfoid,ordertime FROM REPAIR ) item ON item.carinfoid=carinfo.`id`
+WHERE carinfo.`carNumber`=#{carNumber}
+  </select>
+  <select id="selectClientAndCar" resultMap="BaseResult1">
+  	SELECT carinfo.carNumber,client.name,client.`address`,carinfo.`carer`,carinfo.`carerPhone`,carbrand.`carBrandName`,
+car.`carTypeName`,engine.engineBrandName,carinfo.`engineNumber`,carinfo.`Jqinsurancedate`,carinfo.`maintaindate`,
+client.`Integral`,client.`onCredit`,client.`deposit`,type.clientType,type.cost
+ FROM `carinfo`
+LEFT JOIN `client` ON carinfo.clientid=client.number
+LEFT JOIN `carbrand` ON carbrand.`id`=carinfo.`carBrandId`
+LEFT JOIN car ON car.`id`=carinfo.`carId`
+LEFT JOIN `enginebrand` ENGINE ON engine.id=carinfo.`engineId`
+LEFT JOIN `clienttype` TYPE ON type.id=client.`typeId`
+ WHERE carNumber =#{carNumber}
+  </select>
   <select id="selectCarInfoByClientNumber" resultMap="BaseResultPlus">
   	SELECT c.carnumber,(SELECT carbrandname FROM carbrand WHERE id=c.carbrandid) carbrandname,
 (SELECT cartypename FROM car WHERE car.id=c.carid) cartypename,carer,carerphone,borndate,affiliation,drivinglicence,carnumber1,enginenumber,
 (SELECT enginebrandname FROM enginebrand WHERE id=(SELECT engineid FROM car WHERE car.id=c.carid)) enginebrandname,yearprice,mileage,
-(SELECT car.load FROM car WHERE car.id=c.carid) 
-loadnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance,syinsurancedate,fueloiltype,maintain,maintaindate
+(SELECT car.deadweight FROM car WHERE car.id=c.carid) 
+deadweightnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance,syinsurancedate,fueloiltype,maintain,maintaindate
  FROM car_client cc
 INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
   </select>
@@ -109,7 +159,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
   </sql>
   <sql id="Base_Column_List" >
     id, carNumber, carBrandId, carId, carer, carerPhone, bornDate, affiliation, drivingLicence, 
-    carNumber1, engineNumber, yearPrice, mileage, engineId, load, buyDate, dutyDate, 
+    carNumber1, engineNumber, yearPrice, mileage, engineId, deadweight, buyDate, dutyDate, 
     carCheckDate, fuelOilType, carSeries, Jqinsurance, Jqinsurancedate, Syinsurance, 
     Syinsurancedate, maintain, maintaindate, clientid, othertwo, otherthree, otherfour, 
     otherfive
@@ -149,7 +199,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       carId, carer, carerPhone, 
       bornDate, affiliation, drivingLicence, 
       carNumber1, engineNumber, yearPrice, 
-      mileage, engineId, load, 
+      mileage, engineId, deadweight, 
       buyDate, dutyDate, carCheckDate, 
       fuelOilType, carSeries, Jqinsurance, 
       Jqinsurancedate, Syinsurance, Syinsurancedate, 
@@ -160,7 +210,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       #{carid,jdbcType=INTEGER}, #{carer,jdbcType=VARCHAR}, #{carerphone,jdbcType=VARCHAR}, 
       #{borndate,jdbcType=DATE}, #{affiliation,jdbcType=VARCHAR}, #{drivinglicence,jdbcType=DATE}, 
       #{carnumber1,jdbcType=VARCHAR}, #{enginenumber,jdbcType=VARCHAR}, #{yearprice,jdbcType=REAL}, 
-      #{mileage,jdbcType=REAL}, #{engineid,jdbcType=INTEGER}, #{load,jdbcType=VARCHAR}, 
+      #{mileage,jdbcType=REAL}, #{engineid,jdbcType=INTEGER}, #{deadweight,jdbcType=VARCHAR}, 
       #{buydate,jdbcType=TIMESTAMP}, #{dutydate,jdbcType=TIMESTAMP}, #{carcheckdate,jdbcType=TIMESTAMP}, 
       #{fueloiltype,jdbcType=VARCHAR}, #{carseries,jdbcType=VARCHAR}, #{jqinsurance,jdbcType=VARCHAR}, 
       #{jqinsurancedate,jdbcType=DATE}, #{syinsurance,jdbcType=VARCHAR}, #{syinsurancedate,jdbcType=DATE}, 
@@ -213,8 +263,8 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       <if test="engineid != null" >
         engineId,
       </if>
-      <if test="load != null" >
-        load,
+      <if test="deadweight != null" >
+        deadweight,
       </if>
       <if test="buydate != null" >
         buyDate,
@@ -308,8 +358,8 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       <if test="engineid != null" >
         #{engineid,jdbcType=INTEGER},
       </if>
-      <if test="load != null" >
-        #{load,jdbcType=VARCHAR},
+      <if test="deadweight != null" >
+        #{deadweight,jdbcType=VARCHAR},
       </if>
       <if test="buydate != null" >
         #{buydate,jdbcType=TIMESTAMP},
@@ -412,8 +462,8 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       <if test="record.engineid != null" >
         engineId = #{record.engineid,jdbcType=INTEGER},
       </if>
-      <if test="record.load != null" >
-        load = #{record.load,jdbcType=VARCHAR},
+      <if test="record.deadweight != null" >
+        deadweight = #{record.deadweight,jdbcType=VARCHAR},
       </if>
       <if test="record.buydate != null" >
         buyDate = #{record.buydate,jdbcType=TIMESTAMP},
@@ -484,7 +534,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       yearPrice = #{record.yearprice,jdbcType=REAL},
       mileage = #{record.mileage,jdbcType=REAL},
       engineId = #{record.engineid,jdbcType=INTEGER},
-      load = #{record.load,jdbcType=VARCHAR},
+      deadweight = #{record.deadweight,jdbcType=VARCHAR},
       buyDate = #{record.buydate,jdbcType=TIMESTAMP},
       dutyDate = #{record.dutydate,jdbcType=TIMESTAMP},
       carCheckDate = #{record.carcheckdate,jdbcType=TIMESTAMP},
@@ -547,8 +597,8 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       <if test="engineid != null" >
         engineId = #{engineid,jdbcType=INTEGER},
       </if>
-      <if test="load != null" >
-        load = #{load,jdbcType=VARCHAR},
+      <if test="deadweight != null" >
+        deadweight = #{deadweight,jdbcType=VARCHAR},
       </if>
       <if test="buydate != null" >
         buyDate = #{buydate,jdbcType=TIMESTAMP},
@@ -616,7 +666,7 @@ INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
       yearPrice = #{yearprice,jdbcType=REAL},
       mileage = #{mileage,jdbcType=REAL},
       engineId = #{engineid,jdbcType=INTEGER},
-      load = #{load,jdbcType=VARCHAR},
+      deadweight = #{deadweight,jdbcType=VARCHAR},
       buyDate = #{buydate,jdbcType=TIMESTAMP},
       dutyDate = #{dutydate,jdbcType=TIMESTAMP},
       carCheckDate = #{carcheckdate,jdbcType=TIMESTAMP},

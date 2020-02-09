@@ -4,10 +4,12 @@
   <resultMap id="BaseResultMap" type="com.accp.domain.ItemRepair" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="isRepair" property="isrepair" jdbcType="INTEGER" />
-    <result column="wjid" property="wjid" jdbcType="INTEGER" />
+    <result column="wjid" property="wjid" jdbcType="VARCHAR" />
     <result column="itemid" property="itemid" jdbcType="INTEGER" />
     <result column="teamid" property="teamid" jdbcType="INTEGER" />
-    <result column="otherone" property="otherone" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="fprice" property="fprice" jdbcType="DECIMAL" />
+    <result column="priceType" property="pricetype" jdbcType="VARCHAR" />
     <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
     <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
     <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
@@ -72,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, isRepair, wjid, itemid, teamid, otherone, othertwo, otherthree, otherfour, otherfive
+    id, isRepair, wjid, itemid, teamid, count, fprice, priceType, othertwo, otherthree, 
+    otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ItemRepairExample" >
     select
@@ -106,13 +109,15 @@
   </delete>
   <insert id="insert" parameterType="com.accp.domain.ItemRepair" >
     insert into item_repair (id, isRepair, wjid, 
-      itemid, teamid, otherone, 
-      othertwo, otherthree, otherfour, 
-      otherfive)
-    values (#{id,jdbcType=INTEGER}, #{isrepair,jdbcType=INTEGER}, #{wjid,jdbcType=INTEGER}, 
-      #{itemid,jdbcType=INTEGER}, #{teamid,jdbcType=INTEGER}, #{otherone,jdbcType=VARCHAR}, 
-      #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, 
-      #{otherfive,jdbcType=VARCHAR})
+      itemid, teamid, count, 
+      fprice, priceType, othertwo, 
+      otherthree, otherfour, otherfive
+      )
+    values (#{id,jdbcType=INTEGER}, #{isrepair,jdbcType=INTEGER}, #{wjid,jdbcType=VARCHAR}, 
+      #{itemid,jdbcType=INTEGER}, #{teamid,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, 
+      #{fprice,jdbcType=DECIMAL}, #{pricetype,jdbcType=VARCHAR}, #{othertwo,jdbcType=VARCHAR}, 
+      #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, #{otherfive,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.ItemRepair" >
     insert into item_repair
@@ -132,8 +137,14 @@
       <if test="teamid != null" >
         teamid,
       </if>
-      <if test="otherone != null" >
-        otherone,
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="fprice != null" >
+        fprice,
+      </if>
+      <if test="pricetype != null" >
+        priceType,
       </if>
       <if test="othertwo != null" >
         othertwo,
@@ -156,7 +167,7 @@
         #{isrepair,jdbcType=INTEGER},
       </if>
       <if test="wjid != null" >
-        #{wjid,jdbcType=INTEGER},
+        #{wjid,jdbcType=VARCHAR},
       </if>
       <if test="itemid != null" >
         #{itemid,jdbcType=INTEGER},
@@ -164,8 +175,14 @@
       <if test="teamid != null" >
         #{teamid,jdbcType=INTEGER},
       </if>
-      <if test="otherone != null" >
-        #{otherone,jdbcType=VARCHAR},
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="fprice != null" >
+        #{fprice,jdbcType=DECIMAL},
+      </if>
+      <if test="pricetype != null" >
+        #{pricetype,jdbcType=VARCHAR},
       </if>
       <if test="othertwo != null" >
         #{othertwo,jdbcType=VARCHAR},
@@ -197,7 +214,7 @@
         isRepair = #{record.isrepair,jdbcType=INTEGER},
       </if>
       <if test="record.wjid != null" >
-        wjid = #{record.wjid,jdbcType=INTEGER},
+        wjid = #{record.wjid,jdbcType=VARCHAR},
       </if>
       <if test="record.itemid != null" >
         itemid = #{record.itemid,jdbcType=INTEGER},
@@ -205,8 +222,14 @@
       <if test="record.teamid != null" >
         teamid = #{record.teamid,jdbcType=INTEGER},
       </if>
-      <if test="record.otherone != null" >
-        otherone = #{record.otherone,jdbcType=VARCHAR},
+      <if test="record.count != null" >
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.fprice != null" >
+        fprice = #{record.fprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pricetype != null" >
+        priceType = #{record.pricetype,jdbcType=VARCHAR},
       </if>
       <if test="record.othertwo != null" >
         othertwo = #{record.othertwo,jdbcType=VARCHAR},
@@ -229,10 +252,12 @@
     update item_repair
     set id = #{record.id,jdbcType=INTEGER},
       isRepair = #{record.isrepair,jdbcType=INTEGER},
-      wjid = #{record.wjid,jdbcType=INTEGER},
+      wjid = #{record.wjid,jdbcType=VARCHAR},
       itemid = #{record.itemid,jdbcType=INTEGER},
       teamid = #{record.teamid,jdbcType=INTEGER},
-      otherone = #{record.otherone,jdbcType=VARCHAR},
+      count = #{record.count,jdbcType=INTEGER},
+      fprice = #{record.fprice,jdbcType=DECIMAL},
+      priceType = #{record.pricetype,jdbcType=VARCHAR},
       othertwo = #{record.othertwo,jdbcType=VARCHAR},
       otherthree = #{record.otherthree,jdbcType=VARCHAR},
       otherfour = #{record.otherfour,jdbcType=VARCHAR},
@@ -248,7 +273,7 @@
         isRepair = #{isrepair,jdbcType=INTEGER},
       </if>
       <if test="wjid != null" >
-        wjid = #{wjid,jdbcType=INTEGER},
+        wjid = #{wjid,jdbcType=VARCHAR},
       </if>
       <if test="itemid != null" >
         itemid = #{itemid,jdbcType=INTEGER},
@@ -256,8 +281,14 @@
       <if test="teamid != null" >
         teamid = #{teamid,jdbcType=INTEGER},
       </if>
-      <if test="otherone != null" >
-        otherone = #{otherone,jdbcType=VARCHAR},
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="fprice != null" >
+        fprice = #{fprice,jdbcType=DECIMAL},
+      </if>
+      <if test="pricetype != null" >
+        priceType = #{pricetype,jdbcType=VARCHAR},
       </if>
       <if test="othertwo != null" >
         othertwo = #{othertwo,jdbcType=VARCHAR},
@@ -277,10 +308,12 @@
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.ItemRepair" >
     update item_repair
     set isRepair = #{isrepair,jdbcType=INTEGER},
-      wjid = #{wjid,jdbcType=INTEGER},
+      wjid = #{wjid,jdbcType=VARCHAR},
       itemid = #{itemid,jdbcType=INTEGER},
       teamid = #{teamid,jdbcType=INTEGER},
-      otherone = #{otherone,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      fprice = #{fprice,jdbcType=DECIMAL},
+      priceType = #{pricetype,jdbcType=VARCHAR},
       othertwo = #{othertwo,jdbcType=VARCHAR},
       otherthree = #{otherthree,jdbcType=VARCHAR},
       otherfour = #{otherfour,jdbcType=VARCHAR},

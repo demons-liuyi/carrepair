@@ -1,9 +1,12 @@
 package com.accp.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.accp.domain.MaintainHistary;
 import com.accp.domain.Repair;
 import com.accp.domain.RepairExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface RepairMapper {
     int countByExample(RepairExample example);
@@ -27,5 +30,8 @@ public interface RepairMapper {
     int updateByPrimaryKeySelective(Repair record);
 
     int updateByPrimaryKey(Repair record);
-    List<Repair> selectRepairAndRescue(@Param("type") String type,@Param("content")String content);
+    List<Repair> selectRepairAndRescue(@Param("type") String type,@Param("content")String content,@Param("cpc")String cpc);
+    List<MaintainHistary> selectHistray(@Param("type") String type,@Param("content")String content);
+    List<MaintainHistary> selectRepairItem(@Param("type") String type,@Param("content")String content);
+    
 }

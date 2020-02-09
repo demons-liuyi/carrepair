@@ -17,6 +17,7 @@ public class Carinfo {
 	
 	private Boolean check;//是否被选中
 	
+	
     public String getCarbrandname() {
 		return carbrandname;
 	}
@@ -89,7 +90,7 @@ public class Carinfo {
 
     private Integer engineid;
 
-    private String load;
+    private String deadweight;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
@@ -247,12 +248,12 @@ public class Carinfo {
         this.engineid = engineid;
     }
 
-    public String getLoad() {
-        return load;
+    public String getdeadweight() {
+        return deadweight;
     }
 
-    public void setLoad(String load) {
-        this.load = load;
+    public void setdeadweight(String deadweight) {
+        this.deadweight = deadweight;
     }
 
     public Date getBuydate() {
@@ -343,15 +344,17 @@ public class Carinfo {
         this.maintaindate = maintaindate;
     }
 
-    public String getclientid() {
-        return clientid;
-    }
+    
 
-    public void setclientid(String clientid) {
-        this.clientid = clientid;
-    }
+    public String getClientid() {
+		return clientid;
+	}
 
-    public String getOthertwo() {
+	public void setClientid(String clientid) {
+		this.clientid = clientid;
+	}
+
+	public String getOthertwo() {
         return othertwo;
     }
 
@@ -382,4 +385,53 @@ public class Carinfo {
     public void setOtherfive(String otherfive) {
         this.otherfive = otherfive;
     }
+    private String carTypeName;
+    private String carBrandName;
+    private String engineBrandName;
+ 
+
+	public String getCarTypeName() {
+		return carTypeName;
+	}
+
+	public void setCarTypeName(String carTypeName) {
+		this.carTypeName = carTypeName;
+	}
+
+	public String getCarBrandName() {
+		return carBrandName;
+	}
+
+	public void setCarBrandName(String carBrandName) {
+		this.carBrandName = carBrandName;
+	}
+
+	public String getEngineBrandName() {
+		return engineBrandName;
+	}
+
+	public void setEngineBrandName(String engineBrandName) {
+		this.engineBrandName = engineBrandName;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getOrdertime() {
+		return ordertime;
+	}
+
+	public void setOrdertime(Date ordertime) {
+		this.ordertime = ordertime;
+	}
+
+	private String name;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date ordertime;
 }
