@@ -12,6 +12,8 @@ public interface StaffMapper {
 	
 	List<Staff> selectStaffPhone();
 	
+	List<Staff> selectStaffAndPostName(String str);
+	
     int countByExample(StaffExample example);
 
     int deleteByExample(StaffExample example);

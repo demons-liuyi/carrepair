@@ -57,17 +57,7 @@ public class PositionService1 {
 	 */
 	public List<Staff> selectStaffTable(String str) {
 		System.out.println("*str["+str+"]");
-		StaffExample example  =new StaffExample() ;
-		StaffExample.Criteria criteria = example.createCriteria();
-		StaffExample.Criteria criteria1 = example.createCriteria();
-		StaffExample.Criteria criteria2 = example.createCriteria();
-		if (str!=null) {
-			criteria.andStaffnoLike("%"+str+"%");
-			criteria1.andNameLike("%"+str+"%");
-			criteria2.andPhoneLike("%"+str+"%");
-			example.or(criteria1);
-			example.or(criteria2);
-		}
-		return staffMapper.selectByExample(example);
+		
+		return staffMapper.selectStaffAndPostName(str);
 	}
 }
