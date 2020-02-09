@@ -217,8 +217,22 @@ public class Staff {
     private String otherfour;
 
     private String otherfive;
+    
+    
+    //新增的属性  岗位名称用于多表联查时的数据展示  YLL
+    private String postName;
+    public String getPostName() {
+		return postName;
+	}
 
-    public String getStaffno() {
+	public void setPostName(String postName) {
+		this.postName = postName;
+	}
+	//postName 结尾
+	
+	
+
+	public String getStaffno() {
         return staffno;
     }
 
