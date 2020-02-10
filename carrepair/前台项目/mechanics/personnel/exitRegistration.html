@@ -590,7 +590,7 @@
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-share"></span>
-							<span id="font">导出</span>
+							<span @click="exportExcel()" id="font">导出</span>
 						</li>
 					</ul>
 				</div>
@@ -933,7 +933,7 @@
 				var arr=vm.employeeinfo.departmentid.split(" ");
 				vm.employeeinfo.departmentid=arr[0];
 				var staff=JSON.stringify(vm.employeeinfo);
-				console.log(staff); 
+				 
 				$.ajax({
 					url: "http://localhost:8080/exitRegistration/queryDimissionInfoByCondition",
 					data:staff,
@@ -1015,6 +1015,34 @@
 						console.log(error);
 					}
 				});
+			}
+			//导出数据
+			function exportExcel() {
+				var condition = $("[name=condition]").val();
+				if(condition != null && condition != "") {
+					vm.employeeinfo.name = condition;
+					vm.employeeinfo.check = true;
+				} else {
+					vm.employeeinfo.check = false;
+				}
+				var staff = JSON.stringify(vm.employeeinfo);
+				console.log(staff);					 
+				var form = document.createElement("form");
+				form.style.display = 'none';
+				form.action = "http://localhost:8080/excel/dimissionExportExcel";
+				form.method = "post";
+				document.body.appendChild(form);
+				for(var key in vm.employeeinfo) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = key;
+					input.value = vm.employeeinfo[key];
+					form.appendChild(input);
+				}
+				form.submit();
+				form.remove();
+				vm.employeeinfo.name="";
+				vm.employeeinfo.check="";
 			}
 			var vm = new Vue({
 				el: ".container-fluid",
@@ -1149,6 +1177,10 @@
 								}
 							}
 						}
+					},
+					//导出数据
+					exportExcel: function() {
+						exportExcel();
 					},
 					openstaffquery: function() {
 						selectAllPost();
