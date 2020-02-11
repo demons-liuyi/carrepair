@@ -56,8 +56,11 @@ public class PositionService1 {
 	 * @return 返回符合条件的员工信息
 	 */
 	public List<Staff> selectStaffTable(String str) {
-		System.out.println("*str["+str+"]");
-		
+		System.out.println(str);
+		if (str.equals("")) {
+			str=null;
+			System.out.println("为空/"+str+"/");
+		}
 		return staffMapper.selectStaffAndPostName(str);
 	}
 }
