@@ -116,14 +116,17 @@
 		rightToDiscount, rightOfRelief, jobResume, educationexperience,
 		memberOfFamily, disciplinaryRecords, employmentAdvice, picture,
 		roleId, isDimission FROM staff AS s INNER JOIN `post` AS p ON
-		s.`postId`= p.`id` WHERE (staffNo LIKE
+		s.`postId`= p.`id` 
+		<if test="str != null">
+		WHERE (staffNo LIKE
 		CONCAT(CONCAT('%',#{str}),'%')) OR( NAME LIKE
 		CONCAT(CONCAT('%',#{str}),'%')) OR( phone LIKE CONCAT(CONCAT('%',
 		#{str}),'%'))
+		
+		</if>
 
 
 	</select>
-
 
 
 

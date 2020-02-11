@@ -36,8 +36,7 @@ public class PositionController1 {
 	//按条件查询员工信息
 	@PostMapping("/selectStaff")
 	@ResponseBody
-	public List<Staff> selectStaffByNameByidByPhone(@RequestBody String str){
-		System.out.println(str);
+	public List<Staff> selectStaffByNameByidByPhone(String str){
 		return ps.selectStaffTable(str);
 	}
 	
