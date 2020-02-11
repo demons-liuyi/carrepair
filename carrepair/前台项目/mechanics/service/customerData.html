@@ -1372,7 +1372,7 @@
 								<option :engineid="item.id" v-for="item in engineBrand">{{item.enginebrandname}}</option>
 							</select>
 							<span id="word">载重：</span>
-							<input v-model="CarInfo.load" type="text" />
+							<input v-model="CarInfo.deadweight" type="text" />
 							<span id="word">购买日期：</span>
 							<input v-model="CarInfo.buydate" type="date" />
 						</p>
@@ -1591,7 +1591,7 @@
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-share"></span>
-							<span id="font">导出</span>
+							<span @click="exportExcel()" id="font">导出</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-cog"></span>
@@ -1703,7 +1703,7 @@
 						<li class="pastreview" @click="cuttopastreview()" id="functionli">历史回访</li>
 					</ul>
 				</div>
-				<table border="1px" class="table" style="min-width:2500px;">
+				<table name="tableone" border="1px" class="table" style="min-width:2500px;">
 					<thead>
 						<tr style="background-color: deepskyblue;">
 							<td></td>
@@ -1742,6 +1742,55 @@
 							<td>{{item.maintain}}</td>
 							<td>{{item.maintaindate}}</td>
 						</tr>
+					</tbody>
+				</table>
+				<table name="tabletwo" border="1px" class="table" style="min-width:2500px;">
+					<thead>
+						<tr style="background-color: deepskyblue;">
+							<td></td>
+							<td>单据类型</td>
+							<td>销售单号</td>
+							<td>车牌号</td>
+							<td>维修业务</td>
+							<td>进厂时间</td>
+							<td>完工时间</td>
+							<td>结算时间</td>
+							<td>消费时间</td>		 
+						</tr>
+					</thead>
+					<tbody>
+						<tr @click="updatecarinfocheck(item)" v-for="item in cashierinfo">
+							<td style="width: 40px;">
+								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+							</td>	
+							<td>{{item.paymenttype}}</td>
+							<td>{{item.number}}</td>
+							<td>{{item.carnumber}}</td>
+							<td>{{item.otherone}}</td>
+							<td>{{item.ordertime}}</td>
+							<td>{{item.overtime}}</td>
+							<td>{{item.stockdater}}</td>
+							<td>{{item.starttime}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<table name="tablethree" border="1px" class="table" style="min-width:2500px;">
+					<thead>
+						<tr style="background-color: deepskyblue;">
+							<td></td>
+							<td>回访时间</td>
+							<td>客户编码</td>
+							<td>客户名称</td>
+							<td>地址</td>
+							<td>车牌号</td>
+							<td>联系电话</td>
+							<td>回访效果</td>
+							<td>服务顾问</td>
+							<td>详细说明</td>
+							<td>开单人</td>					 
+						</tr>
+					</thead>
+					<tbody>							 
 					</tbody>
 				</table>
 			</div>
@@ -1937,6 +1986,7 @@
 					success: function(response) {
 						vm.clientinfo = response;
 						selectCarInfoByClientNumber();
+						selectCashierByClientid();
 					},
 					error: function(error) {
 						console.log(error);
@@ -2154,46 +2204,7 @@
 					}
 				});
 			}
-			//根据条件查询客户信息
-			function selectClientInfoByCondition() {
-				vm.Client.sheng = $("[name=sheng]").val();
-				vm.Client.shi = $("[name=shi]").val();
-				vm.Client.qv = $("[name=qv]").val();
-				var enginename=$("[name=engineBrand]").find("option:checked").val();
-				for(var i=0;i<vm.engineBrand.length;i++){ 
-					if(vm.engineBrand[i].enginebrandname==enginename){
-						vm.CarInfo.engineid=vm.engineBrand[i].id;					 
-						break;
-					}
-					if(i==vm.engineBrand.length-1){
-						vm.CarInfo.engineid="";
-					}
-				}
-				vm.CarInfo.jqinsurance = $("[name=baoxian").val();
-				vm.coll.carInfo = vm.CarInfo;
-				vm.coll.client = vm.Client;
-				var coll = JSON.stringify(vm.coll);
-				console.log(coll); 
-				 
-				$.ajax({
-					url: "http://localhost:8080/customerData/selectClientInfoByCondition",
-					data: coll,
-					type: "post",
-					dataType: "json",
-					contentType: "application/json;charset=utf-8",
-					xhrFields: {
-						withCredentials: true
-					},
-					success: function(response) {
-						console.log(response);
-						vm.clientinfo = response;
-						selectCarInfoByClientNumber();
-					},
-					error: function(error) {
-						console.log(error);
-					}
-				});
-			}
+		
 			//根据条件查询客户信息
 			function queryClientInfoByCondition() {
 				var condition = $("[name=condition]").val();
@@ -2212,13 +2223,13 @@
 						console.log(response);
 						vm.clientinfo = response;
 						selectCarInfoByClientNumber();
+						selectCashierByClientid();
 					},
 					error: function(error) {
 						console.log(error);
 					}
 				});
-			}
-			
+			}		
 			//根据车牌号查询车辆指定资料
 			function queryCarInfoByCarNumber(number) {
 				$.ajax({
@@ -2424,20 +2435,139 @@
 					}
 				});
 			}
+			//根据条件查询客户信息
+			function selectClientInfoByCondition() {
+				vm.Client.sheng = $("[name=sheng]").val();
+				vm.Client.shi = $("[name=shi]").val();
+				vm.Client.qv = $("[name=qv]").val();
+				var enginename=$("[name=engineBrand]").find("option:checked").val();
+				for(var i=0;i<vm.engineBrand.length;i++){ 
+					if(vm.engineBrand[i].enginebrandname==enginename){
+						vm.CarInfo.engineid=vm.engineBrand[i].id;					 
+						break;
+					}
+					if(i==vm.engineBrand.length-1){
+						vm.CarInfo.engineid="";
+					}
+				}
+				vm.CarInfo.jqinsurance = $("[name=baoxian").val();
+				vm.coll.carInfo = vm.CarInfo;
+				vm.coll.client = vm.Client;
+				var coll = JSON.stringify(vm.coll);
+				console.log(coll); 			 
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectClientInfoByCondition",
+					data: coll,
+					type: "post",
+					dataType: "json",
+					contentType: "application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						vm.clientinfo = response;
+						selectCarInfoByClientNumber();
+						selectCashierByClientid();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据客户编号查询历史消费
+			function selectCashierByClientid(){
+				var qwe = 0;
+				for(var i = 0; i < vm.clientinfo.length; i++) {
+					if(vm.clientinfo[i].check == true) {
+						qwe = vm.clientinfo[i].number;
+					}
+				}
+				$.ajax({
+					url: "http://localhost:8080/customerData/selectCashierByClientid",
+					data: {clientid:qwe},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						vm.cashierinfo = response;			 
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//导出数据
+			function exportExcel() {
+				vm.Client.sheng = $("[name=sheng]").val();
+				vm.Client.shi = $("[name=shi]").val();
+				vm.Client.qv = $("[name=qv]").val();
+				var enginename = $("[name=engineBrand]").find("option:checked").val();
+				for(var i = 0; i < vm.engineBrand.length; i++) {
+					if(vm.engineBrand[i].enginebrandname == enginename) {
+						vm.CarInfo.engineid = vm.engineBrand[i].id;
+						break;
+					}
+					if(i == vm.engineBrand.length - 1) {
+						vm.CarInfo.engineid = "";
+					}
+				}
+				vm.CarInfo.jqinsurance = $("[name=baoxian").val();
+				var condition = $("[name=condition]").val();
+				console.log(condition);
+				if(condition != null && condition.length > 0) {
+					vm.Client.sheng = "";
+					vm.Client.shi = "";
+					vm.Client.qv = "";
+					vm.Client.name = condition;
+					vm.Client.check=true;
+				}else{
+					vm.Client.check=false;
+				}
+				vm.coll.carInfo = vm.CarInfo;
+				vm.coll.client = vm.Client;						 
+				var form = document.createElement("form");
+				form.style.display = 'none';
+				form.action = "http://localhost:8080/excel/clientExportExcel";
+				form.method = "post";
+				document.body.appendChild(form);
+				for(var key in vm.CarInfo) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "carinfo";
+					input.value = JSON.stringify(vm.coll.carInfo);
+					form.appendChild(input);
+				}
+				for(var key in vm.Client) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "client";
+					input.value = JSON.stringify(vm.coll.client);
+					form.appendChild(input);
+				}
+				form.submit();
+				form.remove();
+				vm.Client.name = "";
+				vm.Client.check="";
+			}
 			var vm = new Vue({
 				el: ".container-fluid",
 				data() {
 					return {
 						arr: arrAll,
-						prov: '北京',
-						city: '北京',
-						district: '东城区',
+						prov: '',
+						city: '',
+						district: '',
 						cityArr: [],
 						districtArr: [],
 						clientinfo: {},
 						carinfo: {},
 						data: [],
 						car: [],
+						cashierinfo:{},
 						carBrand: [],
 						department: [],
 						clientType: [],
@@ -2483,7 +2613,7 @@
 							"yearprice": "",
 							"mileage": "",
 							"engineid": "",
-							"load": "",
+							"deadweight": "",
 							"buydate": "",
 							"dutydate": "",
 							"carcheckdate": "",
@@ -2540,7 +2670,7 @@
 							"yearprice": "",
 							"mileage": "",
 							"engineid": "",
-							"load": "",
+							"deadweight": "",
 							"buydate": "",
 							"dutydate": "",
 							"carcheckdate": "",
@@ -2608,6 +2738,55 @@
 					},
 					//根据条件查询客户资料
 					queryClientInfoByCondition: function() {
+						this.Client= {
+							"number": "",
+							"name": "",
+							"linkman": "",
+							"phone": "",
+							"address": "",
+							"borndate": "",
+							"paymentdays": "",
+							"paymentsize": "",
+							"staffno": "",
+							"counselorname": "",
+							"sheng": "",
+							"shi": "",
+							"qv": "",
+							"remark": "",
+							"taxpayernumber": "",
+							"registerphone": "",
+							"bank": "",
+							"banknumber": "",
+							"registeraddress": "",
+							"staffname": ""
+						},
+						this.CarInfo= {
+							"carnumber": "",
+							"carbrandid": "",
+							"carid": "",
+							"carer": "",
+							"carerphone": "",
+							"borndate": "",
+							"affiliation": "",
+							"drivinglicence": "",
+							"carnumber1": "",
+							"enginenumber": "",
+							"yearprice": "",
+							"mileage": "",
+							"engineid": "",
+							"deadweight": "",
+							"buydate": "",
+							"dutydate": "",
+							"carcheckdate": "",
+							"fueloiltype": "",
+							"carseries": "",
+							"jqinsurance": "",
+							"jqinsurancedate": "",
+							"syinsurance": "",
+							"syinsurancedate": "",
+							"maintain": "",
+							"maintaindate": ""
+						}
 						queryClientInfoByCondition();
 
 					},
@@ -2684,6 +2863,7 @@
 						}
 						item.check = true;
 						selectCarInfoByClientNumber();
+						selectCashierByClientid();
 					},
 					//确定选择的员工事件
 					makesurestaff: function() {
@@ -2753,7 +2933,7 @@
 							"yearprice": "",
 							"mileage": "",
 							"engineid": "",
-							"load": "",
+							"deadweight": "",
 							"buydate": "",
 							"dutydate": "",
 							"carcheckdate": "",
@@ -3013,16 +3193,27 @@
 					closeaddcustomerandcar: function() {
 						$("#addcustomerandcar").removeClass("show");
 					},
+					//车辆信息事件
 					cuttocar: function() {
 						vm.data = vm.carInfo;
+						$("[name=tableone").show();
+						$("[name=tabletwo").hide();
+						$("[name=tablethree").hide();
 						$(".carinfo").addClass("color").siblings().removeClass("color");
 					},
+					//历史消费事件
 					cuttopastbuy: function() {
-						vm.data = vm.pastbuy;
+						$("[name=tableone").hide();
+						$("[name=tabletwo").show();
+						selectCashierByClientid();
+						$("[name=tablethree").hide();
 						$(".pastbuy").addClass("color").siblings().removeClass("color");
 					},
+					//历史回访事件
 					cuttopastreview: function() {
-						vm.data = vm.pastreview;
+						$("[name=tableone").hide();
+						$("[name=tabletwo").hide();
+						$("[name=tablethree").show();
 						$(".pastreview").addClass("color").siblings().removeClass("color");
 					},
 					customerdown: function() {
@@ -3036,6 +3227,10 @@
 					},
 					carup: function() {
 						$(".car").removeClass("show");
+					},
+					//导出数据
+					exportExcel: function() {
+						exportExcel();
 					},
 					//打开客户查询窗体
 					openstaffquery: function() {					
@@ -3097,7 +3292,7 @@
 							"yearprice": "",
 							"mileage": "",
 							"engineid": "",
-							"load": "",
+							"deadweight": "",
 							"buydate": "",
 							"dutydate": "",
 							"carcheckdate": "",
@@ -3142,6 +3337,8 @@
 					selectAllClientType();
 					selectAllEngineBrand();
 					selectAllCarBrand();
+					$("[name=tabletwo]").hide();
+					$("[name=tablethree]").hide();
 				}
 			});
 		</script>

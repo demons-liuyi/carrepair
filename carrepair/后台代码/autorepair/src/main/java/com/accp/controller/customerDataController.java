@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.accp.domain.Car;
 import com.accp.domain.Carbrand;
 import com.accp.domain.Carinfo;
+import com.accp.domain.Cashier;
 import com.accp.domain.Client;
 import com.accp.domain.Clienttype;
 import com.accp.domain.Coll;
@@ -21,6 +22,7 @@ import com.accp.domain.Staff;
 import com.accp.service.carBrandService;
 import com.accp.service.carInfoService;
 import com.accp.service.carService;
+import com.accp.service.cashierService;
 import com.accp.service.clientService;
 import com.accp.service.clientTypeService;
 import com.accp.service.engineBrandService;
@@ -43,6 +45,21 @@ public class customerDataController {
 	carBrandService cbs;
 	@Autowired
 	carService cars;
+	@Autowired
+	cashierService css;
+	
+	@RequestMapping("/selectCashierByClientid")
+	public List<Cashier> selectCashierByClientid(String clientid){
+		List<Cashier> list=css.selectCashierByClientid(clientid);
+		for(int i=0;i<list.size();i++) {
+			if(i==0) {
+				list.get(i).setCheck(true);
+			}else {
+				list.get(i).setCheck(false);	
+			}
+		}
+		return list;
+	}
 	
 	@RequestMapping("/insertClientAndCarInfo")
 	public String insertClientAndCarInfo(@RequestBody Coll coll) {
@@ -53,7 +70,6 @@ public class customerDataController {
 			return "0";
 		}	
 	}
-	
 	
 	@RequestMapping("/deleteCarInfoByCarNumber")
 	public String deleteCarInfoByCarNumber(String number) {
