@@ -44,7 +44,7 @@
   	<result column="clientname" property="clientname" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectAllCarInfo" resultMap="BaseResultPlus">
-  	SELECT c.carnumber,(SELECT carbrandname FROM carbrand WHERE id=c.carbrandid) carbrandname,
+  	SELECT c.id,c.carnumber,(SELECT carbrandname FROM carbrand WHERE id=c.carbrandid) carbrandname,
 (SELECT cartypename FROM car WHERE car.id=c.carid) cartypename,carer,carerphone,borndate,affiliation,drivinglicence,carnumber1,enginenumber,
 (SELECT enginebrandname FROM enginebrand WHERE id=c.engineid) enginebrandname,yearprice,mileage,
 (SELECT car.deadweight FROM car WHERE car.id=c.carid) 
