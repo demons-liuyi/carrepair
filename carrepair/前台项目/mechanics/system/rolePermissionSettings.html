@@ -542,6 +542,27 @@
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<script>
+			//查询所有岗位信息
+			function selectAllPostInfo(){
+				$.ajax({
+					url: "http://localhost:8080/carData/selectRepairByCarNumber",
+					data: {
+						number: number
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						vm.repairInfo = response;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
 			var vm = new Vue({
 				el: ".container-fluid",
 				data() {
