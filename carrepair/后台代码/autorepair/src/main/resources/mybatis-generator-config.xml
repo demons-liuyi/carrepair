@@ -33,54 +33,7 @@
 		<javaClientGenerator targetPackage="com.accp.mapper"
 			targetProject="src/main/java" type="XMLMAPPER" />
 			<!-- <table schema="student" tableName="student"></table> -->
-			<table schema="artisan" tableName="artisan"></table>
-			<table schema="artisanclass" tableName="artisanclass"></table>
-			<table schema="artisanlevel" tableName="artisanlevel"></table>
-			<table schema="car" tableName="car"></table>
-			<table schema="car_client" tableName="car_client"></table>
-			
-			<table schema="carbrand" tableName="carbrand"></table>
-			<table schema="carinfo" tableName="carinfo"></table>
-			<table schema="cashier" tableName="cashier"></table>
-			<table schema="client" tableName="client"></table>
-		
-			<table schema="clienttype" tableName="clienttype"></table>
-			<table schema="itemtype" tableName="itemtype"></table>
-			<table schema="commodity" tableName="commodity"></table>
-			<table schema="commoditytype" tableName="commoditytype"></table>
-			
-			<table schema="completed" tableName="completed"></table>
-			<table schema="department" tableName="department"></table>
-			<table schema="dimission" tableName="dimission"></table>
-			<table schema="enginebrand" tableName="enginebrand"></table>
-			
-			<table schema="ewitem" tableName="ewitem"></table>
 			<table schema="getgood" tableName="getgood"></table>
-			<table schema="invoice" tableName="invoice"></table>
-			<table schema="item_repair" tableName="item_repair"></table>
-			
-			<table schema="jurisdiction" tableName="jurisdiction"></table>
-			<table schema="legworkcat" tableName="legworkcat"></table>
-			<table schema="linkman" tableName="linkman"></table>
-			 
-			
-			
-			
-			
-			<table schema="maintainregist" tableName="maintainregist"></table>
-			<table schema="maintenanceitems" tableName="maintenanceitems"></table>
-			<table schema="manufacturer" tableName="manufacturer"></table>
-			<table schema="materialrequire_good" tableName="materialrequire_good"></table>
-			
-			 
-			<table schema="post" tableName="post"></table>
-			<table schema="repair" tableName="repair"></table>
-			<table schema="rescue" tableName="rescue"></table>
-			
-			<table schema="role" tableName="role"></table>
-			<table schema="role_jurisdiction" tableName="role_jurisdiction"></table>
-			<table schema="staff" tableName="staff"></table>
-			<table schema="work" tableName="work"></table>
 			<!-- <table schema="major" tableName="major"></table>	
 			<table schema="exam" tableName="exam"></table>		
 			<table schema="course" tableName="course"></table>		 -->	

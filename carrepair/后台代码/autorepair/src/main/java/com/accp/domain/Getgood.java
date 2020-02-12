@@ -9,6 +9,20 @@ public class Getgood {
 
     private String item;
 
+    private String pricetype;
+
+    private String discountsprice;
+
+    private String wjid;
+
+    private String warehouse;
+
+    private String isrepair;
+
+    private String cause;
+
+    private String type;
+
     private String otherone;
 
     private String othertwo;
@@ -49,6 +63,62 @@ public class Getgood {
 
     public void setItem(String item) {
         this.item = item;
+    }
+
+    public String getPricetype() {
+        return pricetype;
+    }
+
+    public void setPricetype(String pricetype) {
+        this.pricetype = pricetype;
+    }
+
+    public String getDiscountsprice() {
+        return discountsprice;
+    }
+
+    public void setDiscountsprice(String discountsprice) {
+        this.discountsprice = discountsprice;
+    }
+
+    public String getWjid() {
+        return wjid;
+    }
+
+    public void setWjid(String wjid) {
+        this.wjid = wjid;
+    }
+
+    public String getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(String warehouse) {
+        this.warehouse = warehouse;
+    }
+
+    public String getIsrepair() {
+        return isrepair;
+    }
+
+    public void setIsrepair(String isrepair) {
+        this.isrepair = isrepair;
+    }
+
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getOtherone() {
