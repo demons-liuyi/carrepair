@@ -31,16 +31,17 @@ public class PositionService1 {
 	 * @return 依据条件的返回结果
 	 */
 	public List<Post> selectPost(Post po ) {
-		System.out.println(po.getPostname()+po.getId());
-		PostExample example = new PostExample();
-		PostExample.Criteria criteria = example.createCriteria();
-		if (po.getId()!=null ) {
-			criteria.andIdEqualTo(po.getId());
-		}
-		if (po.getPostname()!=null) {
-			criteria.andPostnameLike("%"+po.getPostname()+"%");
-		}
-		return post.selectByExample(example);
+//		PostExample example = new PostExample();
+//		PostExample.Criteria criteria = example.createCriteria();
+//条件查询
+//		if (po.getId()!=null ) {
+//			criteria.andIdEqualTo(po.getId());
+//		}
+//		if (po.getPostname()!=null) {
+//			criteria.andPostnameLike("%"+po.getPostname()+"%");
+//		}
+//		return post.selectByExample(example);
+		return post.selectByExample(null);
 	}
 	/**
 	 * 查询人事的部门表
@@ -63,4 +64,46 @@ public class PositionService1 {
 		}
 		return staffMapper.selectStaffAndPostName(str);
 	}
+	
+	
+	/**
+	 * 新增post
+	 * @param po
+	 * @return integer
+	 */
+	public Integer addPost(Post po) {
+		return post.insert(po);
+	}
+	
+	/**
+	 * 修改post
+	 * @param po
+	 * @return integer
+	 */
+	public Integer updatePost(Post po) {
+		return post.updateByPrimaryKey(po);
+	}
+	
+	/**
+	 * 查询一个post是否存在
+	 * @param po
+	 * @return  0 不存在或1存在
+	 */
+	public Integer selectPostById(Post po) {
+		if ( post.selectByPrimaryKey(po.getId())==null) {
+			System.out.println("[sevice] 查询单条Post记录返回："+ post.selectByPrimaryKey(po.getId()));
+			return 0;
+		}
+		return 1;
+	}
+	
+	/**
+	 * 删除一条数据
+	 * @param po
+	 * @return
+	 */
+	public Integer deletePost(Post po) {
+		return post.deleteByPrimaryKey(po.getId());
+	}
+	
 }
