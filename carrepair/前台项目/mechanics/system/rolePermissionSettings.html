@@ -376,6 +376,95 @@
 				height: 50px;
 				background-color: deepskyblue;
 			}
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			
+			*:before,
+			*:after {
+				box-sizing: border-box;
+			}
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			.l_tree_container {
+				width: 100%;
+				height: 100%;
+				box-shadow: 0 0 3px #ccc;
+				margin: 13px;
+				position: relative;
+			}
+			
+			.l_tree {
+				width: calc(100% - 44px);
+				height: 100%;
+				padding-left: 42px;
+			}
+			
+			.l_tree_branch {
+				width: 100%;
+				height: 100%;
+				display: block;
+				padding: 13px;
+				position: relative;
+			}
+			
+			.l_tree_branch .l_tree_children_btn {
+				width: 19px;
+				height: 19px;
+				background-color: #23b1f0;
+				font-size: 14px;
+				text-align: center;
+				color: #ffffff;
+				outline: none;
+				border: 0;
+				cursor: pointer;
+			}
+			
+			ul.l_tree:before {
+				content: '';
+				border-left: 1px dashed #999999;
+				height: calc(100%);
+				position: absolute;
+				left: 10px;
+				top: 0px;
+			}
+			
+			.l_tree .l_tree_branch:last-child::before {
+				content: '';
+				width: 3px;
+				height: calc(100% - 24px);
+				display: block;
+				background-color: #ffffff;
+				position: absolute;
+				bottom: 0;
+				left: -34px;
+			}
+			
+			.l_tree,
+			.l_tree_branch {
+				position: relative;
+			}
+			
+			.l_tree_branch::after {
+				content: '';
+				width: 40px;
+				height: 0;
+				border-bottom: 1px dashed #000;
+				position: absolute;
+				right: calc(100% - 9px);
+				top: 22px;
+			}
+			
+			.l_tree_container>.l_tree::before,
+			.l_tree_container>.l_tree>.l_tree_branch::after {
+				display: none;
+			}
 		</style>
 	</head>
 
@@ -386,8 +475,7 @@
             	作者：1424432629@qq.com
             	时间：2020-01-04
             	描述：角色定义           	
-            -->
-
+           -->
 			<div id="permissioncopy">
 				<div id="permissioncopylinediv">
 					<span id="selectemployeespan">角色定义</span>
@@ -497,8 +585,9 @@
 			<div id="buttondiv">
 				<div style="display: inline-block;margin-top: 10px;margin-left: 10px;">
 					<span>员工姓名：</span>
-					<select style="width: 280px;">
+					<select name="postName" @change="selectChange()" style="width: 280px;">
 						<option></option>
+						<option v-bind:postid="item.id" v-for="item in post">{{item.postname}}</option>
 					</select>
 				</div>
 				<div id="rightbuttondiv">
@@ -534,6 +623,7 @@
 					</li>
 				</ul>
 			</div>
+			<ptree name="tree" :model="perms"></ptree>
 			<div><span>记录条数：</span>
 			</div>
 		</div>
@@ -549,10 +639,8 @@
 >>>>>>> refs/remotes/origin/liuyi
 			function selectAllPostInfo(){
 				$.ajax({
-					url: "http://localhost:8080/carData/selectRepairByCarNumber",
-					data: {
-						number: number
-					},
+					url: "http://localhost:8080/rolePermissionSettings/selectAllPostInfo",
+					 
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -560,19 +648,87 @@
 					},
 					success: function(response) {
 						console.log(response);
-						vm.repairInfo = response;
+						vm.post = response;
 					},
 					error: function(error) {
 						console.log(error);
 					}
 				});
 			}
+			//根据岗位编号查询权限
+			function selectJurisdictionByPostid(){
+				$.ajax({
+						url: "http://localhost:8080/rolePermissionSettings/selectJurisdictionByPostid",
+						type: "post",
+						dataType: "json",
+						xhrFields: {
+							withCredentials: true
+						},
+						success: function(response) {
+							vm.perms = response;
+							console.log(vm.perms);
+						},
+						error: function(error) {
+							console.log(error);
+						}
+					});
+			}
+			var permsTree = Vue.component("ptree", {
+				props: {
+					 model: {}
+				},
+				template: `
+					<ul class="l_tree" style="margin-left:20px">
+						<li class="l_tree_branch" v-for='item in model' v-if="item.catalog==0">
+							<div @click="tick(item)"  @contextmenu.prevent="fork(item)"  class="l_tree_click">
+								<button type="button" class="l_tree_children_btn" v-if="item.childrens"  @click="toggle(item)">{{ !item.show ? '-' : '+' }}</button>
+                    			<span class="l_folder">
+                    			<span v-bind:name="item.jurisdictionname" style="color:green" class="glyphicon glyphicon-ok"></span>
+                    			{{item.jurisdictionname}}</span>
+							</div>						 
+							<ptree v-show="!item.show" v-if="item.childrens" :model = "item.childrens"></ptree>
+						</li>
+					</ul>
+				`,
+
+				methods: {
+					tick(item){
+						$("[name="+item.jurisdictionname+"]").attr("class","glyphicon glyphicon-ok");
+						for(var i=0;i<item.childrens.length;i++){						 
+							$("[name="+item.childrens[i].jurisdictionname+"]").attr("class","glyphicon glyphicon-ok");
+						}
+					},
+					fork(item){ 
+						$("[name="+item.jurisdictionname+"]").attr("class","glyphicon glyphicon-remove");
+						for(var i=0;i<item.childrens.length;i++){					 
+							$("[name="+item.childrens[i].jurisdictionname+"]").attr("class","glyphicon glyphicon-remove");
+						}						 
+					},
+					openHTML(item) {
+						openIFM(item);
+					},
+					toggle: function(item) {
+						var idx = this.model.indexOf(item);
+						Vue.set(this.model[idx], 'show', !item.show)
+					}
+				}
+			});
 			var vm = new Vue({
 				el: ".container-fluid",
 				data() {
-
+					return {
+						perms: [],
+						post:[]
+					}
 				},
 				methods: {
+					selectChange:function(){
+						var postid=$("[name=postName]").find(":checked").attr("postid"); 
+						if(postid!=null){
+							console.log(postid);
+							$("[name=tree]").show(); 
+						}
+					},
 					openstaffquery: function() {
 						$("#staffquery").addClass("show");
 					},
@@ -616,6 +772,10 @@
 					closepermissioncopy: function() {
 						$("#permissioncopy").removeClass("show");
 					}
+				},created:function(){
+					selectAllPostInfo();
+					selectJurisdictionByPostid();
+					$("[name=tree]").hide();
 				}
 			});
 		</script>

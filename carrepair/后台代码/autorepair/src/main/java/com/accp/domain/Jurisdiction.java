@@ -1,7 +1,21 @@
 package com.accp.domain;
 
+import java.security.Permissions;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Jurisdiction {
-    private Integer id;
+	private List<Jurisdiction> childrens = new ArrayList<Jurisdiction>();
+	
+    public List<Jurisdiction> getChildrens() {
+		return childrens;
+	}
+
+	public void setChildrens(List<Jurisdiction> childrens) {
+		this.childrens = childrens;
+	}
+
+	private Integer id;
 
     private String jurisdictionname;
 
