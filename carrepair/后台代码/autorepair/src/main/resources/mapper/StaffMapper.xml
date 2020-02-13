@@ -102,7 +102,11 @@
 		<result column="departmentname" property="departmentname"
 			jdbcType="VARCHAR" />
 	</resultMap>
-
+<select id="selectStaffByNoLast" resultMap="BaseResultMap">
+	
+		SELECT * FROM staff ORDER BY staffNo DESC LIMIT 1
+	
+	</select>
 	<select id="selectStaffAndPostName"
 		resultType="com.accp.domain.Staff" parameterType="java.lang.String">
 		select staffNo, name, sex, departmentId,`postName`, account, password,
