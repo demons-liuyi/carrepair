@@ -20,6 +20,51 @@
     <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
     <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap type="com.accp.domain.Cashier" id="BaseResultplus" extends="BaseResultMap">
+  	<result column="ordertime" property="ordertime" jdbcType="DATE" />
+  	<result column="overtime" property="overtime" jdbcType="DATE" />
+  	<result column="stockdater" property="stockdater" jdbcType="DATE" />
+  	<result column="starttime" property="starttime" jdbcType="DATE" />
+  </resultMap>
+  <select id="selectCashierByClientid" resultMap="BaseResultplus">
+  	SELECT
+     cashier.`paymentType`,cashier.`number`,(select carnumber from carinfo where id=(
+CASE cashier.`otherone`
+WHEN 1 THEN
+    repair.`carinfoId`
+ELSE
+    rescue.`carinfoid`
+END     
+     )) carnumber,cashier.`otherone`,
+CASE cashier.`otherone`
+WHEN 1 THEN 
+    repair.`orderTime`
+else 
+    rescue.`worktime`
+end as ordertime,
+CASE cashier.`otherone`
+WHEN 1 THEN 
+    repair.`nowworkDate`
+else 
+    rescue.`overtime`
+end as overtime,
+CASE cashier.`otherone`
+WHEN 1 THEN 
+    repair.`stockDater`
+else 
+    rescue.`stockDater`
+end as stockdater,
+CASE cashier.`otherone`
+WHEN 1 THEN 
+    repair.`orderTime`
+else 
+    rescue.`worktime`
+end as starttime
+FROM
+    cashier  
+LEFT JOIN repair ON  cashier.`Number`= repair.`number`
+LEFT JOIN rescue ON cashier.`Number` = rescue.`number` where cashier.`cashierstatic`='已支付' and cashier.`clientId`='${clientid}'
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

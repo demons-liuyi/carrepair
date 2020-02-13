@@ -7,7 +7,27 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Repair {
-    private String number;
+	private String carnumber;
+	
+	private Boolean check;
+	
+    public String getCarnumber() {
+		return carnumber;
+	}
+
+	public void setCarnumber(String carnumber) {
+		this.carnumber = carnumber;
+	}
+
+	public Boolean getCheck() {
+		return check;
+	}
+
+	public void setCheck(Boolean check) {
+		this.check = check;
+	}
+
+	private String number;
 
     private Integer carinfoid;
 

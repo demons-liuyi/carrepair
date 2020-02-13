@@ -114,6 +114,7 @@
 				margin-left: 21px;
 				background-color: wheat;
 			}
+			
 			#departmentchoice {
 				border: 1px solid green;
 				position: absolute;
@@ -259,7 +260,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div id="departmentchoice">
 				<div id="departmentchoicelinediv">
 					<span id="departmentchoicespan">部门定义</span>
@@ -328,7 +329,7 @@
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-share"></span>
-							<span id="font">导出</span>
+							<span @click="exportExcel()" id="font">导出</span>
 						</li>
 					</ul>
 				</div>
@@ -382,7 +383,7 @@
 						withCredentials: true
 					},
 					success: function(response) {
-						vm.data = response;		
+						vm.data = response;
 					},
 					error: function(error) {
 						console.log(error);
@@ -407,12 +408,14 @@
 				});
 			}
 			//根据编号或姓名查询员工通讯名录信息
-			function selectStaffPhoneByStaffNoOrName(condition) {		 
+			function selectStaffPhoneByStaffNoOrName(condition) {
 				$.ajax({
 					url: "http://localhost:8080/listCommunication/selectStaffPhoneByStaffNoOrName",
-					data:{condition:condition},
+					data: {
+						condition: condition
+					},
 					type: "post",
-					dataType: "json",		
+					dataType: "json",
 					xhrFields: {
 						withCredentials: true
 					},
@@ -445,17 +448,17 @@
 			}
 			//根据条件查询员工通讯名录信息
 			function selectStaffPhoneByCondition() {
-				var postid=$("[name=postselect]").find("option:selected").attr("postid");
-				vm.employeeinfo.postid=postid;
-				var arr=vm.employeeinfo.departmentid.split(" ");
-				vm.employeeinfo.departmentid=arr[0];
-				var staff=JSON.stringify(vm.employeeinfo);
+				var postid = $("[name=postselect]").find("option:selected").attr("postid");
+				vm.employeeinfo.postid = postid;
+				var arr = vm.employeeinfo.departmentid.split(" ");
+				vm.employeeinfo.departmentid = arr[0];
+				var staff = JSON.stringify(vm.employeeinfo);
 				$.ajax({
 					url: "http://localhost:8080/listCommunication/selectStaffPhoneByCondition",
-					data:staff,
+					data: staff,
 					type: "post",
 					dataType: "json",
-					contentType:"application/json;charset=utf-8",
+					contentType: "application/json;charset=utf-8",
 					xhrFields: {
 						withCredentials: true
 					},
@@ -468,35 +471,85 @@
 					}
 				});
 			}
+			//导出数据
+			function exportExcel() {
+				var condition = $("[name=condition]").val();
+				if(condition != null && condition != "") {
+					vm.employeeinfo.name = condition;
+					vm.employeeinfo.check = true;
+				} else {
+					vm.employeeinfo.check = false;
+				}
+				var staff = JSON.stringify(vm.employeeinfo);
+				console.log(staff);
+				 
+				var form = document.createElement("form");
+				form.style.display = 'none';
+				form.action = "http://localhost:8080/excel/staffExportExcel";
+				form.method = "post";
+				document.body.appendChild(form);
+				for(var key in vm.employeeinfo) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = key;
+					input.value = vm.employeeinfo[key];
+					form.appendChild(input);
+				}
+				form.submit();
+				form.remove();
+				vm.employeeinfo.name=""; 
+				vm.employeeinfo.check="";
+			}
 			var vm = new Vue({
 				el: ".container-fluid",
 				data() {
 					return {
-						data:{},
-						employeeinfo:{"staffno":"","name":"","sex":"","postid":"","departmentid":""
-						,"physicalcondition":"","height":"","nativeplace":"","nation":"","maritalstatus":""
-						,"educationbackground":"","school":"","major":"","professionalqualification":""
-						,"birthdaydate":"","degree":"","authorizedstrength":"","idcardno":"","dateofentryone":""
-						,"dateofentrytwo":"","contractstartdateone":"","contractstartdatetwo":"","property":""
-						,"thetrialdateone":"","thetrialdatetwo":""},
+						data: {},
+						employeeinfo: {
+							"staffno": "",
+							"name": "",
+							"sex": "",
+							"postid": "",
+							"departmentid": "",
+							"physicalcondition": "",
+							"height": "",
+							"nativeplace": "",
+							"nation": "",
+							"maritalstatus": "",
+							"educationbackground": "",
+							"school": "",
+							"major": "",
+							"professionalqualification": "",
+							"birthdaydate": "",
+							"degree": "",
+							"authorizedstrength": "",
+							"idcardno": "",
+							"dateofentryone": "",
+							"dateofentrytwo": "",
+							"contractstartdateone": "",
+							"contractstartdatetwo": "",
+							"property": "",
+							"thetrialdateone": "",
+							"thetrialdatetwo": ""
+						},
 						posts: {},
 						department: []
 					}
 				},
-				created: function() {				 
+				created: function() {
 					selectStaffPhone();
 				},
 				methods: {
-					opendepartmentchoice: function() {				 
+					opendepartmentchoice: function() {
 						selectAllDepartment();
 						$("#departmentchoice").addClass("show");
 					},
 					departmentchoiceqwe: function() {
 						for(var i = 0; i < vm.department.length; i++) {
 							if(vm.department[i].check == true) {
-								vm.employeeinfo.departmentid=vm.department[i].id+" "+vm.department[i].departmentname;	
+								vm.employeeinfo.departmentid = vm.department[i].id + " " + vm.department[i].departmentname;
 							}
-						}	 				 
+						}
 						$("#departmentchoice").removeClass("show");
 					},
 					closedepartmentchoice: function() {
@@ -505,9 +558,9 @@
 					departmentcheck: function(item) {
 						for(var i = 0; i < vm.department.length; i++) {
 							if(vm.department[i].check == true) {
-								vm.employeeinfo.departmentid=vm.department[i].id+" "+vm.department[i].departmentname;
+								vm.employeeinfo.departmentid = vm.department[i].id + " " + vm.department[i].departmentname;
 							}
-						}					 
+						}
 						$("#departmentchoice").removeClass("show");
 					},
 					departmentshift: function(item) {
@@ -517,13 +570,42 @@
 						}
 						item.check = true;
 					},
-					employeeinfomakesure:function(){
+					//员工查询
+					employeeinfomakesure: function() {
 						selectStaffPhoneByCondition();
 						$("#staffquery").removeClass("show");
 					},
-					selectdata:function(){
-						var condition=$("[name=condition]").val();
+					//搜索员工信息
+					selectdata: function() {
+						var condition = $("[name=condition]").val();
 						console.log(condition);
+						this.employeeinfo = {
+							"staffno": "",
+							"name": "",
+							"sex": "",
+							"postid": "",
+							"departmentid": "",
+							"physicalcondition": "",
+							"height": "",
+							"nativeplace": "",
+							"nation": "",
+							"maritalstatus": "",
+							"educationbackground": "",
+							"school": "",
+							"major": "",
+							"professionalqualification": "",
+							"birthdaydate": "",
+							"degree": "",
+							"authorizedstrength": "",
+							"idcardno": "",
+							"dateofentryone": "",
+							"dateofentrytwo": "",
+							"contractstartdateone": "",
+							"contractstartdatetwo": "",
+							"property": "",
+							"thetrialdateone": "",
+							"thetrialdatetwo": ""
+						};
 						selectStaffPhoneByStaffNoOrName(condition);
 					},
 					datashift: function(item) {
@@ -533,14 +615,39 @@
 						}
 						item.check = true;
 					},
+					//导出数据
+					exportExcel: function() {
+						exportExcel();
+					},
 					openstaffquery: function() {
 						selectAllPost();
-						vm.employeeinfo={"staffno":"","name":"","sex":"","postid":"","departmentid":""
-						,"physicalcondition":"","height":"","nativeplace":"","nation":"","maritalstatus":""
-						,"educationbackground":"","school":"","major":"","professionalqualification":""
-						,"birthdaydate":"","degree":"","authorizedstrength":"","idcardno":"","dateofentryone":""
-						,"dateofentrytwo":"","contractstartdateone":"","contractstartdatetwo":"","property":""
-						,"thetrialdateone":"","thetrialdatetwo":""};
+						vm.employeeinfo = {
+							"staffno": "",
+							"name": "",
+							"sex": "",
+							"postid": "",
+							"departmentid": "",
+							"physicalcondition": "",
+							"height": "",
+							"nativeplace": "",
+							"nation": "",
+							"maritalstatus": "",
+							"educationbackground": "",
+							"school": "",
+							"major": "",
+							"professionalqualification": "",
+							"birthdaydate": "",
+							"degree": "",
+							"authorizedstrength": "",
+							"idcardno": "",
+							"dateofentryone": "",
+							"dateofentrytwo": "",
+							"contractstartdateone": "",
+							"contractstartdatetwo": "",
+							"property": "",
+							"thetrialdateone": "",
+							"thetrialdatetwo": ""
+						};
 						$("#staffquery").addClass("show");
 					},
 					closestaffquery: function() {

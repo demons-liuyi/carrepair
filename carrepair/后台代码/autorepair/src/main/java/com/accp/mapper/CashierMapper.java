@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CashierMapper {
+	List<Cashier> selectCashierByClientid(String clientid);
+	
     int countByExample(CashierExample example);
 
     int deleteByExample(CashierExample example);

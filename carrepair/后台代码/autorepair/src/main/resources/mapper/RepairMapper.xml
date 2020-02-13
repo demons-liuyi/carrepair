@@ -28,6 +28,13 @@
     <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
     <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap type="com.accp.domain.Repair" id="BaseResultPlus" extends="BaseResultMap">
+  	  <result column="carnumber" property="carnumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectRepairByCarNumber" resultMap="BaseResultPlus">
+  	SELECT TYPE,number,carinfo.`carNumber`,
+orderTime,nowworkDate,stockDater,orderTime FROM REPAIR INNER JOIN carinfo ON carinfo.`id`=repair.`carinfoId` WHERE carnumber='${number}'
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.accp.domain.Car;
 import com.accp.domain.Carbrand;
 import com.accp.domain.Carinfo;
+import com.accp.domain.Cashier;
 import com.accp.domain.Client;
 import com.accp.domain.Clienttype;
 import com.accp.domain.Coll;
@@ -21,12 +22,13 @@ import com.accp.domain.Staff;
 import com.accp.service.carBrandService;
 import com.accp.service.carInfoService;
 import com.accp.service.carService;
+import com.accp.service.cashierService;
 import com.accp.service.clientService;
 import com.accp.service.clientTypeService;
 import com.accp.service.engineBrandService;
 
 
-//客户资料Controller
+
 @RestController
 @RequestMapping("/customerData")
 public class customerDataController {
@@ -43,6 +45,21 @@ public class customerDataController {
 	carBrandService cbs;
 	@Autowired
 	carService cars;
+	@Autowired
+	cashierService css;
+	
+	@RequestMapping("/selectCashierByClientid")
+	public List<Cashier> selectCashierByClientid(String clientid){
+		List<Cashier> list=css.selectCashierByClientid(clientid);
+		for(int i=0;i<list.size();i++) {
+			if(i==0) {
+				list.get(i).setCheck(true);
+			}else {
+				list.get(i).setCheck(false);	
+			}
+		}
+		return list;
+	}
 	
 	@RequestMapping("/insertClientAndCarInfo")
 	public String insertClientAndCarInfo(@RequestBody Coll coll) {
@@ -53,8 +70,6 @@ public class customerDataController {
 			return "0";
 		}	
 	}
-	
-	 
 	
 	@RequestMapping("/deleteCarInfoByCarNumber")
 	public String deleteCarInfoByCarNumber(String number) {
@@ -197,27 +212,70 @@ public class customerDataController {
 		return list;
 	}
 	
+	
+	
+	
 	@RequestMapping("/selectClientInfoByCondition")
 	public List<Client> selectClientInfoByCondition(@RequestBody Coll coll){
+		checkObjectIsNullUtils checkUtils= new checkObjectIsNullUtils();
 		List<Client> list=cs.selectClientInfo();
 		List<Client> firstlist=new ArrayList<Client>();
 		List<Client> qwelist=new ArrayList<Client>();
 		List<Client> lastlist=new ArrayList<Client>();
-		if(coll.getClient()!=null&&coll!=null) {
-			List<Client> clientList=cs.selectClientByCondition(coll.getClient());
-			for(int a=0;a<list.size();a++) {	 
-				for(int b=0;b<clientList.size();b++) {
-					if(list.get(a).getNumber().equals(clientList.get(b).getNumber())) {			
-						firstlist.add(list.get(a));
-						break;
-					}				
-				}			 
-			}
-			if(coll.getCarInfo()!=null) {			 
+		if(coll==null) {
+			lastlist=list;		
+		}else {
+			boolean flag1=checkUtils.objCheckIsNull(coll.getCarInfo());
+			boolean flag2=checkUtils.objCheckIsNull(coll.getClient());
+			System.out.println(flag1+"+"+flag2);
+			if(flag1==true&&flag2==true) {
+				lastlist=list;	
+			}else if(flag1==true&&flag2==false) {
+				List<Client> clientList=cs.selectClientByCondition(coll.getClient());
+				for(int a=0;a<list.size();a++) {	 
+					for(int b=0;b<clientList.size();b++) {
+						if(list.get(a).getNumber().equals(clientList.get(b).getNumber())) {			
+							firstlist.add(list.get(a));
+							break;
+						}				
+					}			 
+				}
+				lastlist=firstlist;
+			}else if(flag1==false&&flag2==true) {
+				List<Carinfo> carinfolist=cis.selectClientByCondition(coll.getCarInfo());
+				for(int a=0;a<list.size();a++) {	 
+					for(int b=0;b<carinfolist.size();b++) {
+						if(list.get(a).getNumber().equals(carinfolist.get(b).getClientid())) {	
+							int d=0;
+							for(int c=0;c<firstlist.size();c++) {
+								if(firstlist.get(c).getNumber().equals(list.get(a).getNumber())) {
+									d=1;
+									break;
+								}
+							}
+							if(d==1) {
+								break;
+							}
+							firstlist.add(list.get(a));
+							break;
+						}				
+					}			 
+				}
+				lastlist=firstlist;		
+			}else if(flag1==false&&flag2==false) {
+				List<Client> clientList=cs.selectClientByCondition(coll.getClient());
+				for(int a=0;a<list.size();a++) {	 
+					for(int b=0;b<clientList.size();b++) {
+						if(list.get(a).getNumber().equals(clientList.get(b).getNumber())) {			
+							firstlist.add(list.get(a));
+							break;
+						}				
+					}			 
+				}
 				List<Carinfo> carinfolist=cis.selectClientByCondition(coll.getCarInfo());
 				for(int a=0;a<firstlist.size();a++) {	 
 					for(int b=0;b<carinfolist.size();b++) {
-						if(firstlist.get(a).getNumber().equals(carinfolist.get(b).getOtherone())) {	
+						if(firstlist.get(a).getNumber().equals(carinfolist.get(b).getClientid())) {	
 							int d=0;
 							for(int c=0;c<qwelist.size();c++) {
 								if(qwelist.get(c).getNumber().equals(firstlist.get(a).getNumber())) {
@@ -233,13 +291,9 @@ public class customerDataController {
 						}				
 					}			 
 				}
-				lastlist=qwelist;
-			}else {
-				lastlist=firstlist;
-			}		
-		}else {
-			lastlist=list;
-		}	
+				lastlist=qwelist;						
+			}
+		}
 		for(int i=0;i<lastlist.size();i++) {
 			if(i==0) {
 				lastlist.get(i).setCheck(true);

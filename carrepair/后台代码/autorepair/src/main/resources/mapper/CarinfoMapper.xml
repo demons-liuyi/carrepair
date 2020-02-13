@@ -43,6 +43,14 @@
   	<result column="loadnumber" property="loadnumber" jdbcType="VARCHAR" />
   	<result column="clientname" property="clientname" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectAllCarInfo" resultMap="BaseResultPlus">
+  	SELECT c.id,c.carnumber,(SELECT carbrandname FROM carbrand WHERE id=c.carbrandid) carbrandname,
+(SELECT cartypename FROM car WHERE car.id=c.carid) cartypename,carer,carerphone,borndate,affiliation,drivinglicence,carnumber1,enginenumber,
+(SELECT enginebrandname FROM enginebrand WHERE id=c.engineid) enginebrandname,yearprice,mileage,
+(SELECT car.deadweight FROM car WHERE car.id=c.carid) 
+loadnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance,syinsurancedate,clientid,fueloiltype,maintain,maintaindate,insuredcar,deadweight
+ FROM carinfo c
+  </select>
   <select id="queryCarInfoByCarNumber" resultMap="BaseResultPlus">
   	 SELECT *,(SELECT carbrandname FROM carbrand WHERE id=carbrandid) carbrandname,(SELECT cartypename FROM car WHERE id=carid) cartypename,
  (SELECT NAME FROM CLIENT WHERE number=clientid) clientname
