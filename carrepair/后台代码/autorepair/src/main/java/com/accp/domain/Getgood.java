@@ -3,21 +3,25 @@ package com.accp.domain;
 public class Getgood {
     private Integer id;
 
-    private Integer goodid;
+    private String goodid;
 
     private Integer count;
 
     private String item;
 
-    private String otherone;
+    private String pricetype;
 
-    private String othertwo;
+    private Long discountsprice;
 
-    private String otherthree;
+    private String wjid;
 
-    private String otherfour;
+    private String warehouse;
 
-    private String otherfive;
+    private Integer isrepair;
+
+    private String cause;
+
+    private String type;
 
     public Integer getId() {
         return id;
@@ -27,11 +31,11 @@ public class Getgood {
         this.id = id;
     }
 
-    public Integer getGoodid() {
+    public String getGoodid() {
         return goodid;
     }
 
-    public void setGoodid(Integer goodid) {
+    public void setGoodid(String goodid) {
         this.goodid = goodid;
     }
 
@@ -51,43 +55,59 @@ public class Getgood {
         this.item = item;
     }
 
-    public String getOtherone() {
-        return otherone;
+    public String getPricetype() {
+        return pricetype;
     }
 
-    public void setOtherone(String otherone) {
-        this.otherone = otherone;
+    public void setPricetype(String pricetype) {
+        this.pricetype = pricetype;
     }
 
-    public String getOthertwo() {
-        return othertwo;
+    public Long getDiscountsprice() {
+        return discountsprice;
     }
 
-    public void setOthertwo(String othertwo) {
-        this.othertwo = othertwo;
+    public void setDiscountsprice(Long discountsprice) {
+        this.discountsprice = discountsprice;
     }
 
-    public String getOtherthree() {
-        return otherthree;
+    public String getWjid() {
+        return wjid;
     }
 
-    public void setOtherthree(String otherthree) {
-        this.otherthree = otherthree;
+    public void setWjid(String wjid) {
+        this.wjid = wjid;
     }
 
-    public String getOtherfour() {
-        return otherfour;
+    public String getWarehouse() {
+        return warehouse;
     }
 
-    public void setOtherfour(String otherfour) {
-        this.otherfour = otherfour;
+    public void setWarehouse(String warehouse) {
+        this.warehouse = warehouse;
     }
 
-    public String getOtherfive() {
-        return otherfive;
+    public Integer getIsrepair() {
+        return isrepair;
     }
 
-    public void setOtherfive(String otherfive) {
-        this.otherfive = otherfive;
+    public void setIsrepair(Integer isrepair) {
+        this.isrepair = isrepair;
+    }
+
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

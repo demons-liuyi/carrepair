@@ -33,5 +33,6 @@ public interface RepairMapper {
     List<Repair> selectRepairAndRescue(@Param("type") String type,@Param("content")String content,@Param("cpc")String cpc);
     List<MaintainHistary> selectHistray(@Param("type") String type,@Param("content")String content);
     List<MaintainHistary> selectRepairItem(@Param("type") String type,@Param("content")String content);
+    List<MaintainHistary> selectwl(@Param("type") String type,@Param("content")String content);
     
 }

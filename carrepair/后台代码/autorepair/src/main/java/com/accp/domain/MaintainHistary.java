@@ -33,13 +33,30 @@ public class MaintainHistary {
 	    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	    @JsonFormat(pattern = "yyyy-MM-dd")
 	    private Date lldate;
-	    private String llpeople;
+	    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	    @JsonFormat(pattern = "yyyy-MM-dd")
+	    private Date overworkdate;
+	    public Date getOverworkdate() {
+			return overworkdate;
+		}
+		public void setOverworkdate(Date overworkdate) {
+			this.overworkdate = overworkdate;
+		}
+		private String llpeople;
 	    private String llnumber;
 	    private String llname;
 	    private String dw;
-	    private Integer count;
+	    private String gw;
+	    public String getGw() {
+			return gw;
+		}
+		public void setGw(String gw) {
+			this.gw = gw;
+		}
+		private Integer count;
 	    private Float qprice;
 	    private Float hprice;
+	   
 	    public String getNumber() {
 			return number;
 		}
@@ -196,12 +213,7 @@ public class MaintainHistary {
 		public void setAllprice(Float allprice) {
 			this.allprice = allprice;
 		}
-		public String getGw() {
-			return gw;
-		}
-		public void setGw(String gw) {
-			this.gw = gw;
-		}
+
 		public String getItemname() {
 			return itemname;
 		}
@@ -209,8 +221,15 @@ public class MaintainHistary {
 			this.itemname = itemname;
 		}
 		private Float allprice;
-	    private String gw;
-	    private String itemname;
+		private String lltype;
+	   
+	    public String getLltype() {
+			return lltype;
+		}
+		public void setLltype(String lltype) {
+			this.lltype = lltype;
+		}
+		private String itemname;
 	    
 	    
 

@@ -62,12 +62,13 @@
   	<result column="name" property="name" jdbcType="VARCHAR" />
   	<result column="carTypeName" property="carTypeName" jdbcType="VARCHAR" />
   	<result column="carBrandName" property="carBrandName" jdbcType="VARCHAR" />
-  	<result column="engineBrandName" property="engineBrandName" jdbcType="VARCHAR" />
+  	<result column="engineBrandName" property="enginebrandname" jdbcType="VARCHAR" />
   	<result column="carBrandName" property="carBrandName" jdbcType="VARCHAR" />
+  	<result column="jjdate" property="jjdate" jdbcType="DATE" />
   	<result column="ordertime" property="ordertime" jdbcType="DATE" />
   </resultMap>
   <select id="selectCarInfo" resultMap="BaseResult2">
-  SELECT carinfo.`carNumber`,carinfo.`carNumber1`,car.`carTypeName`,carbrand.`carBrandName`
+  SELECT carinfo.id,carinfo.`carNumber`,carinfo.`carNumber1`,car.`carTypeName`,carbrand.`carBrandName`
 ,carinfo.`engineNumber`,enginebrand.`engineBrandName`,client.`name`,carinfo.`carer`,carinfo.`carerPhone`
 ,carinfo.`mileage`,item.ordertime
  FROM `carinfo`
@@ -75,7 +76,7 @@ LEFT JOIN car ON car.`id`=carinfo.`carId`
 LEFT JOIN `carbrand` ON carbrand.`id`=carinfo.`carBrandId`
 LEFT JOIN `enginebrand` ON enginebrand.`id`=carinfo.`engineId`
 LEFT JOIN CLIENT ON client.`number`=carinfo.`clientid`
-LEFT JOIN (SELECT carinfoid,ordertime FROM REPAIR ) item ON item.carinfoid=carinfo.`id`
+LEFT JOIN (SELECT carinfoid,ordertime FROM REPAIR ORDER BY ordertime DESC LIMIT 0,1 ) item ON item.carinfoid=carinfo.`id`
 WHERE carinfo.`carNumber`=#{carNumber}
   </select>
   <select id="selectClientAndCar" resultMap="BaseResult1">

@@ -248,13 +248,7 @@ public class Carinfo {
         this.engineid = engineid;
     }
 
-    public String getdeadweight() {
-        return deadweight;
-    }
-
-    public void setdeadweight(String deadweight) {
-        this.deadweight = deadweight;
-    }
+ 
 
     public Date getBuydate() {
         return buydate;
@@ -387,7 +381,7 @@ public class Carinfo {
     }
     private String carTypeName;
     private String carBrandName;
-    private String engineBrandName;
+    
  
 
 	public String getCarTypeName() {
@@ -406,13 +400,7 @@ public class Carinfo {
 		this.carBrandName = carBrandName;
 	}
 
-	public String getEngineBrandName() {
-		return engineBrandName;
-	}
 
-	public void setEngineBrandName(String engineBrandName) {
-		this.engineBrandName = engineBrandName;
-	}
 
 	public String getName() {
 		return name;
@@ -429,9 +417,32 @@ public class Carinfo {
 	public void setOrdertime(Date ordertime) {
 		this.ordertime = ordertime;
 	}
+	
+
+
+
+
+	public String getDeadweight() {
+		return deadweight;
+	}
+
+	public void setDeadweight(String deadweight) {
+		this.deadweight = deadweight;
+	}
+
+	public Date getJjdate() {
+		return jjdate;
+	}
+
+	public void setJjdate(Date jjdate) {
+		this.jjdate = jjdate;
+	}
 
 	private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date ordertime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date jjdate;
 }

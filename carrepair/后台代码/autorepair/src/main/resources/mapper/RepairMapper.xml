@@ -79,7 +79,7 @@
     <result column="llpeople" property="llpeople" jdbcType="VARCHAR" />
     <result column="llname" property="llname" jdbcType="VARCHAR" />
     <result column="dw" property="dw" jdbcType="VARCHAR" />
-    <result column="gw" property="gw" jdbcType="VARCHAR" />
+    <result column="lltype" property="lltype" jdbcType="VARCHAR" />
     <result column="itemname" property="itemname" jdbcType="VARCHAR" />
     <result column="count" property="count" jdbcType="INTEGER" />
     <result column="orderTime" property="ordertime" jdbcType="TIMESTAMP" />
@@ -98,7 +98,7 @@ rescue.nowdate,rescue.overtime,rescue.stockDater,rescue.price,staff.name,rescue.
  FROM rescue JOIN `carinfo` ON carinfo.id=rescue.carinfoId
  JOIN `staff` ON staff.staffNo=rescue.staffno
  JOIN `client` ON client.number=(SELECT clientid FROM `car_client` WHERE carid=rescue.`carinfoId`)) item
-WHERE #{type} like '%${content}%' OR item.clientname LIKE '%${cpc}%'
+WHERE ${type} like '%${content}%' OR item.clientname LIKE '%${cpc}%'
 OR item.carNumber LIKE '%${cpc}%' OR item.phone LIKE '%${cpc}%'
   </select>
   <select id="selectHistray" resultMap="BaseResultMap3">
@@ -120,6 +120,18 @@ LEFT JOIN `carinfo` ON carinfo.`id`=repair.`carinfoId`
 LEFT JOIN `artisanclass` ON artisanclass.`id`=ir.teamid
 LEFT JOIN CLIENT ON client.`number`=carinfo.`clientid`
 WHERE ${type} like '%${content}%'
+  </select>
+  <select id="selectwl" resultMap="BaseResultMap3">
+SELECT carinfo.`carNumber`,client.`name`, repair.`number`,repair.`orderTime`,repair.`type`,repair.`overworkdate`,
+repair.`stockDater`,getgood.`type` lltype,getgood.`goodid` gw,com.name llname,
+com.unit dw,getgood.`priceType`,getgood.`count`,com.normalprice qprice,getgood.`discountsPrice` fprice
+,getgood.`item` itemname
+ FROM `repair` LEFT JOIN `getgood` ON repair.`number`=getgood.`wjid`
+ LEFT JOIN `commodity` com ON com.commodityno=getgood.`goodid`
+ LEFT JOIN`carinfo` ON carinfo.`id`=repair.`carinfoId`
+ LEFT  JOIN`client` ON client.number=carinfo.`clientid`
+
+ WHERE ${type} like '%${content}%'
   </select>
   <sql id="Example_Where_Clause" >
     <where >
