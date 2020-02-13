@@ -46,14 +46,7 @@ public class PositionController1 {
 	public List<Post> selectPostAll() {
 		System.out.println("查询postAll");
 		
-		 String input = "jdiwo3495jis90.5jsie4dss56djiw9";
-	        String regex = "\\d+(\\.\\d+)?";
-	        Pattern pattern =  Pattern.compile(regex);
-	        Matcher matcher = pattern.matcher(input);
-	        while(matcher.find())
-	        {
-	            System.out.println(matcher.group());
-	        }
+		
 		return ps.selectPostAll();
 	}
 	
@@ -144,6 +137,7 @@ public class PositionController1 {
 	@PostMapping("/addStaff")
 	@ResponseBody
 	public Integer addStaff(@RequestBody Staff sta) {
+		sta.setStaffno(addStaffNo());
 		return ps.addStaff(sta);
 	}
 	@PostMapping("/delStaff")
@@ -159,15 +153,27 @@ public class PositionController1 {
 	
 	
 	public String addStaffNo() {
-		String no = "DZW";
-		String input = "jdiwo3495jis90.5jsie4dss56djiw9";
-		String regex = "\\d+(\\.\\d+)?";
+		String no = "DZW0";
+		String input = ps.selecLastStaff().getStaffno();
+		String regex = "\\d+(\\\\d+)?";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(input);
+		Integer id =0;
 		while (matcher.find()) {
-			System.out.println(matcher.group());
+			id=Integer.parseInt(matcher.group())+1;
 		}
-		return "";
+		boolean bo =true;
+		while (bo) {
+			no=no+id;
+			if (ps.selectStaffById(no)>0) {
+				id=id+1;
+				no=no+id;
+			}else {
+				bo=false;
+			}
+		}
+		System.out.println("生成staff编号："+no);
+		return no;
 	}
 	//<--
 	

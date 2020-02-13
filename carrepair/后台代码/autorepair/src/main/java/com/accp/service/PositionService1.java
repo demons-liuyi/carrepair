@@ -137,9 +137,8 @@ public class PositionService1 {
 		return 0;
 	}
 	public Staff selecLastStaff() {
-		StaffExample ex = new StaffExample();
-		StaffExample.Criteria criteria = ex.createCriteria();
+		//查单个的no
 		
-		return null;
+		return staffMapper.selectStaffByNoLast();
 	}
 }
