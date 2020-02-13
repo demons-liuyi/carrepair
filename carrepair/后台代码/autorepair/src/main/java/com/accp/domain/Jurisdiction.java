@@ -5,6 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jurisdiction {
+	private Integer postid;
+	
+	private String judge;
+	
+	public Integer getPostid() {
+		return postid;
+	}
+
+	public void setPostid(Integer postid) {
+		this.postid = postid;
+	}
+
+	public String getJudge() {
+		return judge;
+	}
+
+	public void setJudge(String judge) {
+		this.judge = judge;
+	}
+
 	private List<Jurisdiction> childrens = new ArrayList<Jurisdiction>();
 	
     public List<Jurisdiction> getChildrens() {

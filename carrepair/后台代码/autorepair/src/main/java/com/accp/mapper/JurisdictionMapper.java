@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface JurisdictionMapper {
+	List<Jurisdiction> selectJurisdictionByPostid(@Param("postid") Integer postid);
+	
     int countByExample(JurisdictionExample example);
 
     int deleteByExample(JurisdictionExample example);

@@ -14,6 +14,14 @@
     <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
     <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap type="com.accp.domain.Jurisdiction" id="BaseResultPlus">
+  	<result column="postid" property="postid" jdbcType="INTEGER" />
+  	<result column="judge" property="judge" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectJurisdictionByPostid" resultMap="BaseResultPlus">
+  	SELECT j.`id`,r.`roleid`,j.`jurisdictionName`,j.`ename`,j.`catalog`,j.`parentId`,j.`path`,
+r.`otherone` judge FROM jurisdiction j LEFT JOIN role_jurisdiction r ON j.id=r.`jurisdictionId` WHERE r.`roleid`=#{postid}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
