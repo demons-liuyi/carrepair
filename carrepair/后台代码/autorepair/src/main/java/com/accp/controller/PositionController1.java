@@ -3,6 +3,7 @@ package com.accp.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,12 +28,15 @@ import com.accp.domain.Department;
 import com.accp.domain.Post;
 import com.accp.domain.Staff;
 import com.accp.service.PositionService1;
+import com.accp.service.departmentService;
 
 @RestController
 public class PositionController1 {
 	
 	@Autowired
 	PositionService1 ps;
+	@Autowired
+	departmentService deps;
 	//按条件查询岗位
 	@PostMapping("/positionSelect")
 	@ResponseBody
@@ -52,13 +56,16 @@ public class PositionController1 {
 	
 	
 	//查询部门
-	
-	@PostMapping("/selectDep")
-	@ResponseBody
+	@GetMapping("/selectDep")
 	public List<Department> selectDep() {
 		return ps.queryDepTable();
 	}
-	
+	//用来新增的部门信息
+		@PostMapping("/selectDeplist")
+		@ResponseBody
+		public List<Department> selectDeplist(){
+			return deps.selectAllDepartment();
+		}
 	//按条件查询员工信息
 	@PostMapping("/selectStaff")
 	@ResponseBody
@@ -138,6 +145,7 @@ public class PositionController1 {
 	@ResponseBody
 	public Integer addStaff(@RequestBody Staff sta) {
 		sta.setStaffno(addStaffNo());
+		sta.setPassword("88888888");
 		return ps.addStaff(sta);
 	}
 	@PostMapping("/delStaff")
@@ -150,10 +158,14 @@ public class PositionController1 {
 	public Integer upStaff(@RequestBody Staff sta) {
 		return ps.updateStaff(sta);
 	}
-	
+	@PostMapping("/selectStaffByNo")
+	@ResponseBody
+	public Staff selectStaffByNo(String staffno) {
+		return ps.selecStaffByNo(staffno);
+	}
 	
 	public String addStaffNo() {
-		String no = "DZW0";
+		String no = "DZW00";
 		String input = ps.selecLastStaff().getStaffno();
 		String regex = "\\d+(\\\\d+)?";
 		Pattern pattern = Pattern.compile(regex);
@@ -164,11 +176,12 @@ public class PositionController1 {
 		}
 		boolean bo =true;
 		while (bo) {
-			no=no+id;
-			if (ps.selectStaffById(no)>0) {
+			
+			if (ps.selectStaffById(no+id)>0) {
 				id=id+1;
-				no=no+id;
 			}else {
+				
+				no=no+id;
 				bo=false;
 			}
 		}
@@ -176,5 +189,32 @@ public class PositionController1 {
 		return no;
 	}
 	//<--
-	
+	//重置密码
+	@PostMapping("/newPassword")
+	@ResponseBody
+	public int newPassword(String no,String pwd1 ,String pwd2) {
+		if (ps.selectStaffByNoAndPass(no, pwd1)>0) {
+			Staff st = new Staff();
+			st.setStaffno(no);
+			st.setPassword(pwd2);
+			return ps.updatePasswrod(st);
+		}
+		return 0;
+	}
+	//删除一条数据
+	@PostMapping("/deleteStaffById")
+	@ResponseBody
+	public Integer deleteStaffById(String staffno) {
+		System.out.println("staffno:"+staffno);
+		if (ps.selectStaffById(staffno)>0) {
+			return ps.delStaff(staffno);
+		}
+		return 0;
+	}
+	//按条件查询员工信息
+		@PostMapping("/selectStaffByDepId")
+		@ResponseBody
+		public List<Staff> selectStaffByDepId(Integer depid){
+			return ps.selectStaffByDepId(depid);
+		}
 }

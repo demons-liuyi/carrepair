@@ -57,7 +57,7 @@ public class PositionService1 {
 	public List<Department> queryDepTable() {
 		return dep.selectByExample(null);
 	}
-	
+
 	/**
 	 * 按照条件查询员工信息
 	 * @param str 通过ajax发送的查询条件
@@ -137,8 +137,51 @@ public class PositionService1 {
 		return 0;
 	}
 	public Staff selecLastStaff() {
-		//查单个的no
+		//最后的的no
 		
 		return staffMapper.selectStaffByNoLast();
 	}
+	public Staff selecStaffByNo(String staffno) {
+		return staffMapper.selectByPrimaryKey(staffno);
+	}
+	
+	/**
+	 * 验证密码
+	 * @param staffno
+	 * @param pwd
+	 * @return 
+	 */
+	public Integer selectStaffByNoAndPass(String no,String pwd) {
+		StaffExample example = new StaffExample();
+		StaffExample.Criteria criteria = example.createCriteria();
+		criteria.andStaffnoEqualTo(no);
+		criteria.andPasswordEqualTo(pwd);
+		if (staffMapper.selectByExample(example)!=null) {
+			return 1;
+		}
+		return 0;
+	}
+	/***
+	 * 修改staff空值部分不修改
+	 * @param sta
+	 * @return
+	 */
+	public Integer updatePasswrod(Staff sta) {
+		StaffExample example = new StaffExample();
+		StaffExample.Criteria criteria = example.createCriteria();
+		criteria.andStaffnoEqualTo(sta.getStaffno());
+		return staffMapper.updateByExampleSelective(sta, example);
+	}
+	/**
+	 * 按部门查询staff
+	 * @param depid
+	 * @return list
+	 */
+	public List<Staff> selectStaffByDepId(Integer depid) {
+		StaffExample example = new StaffExample();
+		StaffExample.Criteria criteria = example.createCriteria();
+		criteria.andDepartmentidEqualTo(depid);
+		return staffMapper.selectByExample(example);
+	}
+	
 }
