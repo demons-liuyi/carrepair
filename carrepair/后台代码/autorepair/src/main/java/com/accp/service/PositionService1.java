@@ -44,6 +44,13 @@ public class PositionService1 {
 		return post.selectByExample(null);
 	}
 	/**
+	 * 查询所有的post
+	 * @return
+	 */
+	public List<Post> selectPostAll(){
+		return post.selectByExample(null);
+	}
+	/**
 	 * 查询人事的部门表
 	 * @return  所有的分支
 	 */
@@ -106,4 +113,33 @@ public class PositionService1 {
 		return post.deleteByPrimaryKey(po.getId());
 	}
 	
+	
+	/**
+	 * 新增一條staff信息
+	 * @param sta
+	 * @return
+	 */
+	public Integer addStaff(Staff sta) {
+		return  staffMapper.insert(sta);
+	}
+	
+	public Integer updateStaff(Staff sta) {
+		return staffMapper.updateByPrimaryKey(sta);
+	}
+	
+	public Integer delStaff(String staffno) {
+		return staffMapper.deleteByPrimaryKey(staffno);
+	}
+	public Integer selectStaffById(String staffno) {
+		if (staffMapper.selectByPrimaryKey(staffno)!=null) {
+			return 1;
+		}
+		return 0;
+	}
+	public Staff selecLastStaff() {
+		StaffExample ex = new StaffExample();
+		StaffExample.Criteria criteria = ex.createCriteria();
+		
+		return null;
+	}
 }
