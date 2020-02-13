@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -39,9 +41,27 @@ public class PositionController1 {
 		return ps.selectPost(po);
 	}
 	
-	//查询部门
+	@PostMapping("/postAllSelect")
 	@ResponseBody
+	public List<Post> selectPostAll() {
+		System.out.println("查询postAll");
+		
+		 String input = "jdiwo3495jis90.5jsie4dss56djiw9";
+	        String regex = "\\d+(\\.\\d+)?";
+	        Pattern pattern =  Pattern.compile(regex);
+	        Matcher matcher = pattern.matcher(input);
+	        while(matcher.find())
+	        {
+	            System.out.println(matcher.group());
+	        }
+		return ps.selectPostAll();
+	}
+	
+	
+	//查询部门
+	
 	@PostMapping("/selectDep")
+	@ResponseBody
 	public List<Department> selectDep() {
 		return ps.queryDepTable();
 	}
@@ -120,4 +140,35 @@ public class PositionController1 {
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 		return new ResponseEntity<byte[]>(baos.toByteArray(),headers,HttpStatus.OK);
 	}
+	//-->staff的增删改
+	@PostMapping("/addStaff")
+	@ResponseBody
+	public Integer addStaff(@RequestBody Staff sta) {
+		return ps.addStaff(sta);
+	}
+	@PostMapping("/delStaff")
+	@ResponseBody
+	public Integer delStaff(String staffno) {
+		return ps.delStaff(staffno);
+	}
+	@PostMapping("/upStaff")
+	@ResponseBody
+	public Integer upStaff(@RequestBody Staff sta) {
+		return ps.updateStaff(sta);
+	}
+	
+	
+	public String addStaffNo() {
+		String no = "DZW";
+		String input = "jdiwo3495jis90.5jsie4dss56djiw9";
+		String regex = "\\d+(\\.\\d+)?";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(input);
+		while (matcher.find()) {
+			System.out.println(matcher.group());
+		}
+		return "";
+	}
+	//<--
+	
 }
