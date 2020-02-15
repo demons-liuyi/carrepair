@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.accp.domain.Department;
 import com.accp.domain.Post;
@@ -70,6 +72,7 @@ public class PositionController1 {
 	@PostMapping("/selectStaff")
 	@ResponseBody
 	public List<Staff> selectStaffByNameByidByPhone(String str){
+		System.out.println("查询符合条件的staff，条件:"+str);
 		return ps.selectStaffTable(str);
 	}
 	
@@ -140,6 +143,288 @@ public class PositionController1 {
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 		return new ResponseEntity<byte[]>(baos.toByteArray(),headers,HttpStatus.OK);
 	}
+	
+	@GetMapping("/exportExcel1")
+	public ResponseEntity<byte[]> exportExcel(String str) {
+		System.out.println("导出条件："+str);
+		
+		List<Staff> staff = ps.SelectStaffTableAll(str);
+		Workbook wb = new XSSFWorkbook();
+		Sheet sheet = wb.createSheet("员工信息");
+		for (int i = 0; i < staff.size(); i++) {
+			Row row = sheet.createRow(i+1);
+			Cell cellstaffno = row.createCell(0);
+			Cell cellname = row.createCell(1);
+			Cell cellsex = row.createCell(2);
+			Cell celldepartmentid = row.createCell(3);
+			Cell cellaccount = row.createCell(4);
+			Cell cellpassword = row.createCell(5);
+			Cell cellpostid = row.createCell(6);
+			Cell cellphysicalcondition = row.createCell(7);
+			Cell cellheight = row.createCell(8);
+			Cell cellnativeplace = row.createCell(9);
+			Cell cellnation = row.createCell(10);
+			Cell cellmaritalstatus = row.createCell(11);
+			Cell celleducationbackground = row.createCell(12);
+			Cell cellschool = row.createCell(13);
+			Cell cellmajor = row.createCell(14);
+			Cell cellprofessionalqualification = row.createCell(15);
+			Cell cellproperty = row.createCell(16);
+			Cell celldegree = row.createCell(17);
+			Cell cellauthorizedstrength = row.createCell(18);
+			Cell cellidcardno = row.createCell(19);
+			Cell cellresidence = row.createCell(20);
+			Cell cellpresentaddress = row.createCell(21);
+			Cell cellcontactnumber = row.createCell(22);
+			Cell cellphone = row.createCell(23);
+			Cell cellemail = row.createCell(24);
+			Cell celldepositbank = row.createCell(25);
+			Cell cellbankaccount = row.createCell(26);
+			Cell cellemergencycontact = row.createCell(27);
+			Cell cellemergencyphone = row.createCell(28);
+			Cell celldateonboard = row.createCell(29);
+			Cell cellthetrialdue = row.createCell(30);
+			Cell cellbirthdaydate = row.createCell(31);
+			Cell cellcontractstart = row.createCell(32);
+			Cell cellagreementends = row.createCell(33);
+			Cell cellcardnumber = row.createCell(34);
+			Cell cellinternalcardno = row.createCell(35);
+			Cell cellreferrer = row.createCell(36);
+			Cell cellwholeorderdiscountright = row.createCell(37);
+			Cell celltimediscountright = row.createCell(38);
+			Cell cellrighttodiscount = row.createCell(39);
+			Cell cellrightofrelief = row.createCell(40);
+			Cell celljobresume = row.createCell(41);
+			Cell celleducationexperience = row.createCell(42);
+			Cell cellmemberoffamily = row.createCell(43);
+			Cell celldisciplinaryrecords = row.createCell(44);
+			Cell cellemploymentadvice = row.createCell(45);
+			Cell cellpicture = row.createCell(46);
+			Cell cellroleid = row.createCell(47);
+			Cell cellisdimission = row.createCell(48);
+			Cell cellotherone = row.createCell(49);
+			Cell cellothertwo = row.createCell(50);
+			Cell cellotherthree = row.createCell(51);
+			Cell cellotherfour = row.createCell(52);
+			Cell cellotherfive = row.createCell(53);
+			
+			cellstaffno.setCellValue(staff.get(i).getStaffno());
+			System.out.println("输出："+staff.get(i).getStaffno());
+			cellname.setCellValue(staff.get(i).getName());
+			cellsex.setCellValue(staff.get(i).getSex());
+			celldepartmentid.setCellValue(staff.get(i).getDepartmentid());
+			cellaccount.setCellValue(staff.get(i).getAccount());
+			cellpassword.setCellValue(staff.get(i).getPassword());
+			cellpostid.setCellValue(staff.get(i).getPostid());
+			cellphysicalcondition.setCellValue(staff.get(i).getPhysicalcondition());
+			System.out.println("导出身高："+staff.get(i).getHeight());
+			cellheight.setCellValue(staff.get(i).getHeight());
+			cellnativeplace.setCellValue(staff.get(i).getNativeplace());
+			cellnation.setCellValue(staff.get(i).getNation());
+			cellmaritalstatus.setCellValue(staff.get(i).getMaritalstatus());
+			celleducationbackground.setCellValue(staff.get(i).getEducationbackground());
+			cellschool.setCellValue(staff.get(i).getSchool());
+			cellmajor.setCellValue(staff.get(i).getMajor());
+			cellprofessionalqualification.setCellValue(staff.get(i).getProfessionalqualification());
+			cellproperty.setCellValue(staff.get(i).getProperty());
+			celldegree.setCellValue(staff.get(i).getDegree());
+			cellauthorizedstrength.setCellValue(staff.get(i).getAuthorizedstrength());
+			cellidcardno.setCellValue(staff.get(i).getIdcardno());
+			cellresidence.setCellValue(staff.get(i).getResidence());
+			cellpresentaddress.setCellValue(staff.get(i).getPresentaddress());
+			cellcontactnumber.setCellValue(staff.get(i).getContactnumber());
+			cellphone.setCellValue(staff.get(i).getPhone());
+			cellemail.setCellValue(staff.get(i).getEmail());
+			celldepositbank.setCellValue(staff.get(i).getDepositbank());
+			cellbankaccount.setCellValue(staff.get(i).getBankaccount());
+			cellemergencycontact.setCellValue(staff.get(i).getEmergencycontact());
+			cellemergencyphone.setCellValue(staff.get(i).getEmergencyphone());
+			celldateonboard.setCellValue(staff.get(i).getDateonboard());
+			cellthetrialdue.setCellValue(staff.get(i).getThetrialdue());
+			cellbirthdaydate.setCellValue(staff.get(i).getBirthdaydate());
+			cellcontractstart.setCellValue(staff.get(i).getContractstart());
+			cellagreementends.setCellValue(staff.get(i).getAgreementends());
+			cellcardnumber.setCellValue(staff.get(i).getCardnumber());
+			cellinternalcardno.setCellValue(staff.get(i).getInternalcardno());
+			cellreferrer.setCellValue(staff.get(i).getReferrer());
+			cellwholeorderdiscountright.setCellValue(staff.get(i).getWholeorderdiscountright());
+			celltimediscountright.setCellValue(staff.get(i).getTimediscountright());
+			cellrighttodiscount.setCellValue(staff.get(i).getRighttodiscount());
+			cellrightofrelief.setCellValue(staff.get(i).getRightofrelief());
+			celljobresume.setCellValue(staff.get(i).getJobresume());
+			celleducationexperience.setCellValue(staff.get(i).getEducationexperience());
+			cellmemberoffamily.setCellValue(staff.get(i).getMemberoffamily());
+			celldisciplinaryrecords.setCellValue(staff.get(i).getDisciplinaryrecords());
+			cellemploymentadvice.setCellValue(staff.get(i).getEmploymentadvice());
+			
+			cellpicture.setCellValue(staff.get(i).getPicture());
+			//空指针异常位置
+			System.out.println("输出错误项:"+staff.get(i).getRoleid());
+			cellroleid.setCellValue(staff.get(i).getRoleid());
+			
+			cellisdimission.setCellValue(staff.get(i).getIsdimission());
+			cellotherone.setCellValue(staff.get(i).getOtherone());
+			cellothertwo.setCellValue(staff.get(i).getOthertwo());
+			cellotherthree.setCellValue(staff.get(i).getOtherthree());
+			cellotherfour.setCellValue(staff.get(i).getOtherfour());
+			cellotherfive.setCellValue(staff.get(i).getOtherfive());
+			
+		}
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			wb.write(baos);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		HttpHeaders headers = new HttpHeaders();
+		try {
+			headers.setContentDispositionFormData("attachment", new String("员工信息.sxls".getBytes("utf-8"),"iso-8859-1"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		
+		return new ResponseEntity<byte[]>(baos.toByteArray(),headers,HttpStatus.OK);
+	}
+	@PostMapping("/importExcel")
+	public String importExcel(MultipartFile file) {
+		List< Staff> list = new ArrayList<Staff>();
+ 		try {
+			Workbook book = new XSSFWorkbook(file.getInputStream());
+			book.getNumberOfSheets();//获取当前excel中的sheet页个数
+			Sheet sheet = book.getSheetAt(0);//根据表获取sheet页个数
+			int rows = sheet.getPhysicalNumberOfRows();//得到当前sheet页中的个数
+			for (int i = 1; i < rows; i++) {
+				Row row = sheet.getRow(i);
+				Cell cellstaffno = row.createCell(0);
+				String staffno=cellstaffno.getStringCellValue();
+				Cell cellname = row.createCell(1);
+				String name=cellname.getStringCellValue();
+				Cell cellsex = row.createCell(2);
+				String sex=cellsex.getStringCellValue();
+				Cell celldepartmentid = row.createCell(3);
+				Integer departmentid = (int)celldepartmentid.getNumericCellValue();
+				Cell cellaccount = row.createCell(4);
+				String account=cellaccount.getStringCellValue();
+				Cell cellpassword = row.createCell(5);
+				String password = cellpassword.getStringCellValue();
+				Cell cellpostid = row.createCell(6);
+				Integer postid = (int)cellpostid.getNumericCellValue();
+				Cell cellphysicalcondition = row.createCell(7);
+				String physicalcondition = cellphysicalcondition.getStringCellValue();
+				Cell cellheight = row.createCell(8);
+				String height = cellheight.getStringCellValue();
+				Cell cellnativeplace = row.createCell(9);
+				String nativeplace = cellnativeplace.getStringCellValue();
+				Cell cellnation = row.createCell(10);
+				String nation = cellnation.getStringCellValue();
+				Cell cellmaritalstatus = row.createCell(11);
+				String maritalstatus = cellmaritalstatus.getStringCellValue();
+				Cell celleducationbackground = row.createCell(12);
+				String educationbackground = celleducationbackground.getStringCellValue();
+				Cell cellschool = row.createCell(13);
+				String school = cellschool.getStringCellValue();
+				Cell cellmajor = row.createCell(14);
+				String major = cellmajor.getStringCellValue();
+				Cell cellprofessionalqualification = row.createCell(15);
+				String professionalqualification = cellprofessionalqualification.getStringCellValue();
+				Cell cellproperty = row.createCell(16);
+				String property = cellproperty.getStringCellValue();
+				Cell celldegree = row.createCell(17);
+				String degree = celldegree.getStringCellValue();
+				Cell cellauthorizedstrength = row.createCell(18);
+				String authorizedstrength = cellauthorizedstrength.getStringCellValue();
+				Cell cellidcardno = row.createCell(19);
+				String idcardno = cellidcardno.getStringCellValue();
+				Cell cellresidence = row.createCell(20);
+				String residence = cellresidence.getStringCellValue();
+				Cell cellpresentaddress = row.createCell(21);
+				String presentaddress = cellpresentaddress.getStringCellValue();
+				Cell cellcontactnumber = row.createCell(22);
+				String contactnumber = cellcontactnumber.getStringCellValue();
+				Cell cellphone = row.createCell(23);
+				String phone = cellphone.getStringCellValue();
+				Cell cellemail = row.createCell(24);
+				String email = cellemail.getStringCellValue();
+				Cell celldepositbank = row.createCell(25);
+				String depositbank = celldepositbank.getStringCellValue();
+				Cell cellbankaccount = row.createCell(26);
+				String bankaccount = cellbankaccount.getStringCellValue();
+				Cell cellemergencycontact = row.createCell(27);
+				String emergencycontact = cellemergencycontact.getStringCellValue();
+				Cell cellemergencyphone = row.createCell(28);
+				String emergencyphone = cellemergencyphone.getStringCellValue();
+				Cell celldateonboard = row.createCell(29);
+				Date dateonboard = celldateonboard.getDateCellValue();
+				Cell cellthetrialdue = row.createCell(30);
+				Date thetrialdue = cellthetrialdue.getDateCellValue();
+				Cell cellbirthdaydate = row.createCell(31);
+				Date birthdaydate = cellbirthdaydate.getDateCellValue();
+				Cell cellcontractstart = row.createCell(32);
+				Date contractstart = cellcontractstart.getDateCellValue();
+				Cell cellagreementends = row.createCell(33);
+				Date agreementends = cellagreementends.getDateCellValue();
+				Cell cellcardnumber = row.createCell(34);
+				String cardnumber = cellcardnumber.getStringCellValue();
+				Cell cellinternalcardno = row.createCell(35);
+				String internalcardno = cellinternalcardno.getStringCellValue();
+				Cell cellreferrer = row.createCell(36);
+				String referrer = cellreferrer.getStringCellValue();
+				Cell cellwholeorderdiscountright = row.createCell(37);
+				String wholeorderdiscountright = cellwholeorderdiscountright.getStringCellValue();
+				Cell celltimediscountright = row.createCell(38);
+				String timediscountright = celltimediscountright.getStringCellValue();
+				Cell cellrighttodiscount = row.createCell(39);
+				String righttodiscount = cellrighttodiscount.getStringCellValue();
+				Cell cellrightofrelief = row.createCell(40);
+				String rightofrelief = cellrightofrelief.getStringCellValue();
+				Cell celljobresume = row.createCell(41);
+				String jobresume = celljobresume.getStringCellValue();
+				Cell celleducationexperience = row.createCell(42);
+				String educationexperience = celleducationexperience.getStringCellValue();
+				Cell cellmemberoffamily = row.createCell(43);
+				String memberoffamily = cellmemberoffamily.getStringCellValue();
+				Cell celldisciplinaryrecords = row.createCell(44);
+				String disciplinaryrecords = celldisciplinaryrecords.getStringCellValue();
+				Cell cellemploymentadvice = row.createCell(45);
+				String employmentadvice = cellemploymentadvice.getStringCellValue();
+				Cell cellpicture = row.createCell(46);
+				String picture = cellpicture.getStringCellValue();
+				Cell cellroleid = row.createCell(47);
+				Integer roleid = (int)cellroleid.getNumericCellValue();
+				Cell cellisdimission = row.createCell(48);
+				Integer isdimission= (int)cellisdimission.getNumericCellValue(); 
+				Cell cellotherone = row.createCell(49);
+				String otherone = cellotherone.getStringCellValue();
+				Cell cellothertwo = row.createCell(50);
+				String othertwo= cellothertwo.getStringCellValue();
+				Cell cellotherthree = row.createCell(51);
+				String otherthree = cellotherthree.getStringCellValue();
+				Cell cellotherfour = row.createCell(52);
+				String otherfour = cellotherfour.getStringCellValue();
+				Cell cellotherfive = row.createCell(53);
+				String otherfive = cellotherfive.getStringCellValue();
+				Staff sta = new Staff(staffno, name, sex, departmentid, account, password, postid, physicalcondition, height, nativeplace, nation, maritalstatus, educationbackground, school, major, professionalqualification, property, degree, authorizedstrength, idcardno, residence, presentaddress, contactnumber, phone, email, depositbank, bankaccount, emergencycontact, emergencyphone, dateonboard, thetrialdue, birthdaydate, contractstart, agreementends, cardnumber, internalcardno, referrer, wholeorderdiscountright, timediscountright, righttodiscount, rightofrelief, jobresume, educationexperience, memberoffamily, disciplinaryrecords, employmentadvice, picture, roleid, isdimission, otherone, othertwo, otherthree, otherfour, otherfive);
+				list.add(sta);
+			}
+			System.out.println("导出数据中...");
+			list.stream().forEach(item->System.out.println(item.getStaffno()));
+			for (Staff li : list) {
+				if (ps.selectStaffById(li.getStaffno())>0) {
+					ps.updateStaff(li);
+				}else {
+					ps.addStaff(li);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	//-->staff的增删改
 	@PostMapping("/addStaff")
 	@ResponseBody
