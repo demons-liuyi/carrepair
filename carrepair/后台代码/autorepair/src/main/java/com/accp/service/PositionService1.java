@@ -64,14 +64,24 @@ public class PositionService1 {
 	 * @return 返回符合条件的员工信息
 	 */
 	public List<Staff> selectStaffTable(String str) {
-		System.out.println(str);
-		if (str.equals("")) {
-			str=null;
-			System.out.println("为空/"+str+"/");
-		}
 		return staffMapper.selectStaffAndPostName(str);
 	}
-	
+	/**
+	 * 查询单表 的staff信息
+	 * @param str
+	 * @return
+	 */
+	public List<Staff> SelectStaffTableAll(String str) {
+		StaffExample ex = new StaffExample();
+		StaffExample.Criteria criteria= ex.createCriteria();
+		if ("".equals(str)) {
+			criteria.andStaffnoEqualTo("%"+str+"%");
+			criteria.andPhoneEqualTo("%"+str+"%");
+			criteria.andNameEqualTo("%"+str+"%");
+			return staffMapper.selectByExample(ex);
+		}
+		return staffMapper.selectByExample(null);
+	}
 	
 	/**
 	 * 新增post

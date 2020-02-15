@@ -663,4 +663,78 @@ public class Staff {
     public void setOtherfive(String otherfive) {
         this.otherfive = otherfive;
     }
+
+	public Staff() {
+		super();
+	}
+
+	public Staff(String staffno, String name, String sex, Integer departmentid, String account, String password,
+			Integer postid, String physicalcondition, String height, String nativeplace, String nation,
+			String maritalstatus, String educationbackground, String school, String major,
+			String professionalqualification, String property, String degree, String authorizedstrength,
+			String idcardno, String residence, String presentaddress, String contactnumber, String phone, String email,
+			String depositbank, String bankaccount, String emergencycontact, String emergencyphone, Date dateonboard,
+			Date thetrialdue, Date birthdaydate, Date contractstart, Date agreementends, String cardnumber,
+			String internalcardno, String referrer, String wholeorderdiscountright, String timediscountright,
+			String righttodiscount, String rightofrelief, String jobresume, String educationexperience,
+			String memberoffamily, String disciplinaryrecords, String employmentadvice, String picture, Integer roleid,
+			Integer isdimission, String otherone, String othertwo, String otherthree, String otherfour,
+			String otherfive) {
+		super();
+		this.staffno = staffno;
+		this.name = name;
+		this.sex = sex;
+		this.departmentid = departmentid;
+		this.account = account;
+		this.password = password;
+		this.postid = postid;
+		this.physicalcondition = physicalcondition;
+		this.height = height;
+		this.nativeplace = nativeplace;
+		this.nation = nation;
+		this.maritalstatus = maritalstatus;
+		this.educationbackground = educationbackground;
+		this.school = school;
+		this.major = major;
+		this.professionalqualification = professionalqualification;
+		this.property = property;
+		this.degree = degree;
+		this.authorizedstrength = authorizedstrength;
+		this.idcardno = idcardno;
+		this.residence = residence;
+		this.presentaddress = presentaddress;
+		this.contactnumber = contactnumber;
+		this.phone = phone;
+		this.email = email;
+		this.depositbank = depositbank;
+		this.bankaccount = bankaccount;
+		this.emergencycontact = emergencycontact;
+		this.emergencyphone = emergencyphone;
+		this.dateonboard = dateonboard;
+		this.thetrialdue = thetrialdue;
+		this.birthdaydate = birthdaydate;
+		this.contractstart = contractstart;
+		this.agreementends = agreementends;
+		this.cardnumber = cardnumber;
+		this.internalcardno = internalcardno;
+		this.referrer = referrer;
+		this.wholeorderdiscountright = wholeorderdiscountright;
+		this.timediscountright = timediscountright;
+		this.righttodiscount = righttodiscount;
+		this.rightofrelief = rightofrelief;
+		this.jobresume = jobresume;
+		this.educationexperience = educationexperience;
+		this.memberoffamily = memberoffamily;
+		this.disciplinaryrecords = disciplinaryrecords;
+		this.employmentadvice = employmentadvice;
+		this.picture = picture;
+		this.roleid = roleid;
+		this.isdimission = isdimission;
+		this.otherone = otherone;
+		this.othertwo = othertwo;
+		this.otherthree = otherthree;
+		this.otherfour = otherfour;
+		this.otherfive = otherfive;
+	}
+    
 }
