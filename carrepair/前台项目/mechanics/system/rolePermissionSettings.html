@@ -632,7 +632,6 @@
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<script>
-
 			function selectAllPostInfo(){
 				$.ajax({
 					url: "http://localhost:8080/rolePermissionSettings/selectAllPostInfo",
@@ -667,7 +666,103 @@
 						error: function(error) {
 							console.log(error);
 						}
-					});
+				});						
+				alert("修改成功！");
+				selectJurisdictionByPostid();
+			}
+			//增加员工角色权限
+			function insertJurisdictionInfo(id, postid, judge) {
+				console.log(id);
+				console.log(postid);
+				console.log(judge);
+				$.ajax({
+					url: "http://localhost:8080/rolePermissionSettings/insertJurisdictionInfo",
+					data: {
+						id: id,
+						postid: postid,
+						judge: judge
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据岗位编号删除岗位信息		
+			function deletePost(postid){
+				$.ajax({
+					url: "http://localhost:8080/rolePermissionSettings/deletePost",
+					data: {
+						postId: postid
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						selectAllPostInfo();
+						selectJurisdictionByPostid();
+						
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据岗位编号修改岗位信息		
+			function updatePost(postid,postname){
+				$.ajax({
+					url: "http://localhost:8080/rolePermissionSettings/updatePost",
+					data: {
+						postId: postid,
+						postName:postname
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						selectAllPostInfo();
+									 		
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//新增岗位信息		
+			function insertPost(postid,postname){
+				$.ajax({
+					url: "http://localhost:8080/rolePermissionSettings/insertPost",
+					data: {
+						postId:postid,
+						postName:postname
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						selectAllPostInfo();
+						
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
 			}
 			var permsTree = Vue.component("ptree", {
 				props: {
