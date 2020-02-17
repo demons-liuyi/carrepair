@@ -7,7 +7,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Maintainregist {
-    private Integer id;
+	private Boolean check;
+	
+    public Boolean getCheck() {
+		return check;
+	}
+
+	public void setCheck(Boolean check) {
+		this.check = check;
+	}
+
+	private Integer id;
 
     private String maintainname;
 

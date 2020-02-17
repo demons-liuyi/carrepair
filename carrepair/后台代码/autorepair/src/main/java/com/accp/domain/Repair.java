@@ -7,11 +7,134 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Repair {
+	
 	private String carnumber;
 	
 	private Boolean check;
 	
-    public String getCarnumber() {
+	private Float totalnum;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date cashiertime;
+	
+	private String staffname;
+	
+	private String paymenttype;
+	
+	private String wtype;
+	
+	private String carbrandname;
+	
+	private String clientname;
+	
+	private String cartypename;
+	
+	private String carnumber1;
+	
+	private String carerphone;
+	
+	private String jqinsurance;
+	
+	private String staffpeople;
+			
+    public String getStaffpeople() {
+		return staffpeople;
+	}
+
+	public void setStaffpeople(String staffpeople) {
+		this.staffpeople = staffpeople;
+	}
+
+	public String getWtype() {
+		return wtype;
+	}
+
+	public void setWtype(String wtype) {
+		this.wtype = wtype;
+	}
+
+	public String getCarbrandname() {
+		return carbrandname;
+	}
+
+	public void setCarbrandname(String carbrandname) {
+		this.carbrandname = carbrandname;
+	}
+
+	public String getClientname() {
+		return clientname;
+	}
+
+	public void setClientname(String clientname) {
+		this.clientname = clientname;
+	}
+
+	public String getCartypename() {
+		return cartypename;
+	}
+
+	public void setCartypename(String cartypename) {
+		this.cartypename = cartypename;
+	}
+
+	public String getCarnumber1() {
+		return carnumber1;
+	}
+
+	public void setCarnumber1(String carnumber1) {
+		this.carnumber1 = carnumber1;
+	}
+
+	public String getCarerphone() {
+		return carerphone;
+	}
+
+	public void setCarerphone(String carerphone) {
+		this.carerphone = carerphone;
+	}
+
+	public String getJqinsurance() {
+		return jqinsurance;
+	}
+
+	public void setJqinsurance(String jqinsurance) {
+		this.jqinsurance = jqinsurance;
+	}
+
+	public Float getTotalnum() {
+		return totalnum;
+	}
+
+	public void setTotalnum(Float totalnum) {
+		this.totalnum = totalnum;
+	}
+
+	public Date getCashiertime() {
+		return cashiertime;
+	}
+
+	public void setCashiertime(Date cashiertime) {
+		this.cashiertime = cashiertime;
+	}
+
+	public String getStaffname() {
+		return staffname;
+	}
+
+	public void setStaffname(String staffname) {
+		this.staffname = staffname;
+	}
+
+	public String getPaymenttype() {
+		return paymenttype;
+	}
+
+	public void setPaymenttype(String paymenttype) {
+		this.paymenttype = paymenttype;
+	}
+
+	public String getCarnumber() {
 		return carnumber;
 	}
 

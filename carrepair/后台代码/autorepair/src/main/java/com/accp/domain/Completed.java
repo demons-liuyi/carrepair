@@ -2,21 +2,13 @@ package com.accp.domain;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class Completed {
     private Integer id;
 
     private Integer yesorno;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date predicttime;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date nowtime;
 
     private String reason;
@@ -26,6 +18,12 @@ public class Completed {
     private String dutyid;
 
     private Float price;
+
+    private Integer count;
+
+    private String fgreason;
+
+    private String wjid;
 
     private String otherone;
 
@@ -99,6 +97,30 @@ public class Completed {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public String getFgreason() {
+        return fgreason;
+    }
+
+    public void setFgreason(String fgreason) {
+        this.fgreason = fgreason;
+    }
+
+    public String getWjid() {
+        return wjid;
+    }
+
+    public void setWjid(String wjid) {
+        this.wjid = wjid;
     }
 
     public String getOtherone() {

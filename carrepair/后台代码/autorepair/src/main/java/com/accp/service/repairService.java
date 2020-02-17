@@ -16,6 +16,11 @@ public class repairService {
 	@Autowired
 	RepairMapper rm;
 	
+	public List<Repair> selectSettleAccounts(){
+		List<Repair> list=rm.selectSettleAccounts();
+		return list;
+	}
+	
 	public List<Repair> selectRepairByCarNumber(String number){
 		List<Repair> list=rm.selectRepairByCarNumber(number);
 		return list;

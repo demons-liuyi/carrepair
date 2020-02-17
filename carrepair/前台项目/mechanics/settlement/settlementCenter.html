@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../fonts/font_rdupt/iconfont.css" />
+		<style>
+			body,
+			html {
+				background: white;
+				height: 100%;
+				width: 100%;
+			}
+			
+			.header {
+				flex-direction: row;
+				padding: 1em 2em;
+				justify-content: space-between;
+				width: 100%;
+				display: flex;
+				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
+				box-shadow: 1px 1px 4px 3px #E6E6E6;
+			}
+			
+			.header-l {
+				font-weight: 600;
+				font-size: 1.3em;
+				padding: 0.2em 1em;
+			}
+			
+			.header-r {}
+			
+			.header-r input {
+				width: 25em;
+				padding: 0.3em 1em;
+			}
+			
+			.tit-tab {
+				display: flex;
+				justify-content: flex-end;
+				padding: 0.5em 0;
+			}
+			
+			.tit-tr {
+				background-color: #31B0D5;
+			}
+			
+			.bt-cx {
+				padding-left: 3em;
+				padding-right: 3em;
+			}
+			
+			.t-input {
+				background: white;
+				padding-left: 1.5em;
+				padding-top: 0.5em;
+				padding-bottom: 0.5em;
+				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				border-radius: 0.5em;
+				margin: 0.5em 1em;
+			}
+			
+			.t-input-1 {
+				margin-top: 0.8em;
+			}
+			
+			.tb-body {
+				background: white;
+				padding: 1em 1em;
+				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				border-radius: 0.5em;
+				margin: 0.5em 1em;
+			}
+			
+			.tit-tab {
+				margin: 0.5em 1em;
+				border-radius: 0.5em;
+				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
+				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+			}
+			
+			.box-border-a-shadow {
+				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				margin: 0.5em 1em;
+				border-radius: 0.5em;
+			}
+			
+			.form-control {
+				height: 2.5em;
+				font-size: 0.8em;
+			}
+			
+			.t-span {
+				margin-left: 0.5em;
+				font-weight: 500;
+			}
+			
+			ul {
+				list-style-type: none;
+				margin-top: 13px;
+				margin-right: 40px;
+			}
+			
+			li {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			#img {
+				color: orange;
+			}
+			
+			#font {
+				font-size: 13px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="ctx">
+			<div class="header">
+				<div class="header-l">
+					<span>
+					
+					结算中心
+				</span>
+
+				</div>
+				<div class="header-r">
+
+					<button class="btn btn-success bt-cx">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查询</button>
+					<button class="btn btn-default">关闭</button>
+				</div>
+			</div>
+
+			<div style="height: 92%">
+				<div class="t-input">
+					<form class="form-inline">
+						<div class=" form-group">
+							<span class="t-span">开单日期：</span>
+							<input name="startDate" readonly="readonly" type="date" />
+							<input name="nowDate" readonly="readonly" style="margin-left: 10px;" type="date"/>
+
+							<span class="t-span">结账状态：</span>
+							<select name="status" @change="changeSelect()" class="form-control">
+								<option attrid="1">
+									未结算
+								</option>
+								<option attrid="2">
+									已结算
+								</option>
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="tit-tab">
+					<div class="col-md-3">
+						<ul>
+							<li name="cashdesk">
+								<span id="img" class="iconfont icon-lishibiaodan"></span>
+								<span @click="openCashier()" data-toggle="modal" data-target=".mo2" id="font">收银</span>
+							</li>
+							<li name="rollback">
+								<span id="img" class="glyphicon glyphicon-print"></span>
+								<span @click="rollback()" id="font">回滚</span>
+							</li>
+							<li>
+								<span id="img" class="iconfont icon-biaodan"></span>
+								<span @click="openRepairOrder()" id="font">打开单据</span>
+							</li>
+							<li>
+								<span id="img" class="glyphicon glyphicon-share"></span>
+								<span @click="exportExcel()" id="font">导出</span>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="tb-body" style="overflow: auto;height:84%;">
+
+					<table class="table table-bordered" style="width:  3200px;">
+						<thead>
+							<tr class="tit-tr">
+								<td></td>
+								<td>销售单号</td>
+								<td>单据类型</td>
+								<td>结算方式</td>
+								<td>单据状态</td>
+								<td>结算状态</td>
+								<td>结算时间</td>
+								<td>结算人</td>
+								<td>结算金额</td>
+								<td>业务类型</td>
+								<td>客户名称</td>
+								<td>车牌号</td>
+								<td>车型</td>
+								<td>车架号</td>
+								<td>联系电话</td>
+								<td>保险公司</td>
+								<td>服务顾问</td>
+								<td>完成时间</td>
+								<td>备注</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr @click="switchTr(item)" v-for="item in billingInformation" class="tit-tr">
+								<td style="width: 40px;">
+									<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+								</td>
+								<td>{{item.number}}</td>
+								<td>{{item.wtype}}</td>
+								<td>{{item.setter}}</td>
+								<td>{{item.status}}</td>
+								<td>{{item.paymenttype}}</td>
+								<td>{{item.cashiertime}}</td>
+								<td>{{item.staffpeople}}</td>
+								<td>{{item.totalnum}}</td>
+								<td>{{item.carbrandname}}</td>
+								<td>{{item.clientname}}</td>
+								<td>{{item.carnumber}}</td>
+								<td>{{item.cartypename}}</td>
+								<td>{{item.carnumber1}}</td>
+								<td>{{item.carerphone}}</td>
+								<td>{{item.jqinsurance}}</td>
+								<td>{{item.staffname}}</td>
+								<td>{{item.overworkdate}}</td>
+								<td></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div>
+				<div><span>合计：{{billingInformation.length}}条记录</span>
+				</div>
+			</div>
+			<!-- Large modal -->
+
+			<div class="mo2 modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">收银中心</h4>
+						</div>
+						<div class="modal-body">
+							<table>
+								<tr>
+									<td>客总费</td>
+									<td style="padding-left: 25px;">税率（%）</td>
+									<td style="padding-left: 25px;">加税金</td>
+									<td style="padding-left: 25px;">抹尾数</td>
+									<td style="padding-left: 25px;">积分抵扣（元）</td>
+								</tr>
+								<tr>
+									<td><input readonly="readonly" name="customerPrice" type="text"></td>
+									<td style="padding-left: 25px;">
+										<input readonly="readonly" value="0.98" type="text"></td>
+									<td style="padding-left: 25px;">
+										<input readonly="readonly" name="taxes" type="text"></td>
+									<td style="padding-left: 25px;">
+										<select name="moweishu" @change="moweishu">
+											<option attrid=0>请选择</option>
+											<option attrid=1>抹税金</option>
+										</select>
+									</td>
+									<td style="padding-left: 25px;"><input type="text"></td>
+								</tr>
+							</table>
+							<div class="row">
+								<div class="col-md-6">
+									<p style="margin-top: 10px;">
+										<label>应收金额:</label><span style="color: red;font-size: 26px;" name="customerMoney"></span>
+									</p>
+									<p>
+										<span>结算状态：</span>
+										<select>
+											<option>正常结算</option>
+											<option>部分结算</option>
+											<option>挂账结算</option>
+										</select>
+									</p>
+								</div>
+								<div style="float: right;margin-top: 30px;margin-right: 50px;">
+									实收金额：<span name="money"></span>
+									<input type="text" />
+									<button class="btn btn-success">一键付款</button>
+								</div>
+							</div>
+
+							<div>
+								<span>找零：</span><span>0.0</span>
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button style="margin-right: 35px;" class="btn btn-success">结算</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script>
+			//查询未结账的账单
+			function selectUnfinished() {
+				$.ajax({
+					url: "http://localhost:8080/settlementCenter/selectUnfinished",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {				 
+						vm.billingInformation = response;
+						for(var i = 0; i < vm.billingInformation.length; i++) {			 
+						if(vm.billingInformation[i].check == true) {					
+							$("[name=startDate]").attr("value",vm.billingInformation[i].ordertime);
+						}
+					}
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//查询结账的账单
+			function selectFinished() {
+				$.ajax({
+					url: "http://localhost:8080/settlementCenter/selectFinished",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {					 
+						vm.billingInformation = response;
+						for(var i = 0; i < vm.billingInformation.length; i++) {					 
+						if(vm.billingInformation[i].check == true) {					
+							$("[name=startDate]").attr("value",vm.billingInformation[i].ordertime);
+						}
+					}
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//导出数据
+			function exportExcel() {
+				var id = $("[name=status]").find(":checked").attr("attrid");
+				var form = document.createElement("form");
+				form.style.display = 'none';
+				form.action = "http://localhost:8080/excel/settlementExcel";
+				form.method = "post";
+				document.body.appendChild(form);
+				if(id == 1) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "attrid";
+					input.value = "1";
+					form.appendChild(input);
+				} else {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "attrid";
+					input.value = "2";
+					form.appendChild(input);
+				}
+				form.submit();
+				form.remove();
+			}
+			var vm = new Vue({
+				el: "#ctx",
+				data() {
+
+					return {
+						billingInformation: {},
+
+					};
+				},
+				methods: {
+					moweishu: function() {
+						var attrid = $("[name=moweishu]").find(":checked").attr("attrid");
+						if(attrid == 1) {
+							var taxes = $("[name=taxes]").val();
+							var price = $("[name=customerMoney]").text();
+							var money = $("[name=customerPrice]").val();
+							if(price == money) {
+								return;
+							}
+							$("[name=customerMoney]").text(price - taxes);
+						}
+					},
+					//打开收银
+					openCashier: function() {
+						var that = this;
+						for(var i = 0; i < that.billingInformation.length; i++) {
+							if(that.billingInformation[i].check == true) {
+								$("[name=customerPrice]").val(that.billingInformation[i].price);
+								var price = that.billingInformation[i].price;
+								var taxes = price * 0.0098;
+								$("[name=taxes]").val(taxes);
+								$("[name=customerMoney]").text(price + taxes);
+								return;
+							}
+							if(i == that.billingInformation.length - 1) {
+								alert("无未结账账单！");
+								return;
+							}
+						}
+					},
+					//导出数据
+					exportExcel: function() {
+						exportExcel();
+					},
+					//切换账单选择
+					switchTr: function(item) {
+						var that = this;
+						for(var i = 0; i < that.billingInformation.length; i++) {
+							that.billingInformation[i].check = false;
+						}
+						item.check = true;
+						$("[name=startDate]").attr("value",item.ordertime);
+					},
+					//打开单据
+					openRepairOrder: function() {
+
+					},
+					//改变下拉框事件
+					changeSelect: function() {
+						var id = $("[name=status]").find(":checked").attr("attrid");					 
+						if(id == 1) {
+							selectUnfinished();
+							$("[name=cashdesk]").show();
+							$("[name=rollback]").hide();
+						} else {
+							selectFinished();
+							$("[name=rollback]").show();
+							$("[name=cashdesk]").hide();
+						}
+					}
+				},
+				created: function() {
+					var that = this;
+					selectUnfinished();				 				 
+					var now = new Date();
+					//格式化日，如果小于9，前面补0
+					var day = ("0" + now.getDate()).slice(-2);
+					//格式化月，如果小于9，前面补0
+					var month = ("0" + (now.getMonth() + 1)).slice(-2);
+					//拼装完整日期格式
+					var today = now.getFullYear() + "-" + (month) + "-" + (day);
+					//完成赋值				 
+					$("[name=nowDate]").attr("value",today);
+					$("[name=rollback]").hide();
+				}
+			})
+		</script>
+	</body>
+
+</html>

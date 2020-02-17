@@ -16,6 +16,11 @@ public class cashierService {
 	@Autowired
 	CashierMapper cm;
 	
+	public List<Cashier> selectAllInfo(){
+		List<Cashier> list=cm.selectByExample(null);
+		return list;
+	}
+	
 	public List<Cashier> selectCashierByClientid(String clientid){
 		List<Cashier> list=cm.selectCashierByClientid(clientid);
 		return list;
