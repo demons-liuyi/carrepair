@@ -72,15 +72,18 @@ public class PositionService1 {
 	 * @return
 	 */
 	public List<Staff> SelectStaffTableAll(String str) {
-		StaffExample ex = new StaffExample();
-		StaffExample.Criteria criteria= ex.createCriteria();
-		if ("".equals(str)) {
-			criteria.andStaffnoEqualTo("%"+str+"%");
-			criteria.andPhoneEqualTo("%"+str+"%");
-			criteria.andNameEqualTo("%"+str+"%");
+		
+		System.out.println("str="+str);
+			StaffExample ex = new StaffExample();
+			StaffExample.Criteria criteria= ex.createCriteria();
+			StaffExample.Criteria criteria1= ex.createCriteria();
+			StaffExample.Criteria criteria2= ex.createCriteria();
+			criteria.andStaffnoLike("%"+str+"%");
+			criteria1.andPhoneLike("%"+str+"%");
+			criteria2.andNameLike("%"+str+"%");
+			ex.or(criteria1);
+			ex.or(criteria2);
 			return staffMapper.selectByExample(ex);
-		}
-		return staffMapper.selectByExample(null);
 	}
 	
 	/**
