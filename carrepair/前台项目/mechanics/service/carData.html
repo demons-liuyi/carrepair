@@ -72,7 +72,7 @@
 				left: 350px;
 				top: 100px;
 				width: 950px;
-				height: 510px;
+				height: 440px;
 				background-color: white;
 				z-index: 555;
 			}
@@ -111,7 +111,7 @@
 			
 			#staffquerycontent {
 				width: 903px;
-				height: 400px;
+				height: 330px;
 				margin-left: 21px;
 				background-color: wheat;
 			}
@@ -968,7 +968,7 @@
 				<div id="customerclassifybody">
 					<div>
 						<div style="display: inline-block; font-size: 24px;margin-left: 30px;margin-top: 20px;">
-							<span>车牌号：</span><span>车牌号：</span>
+							<span>车牌号：</span><span name="carNumberSpan" style="color: red;font-size: 28px;"></span>
 						</div>
 						<ul style="border: 0px solid red;float: right;margin-right: 40px; margin-top: 20px;">
 							<li>
@@ -985,7 +985,7 @@
 							</li>
 							<li>
 								<span id="img" class="glyphicon glyphicon-list-alt"></span>
-								<span id="font">查询</span>
+								<span id="font">导出</span>
 							</li>
 						</ul>
 					</div>
@@ -1006,18 +1006,22 @@
 								</tr>
 							</thead>
 							<tbody>
-								<td></td>
-								<td>分类编码</td>
-								<td>客户类别</td>
-								<td>价格类型</td>
-								<td>有效期(年)</td>
-								<td>会费</td>
-								<td>类别</td>
+								<tr @click="switchMaintainregist(item)" v-for="item in maintainregistInfo">
+									<td style="width: 40px;">
+										<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+									</td>
+									<td>{{item.otherone}}</td>
+									<td>{{item.maintainname}}</td>
+									<td>{{item.mileagedate}}</td>
+									<td>{{item.mileage}}</td>
+									<td>{{item.sjmileage}}</td>
+									<td>{{item.sjmileagedate}}</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div style="margin-left: 25px;">
-						<span>共<span></span>条记录数</span>
+						<span>共<span>{{maintainregistInfo.length}}</span>条记录数</span>
 					</div>
 				</div>
 			</div>
@@ -1185,13 +1189,13 @@
 							<input style="width: 10px;" type="checkbox">
 						</p>
 						<p>
-							<span style="margin-left: 20px;">超过X月没自修：</span>
-							<input style="width: 160px;" type="text">
 							<span style="margin-left: 20px;">专属顾问：</span>
 							<input readonly="readonly" v-model="Client.staffno+Client.staffname" style="width:165px;" />
 							<button @click="openselectemployee()"><span class="caret"></span></button>
 							<span style="margin-left: 20px;">顾问电话：</span>
 							<input readonly="readonly" v-model="Client.counselorname" style="width: 100px;" type="text" />
+							<span style="margin-left: 20px;">驾驶员生日：</span>
+							<input v-model="CarInfo.borndate" style="width: 120px;" type="date" />
 						</p>
 						<p style="padding-top: 10px;" id="example">
 							<select name="sheng" style="width: 120px;margin-left: 20px;" v-model="prov">
@@ -1243,40 +1247,7 @@
 							<input v-model="CarInfo.carer" type="text" />
 							<span style="margin-left: 20px;">驾驶员电话：</span>
 							<input v-model="CarInfo.carerphone" type="text" />
-						</p>
-						<p>
-							<select style="width: 85px;margin-left: 20px;">
-								<option>开户日期</option>
-								<option>入会日期</option>
-								<option>会员到期</option>
-							</select>
-							<input style="width: 120px;margin-left: 20px;" type="date" />
-							<input style="width: 120px;margin-left: 20px;" type="date" />
-							<select style="width: 85px;margin-left: 20px;">
-								<option>购买日期</option>
-								<option>上牌日期</option>
-							</select>
-							<select style="width: 60px;margin-left: 20px;">
-								<option>所有</option>
-							</select>
-							<span style="margin-left: 20px;">驾驶员生日：</span>
-							<input v-model="CarInfo.borndate" style="width: 120px;" type="date" />
-
-						</p>
-						<p>
-							<span style="margin-left: 20px;">定金余额：</span>
-							<input style="width: 70px;" type="text" />
-							<span style="margin-left: 20px;">至：</span>
-							<input style="width: 70px;" type="text" />
-							<span style="margin-left: 20px;">储蓄卡余额：</span>
-							<input style="width: 70px;" type="text" />
-							<span style="margin-left: 20px;">至：</span>
-							<input style="width: 70px;" type="text" />
-							<span style="margin-left: 20px;">积分：</span>
-							<input style="width: 70px;" type="text" />
-							<span style="margin-left: 20px;">至：</span>
-							<input style="width: 70px;" type="text" />
-						</p>
+						</p>						 					 
 					</div>
 				</div>
 			</div>
@@ -1294,12 +1265,7 @@
 					<button id="closebtn" class="btn btn-default">关闭</button>
 				</div>
 			</div>
-			<div style="height: 20px;background-color: antiquewhite;">
-				<p style="padding-top: 10px;">
-					<span>车牌号：</span><input type="text" />
-					<span>车架号：</span><input type="text" />
-				</p>
-			</div>
+			 
 			<div id="buttondiv">
 				<div id="rightbuttondiv">
 
@@ -1442,8 +1408,29 @@
 					<thead>
 						<tr style="background-color: deepskyblue;">
 							<td></td>
-							<td v-for="item in data">{{item}}</td>
-
+							<td>客户编码</td>
+							<td>客户名称</td>
+							<td>详细地址</td>
+							<td>联系人</td>
+							<td>手机</td>
+							<td>客户生日</td>
+							<td>客户类别</td>
+							<td>备注</td> 
+							<td>建档日期</td>
+							<td>服务顾问</td>
+							<td>业务员电话</td>
+							<td>账期(天)</td>
+							<td>挂账额度</td>
+							<td>累计积分</td>
+							 
+							<td>客户省</td>
+							<td>客户市</td>
+							<td>客户区</td>
+							<td>纳税人识别号</td>
+							<td>注册电话</td>
+							<td>开户银行</td>
+							<td>银行账号</td>
+							<td>注册地址</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -1458,9 +1445,7 @@
 							<td>{{item.phone}}</td>
 							<td>{{item.borndate}}</td>
 							<td>{{item.clienttype}}</td>
-							<td></td>
-							<td></td>
-							<td></td>
+							 
 							<td>{{item.remark}}</td>
 							<td>{{item.date}}</td>
 							<td>{{item.staffname}}</td>
@@ -1468,7 +1453,7 @@
 							<td>{{item.paymentdays}}</td>
 							<td>{{item.paymentsize}}</td>
 							<td>{{item.integral}}</td>
-							<td></td>
+							 
 							<td>{{item.sheng}}</td>
 							<td>{{item.shi}}</td>
 							<td>{{item.qv}}</td>
@@ -1489,6 +1474,35 @@
 							<td>{{item.nowworkdate}}</td>
 							<td>{{item.stockdater}}</td>
 							<td>{{item.ordertime}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<table name="tabletwo" border="1px" class="table" style="min-width:2500px;">
+					<thead>
+						<tr style="background-color: deepskyblue;">
+							<td></td>
+							<td>单据类型</td>
+							<td>销售单号</td>
+							<td>车牌号</td>				 
+							<td>进厂时间</td>
+							<td>完工时间</td>
+							<td>结算时间</td>
+							<td>消费时间</td>		 
+						</tr>
+					</thead>
+					<tbody>
+						<tr @click="updatecarinfocheck(item)" v-for="item in cashierinfo">
+							<td style="width: 40px;">
+								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+							</td>	
+							<td>{{item.paymenttype}}</td>
+							<td>{{item.number}}</td>
+							<td>{{item.carnumber}}</td>
+							<td>{{item.otherone}}</td>
+							<td>{{item.ordertime}}</td>
+							<td>{{item.overtime}}</td>
+							<td>{{item.stockdater}}</td>
+							<td>{{item.starttime}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -1973,7 +1987,7 @@
 				vm.coll.client = vm.Client;
 				var coll = JSON.stringify(vm.coll);
 				console.log(coll);
-				 
+
 				$.ajax({
 					url: "http://localhost:8080/carData/selectCarInformationByCondition",
 					data: coll,
@@ -2015,12 +2029,12 @@
 					vm.Client.shi = "";
 					vm.Client.qv = "";
 					vm.CarInfo.carer = condition;
-					vm.CarInfo.check=true;
-				}else{
-					vm.CarInfo.check=false;
+					vm.CarInfo.check = true;
+				} else {
+					vm.CarInfo.check = false;
 				}
 				vm.coll.carInfo = vm.CarInfo;
-				vm.coll.client = vm.Client;						 
+				vm.coll.client = vm.Client;
 				var form = document.createElement("form");
 				form.style.display = 'none';
 				form.action = "http://localhost:8080/excel/carInfoExportExcel";
@@ -2043,12 +2057,42 @@
 				form.submit();
 				form.remove();
 				vm.CarInfo.carer = "";
-				vm.CarInfo.check="";
+				vm.CarInfo.check = "";
+			}
+			//根据车牌号查询保养计划
+			function selectMaintainregistInfoByCarNumber() {
+				var number = 0;
+				for(var i = 0; i < vm.carInformation.length; i++) {
+					if(vm.carInformation[i].check == true) {
+						number = vm.carInformation[i].carnumber;
+					}
+				}
+				console.log(number);
+				$("[name=carNumberSpan]").text(number);
+				$.ajax({
+					url: "http://localhost:8080/carData/selectMaintainregistInfoByCarNumber",
+					data: {
+						carNumber: number
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						vm.maintainregistInfo = response;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
 			}
 			var vm = new Vue({
 				el: ".container-fluid",
 				data() {
 					return {
+						maintainregistInfo: {},
 						qwe: "1",
 						arr: arrAll,
 						prov: '',
@@ -2198,57 +2242,65 @@
 							this.district = '';
 						}
 					},
+					//切换车辆保养选择
+					switchMaintainregist:function(item){
+						var that = this;
+						for(var i = 0; i < that.maintainregistInfo.length; i++) {
+							that.maintainregistInfo[i].check = false;
+						}
+						item.check = true;
+					},
 					//根据条件查询车辆信息
 					queryCarInformationByCondition: function() {
-						this.Client= {
-							"number": "",
-							"name": "",
-							"linkman": "",
-							"phone": "",
-							"address": "",
-							"borndate": "",
-							"paymentdays": "",
-							"paymentsize": "",
-							"staffno": "",
-							"counselorname": "",
-							"sheng": "",
-							"shi": "",
-							"qv": "",
-							"remark": "",
-							"taxpayernumber": "",
-							"registerphone": "",
-							"bank": "",
-							"banknumber": "",
-							"registeraddress": "",
-							"staffname": ""
-						},
-						this.CarInfo= {
-							"carnumber": "",
-							"carbrandid": "",
-							"carid": "",
-							"carer": "",
-							"carerphone": "",
-							"borndate": "",
-							"affiliation": "",
-							"drivinglicence": "",
-							"carnumber1": "",
-							"enginenumber": "",
-							"yearprice": "",
-							"mileage": "",
-							"engineid": "",
-							"deadweight": "",
-							"buydate": "",
-							"dutydate": "",
-							"carcheckdate": "",
-							"fueloiltype": "",
-							"carseries": "",
-							"jqinsurance": "",
-							"jqinsurancedate": "",
-							"syinsurance": "",
-							"syinsurancedate": "",
-							"maintain": "",
-							"maintaindate": ""
-						}
+						this.Client = {
+								"number": "",
+								"name": "",
+								"linkman": "",
+								"phone": "",
+								"address": "",
+								"borndate": "",
+								"paymentdays": "",
+								"paymentsize": "",
+								"staffno": "",
+								"counselorname": "",
+								"sheng": "",
+								"shi": "",
+								"qv": "",
+								"remark": "",
+								"taxpayernumber": "",
+								"registerphone": "",
+								"bank": "",
+								"banknumber": "",
+								"registeraddress": "",
+								"staffname": ""
+							},
+							this.CarInfo = {
+								"carnumber": "",
+								"carbrandid": "",
+								"carid": "",
+								"carer": "",
+								"carerphone": "",
+								"borndate": "",
+								"affiliation": "",
+								"drivinglicence": "",
+								"carnumber1": "",
+								"enginenumber": "",
+								"yearprice": "",
+								"mileage": "",
+								"engineid": "",
+								"deadweight": "",
+								"buydate": "",
+								"dutydate": "",
+								"carcheckdate": "",
+								"fueloiltype": "",
+								"carseries": "",
+								"jqinsurance": "",
+								"jqinsurancedate": "",
+								"syinsurance": "",
+								"syinsurancedate": "",
+								"maintain": "",
+								"maintaindate": ""
+							}
 						queryCarInformationByCondition();
 					},
 					//切换选择汽车信息
@@ -2433,6 +2485,7 @@
 						exportExcel();
 					},
 					opencustomerclassify: function() {
+						selectMaintainregistInfoByCarNumber();
 						$("#customerclassify").addClass("show");
 					},
 					closecustomerclassify: function() {

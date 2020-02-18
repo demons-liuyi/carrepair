@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.accp.domain.Carinfo;
 import com.accp.domain.Client;
 import com.accp.domain.Coll;
+import com.accp.domain.Maintainregist;
 import com.accp.domain.Repair;
 import com.accp.service.carInfoService;
 import com.accp.service.clientService;
+import com.accp.service.maintainregistService;
 import com.accp.service.repairService;
 
  
@@ -28,6 +30,21 @@ public class carDataController {
 	clientService cs;
 	@Autowired
 	repairService rs;
+	@Autowired
+	maintainregistService ms;
+	
+	@RequestMapping("/selectMaintainregistInfoByCarNumber")
+	public List<Maintainregist> selectMaintainregistInfoByCarNumber(String carNumber){
+		List<Maintainregist> list=ms.selectMaintainregistInfoByCarNumber(carNumber);
+		for(int i=0;i<list.size();i++) {
+			if(i==0) {
+				list.get(i).setCheck(true);
+			}else {
+				list.get(i).setCheck(false);	
+			}
+		}
+		return list;
+	}
 	
 	@RequestMapping("/selectRepairByCarNumber")
 	public List<Repair> selectRepairByCarNumber(String number){

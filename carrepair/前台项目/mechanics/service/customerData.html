@@ -72,7 +72,7 @@
 				left: 350px;
 				top: 100px;
 				width: 950px;
-				height: 510px;
+				height: 430px;
 				background-color: white;
 				z-index: 555;
 			}
@@ -111,9 +111,9 @@
 			
 			#staffquerycontent {
 				width: 903px;
-				height: 400px;
+				height: 320px;
 				margin-left: 21px;
-				background-color: wheat;
+				background-color: whitesmoke;
 			}
 			
 			#fnuctiondiv {
@@ -220,7 +220,7 @@
 				margin-left: 25px;
 				margin-top: 15px;
 				height: 450px;
-				background-color: wheat;
+				background-color: whitesmoke;
 			}
 			
 			#closespan {
@@ -639,7 +639,7 @@
 				left: 300px;
 				top: 120px;
 				width: 1000px;
-				height: 500px;
+				height: 520px;
 				border: 1px solid red;
 				background-color: white;
 				z-index: 888;
@@ -672,7 +672,7 @@
 				width: 957px;
 				margin-left: 20px;
 				margin-top: 15px;
-				height: 375px;
+				height: 395px;
 				background-color: whitesmoke;
 			}
 		</style>
@@ -725,7 +725,7 @@
 						<span style="margin-left: 20px;">发动机号：</span>
 						<input v-model="CarInfo.enginenumber" type="text" />
 						<span style="margin-left: 20px;">车辆年款：</span>
-						<input v-model="CarInfo.yearprice" type="text" />
+						<input style="width: 100px;" v-model="CarInfo.yearprice" type="text" />
 						<span style="margin-left: 20px;">里程：</span>
 						<input v-model="CarInfo.mileage" type="text" />
 					</p>
@@ -1510,48 +1510,18 @@
 						</p>
 						<p>
 							<span style="margin-left: 20px;">发动机品牌：</span>
-							<select name="engineBrand" style="width: 230px;margin-left: 20px;">
+							<select name="engineBrand" style="width: 130px;margin-left: 5px;">
 								<option></option>
 								<option :engineid="item.id" v-for="item in engineBrand">{{item.enginebrandname}}</option>
 							</select>
 							<span style="margin-left: 20px;">驾驶员：</span>
-							<input v-model="CarInfo.carer" type="text" />
+							<input v-model="CarInfo.carer" style="width: 90px;" type="text" />
 							<span style="margin-left: 20px;">驾驶员电话：</span>
-							<input v-model="CarInfo.carerphone" type="text" />
-						</p>
-						<p>
-							<select style="width: 85px;margin-left: 20px;">
-								<option>开户日期</option>
-								<option>入会日期</option>
-								<option>会员到期</option>
-							</select>
-							<input style="width: 120px;margin-left: 20px;" type="date" />
-							<input style="width: 120px;margin-left: 20px;" type="date" />
-							<select style="width: 85px;margin-left: 20px;">
-								<option>购买日期</option>
-								<option>上牌日期</option>
-							</select>
-							<select style="width: 60px;margin-left: 20px;">
-								<option>所有</option>
-							</select>
+							<input v-model="CarInfo.carerphone" style="width: 100px;" type="text" />
 							<span style="margin-left: 20px;">驾驶员生日：</span>
 							<input v-model="CarInfo.borndate" style="width: 120px;" type="date" />
-
 						</p>
-						<p>
-							<span style="margin-left: 20px;">定金余额：</span>
-							<input style="width: 70px;" type="text" />
-							<span style="margin-left: 20px;">至：</span>
-							<input style="width: 70px;" type="text" />
-							<span style="margin-left: 20px;">储蓄卡余额：</span>
-							<input style="width: 70px;" type="text" />
-							<span style="margin-left: 20px;">至：</span>
-							<input style="width: 70px;" type="text" />
-							<span style="margin-left: 20px;">积分：</span>
-							<input style="width: 70px;" type="text" />
-							<span style="margin-left: 20px;">至：</span>
-							<input style="width: 70px;" type="text" />
-						</p>
+						 
 					</div>
 				</div>
 			</div>
@@ -1606,8 +1576,7 @@
 					<li @click="openaddcustomerandcar()" id="functionli">增加客户和车</li>
 					<li @click="opencustomerdata()" id="functionli">增加客户</li>
 					<li @click="updatecustomerdata()" id="functionli">修改客户</li>
-					<li id="functionli">相关证照</li>
-					<li @click="openupdateword()" id="functionli">设置密码</li>
+					 
 				</ul>
 				<div @click="customerup()" id="functionupdiv">
 					<span id="trigon">▲</span>

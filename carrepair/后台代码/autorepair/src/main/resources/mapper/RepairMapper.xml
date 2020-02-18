@@ -30,7 +30,39 @@
   </resultMap>
   <resultMap type="com.accp.domain.Repair" id="BaseResultPlus" extends="BaseResultMap">
   	  <result column="carnumber" property="carnumber" jdbcType="VARCHAR" />
+  	  <result column="totalnum" property="totalnum" jdbcType="REAL" />
+  	  <result column="cashiertime" property="cashiertime" jdbcType="TIMESTAMP" />
+  	  <result column="staffname" property="staffname" jdbcType="VARCHAR" />
+  	  <result column="paymenttype" property="paymenttype" jdbcType="VARCHAR" />
+  	  <result column="wtype" property="wtype" jdbcType="VARCHAR" />
+  	  <result column="carbrandname" property="carbrandname" jdbcType="VARCHAR" />
+  	  <result column="clientname" property="clientname" jdbcType="VARCHAR" />
+  	  <result column="cartypename" property="cartypename" jdbcType="VARCHAR" />
+  	  <result column="carnumber1" property="carnumber1" jdbcType="VARCHAR" />
+  	  <result column="carerphone" property="carerphone" jdbcType="VARCHAR" />
+  	  <result column="jqinsurance" property="jqinsurance" jdbcType="VARCHAR" />
+  	  <result column="staffpeople" property="staffpeople" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectSettleAccounts" resultMap="BaseResultPlus">
+  	SELECT item.*,cashier.`totalNum`,cashier.`cashiertime`,(SELECT NAME FROM staff WHERE staffno=staffid) staffpeople,cashier.`paymentType` FROM(SELECT repair.`number`,'维修' AS wtype,repair.`setter`,repair.status,
+(SELECT carbrandname FROM carbrand WHERE carbrand.`id`=carinfo.`carBrandId`) carbrandname,client.name clientname,
+carinfo.carNumber,car.`carTypeName`,carinfo.`carNumber1`,carinfo.`carerPhone`,carinfo.`Jqinsurance`,(SELECT NAME FROM staff WHERE staffno=repair.`staffno`) staffname,
+repair.overworkdate,repair.`price`,repair.`orderTime`
+ FROM REPAIR JOIN `carinfo` ON carinfo.id=repair.carinfoId
+ LEFT JOIN `client` ON client.number=carinfo.clientid
+ LEFT JOIN `clienttype` ON clienttype.`id`=client.`typeId`
+ LEFT JOIN `car` ON car.`id`=carinfo.`carId`
+ UNION ALL
+ SELECT rescue.`number`,'救援' AS wtype,rescue.`setter`,rescue.status,
+ (SELECT carbrandname FROM carbrand WHERE carbrand.`id`=carinfo.`carBrandId`) carbrandname,client.name clientname,
+ carinfo.carNumber,car.`carTypeName`,carinfo.`carNumber1`,carinfo.`carerPhone`,carinfo.`Jqinsurance`,(SELECT NAME FROM staff WHERE staffno=rescue.`staffno`) staffname,
+rescue.overtime,rescue.`price`,rescue.`orderTime`
+ FROM rescue LEFT JOIN `carinfo` ON carinfo.id=rescue.carinfoId
+ LEFT JOIN `car` ON car.`id`=carinfo.`carId` 
+ LEFT JOIN `client` ON client.number=carinfo.clientid
+LEFT JOIN `clienttype` ON clienttype.`id`=client.`typeId`) item LEFT JOIN cashier ON item.number=cashier.`Number`
+  WHERE item.status LIKE '%完工%' ORDER BY item.overworkdate DESC
+  </select>
   <select id="selectRepairByCarNumber" resultMap="BaseResultPlus">
   	SELECT TYPE,number,carinfo.`carNumber`,
 orderTime,nowworkDate,stockDater,orderTime FROM REPAIR INNER JOIN carinfo ON carinfo.`id`=repair.`carinfoId` WHERE carnumber='${number}'

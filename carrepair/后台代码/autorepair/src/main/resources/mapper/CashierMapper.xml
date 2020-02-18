@@ -125,7 +125,7 @@ LEFT JOIN rescue ON cashier.`Number` = rescue.`number` where cashier.`cashiersta
   </sql>
   <sql id="Base_Column_List" >
     id, totalNum, cashierstatic, paymentType, invoiceNo, cashiertime, staffId, onCredit, 
-    interior, clientId, change, Number, otherone, othertwo, otherthree, otherfour, otherfive
+    interior, clientId, Number, otherone, othertwo, otherthree, otherfour, otherfive
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CashierExample" >
     select

@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface RepairMapper {
+	List<Repair> selectSettleAccounts();
+	
 	List<Repair> selectRepairByCarNumber(String number);
 	
     int countByExample(RepairExample example);
