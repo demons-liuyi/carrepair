@@ -33,6 +33,36 @@ public class carDataController {
 	@Autowired
 	maintainregistService ms;
 	
+	@RequestMapping("/insertBaoYang")
+	public String insertBaoYang(@RequestBody Maintainregist main) {
+		int i=ms.insertBaoYang(main);
+		if(i>0) {
+			return "1";
+		}else {
+			return "0";
+		}
+	}
+	
+	@RequestMapping("/updateBaoYang")
+	public String updateBaoYang(@RequestBody Maintainregist main) {
+		int i=ms.updateBaoYang(main);
+		if(i>0) {
+			return "1";
+		}else {
+			return "0";
+		}
+	}
+	
+	@RequestMapping("/deleteBaoYang")
+	public String deleteBaoYang(int id) {
+		int i=ms.deleteBaoYang(id);
+		if(i>0) {
+			return "1";
+		}else {
+			return "0";
+		}
+	}
+	
 	@RequestMapping("/selectMaintainregistInfoByCarNumber")
 	public List<Maintainregist> selectMaintainregistInfoByCarNumber(String carNumber){
 		List<Maintainregist> list=ms.selectMaintainregistInfoByCarNumber(carNumber);

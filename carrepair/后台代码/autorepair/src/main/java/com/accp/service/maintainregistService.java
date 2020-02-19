@@ -17,6 +17,21 @@ public class maintainregistService {
 	@Autowired
 	MaintainregistMapper mm;
 	
+	public int insertBaoYang(Maintainregist main) {
+		int i=mm.insertSelective(main);
+		return i;
+	}
+	
+	public int updateBaoYang(Maintainregist main) {
+		int i=mm.updateByPrimaryKeySelective(main);
+		return i;
+	}
+	
+	public int deleteBaoYang(int id) {
+		int i=mm.deleteByPrimaryKey(id);
+		return i;
+	}
+	
 	public List<Maintainregist> selectMaintainregistInfoByCarNumber(String carNumber){
 		MaintainregistExample example=new MaintainregistExample();
 		example.createCriteria().andOtheroneEqualTo(carNumber);
