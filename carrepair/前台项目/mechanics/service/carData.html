@@ -356,7 +356,7 @@
 			
 			#cartype {
 				margin-left: 30px;
-				width: 755px;
+				width: 485px;
 				height: 500px;
 				background-color: white;
 				display: inline-block;
@@ -686,7 +686,7 @@
             	时间：2020-01-04
             	描述：车辆资料编辑
             -->
-			<div id="carinfoedit">
+			<!--<div id="carinfoedit">
 				<div id="carinfoeditlinediv">
 					<span id="selectemployeespan">车辆资料编辑</span>
 				</div>
@@ -787,55 +787,253 @@
 							<span class="caret"></span></button>
 					</p>
 				</div>
-			</div>
+			</div>-->
 
 			<!--
             	作者：1424432629@qq.com
-            	时间：2020-01-04
-            	描述：选择员工
-            -->
-			<div id="selectemployee">
-				<div id="selectemployeelinediv">
-					<span id="selectemployeespan">选择员工</span>
-				</div>
-				<div id="selectemployeediv">
-					<h2 id="selectemployeeh2">选择员工</h2>
-					<button @click="makesurestaff()" id="selectemployeemarksure" class="btn btn-default">
-						<span class="glyphicon glyphicon-ok"></span> 确定
-					</button>
-					<span @click="closeselectemployee()" id="selectemployeeremove" class="glyphicon glyphicon-remove"></span>
-					<div>
-						<div id="selectemployeecontentdiv">
-							<select style="width: 450px;">
-								<option>0000-成高</option>
-							</select>
-							<select @change="updatecondition($event)" style="width: 450px;">
-								<option did="">所有</option>
-								<option v-bind:did="item.id" v-for="item in department">{{item.departmentname}}</option>
-							</select>
-							<div style="overflow: scroll;">
-								<table border="1px" class="table">
-									<thead>
-										<tr style="background-color: deepskyblue;">
-											<tr>
-												<td></td>
-												<td>部门名称</td>
-												<td>工号</td>
-												<td>姓名</td>
-											</tr>
-										</tr>
-									</thead>
-									<tbody>
-										<tr @dblclick="staffcheck(item)" @click="staffshift(item)" v-for="item in staff">
-											<td style="width: 40px;">
-												<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
-											</td>
-											<td>{{item.departmentname}}</td>
-											<td>{{item.staffno}}</td>
-											<td>{{item.name}}</td>
-										</tr>
-									</tbody>
-								</table>
+            	时间：2020-02-19
+            	描述：车辆资料编辑
+          -->
+			<div id="ee" class="mo1 modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="border-bottom:0px">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">车辆资料编辑</h4>
+						</div>
+						<div class="modal-body">
+
+							<div class="row border-def" style="height: 44.5%;">
+								<div class="col-md-12" style=" overflow: auto;height: 100%;">
+									<div>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="home">
+												<div>
+													<form class="form-inline form-dinyi">
+														<table style="border-collapse:separate;border-spacing:5px;">
+															<tr>
+
+																<td><span>车牌号码：</span></td>
+																<td><input class="form-control" name="carnumber" style="width: 135px;" v-model="carInformationModel.carnumber" type="text" /></td>
+																<td><span>车辆品牌：</span></td>
+																<td>
+																	<div class="input-group">
+																		<input class="form-control" readonly="readonly" name="carBrand" style="width: 125px;" type="text" class="form-control">
+																		<span style="width: 125px;" class="input-group-btn">
+        																<button @click="openbrandmodels()" data-toggle="modal" data-target="#myModal3" class="btn btn-default" type="button">
+        																<span class="glyphicon glyphicon-triangle-bottom">		
+        																</span>
+																		</button>
+																		</span>
+																	</div>
+																</td>
+																<td>
+																	<span>车辆型号：</span>
+																</td>
+																<td>
+																	<input class="form-control" style="width: 115px;" name="carType" readonly="readonly" type="text" />
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span>驾驶员：</span>
+																</td>
+																<td>
+																	<input class="form-control" style="width: 115px;" v-model="carInformationModel.carer" type="text" />
+																</td>
+																<td>
+																	<span>驾驶员电话：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.carerphone" type="text" />
+																</td>
+																<td>
+																	<span>出生日期：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.borndate" type="date" />
+																</td>
+
+															</tr>
+															<tr>
+																<td>
+																	<span>车辆归属：</span>
+																</td>
+																<td>
+																	<select class="form-control" name="affiliation" style="width: 165px;">
+																		<option value="公司车">公司车</option>
+																		<option value="个人车">个人车</option>
+																	</select>
+																</td>
+																<td>
+																	<span>驾证到期：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.drivinglicence" type="date" />
+																</td>
+
+																<td>
+																	<span>车架号：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.carnumber1" type="text" />
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span>发动机号：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.enginenumber" type="text" />
+																</td>
+																<td>
+																	<span>车辆年款：</span>
+																</td>
+																<td>
+																	<input class="form-control" style="width: 100px;" v-model="carInformationModel.yearprice" type="text" />
+																</td>
+																<td>
+																	<span>里程：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.mileage" type="text" />
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span>发动机品牌：</span>
+																</td>
+																<td>
+																	<select class="form-control" name="engine" style="width: 150px;">
+																		<option :engineid="item.id" v-for="item in engineBrand">{{item.enginebrandname}}</option>
+																	</select>
+																</td>
+																<td>
+																	<span>载重：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.deadweight" type="text" />
+																</td>
+																<td>
+																	<span>购买日期：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.buydate" type="date" />
+																</td>
+															</tr>
+
+															<tr>
+																<td>
+																	<span>上牌日期：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.dutydate" type="date" />
+																</td>
+																<td>
+																	<span>车检日期：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.carcheckdate" type="date" />
+																</td>
+																<td>
+																	<span>燃油类别：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.fueloiltype" type="text" />
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span>车系：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.carseries" type="text" />
+																</td>
+
+																<td>
+																	<span>交强险保险公司：</span>
+																</td>
+																<td>
+																	<select class="form-control" name="qbaoxian" style="width: 150px;">
+																		<option value="阳光人寿保险">阳光人寿保险</option>
+																		<option value="太平洋保险">太平洋保险</option>
+																		<option value="人寿保险">人寿保险</option>
+																		<option value="平安人寿保险">平安人寿保险</option>
+																	</select>
+																</td>
+																<td>
+																	<span>交强险到期：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.jqinsurancedate" type="date" />
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span>商业险保险公司：</span>
+																</td>
+																<td>
+																	<select class="form-control" name="sbaoxian" style="width: 150px;">
+																		<option value="阳光人寿保险">阳光人寿保险</option>
+																		<option value="太平洋保险">太平洋保险</option>
+																		<option value="人寿保险">人寿保险</option>
+																		<option value="平安人寿保险">平安人寿保险</option>
+																	</select>
+																</td>
+																<td>
+																	<span>商业险到期：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.syinsurancedate" type="date" />
+																</td>
+																<td>
+																	<span>在我投保车：</span>
+																</td>
+																<td>
+																	<input class="form-control" name="insuredcar" type="checkbox" />
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span>下次保养里程：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.maintain" type="text" />
+																</td>
+																<td>
+																	<span>下次保养日期：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="carInformationModel.maintaindate" type="date" />
+																</td>
+																<td>
+																	<span>客户名称：</span>
+																</td>
+																<td>
+
+																	<div class="input-group">
+																		<input class="form-control" readonly="readonly" name="customernumberandname" style="width: 180px;" type="text">
+																		<span style="width: 125px;" class="input-group-btn">
+        																<button @click="openselectcustomer()"  data-toggle="modal" data-target="#myModal4" class="btn btn-default" type="button">
+        																<span class="glyphicon glyphicon-triangle-bottom">		
+        																</span>
+																		</button>
+																		</span>
+																	</div>
+																</td>
+															</tr>
+														</table>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" @click="closecustomerdata()" class="btn btn-default" data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="saveCarInfo()">保存</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -927,180 +1125,132 @@
 
 			<!--
             	作者：1424432629@qq.com
-            	时间：2020-01-04
-            	描述：车牌字
+            	时间：2020-02-19
+            	描述：车辆保养计划
             -->
-			<div id="carnumber">
-				<div id="carnumberlinediv">
-					<span id="carnumberspan">车牌字</span>
-				</div>
-				<h2 id="carnumberh2">车牌字</h2>
-				<span @click="closecarnumber()" id="carnumberremove" class="glyphicon glyphicon-remove"></span>
-				<div id="carnumbercontent">
-					<p style="margin-left: 80px;padding-top: 20px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
-					</p>
-					<p style="margin-left: 80px;padding-top: 5px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
-					</p>
-					<p style="margin-left: 80px;padding-top: 5px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
-					</p>
-					<p style="margin-left: 80px;padding-top: 5px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
-					</p>
-					<p style="margin-left: 80px;padding-top: 5px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
-					</p>
-					<p style="margin-left: 80px;padding-top: 5px;"><button class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button><button style="margin-left: 10px;" class="btn btn-default">京</button>
-					</p>
-				</div>
-			</div>
-
-			<!--
-            	作者：1424432629@qq.com
-            	时间：2020-01-04
-            	描述：车辆保养登记
-            -->
-			<div id="customerclassify">
-				<div id="customerclassifylinediv">
-					<span id="brandmodelsspan">车辆保养登记</span>
-				</div>
-				<div id="customerclassifyheader">
-					<h2 id="customerclassifyh2">车辆保养登记</h2>
-					<button @click="closecustomerclassify()" id="customerclassifycolse" class="btn btn-default">关闭</button>
-				</div>
-				<div id="customerclassifybody">
-					<div>
-						<div style="display: inline-block; font-size: 24px;margin-left: 30px;margin-top: 20px;">
-							<span>车牌号：</span><span name="carNumberSpan" style="color: red;font-size: 28px;"></span>
+			<div id="aa" class="mo1 modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="border-bottom:0px">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">车辆保养计划</h4>
 						</div>
-						<ul style="border: 0px solid red;float: right;margin-right: 40px; margin-top: 20px;">
-							<li>
-								<span id="img" class="glyphicon glyphicon-plus"></span>
-								<span id="font">增加</span>
-							</li>
-							<li>
-								<span id="img" class="glyphicon glyphicon-edit"></span>
-								<span id="font">修改</span>
-							</li>
-							<li>
-								<span id="img" class="glyphicon glyphicon-remove"></span>
-								<span id="font">删除</span>
-							</li>
-							<li>
-								<span id="img" class="glyphicon glyphicon-list-alt"></span>
-								<span id="font">导出</span>
-							</li>
-						</ul>
-					</div>
-					<div style="clear: both;padding-top: 10px;">
+						<div class="modal-body">
 
-					</div>
-					<div id="customerclassifytable">
-						<table border="1px" class="table">
-							<thead>
-								<tr style="background-color: deepskyblue;">
-									<td></td>
-									<td>车牌号</td>
-									<td>保养名称</td>
-									<td>计划日期</td>
-									<td>计划里程</td>
-									<td>实际日期</td>
-									<td>实际里程</td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr @click="switchMaintainregist(item)" v-for="item in maintainregistInfo">
-									<td style="width: 40px;">
-										<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
-									</td>
-									<td>{{item.otherone}}</td>
-									<td>{{item.maintainname}}</td>
-									<td>{{item.mileagedate}}</td>
-									<td>{{item.mileage}}</td>
-									<td>{{item.sjmileage}}</td>
-									<td>{{item.sjmileagedate}}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div style="margin-left: 25px;">
-						<span>共<span>{{maintainregistInfo.length}}</span>条记录数</span>
+							<div class="row border-def" style="height: 44.5%;">
+								<div class="col-md-12" style=" overflow: auto;height: 100%;">
+									<div>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="home">
+												<div>
+													<form class="form-inline form-dinyi">
+														<div id="customerclassifybody">
+															<div>
+																<div style="display: inline-block; font-size: 24px;margin-left: 30px;margin-top: 20px;">
+																	<span>车牌号：</span><span name="carNumberSpan" style="color: red;font-size: 28px;"></span>
+																</div>
+																<ul style="border: 0px solid red;float: right;margin-right: 40px; margin-top: 20px;">
+																	<li>
+																		<span id="img" class="glyphicon glyphicon-plus"></span>
+																		<span data-toggle="modal" data-target="#ss" id="font">增加</span>
+																	</li>
+																	<li>
+																		<span id="img" class="glyphicon glyphicon-edit"></span>
+																		<span @click="updatebaoyang()" data-toggle="modal" data-target="#ss" id="font">修改</span>
+																	</li>
+																	<li>
+																		<span id="img" class="glyphicon glyphicon-remove"></span>
+																		<span @click="deletebaoyang()" id="font">删除</span>
+																	</li>
+																	<li>
+																		<span id="img" class="glyphicon glyphicon-list-alt"></span>
+																		<span id="font">导出</span>
+																	</li>
+																</ul>
+															</div>
+															<div style="clear: both;padding-top: 10px;">
+
+															</div>
+															<div id="customerclassifytable">
+																<table border="1px" class="table">
+																	<thead>
+																		<tr style="background-color: deepskyblue;">
+																			<td></td>
+																			<td>车牌号</td>
+																			<td>保养名称</td>
+																			<td>计划日期</td>
+																			<td>计划里程</td>
+																			<td>实际日期</td>
+																			<td>实际里程</td>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr @click="switchMaintainregist(item)" v-for="item in maintainregistInfo">
+																			<td style="width: 40px;">
+																				<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+																			</td>
+																			<td>{{item.otherone}}</td>
+																			<td>{{item.maintainname}}</td>
+																			<td>{{item.mileagedate}}</td>
+																			<td>{{item.mileage}}</td>
+																			<td>{{item.sjmileage}}</td>
+																			<td>{{item.sjmileagedate}}</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+															<div style="margin-left: 25px;">
+																<span>共<span>{{maintainregistInfo.length}}</span>条记录数</span>
+															</div>
+														</div>
+
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<!--
             	作者：1424432629@qq.com
-            	时间：2020-01-04
-            	描述：品牌车型
+            	时间：2020-02-19
+            	描述：车辆保养编辑
             -->
-			<div id="brandmodels">
-				<div id="brandmodelslinediv">
-					<span id="brandmodelsspan">品牌车型</span>
-				</div>
-				<div>
-					<h2 id="brandmodelsh2">品牌车型</h2>
-					<button @click="checkcarBrandAndCarType()" id="brandmodelsmarksure" class="btn btn-default">
-						<span class="glyphicon glyphicon-ok"></span> 选择
-					</button>
-					<button @click="closebrandmodels()" id="brandmodelscolse" class="btn btn-default">关闭</button>
-					<div>
-						<div>
-							<input name="carBrandCondition" style="width: 150px;margin-left: 30px;" placeholder="品牌编码/品牌名称" type="text" />
-							<button @click="selectCarBrandByCondition()" id="select" class="btn btn-default">搜索</button>
-							<input name="carCondition" style="width: 150px;margin-left: 122px;" placeholder="车型编码/车型名称" type="text" />
-							<button @click="selectCarByCondition()" id="select" class="btn btn-default">搜索</button>
+			<div class="modal fade" id="ss" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 						</div>
-						<div id="carbrand">
-							<table border="1px" class="table">
-								<thead>
-									<tr style="background-color: deepskyblue;">
-										<td></td>
-										<td>编码</td>
-										<td>品牌名称</td>
-										<td>首字母</td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr @dblclick="checkcarBrandAndCarType()" @click="carBrandCheck(item)" v-for="item in carBrand">
-										<td style="width: 40px;">
-											<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
-										</td>
-										<td>{{item.id}}</td>
-										<td>{{item.carbrandname}}</td>
-										<td>{{item.firstletter}}</td>
-									</tr>
-								</tbody>
+						<div class="modal-body">
+							<table>
+								<tr>
+									<td><span>保养名称：</span></td>
+									<td><input v-model="baoyang.maintainname" type="text" class="form-control"></td>
+									<td><span>计划日期：</span></td>
+									<td><input v-model="baoyang.mileagedate" type="date" class="form-control"></td>
+									<td><span>计划里程：</span></td>
+									<td><input v-model="baoyang.mileage" type="text" class="form-control"></td>
+								</tr>
+								<tr>
+									<td><span>实际日期：</span></td>
+									<td><input v-model="baoyang.sjmileagedate" type="date" class="form-control"></td>						 
+									<td><span>实际里程：</span></td>
+									<td><input v-model="baoyang.sjmileage" type="text" class="form-control"></td>
+								</tr>
 							</table>
 						</div>
-						<div id="cartype">
-							<table border="1px" class="table" style="min-width:900px;">
-								<thead>
-									<tr style="background-color: deepskyblue;">
-										<td></td>
-										<td>车型ID</td>
-										<td>车型名称</td>
-										<td>参考价格</td>
-										<td>车辆年款</td>
-										<td>排气量</td>
-										<td>进口国产</td>
-										<td>燃油标号</td>
-										<td>四驱类型</td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr @dblclick="checkcarBrandAndCarType()" @click="carCheck(item)" v-for="item in car">
-										<td style="width: 40px;">
-											<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
-										</td>
-										<td>{{item.id}}</td>
-										<td>{{item.cartypename}}</td>
-										<td>{{item.price}}</td>
-										<td>{{item.caryearprice}}</td>
-										<td></td>
-										<td>{{item.importordomestic}}</td>
-										<td>{{item.fuelLabel}}</td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" data-dismiss="modal" @click="savebaoyang()" class="btn btn-primary">确定</button>
 						</div>
 					</div>
 				</div>
@@ -1108,146 +1258,385 @@
 
 			<!--
             	作者：1424432629@qq.com
-            	时间：2020-01-04
-            	描述：所在城市选择
-            -->
-			<div id="selectcity">
-				<div id="selectcitylinediv">
-					<span id="selectcityspan">所在城市选择</span>
-				</div>
-				<div id="selectcitydiv">
-					<h2 id="selectcityh2">省市选择</h2>
-					<button id="selectcitymarksure" class="btn btn-default">
-						<span class="glyphicon glyphicon-ok"></span> 选择
-					</button>
-					<span @click="closeselectcity()" id="selectcityremove" class="glyphicon glyphicon-remove"></span>
-					<div id="selectcitycontentdiv">
-						<table style="width: 400px;" border="1px" class="table">
-							<thead>
-								<tr style="background-color: deepskyblue;">
-									<td></td>
-									<td>城市ID</td>
-									<td>城市名称</td>
-								</tr>
-							</thead>
-							<tbody>
-								<td></td>
-								<td>车型ID</td>
-								<td>车型名称</td>
-							</tbody>
-						</table>
-					</div>
-					<span style="padding-left: 20px;">共<span></span>条记录</span>
-				</div>
-			</div>
-
-			<!--
-            	作者：1424432629@qq.com
-            	时间：2020-01-04
+            	时间：2020-02-19
             	描述：客户查询
             -->
-			<div id="staffquery">
-				<div id="staffquerylinediv">
-					<span id="staffqueryspan">客户查询</span>
+			<div id="ww" class="mo1 modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="border-bottom:0px">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">客户查询</h4>
+						</div>
+						<div class="modal-body">
+
+							<div class="row border-def" style="height: 44.5%;">
+								<div class="col-md-12" style=" overflow: auto;height: 100%;">
+									<div>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="home">
+												<div>
+													<form class="form-inline form-dinyi">
+														<table style="border-collapse:separate;border-spacing:5px;">
+															<tr>
+																<td>
+																	<span>客户编号：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="Client.number" style="width: 170px;" type="text">
+																</td>
+																<td>
+																	<span>客户名称：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="Client.name" style="width: 170px;" type="text">
+																</td>
+																<td>
+																	<span>客户类别：</span>
+																</td>
+																<td>
+																	<select class="form-control" style="width: 135px;">
+																		<option></option>
+																		<option :ctid="item.id" v-for="item in clientType">{{item.clienttype}}</option>
+																	</select>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span>联系人：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="Client.linkman" style="width: 170px;" type="text">
+																</td>
+																<td>
+																	<span>手机号码：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="Client.phone" style="width: 170px;" type="text">
+																</td>
+																<td>
+																	<span>客户地址：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="Client.address" style="width: 170px;" type="text">
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span>备注：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="Client.remake" style="width: 160px;" type="text">
+																</td>
+
+																<td><span>客户生日：</span></td>
+																<td>
+																	<input class="form-control" v-model="Client.borndate" style="width: 140px;" type="date">
+																</td>
+
+															</tr>
+
+															<tr>
+																<td>
+																	<span>专属顾问：</span>
+																</td>
+																<td>
+																	<div class="input-group">
+																		<input class="form-control" readonly="readonly" style="width: 125px;" type="text" v-model="Client.staffno+Client.staffname" class="form-control">
+																		<span style="width: 125px;" class="input-group-btn">
+        																<button  @click="openselectemployee()" data-toggle="modal" data-target="#myModal1" class="btn btn-default" type="button">
+        																<span class="glyphicon glyphicon-triangle-bottom">		
+        																</span>
+																		</button>
+																		</span>
+																	</div>
+																</td>
+																<td>
+																	<span>顾问电话：</span>
+																</td>
+																<td>
+																	<input class="form-control" readonly="readonly" v-model="Client.counselorname" style="width: 130px;" type="text" />
+																</td>
+
+															</tr>
+															<tr>
+																<td>
+																	<span>省：</span>
+																</td>
+																<td>
+																	<select class="form-control" name="sheng" style="width: 120px;" v-model="prov">
+																		<option v-for="option in arr" :value="option.name">
+																			{{ option.name }}
+																		</option>
+																	</select>
+																</td>
+																<td>
+																	<span>市：</span>
+																</td>
+																<td>
+																	<select class="form-control" name="shi" style="width: 120px;" v-model="city">
+																		<option v-for="option in cityArr" :value="option.name">
+																			{{ option.name }}
+																		</option>
+																	</select>
+																</td>
+																<td>
+																	<span>区：</span>
+																</td>
+																<td>
+																	<select class="form-control" name="qv" style="width: 140px;" v-model="district" v-if="district">
+																		<option v-for="option in districtArr" :value="option.name">
+																			{{ option.name }}
+																		</option>
+																	</select>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span>车牌号码：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="CarInfo.carnumber" type="text" />
+																</td>
+																<td>
+																	<span>车辆品牌：</span>
+																</td>
+																<td>
+																	<div class="input-group">
+																		<input class="form-control" readonly="readonly" name="carBrand" style="width: 125px;" type="text" class="form-control">
+																		<span style="width: 125px;" class="input-group-btn">
+        																<button @click="openbrandmodels()" data-toggle="modal" data-target="#myModal3" class="btn btn-default" type="button">
+        																<span class="glyphicon glyphicon-triangle-bottom">		
+        																</span>
+																		</button>
+																		</span>
+																	</div>
+																</td>
+																<td>
+																	<span>车辆型号：</span>
+																</td>
+																<td>
+																	<input class="form-control" name="carType" readonly="readonly" type="text" />
+																</td>
+															</tr>
+
+															<tr>
+
+																<td>
+																	<span>车架号：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="CarInfo.carnumber1" type="text" />
+																</td>
+																<td>
+																	<span>发动机号：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="CarInfo.enginenumber" type="text" />
+																</td>
+																<td>
+																	<span>保险公司：</span>
+																</td>
+																<td>
+																	<select class="form-control" name="baoxian" style="width: 150px;margin-left: 20px;">
+																		<option></option>
+																		<option>阳光人寿保险</option>
+																		<option>太平洋保险</option>
+																		<option>人寿保险</option>
+																		<option>平安人寿保险</option>
+																	</select>
+																</td>
+															</tr>
+															<tr>
+
+																<td>
+																	<span>发动机品牌：</span>
+																</td>
+																<td>
+																	<select class="form-control" name="engineBrand" style="width: 130px;margin-left: 5px;">
+																		<option></option>
+																		<option :engineid="item.id" v-for="item in engineBrand">{{item.enginebrandname}}</option>
+																	</select>
+																</td>
+																<td>
+																	<span>驾驶员：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="CarInfo.carer" style="width: 90px;" type="text" />
+																</td>
+																<td>
+																	<span>驾驶员电话：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="CarInfo.carerphone" style="width: 100px;" type="text" />
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span>驾驶员生日：</span>
+																</td>
+																<td>
+																	<input class="form-control" v-model="CarInfo.borndate" style="width: 140px;" type="date" />
+																</td>
+															</tr>
+														</table>
+
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="selectCarInformationByCondition()">保存</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div id="staffquerybodydiv">
-					<h2 id="staffqueryh2">客户查询</h2>
-					<button @click="selectCarInformationByCondition()" id="staffquerymarksure" class="btn btn-default">
-						<span class="glyphicon glyphicon-ok"></span> 确定
-					</button>
-					<span id="staffqueryfork" @click="closestaffquery()" class="glyphicon glyphicon-remove"></span>
-					<div id="staffquerycontent">
-						<p style="padding-top: 25px;">
+			</div>
 
-							<span style="margin-left: 20px;">客户编号：</span>
-							<input v-model="Client.number" style="width: 170px;" type="text">
-							<span style="margin-left: 20px;">客户名称：</span>
-							<input v-model="Client.name" style="width: 170px;" type="text">
-							<span style="margin-left: 20px;">客户类别：</span>
-							<select style="width: 135px;">
-								<option></option>
-								<option :ctid="item.id	" v-for="item in clientType">{{item.clienttype}}</option>
-							</select>
-						</p>
-						<p>
-							<span style="margin-left: 20px;">联系人：</span>
-							<input v-model="Client.linkman" style="width: 170px;" type="text">
-							<span style="margin-left: 20px;">手机号码：</span>
-							<input v-model="Client.phone" style="width: 170px;" type="text">
-							<span style="margin-left: 20px;">客户地址：</span>
-							<input v-model="Client.address" style="width: 170px;" type="text">
-						</p>
-						<p>
-							<span style="margin-left: 20px;">备注：</span>
-							<input v-model="Client.remake" style="width: 160px;" type="text">
-							<span style="margin-left: 20px;">会员卡号：</span>
-							<input style="width: 100px;" type="text">
-							<span style="margin-left: 20px;">客户生日：</span>
-							<input v-model="Client.borndate" style="width: 120px;" type="date">
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-02-18
+            	描述：选择员工
+            -->
+			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">选择员工</h4>
+						</div>
+						<div class="modal-body">
+							<div>
+								<select style="width: 565px;border-radius: 5px;margin-bottom: 5px;">
+									<option>0000-成高</option>
+								</select>
+								<select @change="updatecondition($event)" style="width: 565px;border-radius: 5px;margin-bottom: 10px;">
+									<option did="">所有</option>
+									<option v-bind:did="item.id" v-for="item in department">{{item.departmentname}}</option>
+								</select>
+								<div style="overflow: scroll;">
+									<table class="table table-bordered">
+										<thead>
+											<tr style="background-color: deepskyblue;">
+												<tr>
+													<td></td>
+													<td>部门名称</td>
+													<td>工号</td>
+													<td>姓名</td>
+												</tr>
+											</tr>
+										</thead>
+										<tbody>
+											<tr @dblclick="staffcheck(item)" @click="staffshift(item)" v-for="item in staff">
+												<td style="width: 40px;">
+													<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+												</td>
+												<td>{{item.departmentname}}</td>
+												<td>{{item.staffno}}</td>
+												<td>{{item.name}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" @click="makesurestaff()" data-dismiss="modal" class="btn btn-primary">确定</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
-							<span style="margin-left: 20px;">在我投保车：</span>
-							<input style="width: 10px;" type="checkbox">
-						</p>
-						<p>
-							<span style="margin-left: 20px;">专属顾问：</span>
-							<input readonly="readonly" v-model="Client.staffno+Client.staffname" style="width:165px;" />
-							<button @click="openselectemployee()"><span class="caret"></span></button>
-							<span style="margin-left: 20px;">顾问电话：</span>
-							<input readonly="readonly" v-model="Client.counselorname" style="width: 100px;" type="text" />
-							<span style="margin-left: 20px;">驾驶员生日：</span>
-							<input v-model="CarInfo.borndate" style="width: 120px;" type="date" />
-						</p>
-						<p style="padding-top: 10px;" id="example">
-							<select name="sheng" style="width: 120px;margin-left: 20px;" v-model="prov">
-								<option v-for="option in arr" :value="option.name">
-									{{ option.name }}
-								</option>
-							</select>
-							<select name="shi" style="width: 220px;margin-left: 20px;" v-model="city">
-								<option v-for="option in cityArr" :value="option.name">
-									{{ option.name }}
-								</option>
-							</select>
-							<select name="qv" style="width: 370px;margin-left: 20px;" v-model="district" v-if="district">
-								<option v-for="option in districtArr" :value="option.name">
-									{{ option.name }}
-								</option>
-							</select>
-						</p>
-						<p>
-							<span style="margin-left: 20px;">车牌号码：</span>
-							<input v-model="CarInfo.carnumber" type="text" />
-							<span style="margin-left: 20px;">车辆品牌：</span>
-							<input name="carBrand" readonly="readonly" style="width:165px;" />
-							<button @click="openbrandmodels()"><span class="caret"></span></button>
-							<span style="margin-left: 20px;">车辆型号：</span>
-							<input name="carType" readonly="readonly" type="text" />
-						</p>
-						<p>
-							<span style="margin-left: 20px;">车架号：</span>
-							<input v-model="CarInfo.carnumber1" type="text" />
-							<span style="margin-left: 20px;">发动机号：</span>
-							<input v-model="CarInfo.enginenumber" type="text" />
-							<span style="margin-left: 20px;">保险公司：</span>
-							<select name="baoxian" style="width: 150px;margin-left: 20px;">
-								<option></option>
-								<option>阳光人寿保险</option>
-								<option>太平洋保险</option>
-								<option>人寿保险</option>
-								<option>平安人寿保险</option>
-							</select>
-						</p>
-						<p>
-							<span style="margin-left: 20px;">发动机品牌：</span>
-							<select name="engine" style="width: 230px;margin-left: 20px;">
-								<option></option>
-								<option :engineid="item.id" v-for="item in engineBrand">{{item.enginebrandname}}</option>
-							</select>
-							<span style="margin-left: 20px;">驾驶员：</span>
-							<input v-model="CarInfo.carer" type="text" />
-							<span style="margin-left: 20px;">驾驶员电话：</span>
-							<input v-model="CarInfo.carerphone" type="text" />
-						</p>						 					 
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-02-19
+            	描述：品牌车型
+            -->
+			<div id="myModal3" class="mo1 modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="border-bottom:0px">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">品牌车型</h4>
+						</div>
+						<div class="modal-body">
+
+							<div class="row border-def" style="height: 44.5%;">
+								<div class="col-md-12" style=" overflow: auto;height: 100%;">
+									<div>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="home">
+												<div>
+													<div>
+														<input style="border-radius: 5px;margin-left: 30px;" name="carBrandCondition" style="width: 150px;margin-left: 30px;" placeholder="品牌编码/品牌名称" type="text" />
+														<button @click="selectCarBrandByCondition()" id="select" class="btn btn-default">搜索</button>
+														<input style="border-radius: 5px;margin-left: 120px;" name="carCondition" style="width: 150px;margin-left: 122px;" placeholder="车型编码/车型名称" type="text" />
+														<button @click="selectCarByCondition()" id="select" class="btn btn-default">搜索</button>
+													</div>
+													<div style="float: left;display: inline;" id="carbrand">
+														<table border="1px" class="table">
+															<thead>
+																<tr style="background-color: deepskyblue;">
+																	<td></td>
+																	<td>编码</td>
+																	<td>品牌名称</td>
+																	<td>首字母</td>
+																</tr>
+															</thead>
+															<tbody>
+																<tr @dblclick="checkcarBrandAndCarType()" @click="carBrandCheck(item)" v-for="item in carBrand">
+																	<td style="width: 40px;">
+																		<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+																	</td>
+																	<td>{{item.id}}</td>
+																	<td>{{item.carbrandname}}</td>
+																	<td>{{item.firstletter}}</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<div style="float: left;display: inline;" id="cartype">
+														<table border="1px" class="table">
+															<thead>
+																<tr style="background-color: deepskyblue;">
+																	<td></td>
+																	<td>车型ID</td>
+																	<td>车型名称</td>
+																	<td>参考价格</td>
+																	<td>进口国产</td>
+																</tr>
+															</thead>
+															<tbody>
+																<tr @dblclick="checkcarBrandAndCarType()" @click="carCheck(item)" v-for="item in car">
+																	<td style="width: 40px;">
+																		<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+																	</td>
+																	<td>{{item.id}}</td>
+																	<td>{{item.cartypename}}</td>
+																	<td>{{item.price}}</td>
+																	<td>{{item.importordomestic}}</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" @click="closecustomerdata()" class="btn btn-default" data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="checkcarBrandAndCarType()">保存</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1265,18 +1654,18 @@
 					<button id="closebtn" class="btn btn-default">关闭</button>
 				</div>
 			</div>
-			 
+
 			<div id="buttondiv">
 				<div id="rightbuttondiv">
 
 					<ul id="buttondivul">
 						<li>
 							<span id="img" class="glyphicon glyphicon-plus"></span>
-							<span @click="openinsertcarinfoedit()" id="font">增加</span>
+							<span data-toggle="modal" data-target="#ee" @click="openinsertcarinfoedit()" id="font">增加</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-edit"></span>
-							<span @click="openupdatecarinfoedit()" id="font">修改</span>
+							<span data-toggle="modal" data-target="#ee" @click="openupdatecarinfoedit()" id="font">修改</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-remove"></span>
@@ -1284,11 +1673,11 @@
 						</li>
 						<li style="padding-right: 200px;">
 							<span id="img" class="glyphicon glyphicon-list-alt"></span>
-							<span @click="openstaffquery()" id="font">查询</span>
+							<span data-toggle="modal" data-target="#ww" @click="openstaffquery()" id="font">查询</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-tint"></span>
-							<span @click="opencustomerclassify()" id="font">保养</span>
+							<span data-toggle="modal" data-target="#aa" @click="opencustomerclassify()" id="font">保养</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-share"></span>
@@ -1404,7 +1793,7 @@
 						<li class="pastbuy" @click="cuttopastbuy()" id="functionli">历史维修</li>
 					</ul>
 				</div>
-				<table border="1px" class="table" style="min-width:2500px;">
+				<table name="tableone" border="1px" class="table" style="min-width:2500px;">
 					<thead>
 						<tr style="background-color: deepskyblue;">
 							<td></td>
@@ -1415,14 +1804,14 @@
 							<td>手机</td>
 							<td>客户生日</td>
 							<td>客户类别</td>
-							<td>备注</td> 
+							<td>备注</td>
 							<td>建档日期</td>
 							<td>服务顾问</td>
 							<td>业务员电话</td>
 							<td>账期(天)</td>
 							<td>挂账额度</td>
 							<td>累计积分</td>
-							 
+
 							<td>客户省</td>
 							<td>客户市</td>
 							<td>客户区</td>
@@ -1434,7 +1823,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-if="qwe='1'" v-for="item in clientInformation">
+						<tr v-for="item in clientInformation">
 							<td style="width: 40px;">
 								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
 							</td>
@@ -1445,7 +1834,7 @@
 							<td>{{item.phone}}</td>
 							<td>{{item.borndate}}</td>
 							<td>{{item.clienttype}}</td>
-							 
+
 							<td>{{item.remark}}</td>
 							<td>{{item.date}}</td>
 							<td>{{item.staffname}}</td>
@@ -1453,7 +1842,7 @@
 							<td>{{item.paymentdays}}</td>
 							<td>{{item.paymentsize}}</td>
 							<td>{{item.integral}}</td>
-							 
+
 							<td>{{item.sheng}}</td>
 							<td>{{item.shi}}</td>
 							<td>{{item.qv}}</td>
@@ -1463,7 +1852,24 @@
 							<td>{{item.banknumber}}</td>
 							<td>{{item.registeraddress}}</td>
 						</tr>
-						<tr v-else="qwe='2'" v-for="item in repairInfo">
+
+					</tbody>
+				</table>
+				<table name="tabletwo" border="1px" class="table" style="min-width:2500px;">
+					<thead>
+						<tr style="background-color: deepskyblue;">
+							<td></td>
+							<td>单据类型</td>
+							<td>销售单号</td>
+							<td>车牌号</td>
+							<td>进厂时间</td>
+							<td>完工时间</td>
+							<td>结算时间</td>
+							<td>消费时间</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr @click="updatecarinfocheck(item)" v-for="item in repairInfo">
 							<td style="width: 40px;">
 								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
 							</td>
@@ -1477,38 +1883,54 @@
 						</tr>
 					</tbody>
 				</table>
-				<table name="tabletwo" border="1px" class="table" style="min-width:2500px;">
-					<thead>
-						<tr style="background-color: deepskyblue;">
-							<td></td>
-							<td>单据类型</td>
-							<td>销售单号</td>
-							<td>车牌号</td>				 
-							<td>进厂时间</td>
-							<td>完工时间</td>
-							<td>结算时间</td>
-							<td>消费时间</td>		 
-						</tr>
-					</thead>
-					<tbody>
-						<tr @click="updatecarinfocheck(item)" v-for="item in cashierinfo">
-							<td style="width: 40px;">
-								<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
-							</td>	
-							<td>{{item.paymenttype}}</td>
-							<td>{{item.number}}</td>
-							<td>{{item.carnumber}}</td>
-							<td>{{item.otherone}}</td>
-							<td>{{item.ordertime}}</td>
-							<td>{{item.overtime}}</td>
-							<td>{{item.stockdater}}</td>
-							<td>{{item.starttime}}</td>
-						</tr>
-					</tbody>
-				</table>
 			</div>
 
 			<div><span>共<span>{{carInformation.length}}</span>条记录</span><span>第<span></span>页</span><span>共<span></span>页</span>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-02-19
+            	描述：选择客户
+            -->
+			<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">选择客户</h4>
+						</div>
+						<div class="modal-body">
+							<table border="1px" class="table">
+								<thead>
+									<tr style="background-color: deepskyblue;">
+										<td></td>
+										<td>客户编号</td>
+										<td>客户名称</td>
+										<td>详细地址</td>
+										<td>联系人</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr @dblclick="doublecheckcustomer(item)" @click="switchClientInformation(item)" v-for="item in allClientInformation">
+										<td style="width: 40px;">
+											<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+										</td>
+										<td>{{item.number}}</td>
+										<td>{{item.name}}</td>
+										<td>{{item.address}}</td>
+										<td>{{item.linkman}}</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" @click="checkcustomer()" data-dismiss="modal" class="btn btn-primary">确定</button>
+						</div>
+					</div>
+				</div>
 			</div>
 
 		</div>
@@ -1531,6 +1953,7 @@
 						vm.carInformation = response;
 						console.log(vm.carInformation);
 						selectClientInformationByClientId();
+						selectRepairByCarNumber();
 					},
 					error: function(error) {
 						console.log(error);
@@ -1982,6 +2405,8 @@
 						vm.CarInfo.engineid = "";
 					}
 				}
+				vm.CarInfo.carbrandid = $("[name=carBrand]").attr("carbrandid");
+				vm.CarInfo.carid = $("[name=carType]").attr("carid");
 				vm.CarInfo.jqinsurance = $("[name=baoxian").val();
 				vm.coll.carInfo = vm.CarInfo;
 				vm.coll.client = vm.Client;
@@ -2000,6 +2425,8 @@
 					success: function(response) {
 						console.log(response);
 						vm.carInformation = response;
+						$("[name=carType]").removeAttr("carid");
+						$("[name=carBrand]").removeAttr("carbrandid");
 					},
 					error: function(error) {
 						console.log(error);
@@ -2082,6 +2509,90 @@
 					success: function(response) {
 						console.log(response);
 						vm.maintainregistInfo = response;
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//新增保养
+			function insertBaoYang(){
+				var number = 0;
+				for(var i = 0; i < vm.carInformation.length; i++) {
+					if(vm.carInformation[i].check == true) {
+						number = vm.carInformation[i].carnumber;
+					}
+				}
+				console.log(number);
+				vm.baoyang.otherone=number;
+				var main=JSON.stringify(vm.baoyang);
+				$.ajax({
+					url: "http://localhost:8080/carData/insertBaoYang",
+					data: main,
+					type: "post",
+					dataType: "json",
+					contentType: "application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						selectMaintainregistInfoByCarNumber();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//修改保养
+			function updateBaoYang(){
+				var number = 0;
+				for(var i = 0; i < vm.carInformation.length; i++) {
+					if(vm.carInformation[i].check == true) {
+						number = vm.carInformation[i].carnumber;
+					}
+				}
+				console.log(number);
+				vm.baoyang.otherone=number;
+				var main=JSON.stringify(vm.baoyang);
+				$.ajax({
+					url: "http://localhost:8080/carData/updateBaoYang",
+					data: main,
+					type: "post",
+					dataType: "json",
+					contentType: "application/json;charset=utf-8",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						selectMaintainregistInfoByCarNumber();
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//删除保养
+			function deleteBaoYang(){
+				var id = 0;
+				for(var i = 0; i < vm.carInformation.length; i++) {
+					if(vm.carInformation[i].check == true) {
+						id = vm.carInformation[i].id;
+					}
+				}					 
+				$.ajax({
+					url: "http://localhost:8080/carData/deleteBaoYang",
+					data: {id:id},
+					type: "post",
+					dataType: "json",
+					 
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						console.log(response);
+						selectMaintainregistInfoByCarNumber();
 					},
 					error: function(error) {
 						console.log(error);
@@ -2189,6 +2700,7 @@
 							"maintain": "",
 							"maintaindate": ""
 						},
+						baoyang:{"id":"","maintainname":"","mileage":"","mileageDate":"","sjmileage":"","sjmileagedate":"","otherone":""},
 						allClientInformation: {},
 						car: [],
 						carBrand: [],
@@ -2242,8 +2754,37 @@
 							this.district = '';
 						}
 					},
+					//删除保养计划
+					deletebaoyang:function(){
+						if(confirm("确定删除吗？")==true){
+							deleteBaoYang();
+						}
+					},
+					//修改保养点击事件
+					updatebaoyang:function(){
+						var that=this;
+						for(var i=0;i<that.maintainregistInfo.length;i++){
+							if(that.maintainregistInfo[i].check==true){
+								that.baoyang.id=that.maintainregistInfo[i].id;
+								that.baoyang.maintainname=that.maintainregistInfo[i].maintainname;
+								that.baoyang.mileage=that.maintainregistInfo[i].mileage;
+								that.baoyang.sjmileage=that.maintainregistInfo[i].sjmileage;
+								that.baoyang.sjmileagedate=that.maintainregistInfo[i].sjmileagedate;
+								that.baoyang.mileagedate=that.maintainregistInfo[i].mileagedate;
+							}
+						}
+					},
+					//保存保养编辑
+					savebaoyang:function(){
+						console.log(this.baoyang.id);
+						if(this.baoyang.id!=null&&this.baoyang.id>0){
+							updateBaoYang();
+						}else{
+							insertBaoYang();
+						}
+					},
 					//切换车辆保养选择
-					switchMaintainregist:function(item){
+					switchMaintainregist: function(item) {
 						var that = this;
 						for(var i = 0; i < that.maintainregistInfo.length; i++) {
 							that.maintainregistInfo[i].check = false;
@@ -2311,6 +2852,7 @@
 						}
 						item.check = true;
 						selectClientInformationByClientId();
+						selectRepairByCarNumber();
 					},
 					//选择客户
 					checkcustomer: function() {
@@ -2338,7 +2880,7 @@
 					//打开选择客户窗体
 					openselectcustomer: function() {
 						selectClientInfo();
-						$("#selectcustomer").addClass("show");
+
 					},
 					//关闭选择客户窗体
 					closeselectcustomer: function() {
@@ -2380,7 +2922,7 @@
 						}
 						$("[name=carnumber]").removeAttr("readonly");
 						selectAllEngineBrand();
-						$("#carinfoedit").addClass("show");
+
 					},
 					//打开修改车资料窗体
 					openupdatecarinfoedit: function() {
@@ -2399,7 +2941,7 @@
 							alert("无可修改的车辆！")
 							return;
 						}
-						$("#carinfoedit").addClass("show");
+
 					},
 					//删除车辆信息
 					deletecarInformation: function() {
@@ -2486,7 +3028,7 @@
 					},
 					opencustomerclassify: function() {
 						selectMaintainregistInfoByCarNumber();
-						$("#customerclassify").addClass("show");
+
 					},
 					closecustomerclassify: function() {
 						$("#customerclassify").removeClass("show");
@@ -2539,7 +3081,7 @@
 					//打开品牌车型弹窗
 					openbrandmodels: function() {
 						selectAllCarBrand();
-						$("#brandmodels").addClass("show");
+
 					},
 					//关闭品牌车型弹窗
 					closebrandmodels: function() {
@@ -2559,16 +3101,22 @@
 					},
 					//客户信息
 					cuttocar: function() {
-						vm.data = vm.carinfo;
+						//vm.data = vm.carinfo;
+						$("[name=tabletwo]").hide();
+						$("[name=tableone]").show();
 						selectClientInformationByClientId();
+						selectRepairByCarNumber();
 						$(".carinfo").addClass("color").siblings().removeClass("color");
 					},
 					//历史维修
 					cuttopastbuy: function() {
 						//vm.qwe="2";
 						//console.log(vm.qwe);
-						vm.data = vm.pastbuy;
+						//vm.data = vm.pastbuy;
 						//selectRepairByCarNumber();
+						$("[name=tableone]").hide();
+						$("[name=tabletwo]").show();
+						selectRepairByCarNumber();
 						$(".pastbuy").addClass("color").siblings().removeClass("color");
 					},
 					customerdown: function() {
@@ -2640,7 +3188,7 @@
 						$("[name=carBrand]").val("");
 						$("[name=carType]").val("");
 						selectAllEngineBrand();
-						$("#staffquery").addClass("show");
+
 					},
 					//关闭客户查询窗体
 					closestaffquery: function() {
@@ -2656,10 +3204,12 @@
 					}
 				},
 				created: function() {
-					this.data = this.carinfo;
+
 					//查询所有客户类型
 					selectAllClientType();
 					selectAllCarInfo();
+					$("[name=tabletwo]").hide();
+					$("[name=tableone]").show();
 				},
 				beforeMount: function() {
 					this.updateCity();

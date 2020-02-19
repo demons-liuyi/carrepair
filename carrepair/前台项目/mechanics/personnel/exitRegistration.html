@@ -292,8 +292,8 @@
 															<tr>
 
 																<td><span>所在部门：</span></td>
-																<td><input class="form-control" v-model="staffinfo.departmentname" type="text" name="depid" style="width: 5em;" disabled />
-
+																<td>
+																	<input class="form-control" v-model="staffinfo.departmentname" type="text" name="depid" style="width: 5em;" disabled />
 																</td>
 
 															</tr>
@@ -578,13 +578,19 @@
 																</select>
 															</td>
 															<td>
-																<span style="margin-left: 20px;">所在部门：</span></td>
-															<td>
-																<input class="form-control" name="departmentidanddepartmentname" v-model="employeeinfo.departmentid" type="text" />
-															</td>
-															<td>
-																<button data-toggle="modal" data-target="#myModal3" class="btn btn-default"><span class="caret"></span></button>
-															</td>
+																<span style="margin-left: 20px;">所在部门：</span>
+															</td>									 
+															<td colspan="2">															
+																<div class="input-group">
+																	<input style="width: 155px;" type="text" v-model="employeeinfo.departmentid" name="departmentidanddepartmentname" class="form-control">
+																	<span style="width: 155px;" class="input-group-btn">
+        																<button data-toggle="modal" data-target="#myModal4" class="btn btn-default" type="button">
+        																<span class="glyphicon glyphicon-triangle-bottom">		
+        																</span>
+																	</button>
+																	</span>
+																</div>
+															</td>			 
 														</tr>
 														<tr>
 															<td>
@@ -746,7 +752,7 @@
             	时间：2020-02-18
             	描述：部门选择
             -->
-			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">

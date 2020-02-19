@@ -21,30 +21,30 @@ USE `carrepair`;
 DROP TABLE IF EXISTS `artisan`;
 
 CREATE TABLE `artisan` (
-  `artisanNo` VARCHAR(10) NOT NULL COMMENT 'æŠ€å·¥ç¼–å·',
-  `artisanName` VARCHAR(20) DEFAULT NULL COMMENT 'æŠ€å·¥åç§°',
-  `sex` VARCHAR(5) DEFAULT NULL COMMENT 'æŠ€å·¥æ€§åˆ«',
-  `artisanClassId` INT(4) DEFAULT NULL COMMENT 'æ‰€åœ¨ç­ç»„Id',
-  `phone` VARCHAR(20) DEFAULT NULL COMMENT 'æ‰‹æœºå·',
-  `account` VARCHAR(20) DEFAULT NULL COMMENT 'æŠ€å·¥è´¦å·',
-  `address` VARCHAR(20) DEFAULT NULL COMMENT 'åœ°å€',
-  `birthday` DATE DEFAULT NULL COMMENT 'å‡ºç”Ÿæ—¥æœŸ',
-  `weChat` VARCHAR(20) DEFAULT NULL COMMENT 'å¾®ä¿¡å·',
-  `idCardNo` VARCHAR(18) DEFAULT NULL COMMENT 'èº«ä»½è¯',
-  `residence` VARCHAR(20) DEFAULT NULL COMMENT 'æˆ·å£åœ°å€',
-  `bank` VARCHAR(20) DEFAULT NULL COMMENT 'å¼€æˆ·é“¶è¡Œ',
-  `bankAccount` VARCHAR(20) DEFAULT NULL COMMENT 'é“¶è¡Œè´¦å·',
-  `artisanLevelId` INT(4) DEFAULT NULL COMMENT 'æŠ€å·¥æ˜Ÿçº§Id',
-  `groupLeader` INT(1) DEFAULT NULL COMMENT 'æ˜¯å¦ç»„é•¿0å¦1æ˜¯',
-  `maintainType` VARCHAR(100) DEFAULT NULL COMMENT 'ç»´ä¿®å·¥ç§',
-  `maintainBrand` VARCHAR(100) DEFAULT NULL COMMENT 'ç»´ä¿®å“ç‰Œ',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `artisanNo` varchar(10) NOT NULL COMMENT '¼¼¹¤±àºÅ',
+  `artisanName` varchar(20) DEFAULT NULL COMMENT '¼¼¹¤Ãû³Æ',
+  `sex` varchar(5) DEFAULT NULL COMMENT '¼¼¹¤ÐÔ±ð',
+  `artisanClassId` int(4) DEFAULT NULL COMMENT 'ËùÔÚ°à×éId',
+  `phone` varchar(20) DEFAULT NULL COMMENT 'ÊÖ»úºÅ',
+  `account` varchar(20) DEFAULT NULL COMMENT '¼¼¹¤ÕËºÅ',
+  `address` varchar(20) DEFAULT NULL COMMENT 'µØÖ·',
+  `birthday` date DEFAULT NULL COMMENT '³öÉúÈÕÆÚ',
+  `weChat` varchar(20) DEFAULT NULL COMMENT 'Î¢ÐÅºÅ',
+  `idCardNo` varchar(18) DEFAULT NULL COMMENT 'Éí·ÝÖ¤',
+  `residence` varchar(20) DEFAULT NULL COMMENT '»§¿ÚµØÖ·',
+  `bank` varchar(20) DEFAULT NULL COMMENT '¿ª»§ÒøÐÐ',
+  `bankAccount` varchar(20) DEFAULT NULL COMMENT 'ÒøÐÐÕËºÅ',
+  `artisanLevelId` int(4) DEFAULT NULL COMMENT '¼¼¹¤ÐÇ¼¶Id',
+  `groupLeader` int(1) DEFAULT NULL COMMENT 'ÊÇ·ñ×é³¤0·ñ1ÊÇ',
+  `maintainType` varchar(100) DEFAULT NULL COMMENT 'Î¬ÐÞ¹¤ÖÖ',
+  `maintainBrand` varchar(100) DEFAULT NULL COMMENT 'Î¬ÐÞÆ·ÅÆ',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`artisanNo`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `artisan` */
 
@@ -53,17 +53,17 @@ CREATE TABLE `artisan` (
 DROP TABLE IF EXISTS `artisanclass`;
 
 CREATE TABLE `artisanclass` (
-  `id` INT(10) NOT NULL AUTO_INCREMENT COMMENT 'ç­ç»„ç¼–å·ä»Ž1000å¼€å§‹è‡ªå¢ž',
-  `artisanClassName` VARCHAR(10) DEFAULT NULL COMMENT 'ç­ç»„åç§°',
-  `artisanClassWeight` INT(4) DEFAULT NULL COMMENT 'ææˆæƒé‡',
-  `parentId` INT(10) DEFAULT NULL COMMENT 'çˆ¶çº§id',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '°à×é±àºÅ´Ó1000¿ªÊ¼×ÔÔö',
+  `artisanClassName` varchar(10) DEFAULT NULL COMMENT '°à×éÃû³Æ',
+  `artisanClassWeight` int(4) DEFAULT NULL COMMENT 'Ìá³ÉÈ¨ÖØ',
+  `parentId` int(10) DEFAULT NULL COMMENT '¸¸¼¶id',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `artisanclass` */
 
@@ -72,16 +72,16 @@ CREATE TABLE `artisanclass` (
 DROP TABLE IF EXISTS `artisanlevel`;
 
 CREATE TABLE `artisanlevel` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'ç­‰çº§ç¼–å·',
-  `artisanLevelName` VARCHAR(20) DEFAULT NULL COMMENT 'ç­‰çº§åç§°',
-  `artisanLevelWeight` INT(4) DEFAULT NULL COMMENT 'ææˆæƒé‡',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'µÈ¼¶±àºÅ',
+  `artisanLevelName` varchar(20) DEFAULT NULL COMMENT 'µÈ¼¶Ãû³Æ',
+  `artisanLevelWeight` int(4) DEFAULT NULL COMMENT 'Ìá³ÉÈ¨ÖØ',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `artisanlevel` */
 
@@ -90,299 +90,278 @@ CREATE TABLE `artisanlevel` (
 DROP TABLE IF EXISTS `car`;
 
 CREATE TABLE `car` (
-  `id` VARCHAR(20) NOT NULL COMMENT 'è½¦åž‹ç¼–å·',
-  `carTypeName` VARCHAR(20) DEFAULT NULL COMMENT 'è½¦åž‹åç§°',
-  `engineId` INT(4) DEFAULT NULL COMMENT 'å‘åŠ¨æœºå“ç‰Œå¤–é”®',
-  `price` FLOAT DEFAULT NULL COMMENT 'å‚è€ƒä»·æ ¼',
-  `carYearPrice` FLOAT DEFAULT NULL COMMENT 'è½¦è¾†å¹´æ¬¾',
-  `power` VARCHAR(20) DEFAULT NULL COMMENT 'åŠŸçŽ‡',
-  `importOrdomestic` VARCHAR(20) DEFAULT NULL COMMENT 'è¿›å£æˆ–è€…å›½äº§',
-  `fuelLabel` VARCHAR(20) DEFAULT NULL COMMENT 'ç‡ƒæ²¹ç¼–å·',
-  `load` VARCHAR(20) DEFAULT NULL COMMENT 'è½½é‡',
-  `carBrandId` INT(4) DEFAULT NULL COMMENT 'ä¸Žè½¦å“ç‰Œè¡¨ç›¸å…³è”',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` varchar(20) NOT NULL COMMENT '³µÐÍ±àºÅ',
+  `carTypeName` varchar(20) DEFAULT NULL COMMENT '³µÐÍÃû³Æ',
+  `engineId` int(4) DEFAULT NULL COMMENT '·¢¶¯»úÆ·ÅÆÍâ¼ü',
+  `price` float DEFAULT NULL COMMENT '²Î¿¼¼Û¸ñ',
+  `carYearPrice` float DEFAULT NULL COMMENT '³µÁ¾Äê¿î',
+  `power` varchar(20) DEFAULT NULL COMMENT '¹¦ÂÊ',
+  `importOrdomestic` varchar(20) DEFAULT NULL COMMENT '½ø¿Ú»òÕß¹ú²ú',
+  `fuelLabel` varchar(20) DEFAULT NULL COMMENT 'È¼ÓÍ±àºÅ',
+  `deadweight` varchar(20) DEFAULT NULL COMMENT 'ÔØÖØ',
+  `carBrandId` int(4) DEFAULT NULL COMMENT 'Óë³µÆ·ÅÆ±íÏà¹ØÁª',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `car` */
 
-INSERT  INTO `car`(`id`,`carTypeName`,`engineId`,`price`,`carYearPrice`,`power`,`importOrdomestic`,`fuelLabel`,`load`,`carBrandId`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) VALUES 
-('1','é‡æ±½æ±•å¾·å¡',4,480000,NULL,NULL,'å›½äº§',NULL,'20å¨',1,NULL,NULL,NULL,NULL,NULL),
-('10','ä¸€æ±½è§£æ”¾J7',4,330000,NULL,NULL,'å›½äº§',NULL,'18å¨',4,NULL,NULL,NULL,NULL,NULL),
-('11','ä¸€æ±½è§£æ”¾J6P',3,350000,NULL,NULL,'å›½äº§',NULL,'20å¨',4,NULL,NULL,NULL,NULL,NULL),
-('12','ä¸Šæ±½çº¢å²©æ°ç‹®è‡ªå¸è½¦',4,220000,NULL,NULL,'å›½äº§',NULL,'12å¨',5,NULL,NULL,NULL,NULL,NULL),
-('13','ä¸Šæ±½çº¢å²©æ°ç‹®ç‰µå¼•è½¦',4,240000,NULL,NULL,'å›½äº§',NULL,'10å¨',5,NULL,NULL,NULL,NULL,NULL),
-('14','ä¸Šæ±½çº¢å²©æ–°é‡‘åˆšè‡ªå¸è½¦',3,200000,NULL,NULL,'å›½äº§',NULL,'10å¨',5,NULL,NULL,NULL,NULL,NULL),
-('15','ä¸Šæ±½çº¢å²©æ°å¡è‡ªå¸è½¦',2,180000,NULL,NULL,'å›½äº§',NULL,'10å¨',5,NULL,NULL,NULL,NULL,NULL),
-('16','ä¸Šæ±½çº¢å²©æ°å¡ç‰µå¼•è½¦',1,170000,NULL,NULL,'å›½äº§',NULL,'8å¨',5,NULL,NULL,NULL,NULL,NULL),
-('17','å¤§è¿é‡å¡',4,330000,NULL,NULL,'å›½äº§',NULL,'25å¨',6,NULL,NULL,NULL,NULL,NULL),
-('18','ä¸œé£ŽåŽç¥ž',4,180000,NULL,NULL,'å›½äº§',NULL,'3å¨',6,NULL,NULL,NULL,NULL,NULL),
-('2','é‡æ±½è±ªæ²ƒ',3,420000,NULL,NULL,'å›½äº§',NULL,'22å¨',1,NULL,NULL,NULL,NULL,NULL),
-('3','é‡æ±½è±ªç¿°',3,450000,NULL,NULL,'å›½äº§',NULL,'21å¨',1,NULL,NULL,NULL,NULL,NULL),
-('4','é‡æ±½æ–¯å¤ªå°”',1,470000,NULL,NULL,'å›½äº§',NULL,'22å¨',1,NULL,NULL,NULL,NULL,NULL),
-('5','ä¸°ç”°é›·å‡Œ',2,150000,NULL,NULL,'è¿›å£',NULL,'3å¨',2,NULL,NULL,NULL,NULL,NULL),
-('6','ä¸°ç”°æ±‰å…°è¾¾',1,180000,NULL,NULL,'è¿›å£',NULL,'3å¨',2,NULL,NULL,NULL,NULL,NULL),
-('7','å¾·é¾™X3000',3,320000,NULL,NULL,'å›½äº§',NULL,'15å¨',3,NULL,NULL,NULL,NULL,NULL),
-('8','å¾·é¾™H6000',4,250000,NULL,NULL,'å›½äº§',NULL,'14å¨',3,NULL,NULL,NULL,NULL,NULL),
-('9','å¾·å¾¡',3,280000,NULL,NULL,'å›½äº§',NULL,'15å¨',3,NULL,NULL,NULL,NULL,NULL);
-
-/*Table structure for table `car_client` */
-
-DROP TABLE IF EXISTS `car_client`;
-
-CREATE TABLE `car_client` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `carid` VARCHAR(20) DEFAULT NULL COMMENT 'è½¦è¾†ç¼–å·',
-  `clientid` VARCHAR(20) DEFAULT NULL COMMENT '1å®¢æˆ·ç¼–å·',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
-  PRIMARY KEY (`id`)
-) ENGINE=INNODB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
-/*Data for the table `car_client` */
-
-INSERT  INTO `car_client`(`id`,`carid`,`clientid`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) VALUES 
-(1,'1','00000CU123',NULL,NULL,NULL,NULL,NULL),
-(2,'2','00000CU123',NULL,NULL,NULL,NULL,NULL),
-(3,'3','00000CU234',NULL,NULL,NULL,NULL,NULL);
+insert  into `car`(`id`,`carTypeName`,`engineId`,`price`,`carYearPrice`,`power`,`importOrdomestic`,`fuelLabel`,`deadweight`,`carBrandId`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+('1','ÖØÆûÉÇµÂ¿¨',4,480000,NULL,NULL,'¹ú²ú',NULL,'20¶Ö',1,NULL,NULL,NULL,NULL,NULL),
+('10','Ò»Æû½â·ÅJ7',4,330000,NULL,NULL,'¹ú²ú',NULL,'18¶Ö',4,NULL,NULL,NULL,NULL,NULL),
+('11','Ò»Æû½â·ÅJ6P',3,350000,NULL,NULL,'¹ú²ú',NULL,'20¶Ö',4,NULL,NULL,NULL,NULL,NULL),
+('12','ÉÏÆûºìÑÒ½ÜÊ¨×ÔÐ¶³µ',4,220000,NULL,NULL,'¹ú²ú',NULL,'12¶Ö',5,NULL,NULL,NULL,NULL,NULL),
+('13','ÉÏÆûºìÑÒ½ÜÊ¨Ç£Òý³µ',4,240000,NULL,NULL,'¹ú²ú',NULL,'10¶Ö',5,NULL,NULL,NULL,NULL,NULL),
+('14','ÉÏÆûºìÑÒÐÂ½ð¸Õ×ÔÐ¶³µ',3,200000,NULL,NULL,'¹ú²ú',NULL,'10¶Ö',5,NULL,NULL,NULL,NULL,NULL),
+('15','ÉÏÆûºìÑÒ½Ü¿¨×ÔÐ¶³µ',2,180000,NULL,NULL,'¹ú²ú',NULL,'10¶Ö',5,NULL,NULL,NULL,NULL,NULL),
+('16','ÉÏÆûºìÑÒ½Ü¿¨Ç£Òý³µ',1,170000,NULL,NULL,'¹ú²ú',NULL,'8¶Ö',5,NULL,NULL,NULL,NULL,NULL),
+('17','´óÔËÖØ¿¨',4,330000,NULL,NULL,'¹ú²ú',NULL,'25¶Ö',6,NULL,NULL,NULL,NULL,NULL),
+('18','¶«·ç»ªÉñ',4,180000,NULL,NULL,'¹ú²ú',NULL,'3¶Ö',6,NULL,NULL,NULL,NULL,NULL),
+('2','ÖØÆûºÀÎÖ',3,420000,NULL,NULL,'¹ú²ú',NULL,'22¶Ö',1,NULL,NULL,NULL,NULL,NULL),
+('3','ÖØÆûºÀº²',3,450000,NULL,NULL,'¹ú²ú',NULL,'21¶Ö',1,NULL,NULL,NULL,NULL,NULL),
+('4','ÖØÆûË¹Ì«¶û',1,470000,NULL,NULL,'¹ú²ú',NULL,'22¶Ö',1,NULL,NULL,NULL,NULL,NULL),
+('5','·áÌïÀ×Áè',2,150000,NULL,NULL,'½ø¿Ú',NULL,'3¶Ö',2,NULL,NULL,NULL,NULL,NULL),
+('6','·áÌïººÀ¼´ï',1,180000,NULL,NULL,'½ø¿Ú',NULL,'3¶Ö',2,NULL,NULL,NULL,NULL,NULL),
+('7','µÂÁúX3000',3,320000,NULL,NULL,'¹ú²ú',NULL,'15¶Ö',3,NULL,NULL,NULL,NULL,NULL),
+('8','µÂÁúH6000',4,250000,NULL,NULL,'¹ú²ú',NULL,'14¶Ö',3,NULL,NULL,NULL,NULL,NULL),
+('9','µÂÓù',3,280000,NULL,NULL,'¹ú²ú',NULL,'15¶Ö',3,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `carbrand` */
 
 DROP TABLE IF EXISTS `carbrand`;
 
 CREATE TABLE `carbrand` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'æ±½è½¦å“ç‰Œç¼–å·',
-  `carBrandName` VARCHAR(20) DEFAULT NULL COMMENT 'æ±½è½¦å“ç‰Œåç§°',
-  `firstletter` VARCHAR(10) DEFAULT NULL COMMENT 'æ±½è½¦é¦–å­—æ¯',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'Æû³µÆ·ÅÆ±àºÅ',
+  `carBrandName` varchar(20) DEFAULT NULL COMMENT 'Æû³µÆ·ÅÆÃû³Æ',
+  `firstletter` varchar(10) DEFAULT NULL COMMENT 'Æû³µÊ××ÖÄ¸',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `carbrand` */
 
-INSERT  INTO `carbrand`(`id`,`carBrandName`,`firstletter`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) VALUES 
-(1,'ä¸­å›½é‡æ±½','A',NULL,NULL,NULL,NULL,NULL),
-(2,'ä¸°ç”°','F',NULL,NULL,NULL,NULL,NULL),
-(3,'é™•æ±½é‡å¡','B',NULL,NULL,NULL,NULL,NULL),
-(4,'ä¸­å›½ä¸€æ±½','K',NULL,NULL,NULL,NULL,NULL),
-(5,'ä¸Šæ±½çº¢å²©','H',NULL,NULL,NULL,NULL,NULL),
-(6,'å…¶ä»–é‡åž‹è½¦','Z',NULL,NULL,NULL,NULL,NULL);
+insert  into `carbrand`(`id`,`carBrandName`,`firstletter`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'ÖÐ¹úÖØÆû','A',NULL,NULL,NULL,NULL,NULL),
+(2,'·áÌï','F',NULL,NULL,NULL,NULL,NULL),
+(3,'ÉÂÆûÖØ¿¨','B',NULL,NULL,NULL,NULL,NULL),
+(4,'ÖÐ¹úÒ»Æû','K',NULL,NULL,NULL,NULL,NULL),
+(5,'ÉÏÆûºìÑÒ','H',NULL,NULL,NULL,NULL,NULL),
+(6,'ÆäËûÖØÐÍ³µ','Z',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `carinfo` */
 
 DROP TABLE IF EXISTS `carinfo`;
 
 CREATE TABLE `carinfo` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'ç¼–å·',
-  `carNumber` VARCHAR(20) DEFAULT NULL COMMENT 'è½¦ç‰Œå·ç ',
-  `carBrandId` INT(11) DEFAULT NULL COMMENT 'ä¸Žè½¦è¾†å“ç‰Œå…³è”',
-  `carId` INT(11) DEFAULT NULL COMMENT 'ä¸Žè½¦åž‹è¡¨å…³è”',
-  `carer` VARCHAR(20) DEFAULT NULL COMMENT 'é©¾é©¶å‘˜',
-  `carerPhone` VARCHAR(50) DEFAULT NULL COMMENT 'é©¾é©¶å‘˜ç”µè¯',
-  `bornDate` DATE DEFAULT NULL COMMENT 'å‡ºç”Ÿæ—¥æœŸ',
-  `affiliation` VARCHAR(20) DEFAULT NULL COMMENT 'è½¦è¾†å½’å±ž',
-  `drivingLicence` DATE DEFAULT NULL COMMENT 'é©¾é©¶è¯åˆ°æœŸæ—¶é—´',
-  `carNumber1` VARCHAR(20) DEFAULT NULL COMMENT 'è½¦æž¶å·',
-  `engineNumber` VARCHAR(20) DEFAULT NULL COMMENT 'å‘åŠ¨æœºå·',
-  `yearPrice` FLOAT DEFAULT NULL COMMENT 'è½¦è¾†å¹´æ¬¾ï¼Œwä¸ºå•ä½',
-  `mileage` FLOAT DEFAULT NULL COMMENT 'è½¦è¾†é‡Œç¨‹',
-  `engineId` INT(11) DEFAULT NULL COMMENT 'ä¸Žå‘åŠ¨æœºè¡¨å…³è”',
-  `load` VARCHAR(20) DEFAULT NULL COMMENT 'è½½é‡',
-  `buyDate` DATETIME DEFAULT NULL COMMENT 'è´­ä¹°æ—¥æœŸ',
-  `dutyDate` DATETIME DEFAULT NULL COMMENT 'ä¸Šç‰Œæ—¥æœŸ',
-  `carCheckDate` DATETIME DEFAULT NULL COMMENT 'è½¦æ£€æ—¥æœŸ',
-  `fuelOilType` VARCHAR(20) DEFAULT NULL COMMENT 'ç‡ƒæ²¹ç±»åˆ«',
-  `carSeries` VARCHAR(20) DEFAULT NULL COMMENT 'è½¦ç³»',
-  `Jqinsurance` VARCHAR(20) DEFAULT NULL COMMENT 'äº¤å¼ºä¿é™©å…¬å¸',
-  `Jqinsurancedate` DATE DEFAULT NULL COMMENT 'äº¤å¼ºä¿é™©åˆ°æœŸæ—¶é—´',
-  `Syinsurance` VARCHAR(30) DEFAULT NULL COMMENT 'å•†ä¸šä¿é™©å…¬å¸',
-  `Syinsurancedate` DATE DEFAULT NULL COMMENT 'å•†ä¸šä¿é™©åˆ°æœŸæ—¶é—´',
-  `maintain` FLOAT DEFAULT NULL COMMENT 'ä¸‹æ¬¡ä¿å…»é‡Œç¨‹',
-  `maintaindate` DATE DEFAULT NULL COMMENT 'ä¸‹æ¬¡ä¿å…»æ—¥æœŸ',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '±àºÅ',
+  `carNumber` varchar(20) DEFAULT NULL COMMENT '³µÅÆºÅÂë',
+  `carBrandId` int(11) DEFAULT NULL COMMENT 'Óë³µÁ¾Æ·ÅÆ¹ØÁª',
+  `carId` int(11) DEFAULT NULL COMMENT 'Óë³µÐÍ±í¹ØÁª',
+  `carer` varchar(20) DEFAULT NULL COMMENT '¼ÝÊ»Ô±',
+  `carerPhone` varchar(50) DEFAULT NULL COMMENT '¼ÝÊ»Ô±µç»°',
+  `bornDate` date DEFAULT NULL COMMENT '³öÉúÈÕÆÚ',
+  `affiliation` varchar(20) DEFAULT NULL COMMENT '³µÁ¾¹éÊô',
+  `drivingLicence` date DEFAULT NULL COMMENT '¼ÝÊ»Ö¤µ½ÆÚÊ±¼ä',
+  `carNumber1` varchar(20) DEFAULT NULL COMMENT '³µ¼ÜºÅ',
+  `engineNumber` varchar(20) DEFAULT NULL COMMENT '·¢¶¯»úºÅ',
+  `yearPrice` float DEFAULT NULL COMMENT '³µÁ¾Äê¿î£¬wÎªµ¥Î»',
+  `mileage` float DEFAULT NULL COMMENT '³µÁ¾Àï³Ì',
+  `engineId` int(11) DEFAULT NULL COMMENT 'Óë·¢¶¯»ú±í¹ØÁª',
+  `deadweight` varchar(20) DEFAULT NULL COMMENT 'ÔØÖØ',
+  `buyDate` datetime DEFAULT NULL COMMENT '¹ºÂòÈÕÆÚ',
+  `dutyDate` datetime DEFAULT NULL COMMENT 'ÉÏÅÆÈÕÆÚ',
+  `carCheckDate` datetime DEFAULT NULL COMMENT '³µ¼ìÈÕÆÚ',
+  `fuelOilType` varchar(20) DEFAULT NULL COMMENT 'È¼ÓÍÀà±ð',
+  `carSeries` varchar(20) DEFAULT NULL COMMENT '³µÏµ',
+  `Jqinsurance` varchar(20) DEFAULT NULL COMMENT '½»Ç¿±£ÏÕ¹«Ë¾',
+  `Jqinsurancedate` date DEFAULT NULL COMMENT '½»Ç¿±£ÏÕµ½ÆÚÊ±¼ä',
+  `Syinsurance` varchar(30) DEFAULT NULL COMMENT 'ÉÌÒµ±£ÏÕ¹«Ë¾',
+  `Syinsurancedate` date DEFAULT NULL COMMENT 'ÉÌÒµ±£ÏÕµ½ÆÚÊ±¼ä',
+  `maintain` float DEFAULT NULL COMMENT 'ÏÂ´Î±£ÑøÀï³Ì',
+  `maintaindate` date DEFAULT NULL COMMENT 'ÏÂ´Î±£ÑøÈÕÆÚ',
+  `clientid` varchar(100) DEFAULT NULL COMMENT '¿Í»§±àºÅ',
+  `insuredcar` varchar(20) DEFAULT NULL COMMENT 'ÔÚÎÒÍ¶±£³µ',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËû×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 /*Data for the table `carinfo` */
 
-INSERT  INTO `carinfo`(`id`,`carNumber`,`carBrandId`,`carId`,`carer`,`carerPhone`,`bornDate`,`affiliation`,`drivingLicence`,`carNumber1`,`engineNumber`,`yearPrice`,`mileage`,`engineId`,`load`,`buyDate`,`dutyDate`,`carCheckDate`,`fuelOilType`,`carSeries`,`Jqinsurance`,`Jqinsurancedate`,`Syinsurance`,`Syinsurancedate`,`maintain`,`maintaindate`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) VALUES 
-(1,'æ¹˜A12356',1,3,'ä¼Ÿæ˜Ÿ','16634555987','1996-12-22','å…¬å¸è½¦','2020-02-20','LE42131831L436672','345347K',2001,10000,NULL,NULL,'2002-03-05 00:00:00','2003-04-01 00:00:00','2003-12-21 00:00:00','æ±½æ²¹',NULL,'å¤ªå¹³æ´‹ä¿é™©','2004-01-01','äººå¯¿ä¿é™©','2004-01-01',20000,'2004-05-05',NULL,NULL,NULL,NULL,NULL),
-(2,'æ¹˜B54352',2,5,'å¼ ä¼Ÿ','18884343221','1995-10-21','å…¬å¸è½¦','2022-03-21','LL4123123J1245332','432234K',2018,5000,NULL,NULL,'2018-12-12 00:00:00','2018-12-21 00:00:00','2019-01-21 00:00:00','æ±½æ²¹',NULL,'äººå¯¿ä¿é™©','2018-12-25','å¤ªå¹³æ´‹ä¿é™©','2018-12-30',18000,'2020-09-21',NULL,NULL,NULL,NULL,NULL),
-(3,'æ¹˜C53453',3,8,'è²åŠ›','17759342092','1994-11-21','å…¬å¸è½¦','2023-04-22','LL1432423F1435323','423422K',2015,12000,NULL,NULL,'2015-05-23 00:00:00','2015-12-23 00:00:00','2016-01-01 00:00:00','æ±½æ²¹',NULL,'å¹³å®‰äººå¯¿ä¿é™©','2015-06-23','é˜³å…‰äººå¯¿ä¿é™©','2015-12-29',250000,'2017-12-21',NULL,NULL,NULL,NULL,NULL);
+insert  into `carinfo`(`id`,`carNumber`,`carBrandId`,`carId`,`carer`,`carerPhone`,`bornDate`,`affiliation`,`drivingLicence`,`carNumber1`,`engineNumber`,`yearPrice`,`mileage`,`engineId`,`deadweight`,`buyDate`,`dutyDate`,`carCheckDate`,`fuelOilType`,`carSeries`,`Jqinsurance`,`Jqinsurancedate`,`Syinsurance`,`Syinsurancedate`,`maintain`,`maintaindate`,`clientid`,`insuredcar`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'ÏæA12356',2,6,'Î°ÐÇ','16634555987','1996-12-22','¹«Ë¾³µ','2020-02-20','LE42131831L436672','345347K',2001,10000,1,'21¶Ö','2002-03-05 00:00:00','2003-04-01 00:00:00','2003-12-21 00:00:00','ÆûÓÍ',NULL,'Ñô¹âÈËÊÙ±£ÏÕ','2004-01-01','Ñô¹âÈËÊÙ±£ÏÕ','2004-01-01',20000,'2004-05-05','00000CU12348','1',NULL,NULL,NULL,NULL,NULL),
+(2,'ÏæB54352',2,5,'ÕÅÎ°','18884343221','1995-10-21','¹«Ë¾³µ','2022-03-21','LL4123123J1245332','432234K',2018,5000,1,'3¶Ö','2018-12-12 00:00:00','2018-12-21 00:00:00','2019-01-21 00:00:00','ÆûÓÍ',NULL,'Ñô¹âÈËÊÙ±£ÏÕ','2018-12-25','Ñô¹âÈËÊÙ±£ÏÕ','2018-12-30',18000,'2020-09-21','00000CU12348','2',NULL,NULL,NULL,NULL,NULL),
+(3,'ÏæC53453',3,8,'·ÆÁ¦','17759342092','1994-11-21','¹«Ë¾³µ','2023-04-22','LL1432423F1435323','423422K',2015,12000,3,'14¶Ö','2015-05-23 00:00:00','2015-12-23 00:00:00','2016-01-01 00:00:00','ÆûÓÍ',NULL,'Æ½°²ÈËÊÙ±£ÏÕ','2015-06-23','Ñô¹âÈËÊÙ±£ÏÕ','2015-12-29',250000,'2017-12-21','00000CU12349','1',NULL,NULL,NULL,NULL,NULL),
+(4,'ÏæB12432',1,3,'ÆëÆë','18876444728','1986-02-13','¹«Ë¾³µ','2020-02-26','LE42131831L436123','345547K',2001,10000,3,'21¶Ö','2020-01-29 00:00:00','2020-02-05 00:00:00','2020-02-28 00:00:00','ÆûÓÍ','','ÈËÊÙ±£ÏÕ','2020-03-04','Æ½°²ÈËÊÙ±£ÏÕ','2020-03-07',20000,'2020-01-16','00000CU12353','2',NULL,NULL,NULL,NULL,NULL),
+(5,'ÏæB45432',6,18,'·Æ·Æ','18899277826','1988-02-10','¹«Ë¾³µ','2020-03-07','LL4123123J1245532','436634K',2018,1000,2,'20¶Ö','2018-02-13 00:00:00','2018-03-14 00:00:00','2020-02-13 00:00:00','ÆûÓÍ','','Ñô¹âÈËÊÙ±£ÏÕ','2020-02-12','ÈËÊÙ±£ÏÕ','2020-02-20',30000,'2020-03-05','00000CU12352','1',NULL,NULL,NULL,NULL,NULL),
+(6,'ÏæB88872',2,6,'º©º©','17773999287','1994-03-16','¹«Ë¾³µ','2020-02-25','LL4123123J1245543','412634K',2018,10000,1,'1','2020-02-18 00:00:00','2020-02-18 00:00:00','2020-03-06 00:00:00','ÆûÓÍ','','Ñô¹âÈËÊÙ±£ÏÕ','2020-02-19','Ñô¹âÈËÊÙ±£ÏÕ','2020-02-29',300000,'2020-02-11','00000CU12354','1','',NULL,NULL,NULL,NULL),
+(7,'ÏæB88726',2,6,'ÍúÍú','19982738276','1994-03-09','¹«Ë¾³µ','2020-02-28','LL4123123J1245543','432634K',2018,15000,1,'1','2020-02-11 00:00:00','2020-02-19 00:00:00','2020-03-05 00:00:00','ÆûÓÍ','','Ñô¹âÈËÊÙ±£ÏÕ','2020-03-04','Ñô¹âÈËÊÙ±£ÏÕ','2020-03-06',300000,'2020-02-10','00000CU12355','2',NULL,NULL,NULL,NULL,NULL),
+(12,'ÏæB123123',4,11,'qwe','qwe',NULL,'¹«Ë¾³µ',NULL,'12','12',12,NULL,1,'',NULL,NULL,NULL,'','','Ñô¹âÈËÊÙ±£ÏÕ',NULL,'Ñô¹âÈËÊÙ±£ÏÕ',NULL,12,NULL,'00000CU12352','2',NULL,NULL,NULL,NULL,NULL),
+(16,'123',4,10,'123','123','2020-02-11','¹«Ë¾³µ','2020-02-13','123','123',123,123,1,'123','2020-02-18 00:00:00','2020-02-07 00:00:00','2020-01-28 00:00:00','123','123','Ñô¹âÈËÊÙ±£ÏÕ','2020-02-11','Ñô¹âÈËÊÙ±£ÏÕ','2020-02-03',123,'2020-02-04','00000CU12348','1',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `cashier` */
 
 DROP TABLE IF EXISTS `cashier`;
 
 CREATE TABLE `cashier` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'æ”¶é“¶id',
-  `totalNum` FLOAT DEFAULT NULL COMMENT 'æ€»é‡‘é¢',
-  `cashierstatic` VARCHAR(10) DEFAULT NULL COMMENT 'ç»“ç®—çŠ¶æ€',
-  `paymentType` VARCHAR(10) DEFAULT NULL COMMENT 'æ”¯ä»˜æ–¹å¼',
-  `invoiceNo` VARCHAR(10) DEFAULT NULL COMMENT 'å‘ç¥¨è¡¨id',
-  `cashiertime` DATETIME DEFAULT NULL COMMENT 'ç»“ç®—æ—¶é—´',
-  `staffId` VARCHAR(10) DEFAULT NULL COMMENT 'å‘˜å·¥è¡¨idæ£€æŸ¥è¯¥å‘˜å·¥çš„è§’è‰²æ˜¯å¦æœ‰æƒé™ä½¿ç”¨å†…éƒ¨åˆ¸',
-  `onCredit` FLOAT DEFAULT NULL COMMENT 'æŒ‚è´¦é‡‘é¢',
-  `interior` FLOAT DEFAULT NULL COMMENT 'å†…éƒ¨å…å•é‡‘é¢',
-  `clientId` VARCHAR(20) DEFAULT NULL COMMENT 'å®¢æˆ·ç¼–å·',
-  `change` FLOAT DEFAULT NULL COMMENT 'æ‰¾é›¶',
-  `Number` VARCHAR(10) DEFAULT NULL COMMENT 'é”€å”®å•å·',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'ÊÕÒøid',
+  `totalNum` float DEFAULT NULL COMMENT '×Ü½ð¶î',
+  `cashierstatic` varchar(10) DEFAULT NULL COMMENT '½áËã×´Ì¬',
+  `paymentType` varchar(10) DEFAULT NULL COMMENT 'Ö§¸¶·½Ê½',
+  `invoiceNo` varchar(10) DEFAULT NULL COMMENT '·¢Æ±±íid',
+  `cashiertime` datetime DEFAULT NULL COMMENT '½áËãÊ±¼ä',
+  `staffId` varchar(10) DEFAULT NULL COMMENT 'Ô±¹¤±íid¼ì²é¸ÃÔ±¹¤µÄ½ÇÉ«ÊÇ·ñÓÐÈ¨ÏÞÊ¹ÓÃÄÚ²¿È¯',
+  `onCredit` float DEFAULT NULL COMMENT '¹ÒÕË½ð¶î',
+  `interior` float DEFAULT NULL COMMENT 'ÄÚ²¿Ãâµ¥½ð¶î',
+  `clientId` varchar(20) DEFAULT NULL COMMENT '¿Í»§±àºÅ',
+  `change` float DEFAULT NULL COMMENT 'ÕÒÁã',
+  `Number` varchar(10) DEFAULT NULL COMMENT 'ÏúÊÛµ¥ºÅ',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `cashier` */
+
+insert  into `cashier`(`id`,`totalNum`,`cashierstatic`,`paymentType`,`invoiceNo`,`cashiertime`,`staffId`,`onCredit`,`interior`,`clientId`,`change`,`Number`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,1000,'ÒÑÖ§¸¶','ÏÖ½ð',NULL,'2020-02-11 20:13:52','SWE001',NULL,NULL,'00000CU12349',NULL,'RNG202001','1',NULL,NULL,NULL,NULL),
+(2,2000,'ÒÑÖ§¸¶','Î¢ÐÅ',NULL,'2020-02-11 20:16:28','ZXC001',NULL,NULL,'00000CU12350',NULL,'RNG202002','1',NULL,NULL,NULL,NULL),
+(3,5000,'ÒÑÖ§¸¶','Ö§¸¶±¦',NULL,'2020-02-11 20:17:41','SWE003',NULL,NULL,'00000CU12353',NULL,'IG202002','2',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `client` */
 
 DROP TABLE IF EXISTS `client`;
 
 CREATE TABLE `client` (
-  `number` VARCHAR(20) NOT NULL COMMENT 'å®¢æˆ·ç¼–ç ',
-  `name` VARCHAR(20) DEFAULT NULL COMMENT 'å®¢æˆ·åç§°',
-  `linkman` VARCHAR(20) DEFAULT NULL COMMENT 'è”ç³»äºº',
-  `phone` VARCHAR(20) DEFAULT NULL COMMENT 'æ‰‹æœº',
-  `address` VARCHAR(20) DEFAULT NULL COMMENT 'åœ°å€',
-  `borndate` DATE DEFAULT NULL COMMENT 'ç”Ÿæ—¥',
-  `paymentDays` INT(11) DEFAULT NULL COMMENT 'è´¦æœŸï¼Œå¤©ä¸ºå•ä½',
-  `paymentSize` INT(11) DEFAULT NULL COMMENT 'æŒ‚è´¦é¢åº¦ï¼Œwä¸ºå•ä½',
-  `staffNo` VARCHAR(10) DEFAULT NULL COMMENT 'ä¸Žå‘˜å·¥è¡¨å…³è”',
-  `counselorName` VARCHAR(20) DEFAULT NULL COMMENT 'é¡¾é—®ç”µè¯',
-  `sheng` VARCHAR(10) DEFAULT NULL COMMENT 'çœ',
-  `shi` VARCHAR(10) DEFAULT NULL COMMENT 'å¸‚',
-  `qv` VARCHAR(10) DEFAULT NULL COMMENT 'åŒº',
-  `remark` VARCHAR(50) DEFAULT NULL COMMENT 'å¤‡æ³¨',
-  `taxpayerNumber` VARCHAR(20) DEFAULT NULL COMMENT 'çº³ç¨Žäººè¯†åˆ«å·',
-  `registerPhone` VARCHAR(20) DEFAULT NULL COMMENT 'æ³¨å†Œç”µè¯',
-  `bank` VARCHAR(20) DEFAULT NULL COMMENT 'å¼€æˆ·é“¶è¡Œ',
-  `bankNumber` VARCHAR(20) DEFAULT NULL COMMENT 'é“¶è¡Œè´¦å·',
-  `registerAddress` VARCHAR(20) DEFAULT NULL COMMENT 'æ³¨å†Œåœ°å€',
-  `other` VARCHAR(20) DEFAULT NULL COMMENT 'å…¶ä»–',
-  `typeId` INT(4) DEFAULT NULL COMMENT 'ä¸Žå®¢æˆ·ç±»åˆ«è¡¨å…³è”',
-  `carNo` VARCHAR(10) DEFAULT NULL COMMENT 'ä¸Žè½¦è¾†è¡¨å…³è”',
-  `date` DATE DEFAULT NULL COMMENT 'æ³¨å†Œæ—¥æœŸ',
-  `Integral` INT(10) DEFAULT NULL COMMENT 'ç§¯åˆ†',
-  `onCredit` FLOAT DEFAULT NULL COMMENT 'æŒ‚è´¦é‡‘é¢',
-  `deposit` FLOAT DEFAULT NULL COMMENT 'å®šé‡‘é‡‘é¢',
-  `petCard` FLOAT DEFAULT NULL COMMENT 'å‚¨å€¼å¡ä½™é¢',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `number` varchar(20) NOT NULL COMMENT '¿Í»§±àÂë',
+  `name` varchar(20) DEFAULT NULL COMMENT '¿Í»§Ãû³Æ',
+  `linkman` varchar(20) DEFAULT NULL COMMENT 'ÁªÏµÈË',
+  `phone` varchar(20) DEFAULT NULL COMMENT 'ÊÖ»ú',
+  `address` varchar(20) DEFAULT NULL COMMENT 'µØÖ·',
+  `borndate` date DEFAULT NULL COMMENT 'ÉúÈÕ',
+  `paymentDays` int(11) DEFAULT NULL COMMENT 'ÕËÆÚ£¬ÌìÎªµ¥Î»',
+  `paymentSize` int(11) DEFAULT NULL COMMENT '¹ÒÕË¶î¶È£¬wÎªµ¥Î»',
+  `staffNo` varchar(10) DEFAULT NULL COMMENT 'ÓëÔ±¹¤±í¹ØÁª',
+  `counselorName` varchar(20) DEFAULT NULL COMMENT '¹ËÎÊµç»°',
+  `sheng` varchar(10) DEFAULT NULL COMMENT 'Ê¡',
+  `shi` varchar(10) DEFAULT NULL COMMENT 'ÊÐ',
+  `qv` varchar(10) DEFAULT NULL COMMENT 'Çø',
+  `remark` varchar(50) DEFAULT NULL COMMENT '±¸×¢',
+  `taxpayerNumber` varchar(20) DEFAULT NULL COMMENT 'ÄÉË°ÈËÊ¶±ðºÅ',
+  `registerPhone` varchar(20) DEFAULT NULL COMMENT '×¢²áµç»°',
+  `bank` varchar(20) DEFAULT NULL COMMENT '¿ª»§ÒøÐÐ',
+  `bankNumber` varchar(20) DEFAULT NULL COMMENT 'ÒøÐÐÕËºÅ',
+  `registerAddress` varchar(20) DEFAULT NULL COMMENT '×¢²áµØÖ·',
+  `other` varchar(20) DEFAULT NULL COMMENT 'ÆäËû',
+  `typeId` int(4) DEFAULT '1' COMMENT 'Óë¿Í»§Àà±ð±í¹ØÁª',
+  `carNo` varchar(10) DEFAULT NULL COMMENT 'Óë³µÁ¾±í¹ØÁª',
+  `date` date DEFAULT NULL COMMENT '×¢²áÈÕÆÚ',
+  `Integral` int(10) DEFAULT NULL COMMENT '»ý·Ö',
+  `onCredit` float DEFAULT NULL COMMENT '¹ÒÕË½ð¶î',
+  `deposit` float DEFAULT NULL COMMENT '¶¨½ð½ð¶î',
+  `petCard` float DEFAULT NULL COMMENT '´¢Öµ¿¨Óà¶î',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`number`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `client` */
 
-INSERT  INTO `client`(`number`,`name`,`linkman`,`phone`,`address`,`borndate`,`paymentDays`,`paymentSize`,`staffNo`,`counselorName`,`sheng`,`shi`,`qv`,`remark`,`taxpayerNumber`,`registerPhone`,`bank`,`bankNumber`,`registerAddress`,`other`,`typeId`,`carNo`,`date`,`Integral`,`onCredit`,`deposit`,`petCard`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) VALUES 
-('00000CU123','æ¬§æ¬§','å‘¨å°å®¹','13122332987','æ¹–å—çœæ ªæ´²å¸‚è·å¡˜åŒº','1998-02-02',10,10000,'ASD002','17489222873','æ¹–å—çœ','æ ªæ´²å¸‚','è·å¡˜åŒº','æ— ','243432213','18893888273','å·¥å•†é“¶è¡Œ','876789574832789','æ¹–å—çœæ ªæ´²å¸‚è·å¡˜åŒºçº¢æ——å¹¿åœºæ”¯è¡Œ',NULL,2,NULL,'2020-01-05',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-('00000CU234','æ¹¾æ¹¾','åˆ˜å°å¹³','14232322145','æ¹–å—çœé•¿æ²™å¸‚å¤©å¿ƒåŒº','1999-03-05',10,5000,'ASD003','18598237648','æ¹–å—çœ','æ ªæ´²å¸‚','è·å¡˜åŒº','æ— ','534325321','18643436373','å…´ä¸šé“¶è¡Œ','898574839432285','æ¹–å—çœæ ªæ´²å¸‚æ–°åŽä¸œè·¯æ”¯è¡Œ',NULL,3,NULL,'2020-01-03',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `client`(`number`,`name`,`linkman`,`phone`,`address`,`borndate`,`paymentDays`,`paymentSize`,`staffNo`,`counselorName`,`sheng`,`shi`,`qv`,`remark`,`taxpayerNumber`,`registerPhone`,`bank`,`bankNumber`,`registerAddress`,`other`,`typeId`,`carNo`,`date`,`Integral`,`onCredit`,`deposit`,`petCard`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+('00000CU12348','ÀòÀò','ÖÜÐ¡ÈÝ','13122332987','ºþÄÏÊ¡ÖêÖÞÊÐºÉÌÁÇø','1998-02-02',10,10000,'ZXC001','13442355323','ºþÄÏ','ÖêÖÞ','ºÉÌÁÇø','ÎÞ','243432213','18893888273','¹¤ÉÌÒøÐÐ','876789574832789','ºþÄÏÊ¡ÖêÖÞÊÐºÉÌÁÇøºìÆì¹ã³¡Ö§ÐÐ',NULL,2,NULL,'2020-01-05',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('00000CU12349','ÍåÍå','ÁõÐ¡Æ½','14232322145','ºþÄÏÊ¡³¤É³ÊÐÌìÐÄÇø','1999-03-05',10,5000,'ASD003','18598237648','ºþÄÏ','³¤É³','ÌìÐÄÇø','ÎÞ','534325321','18643436373','ÐËÒµÒøÐÐ','898574839432285','ºþÄÏÊ¡ÖêÖÞÊÐÐÂ»ª¶«Â·Ö§ÐÐ',NULL,3,NULL,'2020-01-03',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('00000CU12350','µãµã','Ð¡ÃÛ','13487699820','ºþÄÏÊ¡³¤É³ÊÐÓê»¨ÇøÓê»¨Í¤','1997-02-05',3,11111,'SWE003','15323245675','ºþÄÏ','³¤É³','Óê»¨Çø','ÎÞ','123123123','13143566432','½¨ÉèÒøÐÐ','12312321423543534','ºþÄÏÊ¡³¤É³ÊÐÓê»¨ÇøÓê»¨Í¤Ö§ÐÐ',NULL,1,NULL,'2020-02-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('00000CU12351','ÏþÏþ','ÍõÍñ','18890887672','ºþÄÏÊ¡ÖêÖÞÊÐÊ¯·åÇø','1995-02-16',3,1234,'SWE003','15323245675','ºþÄÏ','ÖêÖÞ','Ê¯·åÇø','ÎÞ','123124214123123','14567567543','Å©ÒµÒøÐÐ','12398878312','ºþÄÏÊ¡ÖêÖÞÊÐÊ¯·åÇøÏìÊ¯¹ã³¡Ö§ÐÐ',NULL,1,NULL,'2020-02-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('00000CU12352','¿Æ¿Æ','Ð¡Æß','18893777876','ºþÄÏÊ¡³¤É³ÊÐÌìÐÄÇø','1994-02-09',2,1000,'ASD003','18843242211','ºþÄÏ','³¤É³','ÌìÐÄÇø','ÎÞ','123124125123123','14423566785','¹¤ÉÌÒøÐÐ','717948322394239423','ºþÄÏÊ¡³¤É³ÊÐÌìÐÄÇøÖ§ÐÐ',NULL,1,NULL,'2020-02-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('00000CU12353','¿É¿É','ÍõµÂ·¢','18893777628','ºþÄÏÊ¡ÖêÖÞÊÐÌìÔªÇø','1997-03-13',3,1000,'SWE002','13156734327','ºþÄÏ','ÖêÖÞ','ÌìÔªÇø','ÎÞ','','','','','',NULL,1,NULL,'2020-02-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('00000CU12354','º©º©','ÌúÌú','188992773621','ºþÄÏÊ¡ÖêÖÞÊÐºÉÌÁÇø','1994-03-09',3,1000,'ZXC001','13442355323','ºþÄÏ','ÖêÖÞ','ºÉÌÁÇø','ÎÞ','','','','','',NULL,1,NULL,'2020-02-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('00000CU12355','ÍúÍú','°Ô°Ô','19982738276','ºþÄÏÊ¡ÖêÖÞÊÐÂ«äÁÇø','1994-03-09',4,1000,'SWE003','15323245675','ºþÄÏ','ÖêÖÞ','Â«äÁÇø','ÎÞ','','','','','',NULL,1,NULL,'2020-02-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `clienttype` */
 
 DROP TABLE IF EXISTS `clienttype`;
 
 CREATE TABLE `clienttype` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'å®¢æˆ·ç±»åˆ«ç¼–å·',
-  `clientType` VARCHAR(20) DEFAULT NULL COMMENT 'å®¢æˆ·ç±»åˆ«',
-  `validity` INT(11) DEFAULT NULL COMMENT 'æœ‰æ•ˆæœŸï¼Œå¹´ä¸ºå•ä½',
-  `cost` FLOAT DEFAULT NULL COMMENT 'ä¼šè´¹',
-  `address` VARCHAR(50) DEFAULT NULL COMMENT 'åœ°å€',
-  `type` VARCHAR(20) DEFAULT NULL COMMENT 'ç±»åˆ«',
-  `discount` FLOAT DEFAULT NULL COMMENT 'æŠ˜æ‰£',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '¿Í»§Àà±ð±àºÅ',
+  `clientType` varchar(20) DEFAULT NULL COMMENT '¿Í»§Àà±ð',
+  `validity` int(11) DEFAULT NULL COMMENT 'ÓÐÐ§ÆÚ£¬ÄêÎªµ¥Î»',
+  `cost` float DEFAULT NULL COMMENT '»á·Ñ',
+  `address` varchar(50) DEFAULT NULL COMMENT 'µØÖ·',
+  `type` varchar(20) DEFAULT NULL COMMENT 'Àà±ð',
+  `discount` float DEFAULT NULL COMMENT 'ÕÛ¿Û',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `clienttype` */
 
-INSERT  INTO `clienttype`(`id`,`clientType`,`validity`,`cost`,`address`,`type`,`discount`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) VALUES 
-(1,'æ ‡å‡†å®¢æˆ·',5,500,NULL,'æ ‡å‡†ä»·',0.95,NULL,NULL,NULL,NULL,NULL),
-(2,'ä¼šå‘˜å®¢æˆ·',5,888,NULL,'ä¼šå‘˜ä»·',0.88,NULL,NULL,NULL,NULL,NULL),
-(3,'åè®®å®¢æˆ·',5,1000,NULL,'åè®®ä»·',0.8,NULL,NULL,NULL,NULL,NULL),
-(4,'ç´¢èµ”å®¢æˆ·',5,1288,NULL,'ç´¢èµ”ä»·',0.78,NULL,NULL,NULL,NULL,NULL),
-(5,'ä¿é™©å®¢æˆ·',5,1588,NULL,'ä¿é™©ä»·',0.72,NULL,NULL,NULL,NULL,NULL);
-
-/*Table structure for table `coinspray` */
-
-DROP TABLE IF EXISTS `coinspray`;
-
-CREATE TABLE `coinspray` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'é’£å–·ç¼–å·',
-  `coinSprayName` VARCHAR(20) DEFAULT NULL COMMENT 'é’£å–·åç§°',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
-  PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
-
-/*Data for the table `coinspray` */
+insert  into `clienttype`(`id`,`clientType`,`validity`,`cost`,`address`,`type`,`discount`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'±ê×¼¿Í»§',5,500,NULL,'±ê×¼¼Û',0.95,'·Ç»áÔ±',NULL,NULL,NULL,NULL),
+(2,'»áÔ±¿Í»§',5,888,NULL,'»áÔ±¼Û',0.88,'»áÔ±',NULL,NULL,NULL,NULL),
+(3,'Ð­Òé¿Í»§',5,1000,NULL,'Ð­Òé¼Û',0.8,'·Ç»áÔ±',NULL,NULL,NULL,NULL),
+(4,'Ë÷Åâ¿Í»§',5,1288,NULL,'Ë÷Åâ¼Û',0.78,'·Ç»áÔ±',NULL,NULL,NULL,NULL),
+(5,'±£ÏÕ¿Í»§',5,1588,NULL,'±£ÏÕ¼Û',0.72,'»áÔ±',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `commodity` */
 
 DROP TABLE IF EXISTS `commodity`;
 
 CREATE TABLE `commodity` (
-  `commodityNo` VARCHAR(10) NOT NULL COMMENT 'å•†å“ç¼–å·',
-  `name` VARCHAR(20) DEFAULT NULL COMMENT 'å•†å“åç§°',
-  `brand` VARCHAR(20) DEFAULT NULL COMMENT 'å•†å“å“ç‰Œ',
-  `carType` VARCHAR(20) DEFAULT NULL COMMENT 'é€‚ç”¨è½¦åž‹',
-  `unit` VARCHAR(10) DEFAULT NULL COMMENT 'å•ä½',
-  `CommdityTypeId` INT(4) DEFAULT NULL COMMENT 'ä¸Žå•†å“ç±»åˆ«è¡¨å…³è”',
-  `income` VARCHAR(20) DEFAULT NULL COMMENT 'æ”¶å…¥åˆ†ç±»',
-  `original` VARCHAR(20) DEFAULT NULL COMMENT 'åŽŸåŽ‚å‰¯åŽ‚',
-  `commodityGrade` VARCHAR(20) DEFAULT NULL COMMENT 'å•†å“ç­‰çº§',
-  `commodityPlace` VARCHAR(20) DEFAULT NULL COMMENT 'å•†å“äº§åœ°',
-  `manufacturerNumber` VARCHAR(10) DEFAULT NULL COMMENT 'ä¸ŽåŽ‚å•†è¡¨å…³è”',
-  `firmNumber` VARCHAR(20) DEFAULT NULL COMMENT 'åŽŸåŽ‚ç¼–ç ',
-  `barCode` VARCHAR(20) DEFAULT NULL COMMENT 'æ¡å½¢ç ',
-  `size` VARCHAR(20) DEFAULT NULL COMMENT 'è§„æ ¼',
-  `volume` VARCHAR(20) DEFAULT NULL COMMENT 'ä½“ç§¯',
-  `weight` VARCHAR(20) DEFAULT NULL COMMENT 'æ¯›é‡',
-  `suttle` VARCHAR(20) DEFAULT NULL COMMENT 'å‡€é‡',
-  `primeCost` FLOAT DEFAULT NULL COMMENT 'è¿›è´§ä»·æ ¼',
-  `sellway` VARCHAR(20) DEFAULT NULL COMMENT 'å”®ä»·æ–¹å¼',
-  `markupPercentage` FLOAT DEFAULT NULL COMMENT 'åŠ ä»·çŽ‡',
-  `code` VARCHAR(20) DEFAULT NULL COMMENT 'äº’æ¢ç ',
-  `NormalPrice` FLOAT DEFAULT NULL COMMENT 'æ ‡å‡†ä»·',
-  `vipPrice` FLOAT DEFAULT NULL COMMENT 'vipä»·',
-  `memberPrice` FLOAT DEFAULT NULL COMMENT 'ä¼šå‘˜ä»·',
-  `negotiatedPrice` FLOAT DEFAULT NULL COMMENT 'åè®®ä»·',
-  `claimPrice` FLOAT DEFAULT NULL COMMENT 'ç´¢èµ”ä»·',
-  `insurancePrice` FLOAT DEFAULT NULL COMMENT 'ä¿é™©ä»·',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `commodityNo` varchar(10) NOT NULL COMMENT 'ÉÌÆ·±àºÅ',
+  `name` varchar(20) DEFAULT NULL COMMENT 'ÉÌÆ·Ãû³Æ',
+  `brand` varchar(20) DEFAULT NULL COMMENT 'ÉÌÆ·Æ·ÅÆ',
+  `carType` varchar(20) DEFAULT NULL COMMENT 'ÊÊÓÃ³µÐÍ',
+  `unit` varchar(10) DEFAULT NULL COMMENT 'µ¥Î»',
+  `CommdityTypeId` int(4) DEFAULT NULL COMMENT 'ÓëÉÌÆ·Àà±ð±í¹ØÁª',
+  `income` varchar(20) DEFAULT NULL COMMENT 'ÊÕÈë·ÖÀà',
+  `original` varchar(20) DEFAULT NULL COMMENT 'Ô­³§¸±³§',
+  `commodityGrade` varchar(20) DEFAULT NULL COMMENT 'ÉÌÆ·µÈ¼¶',
+  `commodityPlace` varchar(20) DEFAULT NULL COMMENT 'ÉÌÆ·²úµØ',
+  `manufacturerNumber` varchar(10) DEFAULT NULL COMMENT 'Óë³§ÉÌ±í¹ØÁª',
+  `firmNumber` varchar(20) DEFAULT NULL COMMENT 'Ô­³§±àÂë',
+  `barCode` varchar(20) DEFAULT NULL COMMENT 'ÌõÐÎÂë',
+  `size` varchar(20) DEFAULT NULL COMMENT '¹æ¸ñ',
+  `volume` varchar(20) DEFAULT NULL COMMENT 'Ìå»ý',
+  `weight` varchar(20) DEFAULT NULL COMMENT 'Ã«ÖØ',
+  `suttle` varchar(20) DEFAULT NULL COMMENT '¾»ÖØ',
+  `primeCost` float DEFAULT NULL COMMENT '½ø»õ¼Û¸ñ',
+  `sellway` varchar(20) DEFAULT NULL COMMENT 'ÊÛ¼Û·½Ê½',
+  `markupPercentage` float DEFAULT NULL COMMENT '¼Ó¼ÛÂÊ',
+  `code` varchar(20) DEFAULT NULL COMMENT '»¥»»Âë',
+  `NormalPrice` float DEFAULT NULL COMMENT '±ê×¼¼Û',
+  `vipPrice` float DEFAULT NULL COMMENT 'vip¼Û',
+  `memberPrice` float DEFAULT NULL COMMENT '»áÔ±¼Û',
+  `negotiatedPrice` float DEFAULT NULL COMMENT 'Ð­Òé¼Û',
+  `claimPrice` float DEFAULT NULL COMMENT 'Ë÷Åâ¼Û',
+  `insurancePrice` float DEFAULT NULL COMMENT '±£ÏÕ¼Û',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`commodityNo`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `commodity` */
 
@@ -391,16 +370,16 @@ CREATE TABLE `commodity` (
 DROP TABLE IF EXISTS `commoditytype`;
 
 CREATE TABLE `commoditytype` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'å•†å“åˆ†ç±»ç¼–å·',
-  `typeName` VARCHAR(20) DEFAULT NULL COMMENT 'å•†å“åˆ†ç±»åç§°',
-  `parentId` INT(4) DEFAULT NULL COMMENT 'å•†å“çˆ¶çº§id',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'ÉÌÆ··ÖÀà±àºÅ',
+  `typeName` varchar(20) DEFAULT NULL COMMENT 'ÉÌÆ··ÖÀàÃû³Æ',
+  `parentId` int(4) DEFAULT NULL COMMENT 'ÉÌÆ·¸¸¼¶id',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `commoditytype` */
 
@@ -409,122 +388,129 @@ CREATE TABLE `commoditytype` (
 DROP TABLE IF EXISTS `completed`;
 
 CREATE TABLE `completed` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `yesOrno` INT(11) DEFAULT NULL COMMENT 'åˆæ ¼å¦ 1=åˆæ ¼ï¼Œ0=ä¸åˆæ ¼',
-  `predicttime` DATETIME DEFAULT NULL COMMENT 'é¢„è®¡å®Œå·¥æ—¶é—´',
-  `nowtime` DATETIME DEFAULT NULL COMMENT 'å®žé™…å®Œå·¥æ—¶é—´',
-  `reason` VARCHAR(30) DEFAULT NULL COMMENT 'è¯¯å·¥åŽŸå› ',
-  `workid` VARCHAR(10) DEFAULT NULL COMMENT 'è´¨æ£€å‘˜ï¼Œä¸Žå‘˜å·¥è¡¨å…³è”',
-  `dutyid` VARCHAR(10) DEFAULT NULL COMMENT 'è´£ä»»äººï¼Œä¸Žå‘˜å·¥è¡¨å…³è”',
-  `price` FLOAT DEFAULT NULL COMMENT 'å¤„ç½šé‡‘é¢',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `yesOrno` int(11) DEFAULT NULL COMMENT 'ºÏ¸ñ·ñ 1=ºÏ¸ñ£¬0=²»ºÏ¸ñ',
+  `predicttime` datetime DEFAULT NULL COMMENT 'Ô¤¼ÆÍê¹¤Ê±¼ä',
+  `nowtime` datetime DEFAULT NULL COMMENT 'Êµ¼ÊÍê¹¤Ê±¼ä',
+  `reason` varchar(30) DEFAULT NULL COMMENT 'Îó¹¤Ô­Òò',
+  `workid` varchar(10) DEFAULT NULL COMMENT 'ÖÊ¼ìÔ±£¬ÓëÔ±¹¤±í¹ØÁª',
+  `dutyid` varchar(10) DEFAULT NULL COMMENT 'ÔðÈÎÈË£¬ÓëÔ±¹¤±í¹ØÁª',
+  `price` float DEFAULT NULL COMMENT '´¦·£½ð¶î',
+  `count` int(11) DEFAULT NULL COMMENT '·µ¹¤Êý',
+  `fgreason` varchar(20) DEFAULT NULL COMMENT '·µ¹¤Ô­Òò',
+  `wjid` varchar(20) DEFAULT NULL COMMENT 'Î¬ÐÞ»ò¾ÈÔ®id',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 /*Data for the table `completed` */
+
+insert  into `completed`(`id`,`yesOrno`,`predicttime`,`nowtime`,`reason`,`workid`,`dutyid`,`price`,`count`,`fgreason`,`wjid`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(10,0,'2020-02-15 00:00:00','2020-02-15 00:00:00',NULL,NULL,NULL,1212,1,'','WGQ20200214134851',NULL,NULL,NULL,NULL,NULL),
+(11,1,'2020-02-15 00:00:00','2020-02-16 00:00:00',NULL,NULL,NULL,NULL,1,NULL,'WGQ20200213153913',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `department` */
 
 DROP TABLE IF EXISTS `department`;
 
 CREATE TABLE `department` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'éƒ¨é—¨id',
-  `departmentName` VARCHAR(20) DEFAULT NULL COMMENT 'éƒ¨é—¨åç§°',
-  `departmentTypeName` VARCHAR(20) DEFAULT NULL COMMENT 'éƒ¨é—¨ç±»åž‹åç§°',
-  `parentId` INT(4) DEFAULT NULL COMMENT 'çˆ¶çº§id',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '²¿ÃÅid',
+  `departmentName` varchar(20) DEFAULT NULL COMMENT '²¿ÃÅÃû³Æ',
+  `departmentTypeName` varchar(20) DEFAULT NULL COMMENT '²¿ÃÅÀàÐÍÃû³Æ',
+  `parentId` int(4) DEFAULT NULL COMMENT '¸¸¼¶id',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `department` */
 
-INSERT  INTO `department`(`id`,`departmentName`,`departmentTypeName`,`parentId`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) VALUES 
-(1,'åŒ—äº¬å¾·å¬æ–‡å¡è½¦ç³»ç»Ÿ','åŒ—äº¬å¾·å¬æ–‡å¡è½¦ç³»ç»Ÿ',0,NULL,NULL,NULL,NULL,NULL),
-(2,'0000-æˆé«˜','åŒ—äº¬å¾·å¬æ–‡å¡è½¦ç³»ç»Ÿ',1,NULL,NULL,NULL,NULL,NULL),
-(3,'ç®¡é’±éƒ¨','ç®¡ç†éƒ¨',2,NULL,NULL,NULL,NULL,NULL),
-(4,'å®¢æœéƒ¨','æœåŠ¡éƒ¨é—¨',2,NULL,NULL,NULL,NULL,NULL),
-(5,'å”®åŽæœåŠ¡éƒ¨','ç®¡ç†éƒ¨',2,NULL,NULL,NULL,NULL,NULL),
-(6,'å¤‡ä»¶éƒ¨','ç®¡ç†éƒ¨',2,NULL,NULL,NULL,NULL,NULL),
-(7,'æŠ€æœ¯éƒ¨','æœåŠ¡éƒ¨é—¨',2,NULL,NULL,NULL,NULL,NULL),
-(8,'å¸‚åœºéƒ¨','ç®¡ç†éƒ¨',2,NULL,NULL,NULL,NULL,NULL),
-(9,'æœºç”µç»„','ç»´ä¿®ç­ç»„',7,NULL,NULL,NULL,NULL,NULL),
-(10,'é’£é‡‘ç»„','ç»´ä¿®ç­ç»„',7,NULL,NULL,NULL,NULL,NULL),
-(11,'å–·æ¼†ç»„','ç»´ä¿®ç­ç»„',7,NULL,NULL,NULL,NULL,NULL),
-(12,'ç¾Žå®¹ç»„','ç»´ä¿®ç­ç»„',7,NULL,NULL,NULL,NULL,NULL);
+insert  into `department`(`id`,`departmentName`,`departmentTypeName`,`parentId`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'±±¾©µÂÕÙÎÄ¿¨³µÏµÍ³','±±¾©µÂÕÙÎÄ¿¨³µÏµÍ³',0,NULL,NULL,NULL,NULL,NULL),
+(2,'0000-³É¸ß','±±¾©µÂÕÙÎÄ¿¨³µÏµÍ³',1,NULL,NULL,NULL,NULL,NULL),
+(3,'¹ÜÇ®²¿','¹ÜÀí²¿',2,NULL,NULL,NULL,NULL,NULL),
+(4,'¿Í·þ²¿','·þÎñ²¿ÃÅ',2,NULL,NULL,NULL,NULL,NULL),
+(5,'ÊÛºó·þÎñ²¿','¹ÜÀí²¿',2,NULL,NULL,NULL,NULL,NULL),
+(6,'±¸¼þ²¿','¹ÜÀí²¿',2,NULL,NULL,NULL,NULL,NULL),
+(7,'¼¼Êõ²¿','·þÎñ²¿ÃÅ',2,NULL,NULL,NULL,NULL,NULL),
+(8,'ÊÐ³¡²¿','¹ÜÀí²¿',2,NULL,NULL,NULL,NULL,NULL),
+(9,'»úµç×é','Î¬ÐÞ°à×é',7,NULL,NULL,NULL,NULL,NULL),
+(10,'îÓ½ð×é','Î¬ÐÞ°à×é',7,NULL,NULL,NULL,NULL,NULL),
+(11,'ÅçÆá×é','Î¬ÐÞ°à×é',7,NULL,NULL,NULL,NULL,NULL),
+(12,'ÃÀÈÝ×é','Î¬ÐÞ°à×é',7,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `dimission` */
 
 DROP TABLE IF EXISTS `dimission`;
 
 CREATE TABLE `dimission` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `staffId` VARCHAR(10) DEFAULT NULL COMMENT 'å‘˜å·¥id',
-  `dimissionDate` DATE DEFAULT NULL COMMENT 'ç¦»èŒæ—¥æœŸ',
-  `dimissionCause` VARCHAR(100) DEFAULT NULL COMMENT 'ç¦»èŒåŽŸå› ',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `staffId` varchar(10) DEFAULT NULL COMMENT 'Ô±¹¤id',
+  `dimissionDate` date DEFAULT NULL COMMENT 'ÀëÖ°ÈÕÆÚ',
+  `dimissionCause` varchar(100) DEFAULT NULL COMMENT 'ÀëÖ°Ô­Òò',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 /*Data for the table `dimission` */
 
-INSERT  INTO `dimission`(`id`,`staffId`,`dimissionDate`,`dimissionCause`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) VALUES 
-(18,'ASD002','2020-02-03','æˆ‘ä¸æƒ³å¹²äº†',NULL,NULL,NULL,NULL,NULL),
-(19,'SWE001','2020-02-03','æˆ‘ä¹Ÿä¸æƒ³å¹²äº†',NULL,NULL,NULL,NULL,NULL);
+insert  into `dimission`(`id`,`staffId`,`dimissionDate`,`dimissionCause`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(22,'ASD002','2020-02-06','ÎÒ²»Ïë¸ÉÁË',NULL,NULL,NULL,NULL,NULL),
+(23,'ASD003','2020-02-06','ÎÒÒ²²»Ïë¸ÉÁË',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `enginebrand` */
 
 DROP TABLE IF EXISTS `enginebrand`;
 
 CREATE TABLE `enginebrand` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'å‘åŠ¨æœºå“ç‰Œç¼–å·',
-  `engineBrandName` VARCHAR(20) DEFAULT NULL COMMENT 'å‘åŠ¨æœºå“ç‰Œåç§°',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '·¢¶¯»úÆ·ÅÆ±àºÅ',
+  `engineBrandName` varchar(20) DEFAULT NULL COMMENT '·¢¶¯»úÆ·ÅÆÃû³Æ',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `enginebrand` */
 
-INSERT  INTO `enginebrand`(`id`,`engineBrandName`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) VALUES 
-(1,'å¸•é‡‘æ–¯å‘åŠ¨æœº',NULL,NULL,NULL,NULL,NULL),
-(2,'åº·æ˜Žæ–¯å‘åŠ¨æœº',NULL,NULL,NULL,NULL,NULL),
-(3,'å¡ç‰¹å‘åŠ¨æœº',NULL,NULL,NULL,NULL,NULL),
-(4,'ä¸ŠæŸ´å‘åŠ¨æœº',NULL,NULL,NULL,NULL,NULL);
+insert  into `enginebrand`(`id`,`engineBrandName`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'ÅÁ½ðË¹·¢¶¯»ú',NULL,NULL,NULL,NULL,NULL),
+(2,'¿µÃ÷Ë¹·¢¶¯»ú',NULL,NULL,NULL,NULL,NULL),
+(3,'¿¨ÌØ·¢¶¯»ú',NULL,NULL,NULL,NULL,NULL),
+(4,'ÉÏ²ñ·¢¶¯»ú',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `ewitem` */
 
 DROP TABLE IF EXISTS `ewitem`;
 
 CREATE TABLE `ewitem` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(20) DEFAULT NULL COMMENT 'é¡¹ç›®åç§°',
-  `priceType` VARCHAR(30) DEFAULT NULL COMMENT 'ä»·ç±»',
-  `price` FLOAT DEFAULT NULL COMMENT 'ä»·æ ¼',
-  `remark` VARCHAR(30) DEFAULT NULL COMMENT 'å¤‡æ³¨',
-  `rescueid` VARCHAR(30) DEFAULT NULL COMMENT 'ä¸Žæ•‘æ´å…³è”',
-  `repairid` VARCHAR(20) DEFAULT NULL COMMENT 'ä¸Žç»´ä¿®è¡¨å…³è”',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL COMMENT 'ÏîÄ¿Ãû³Æ',
+  `priceType` varchar(30) DEFAULT NULL COMMENT '¼ÛÀà',
+  `price` float DEFAULT NULL COMMENT '¼Û¸ñ',
+  `remark` varchar(30) DEFAULT NULL COMMENT '±¸×¢',
+  `rescueid` varchar(30) DEFAULT NULL COMMENT 'Óë¾ÈÔ®¹ØÁª',
+  `repairid` varchar(20) DEFAULT NULL COMMENT 'ÓëÎ¬ÐÞ±í¹ØÁª',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `ewitem` */
 
@@ -533,17 +519,24 @@ CREATE TABLE `ewitem` (
 DROP TABLE IF EXISTS `getgood`;
 
 CREATE TABLE `getgood` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `goodid` INT(11) DEFAULT NULL COMMENT 'ä¸Žç‰©æ–™è¡¨å…³è”',
-  `count` INT(11) DEFAULT NULL COMMENT 'éœ€æ±‚æ•°é‡',
-  `item` VARCHAR(20) DEFAULT NULL COMMENT 'å¯¹åº”é¡¹ç›®',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `goodid` int(11) DEFAULT NULL COMMENT 'ÓëÎïÁÏ±í¹ØÁª',
+  `count` int(11) DEFAULT NULL COMMENT 'ÐèÇóÊýÁ¿',
+  `item` varchar(20) DEFAULT NULL COMMENT '¶ÔÓ¦ÏîÄ¿',
+  `priceType` varchar(100) DEFAULT NULL COMMENT '¼ÛÀà',
+  `discountsPrice` varchar(100) DEFAULT NULL COMMENT 'ÓÅ»Ýºóµ¥¼Û',
+  `wjid` varchar(100) DEFAULT NULL COMMENT 'Î¬ÐÞ»ò¾ÈÔ®id',
+  `warehouse` varchar(100) DEFAULT NULL COMMENT '²Ö¿â',
+  `isRepair` varchar(100) DEFAULT NULL COMMENT 'ÊÇ·ñÁìÁÏ0·ñ1ÊÇ',
+  `cause` varchar(40) DEFAULT NULL COMMENT 'Ãâµ¥Ô­Òò',
+  `type` varchar(40) DEFAULT NULL COMMENT 'Àà±ð',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `getgood` */
 
@@ -552,17 +545,17 @@ CREATE TABLE `getgood` (
 DROP TABLE IF EXISTS `invoice`;
 
 CREATE TABLE `invoice` (
-  `invoiceNo` VARCHAR(10) NOT NULL COMMENT 'å‘ç¥¨è¡¨å•å·',
-  `money` FLOAT DEFAULT NULL COMMENT 'å‘ç¥¨é‡‘é¢',
-  `invoiceType` VARCHAR(10) DEFAULT NULL COMMENT 'å‘ç¥¨ç±»åž‹',
-  `invoiceDate` DATETIME DEFAULT NULL COMMENT 'å¼€ç¥¨æ—¶é—´',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `invoiceNo` varchar(10) NOT NULL COMMENT '·¢Æ±±íµ¥ºÅ',
+  `money` float DEFAULT NULL COMMENT '·¢Æ±½ð¶î',
+  `invoiceType` varchar(10) DEFAULT NULL COMMENT '·¢Æ±ÀàÐÍ',
+  `invoiceDate` datetime DEFAULT NULL COMMENT '¿ªÆ±Ê±¼ä',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`invoiceNo`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `invoice` */
 
@@ -571,60 +564,102 @@ CREATE TABLE `invoice` (
 DROP TABLE IF EXISTS `item_repair`;
 
 CREATE TABLE `item_repair` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `isRepair` INT(11) DEFAULT NULL COMMENT 'æ˜¯æ•‘æ´è¿˜æ˜¯ç»´ä¿®ï¼Œæ•‘æ´=0',
-  `wjid` INT(11) DEFAULT NULL COMMENT 'æ•‘æ´æˆ–è€…ç»´ä¿®è¡¨id',
-  `itemid` INT(11) DEFAULT NULL COMMENT 'é¡¹ç›®id',
-  `teamid` INT(11) DEFAULT NULL COMMENT 'ç­ç»„id',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `isRepair` int(11) DEFAULT NULL COMMENT 'ÊÇ¾ÈÔ®»¹ÊÇÎ¬ÐÞ£¬¾ÈÔ®=0',
+  `wjid` int(11) DEFAULT NULL COMMENT '¾ÈÔ®»òÕßÎ¬ÐÞ±íid',
+  `itemid` int(11) DEFAULT NULL COMMENT 'ÏîÄ¿id',
+  `teamid` int(11) DEFAULT NULL COMMENT '°à×éid',
+  `count` int(11) DEFAULT NULL COMMENT 'ÊýÁ¿',
+  `priceType` varchar(100) DEFAULT NULL COMMENT '¼ÛÀà',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `item_repair` */
+
+/*Table structure for table `itemtype` */
+
+DROP TABLE IF EXISTS `itemtype`;
+
+CREATE TABLE `itemtype` (
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '±àºÅ',
+  `itemTypeName` varchar(20) DEFAULT NULL COMMENT 'Ãû³Æ',
+  `parentId` int(4) DEFAULT NULL COMMENT '¸¸¼¶id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `itemtype` */
 
 /*Table structure for table `jurisdiction` */
 
 DROP TABLE IF EXISTS `jurisdiction`;
 
 CREATE TABLE `jurisdiction` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'ç¼–å·',
-  `jurisdictionName` VARCHAR(20) DEFAULT NULL COMMENT 'æƒé™åç§°',
-  `ename` VARCHAR(20) DEFAULT NULL COMMENT 'è‹±æ–‡åç§°',
-  `catalog` INT(11) DEFAULT NULL COMMENT '0æ˜¯ç›®å½•1æ˜¯åŠŸèƒ½',
-  `parentId` INT(11) DEFAULT NULL COMMENT 'æƒé™çˆ¶id',
-  `path` VARCHAR(20) DEFAULT NULL COMMENT 'æƒé™è·¯å¾„',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '±àºÅ',
+  `jurisdictionName` varchar(20) DEFAULT NULL COMMENT 'È¨ÏÞÃû³Æ',
+  `ename` varchar(20) DEFAULT NULL COMMENT 'Ó¢ÎÄÃû³Æ',
+  `catalog` int(11) DEFAULT NULL COMMENT '0ÊÇÄ¿Â¼1ÊÇ¹¦ÄÜ',
+  `parentId` int(11) DEFAULT NULL COMMENT 'È¨ÏÞ¸¸id',
+  `path` varchar(20) DEFAULT NULL COMMENT 'È¨ÏÞÂ·¾¶',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 /*Data for the table `jurisdiction` */
+
+insert  into `jurisdiction`(`id`,`jurisdictionName`,`ename`,`catalog`,`parentId`,`path`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'ÈËÊÂÐÐÕþ',NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL),
+(2,'ÏµÍ³Î¬»¤',NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL),
+(3,'Ö÷Êý¾Ý',NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL),
+(4,'¿Í»§µµ°¸',NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL),
+(5,'Ç°Ì¨½áËã',NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL),
+(6,'Î¬ÐÞ',NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL),
+(7,'×éÖ¯¼Ü¹¹',NULL,0,1,NULL,NULL,NULL,NULL,NULL,NULL),
+(8,'¸ÚÎ»¶¨Òå',NULL,0,1,NULL,NULL,NULL,NULL,NULL,NULL),
+(9,'ÀëÖ°µÇ¼Ç',NULL,0,1,NULL,NULL,NULL,NULL,NULL,NULL),
+(10,'Í¨Ñ¶ÃûÂ¼',NULL,0,1,NULL,NULL,NULL,NULL,NULL,NULL),
+(11,'¼¼¹¤ÐÇ¼¶',NULL,0,1,NULL,NULL,NULL,NULL,NULL,NULL),
+(12,'°à×é¼¼¹¤',NULL,0,1,NULL,NULL,NULL,NULL,NULL,NULL),
+(13,'ÍâÇÚ³µÁ¾',NULL,0,1,NULL,NULL,NULL,NULL,NULL,NULL),
+(14,'Ô±¹¤½ÇÉ«¿ØÖÆ',NULL,0,2,NULL,NULL,NULL,NULL,NULL,NULL),
+(15,'·¢¶¯»úÆ·ÅÆ',NULL,0,3,NULL,NULL,NULL,NULL,NULL,NULL),
+(16,'³µÐÍµµ°¸',NULL,0,3,NULL,NULL,NULL,NULL,NULL,NULL),
+(17,'Î¬ÐÞÏîÄ¿',NULL,0,3,NULL,NULL,NULL,NULL,NULL,NULL),
+(18,'ÉÌÆ·×ÊÁÏ',NULL,0,3,NULL,NULL,NULL,NULL,NULL,NULL),
+(19,'¹©»õµ¥Î»',NULL,0,3,NULL,NULL,NULL,NULL,NULL,NULL),
+(20,'¿Í»§×ÊÁÏ',NULL,0,4,NULL,NULL,NULL,NULL,NULL,NULL),
+(21,'³µÁ¾×ÊÁÏ',NULL,0,4,NULL,NULL,NULL,NULL,NULL,NULL),
+(22,'½áËãÖÐÐÄ',NULL,0,5,NULL,NULL,NULL,NULL,NULL,NULL),
+(23,'»áÔ±³äÖµ¿¨',NULL,0,5,NULL,NULL,NULL,NULL,NULL,NULL),
+(24,'Î¬ÐÞ½Ó³µ',NULL,0,6,NULL,NULL,NULL,NULL,NULL,NULL),
+(25,'¿¢¹¤¼ìÑé',NULL,0,6,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `legworkcat` */
 
 DROP TABLE IF EXISTS `legworkcat`;
 
 CREATE TABLE `legworkcat` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT,
-  `licensePlateNumber` VARCHAR(20) NOT NULL COMMENT 'è½¦ç‰Œå·',
-  `brand` VARCHAR(20) DEFAULT NULL COMMENT 'å“ç‰Œ',
-  `model` VARCHAR(20) DEFAULT NULL COMMENT 'è½¦åž‹',
-  `mileage` VARCHAR(20) DEFAULT NULL COMMENT 'å½“å‰é‡Œç¨‹',
-  `artisanClassId` INT(4) DEFAULT NULL COMMENT 'æ‰€åœ¨ç­ç»„',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `licensePlateNumber` varchar(20) NOT NULL COMMENT '³µÅÆºÅ',
+  `brand` varchar(20) DEFAULT NULL COMMENT 'Æ·ÅÆ',
+  `model` varchar(20) DEFAULT NULL COMMENT '³µÐÍ',
+  `mileage` varchar(20) DEFAULT NULL COMMENT 'µ±Ç°Àï³Ì',
+  `artisanClassId` int(4) DEFAULT NULL COMMENT 'ËùÔÚ°à×é',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `legworkcat` */
 
@@ -633,84 +668,71 @@ CREATE TABLE `legworkcat` (
 DROP TABLE IF EXISTS `linkman`;
 
 CREATE TABLE `linkman` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'è”ç³»äººid',
-  `name` VARCHAR(20) DEFAULT NULL COMMENT 'è”ç³»äººåç§°',
-  `position` VARCHAR(20) DEFAULT NULL COMMENT 'èŒä½',
-  `phone` VARCHAR(20) DEFAULT NULL COMMENT 'æ‰‹æœº',
-  `telephone` VARCHAR(20) DEFAULT NULL COMMENT 'ç”µè¯',
-  `email` VARCHAR(20) DEFAULT NULL COMMENT 'email',
-  `manufacturerNumber` VARCHAR(10) DEFAULT NULL COMMENT 'ä¸ŽåŽ‚å•†è¡¨å…³è”',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'ÁªÏµÈËid',
+  `name` varchar(20) DEFAULT NULL COMMENT 'ÁªÏµÈËÃû³Æ',
+  `position` varchar(20) DEFAULT NULL COMMENT 'Ö°Î»',
+  `phone` varchar(20) DEFAULT NULL COMMENT 'ÊÖ»ú',
+  `telephone` varchar(20) DEFAULT NULL COMMENT 'µç»°',
+  `email` varchar(20) DEFAULT NULL COMMENT 'email',
+  `manufacturerNumber` varchar(10) DEFAULT NULL COMMENT 'Óë³§ÉÌ±í¹ØÁª',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `linkman` */
-
-/*Table structure for table `maintain` */
-
-DROP TABLE IF EXISTS `maintain`;
-
-CREATE TABLE `maintain` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'ä¿å…»ç¼–å·',
-  `maintaiNname` VARCHAR(20) DEFAULT NULL COMMENT 'ä¿å…»åç§°',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
-  PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
-
-/*Data for the table `maintain` */
 
 /*Table structure for table `maintainregist` */
 
 DROP TABLE IF EXISTS `maintainregist`;
 
 CREATE TABLE `maintainregist` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `maintainName` VARCHAR(20) DEFAULT NULL COMMENT 'ä¿å…»åç§°',
-  `mileage` FLOAT DEFAULT NULL COMMENT 'è®¡åˆ’é‡Œç¨‹',
-  `mileageDate` DATE DEFAULT NULL COMMENT 'è®¡åˆ’æ—¥æœŸ',
-  `remark` VARCHAR(50) DEFAULT NULL COMMENT 'å¤‡æ³¨',
-  `sjmileage` FLOAT DEFAULT NULL COMMENT 'å®žé™…é‡Œç¨‹',
-  `Sjmileagedate` DATE DEFAULT NULL COMMENT 'å®žé™…æ—¥æœŸ',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `maintainName` varchar(20) DEFAULT NULL COMMENT '±£ÑøÃû³Æ',
+  `mileage` float DEFAULT NULL COMMENT '¼Æ»®Àï³Ì',
+  `mileageDate` date DEFAULT NULL COMMENT '¼Æ»®ÈÕÆÚ',
+  `remark` varchar(50) DEFAULT NULL COMMENT '±¸×¢',
+  `sjmileage` float DEFAULT NULL COMMENT 'Êµ¼ÊÀï³Ì',
+  `Sjmileagedate` date DEFAULT NULL COMMENT 'Êµ¼ÊÈÕÆÚ',
+  `otherone` varchar(100) DEFAULT NULL COMMENT '³µÅÆºÅ',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `maintainregist` */
+
+insert  into `maintainregist`(`id`,`maintainName`,`mileage`,`mileageDate`,`remark`,`sjmileage`,`Sjmileagedate`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(2,'»»ºóÊÓ¾µ',111,'2020-02-20',NULL,222,'2020-02-26','ÏæA12356',NULL,NULL,NULL,NULL),
+(3,'111',111,'2020-02-25',NULL,111,'2020-02-21','ÏæA12356',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `maintenanceitems` */
 
 DROP TABLE IF EXISTS `maintenanceitems`;
 
 CREATE TABLE `maintenanceitems` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'é¡¹ç›®ç¼–å·',
-  `itemsName` VARCHAR(20) DEFAULT NULL COMMENT 'é¡¹ç›®åç§°',
-  `typeId` INT(4) DEFAULT NULL COMMENT 'ä¸Žå‡ ç§ç±»åˆ«è¡¨å…³è”',
-  `remark` VARCHAR(50) DEFAULT NULL COMMENT 'å¤‡æ³¨',
-  `normalPrice` FLOAT DEFAULT NULL COMMENT 'æ ‡å‡†ä»·',
-  `memberPrice` FLOAT DEFAULT NULL COMMENT 'ä¼šå‘˜ä»·',
-  `vipPrice` FLOAT DEFAULT NULL COMMENT 'Vipä»·',
-  `negotiatedPrice` FLOAT DEFAULT NULL COMMENT 'åè®®ä»·',
-  `claimPrice` FLOAT DEFAULT NULL COMMENT 'ç´¢èµ”ä»·',
-  `insurancePrice` FLOAT DEFAULT NULL COMMENT 'ä¿é™©ä»·',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'ÏîÄ¿±àºÅ',
+  `itemsName` varchar(20) DEFAULT NULL COMMENT 'ÏîÄ¿Ãû³Æ',
+  `typeId` int(4) DEFAULT NULL COMMENT 'Óë¼¸ÖÖÀà±ð±í¹ØÁª',
+  `remark` varchar(50) DEFAULT NULL COMMENT '±¸×¢',
+  `normalPrice` float DEFAULT NULL COMMENT '±ê×¼¼Û',
+  `memberPrice` float DEFAULT NULL COMMENT '»áÔ±¼Û',
+  `vipPrice` float DEFAULT NULL COMMENT 'Vip¼Û',
+  `negotiatedPrice` float DEFAULT NULL COMMENT 'Ð­Òé¼Û',
+  `claimPrice` float DEFAULT NULL COMMENT 'Ë÷Åâ¼Û',
+  `insurancePrice` float DEFAULT NULL COMMENT '±£ÏÕ¼Û',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `maintenanceitems` */
 
@@ -719,24 +741,24 @@ CREATE TABLE `maintenanceitems` (
 DROP TABLE IF EXISTS `manufacturer`;
 
 CREATE TABLE `manufacturer` (
-  `number` VARCHAR(10) NOT NULL COMMENT 'åŽ‚å•†ç¼–å·',
-  `name` VARCHAR(20) DEFAULT NULL COMMENT 'åŽ‚å•†åç§°',
-  `address` VARCHAR(20) DEFAULT NULL COMMENT 'åœ°å€',
-  `manage` VARCHAR(20) DEFAULT NULL COMMENT 'ç»è¥çŠ¶æ€',
-  `url` VARCHAR(20) DEFAULT NULL COMMENT 'ç½‘å€',
-  `bank` VARCHAR(20) DEFAULT NULL COMMENT 'å¼€æˆ·è¡Œ',
-  `bankNumber` VARCHAR(20) DEFAULT NULL COMMENT 'é“¶è¡Œè´¦å·',
-  `payment` VARCHAR(20) DEFAULT NULL COMMENT 'ä»˜æ¬¾æ–¹å¼',
-  `laver` VARCHAR(20) DEFAULT NULL COMMENT 'åŽ‚å•†ç­‰çº§',
-  `brank` VARCHAR(20) DEFAULT NULL COMMENT 'ç»è¥å“ç‰Œ',
-  `type` VARCHAR(20) DEFAULT NULL COMMENT 'åŽ‚å•†ç±»åˆ«',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `number` varchar(10) NOT NULL COMMENT '³§ÉÌ±àºÅ',
+  `name` varchar(20) DEFAULT NULL COMMENT '³§ÉÌÃû³Æ',
+  `address` varchar(20) DEFAULT NULL COMMENT 'µØÖ·',
+  `manage` varchar(20) DEFAULT NULL COMMENT '¾­Óª×´Ì¬',
+  `url` varchar(20) DEFAULT NULL COMMENT 'ÍøÖ·',
+  `bank` varchar(20) DEFAULT NULL COMMENT '¿ª»§ÐÐ',
+  `bankNumber` varchar(20) DEFAULT NULL COMMENT 'ÒøÐÐÕËºÅ',
+  `payment` varchar(20) DEFAULT NULL COMMENT '¸¶¿î·½Ê½',
+  `laver` varchar(20) DEFAULT NULL COMMENT '³§ÉÌµÈ¼¶',
+  `brank` varchar(20) DEFAULT NULL COMMENT '¾­ÓªÆ·ÅÆ',
+  `type` varchar(20) DEFAULT NULL COMMENT '³§ÉÌÀà±ð',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`number`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `manufacturer` */
 
@@ -745,153 +767,147 @@ CREATE TABLE `manufacturer` (
 DROP TABLE IF EXISTS `materialrequire_good`;
 
 CREATE TABLE `materialrequire_good` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `requireid` INT(11) DEFAULT NULL COMMENT 'ä¸Žéœ€æ±‚è¡¨å…³è”',
-  `goodid` INT(11) DEFAULT NULL COMMENT 'ä¸Žç‰©æ–™è¡¨å…³è”',
-  `count` INT(11) DEFAULT NULL COMMENT 'æ•°é‡',
-  `item` VARCHAR(20) DEFAULT NULL COMMENT 'å¯¹åº”é¡¹ç›®',
-  `warehouse` VARCHAR(20) DEFAULT NULL COMMENT 'ä»“åº“',
-  `Isget` INT(11) DEFAULT NULL COMMENT 'æ˜¯å¦é¢†æ–™1=æ˜¯ï¼›0=å¦',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `requireid` int(11) DEFAULT NULL COMMENT 'ÓëÐèÇó±í¹ØÁª',
+  `goodid` int(11) DEFAULT NULL COMMENT 'ÓëÎïÁÏ±í¹ØÁª',
+  `count` int(11) DEFAULT NULL COMMENT 'ÊýÁ¿',
+  `item` varchar(20) DEFAULT NULL COMMENT '¶ÔÓ¦ÏîÄ¿',
+  `warehouse` varchar(20) DEFAULT NULL COMMENT '²Ö¿â',
+  `Isget` int(11) DEFAULT NULL COMMENT 'ÊÇ·ñÁìÁÏ1=ÊÇ£»0=·ñ',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `materialrequire_good` */
-
-/*Table structure for table `minorrepair` */
-
-DROP TABLE IF EXISTS `minorrepair`;
-
-CREATE TABLE `minorrepair` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'å°ä¿®ç¼–å·',
-  `minorRepairName` VARCHAR(20) DEFAULT NULL COMMENT 'å°ä¿®åç§°',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒ?ä¾„?',
-  PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
-
-/*Data for the table `minorrepair` */
 
 /*Table structure for table `post` */
 
 DROP TABLE IF EXISTS `post`;
 
 CREATE TABLE `post` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'å²—ä½id',
-  `postName` VARCHAR(20) DEFAULT NULL COMMENT 'å²—ä½åç§°',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL COMMENT '¸ÚÎ»id',
+  `postName` varchar(20) DEFAULT NULL COMMENT '¸ÚÎ»Ãû³Æ',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `post` */
 
-INSERT  INTO `post`(`id`,`postName`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) VALUES 
-(1,'å±•åŽ…ç»ç†',NULL,NULL,NULL,NULL,NULL),
-(2,'é”€å”®é¡¾é—®',NULL,NULL,NULL,NULL,NULL),
-(3,'é”€å”®å‘˜',NULL,NULL,NULL,NULL,NULL),
-(4,'åº“ç®¡å‘˜',NULL,NULL,NULL,NULL,NULL),
-(5,'ç§»è½¦å‘˜',NULL,NULL,NULL,NULL,NULL);
+insert  into `post`(`id`,`postName`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(1,'Õ¹Ìü¾­Àí',NULL,NULL,NULL,NULL,NULL),
+(2,'ÏúÊÛ¹ËÎÊ',NULL,NULL,NULL,NULL,NULL),
+(3,'ÏúÊÛÔ±',NULL,NULL,NULL,NULL,NULL),
+(4,'¿â¹ÜÔ±',NULL,NULL,NULL,NULL,NULL),
+(5,'ÒÆ³µÔ±',NULL,NULL,NULL,NULL,NULL),
+(6,'qwe',NULL,NULL,NULL,NULL,NULL),
+(8,'123',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `repair` */
 
 DROP TABLE IF EXISTS `repair`;
 
 CREATE TABLE `repair` (
-  `number` VARCHAR(20) NOT NULL COMMENT 'ç»´ä¿®ç¼–å·',
-  `carinfoId` INT(11) DEFAULT NULL COMMENT 'ä¸Žè½¦è¾†ä¿¡æ¯è¡¨å…³è”',
-  `staffno` VARCHAR(10) DEFAULT NULL COMMENT 'ä¸Žå‘˜å·¥å…³è”',
-  `oil` VARCHAR(30) DEFAULT NULL COMMENT 'è¿›åŽ‚æ²¹é‡',
-  `type` VARCHAR(20) DEFAULT NULL COMMENT 'ä¸šåŠ¡ç±»åˆ«',
-  `worktime` VARCHAR(20) DEFAULT NULL COMMENT 'æ–½å·¥ç­æ¬¡',
-  `getman` VARCHAR(20) DEFAULT NULL COMMENT 'æŽ¥è½¦äºº',
-  `overworkdate` DATETIME DEFAULT NULL COMMENT 'é¢„è®¡å®Œå·¥æ—¶é—´',
-  `nowworkDate` DATETIME DEFAULT NULL COMMENT 'å®žé™…å®Œå·¥æ—¶é—´',
-  `setter` VARCHAR(20) DEFAULT NULL COMMENT 'ç»“ç®—æ–¹å¼',
-  `company` VARCHAR(20) DEFAULT NULL COMMENT 'èµ”æ¬¾å…¬å¸',
-  `befor` DATETIME DEFAULT NULL COMMENT 'ä¸Šæ¬¡è¿›åœºæ—¶é—´',
-  `price` FLOAT DEFAULT NULL COMMENT 'é¢„ä¼°é‡‘é¢',
-  `remark` VARCHAR(40) DEFAULT NULL COMMENT 'å¤‡æ³¨',
-  `state` VARCHAR(20) DEFAULT NULL COMMENT 'æŠ¥ä¿®é™ˆè¿°',
-  `fault` VARCHAR(30) DEFAULT NULL COMMENT 'æ•…éšœæè¿°',
-  `faultreasult` VARCHAR(30) DEFAULT NULL COMMENT 'æ•…éšœåŽŸå› ',
-  `status` VARCHAR(20) DEFAULT NULL COMMENT 'ç»´ä¿®çŠ¶æ€',
-  `orderTime` DATETIME DEFAULT NULL COMMENT 'å¼€å•æ—¶é—´',
-  `stockDater` DATETIME DEFAULT NULL COMMENT 'ç»“ç®—æ—¶é—´',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `number` varchar(20) NOT NULL COMMENT 'Î¬ÐÞ±àºÅ',
+  `carinfoId` int(11) DEFAULT NULL COMMENT 'Óë³µÁ¾ÐÅÏ¢±í¹ØÁª',
+  `staffno` varchar(10) DEFAULT NULL COMMENT 'ÓëÔ±¹¤¹ØÁª',
+  `oil` varchar(30) DEFAULT NULL COMMENT '½ø³§ÓÍÁ¿',
+  `type` varchar(20) DEFAULT NULL COMMENT 'ÒµÎñÀà±ð',
+  `worktime` varchar(20) DEFAULT NULL COMMENT 'Ê©¹¤°à´Î',
+  `getman` varchar(20) DEFAULT NULL COMMENT '½Ó³µÈË',
+  `overworkdate` datetime DEFAULT NULL COMMENT 'Ô¤¼ÆÍê¹¤Ê±¼ä',
+  `nowworkDate` datetime DEFAULT NULL COMMENT 'Êµ¼ÊÍê¹¤Ê±¼ä',
+  `setter` varchar(20) DEFAULT NULL COMMENT '½áËã·½Ê½',
+  `company` varchar(20) DEFAULT NULL COMMENT 'Åâ¿î¹«Ë¾',
+  `befor` datetime DEFAULT NULL COMMENT 'ÉÏ´Î½ø³¡Ê±¼ä',
+  `price` float DEFAULT NULL COMMENT 'Ô¤¹À½ð¶î',
+  `remark` varchar(40) DEFAULT NULL COMMENT '±¸×¢',
+  `state` varchar(20) DEFAULT NULL COMMENT '±¨ÐÞ³ÂÊö',
+  `fault` varchar(30) DEFAULT NULL COMMENT '¹ÊÕÏÃèÊö',
+  `faultreasult` varchar(30) DEFAULT NULL COMMENT '¹ÊÕÏÔ­Òò',
+  `status` varchar(20) DEFAULT NULL COMMENT 'Î¬ÐÞ×´Ì¬',
+  `orderTime` datetime DEFAULT NULL COMMENT '¿ªµ¥Ê±¼ä',
+  `stockDater` datetime DEFAULT NULL COMMENT '½áËãÊ±¼ä',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`number`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `repair` */
+
+insert  into `repair`(`number`,`carinfoId`,`staffno`,`oil`,`type`,`worktime`,`getman`,`overworkdate`,`nowworkDate`,`setter`,`company`,`befor`,`price`,`remark`,`state`,`fault`,`faultreasult`,`status`,`orderTime`,`stockDater`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+('RNG202001',4,'SWE003','Âú','ÖÐÇáÐÍ³µ','°×Ìì','ÖÓ³¬','2020-02-03 16:39:53','2020-02-02 16:39:59','ÏÖ½á','ÖÐ¹úÆ½°²±£ÏÕ',NULL,200,'µÚÒ»´Î½ø³§','É²³µÓÐÎÊÌâ','É²³µÓÐÎÊÌâ','É²³µÆ¬ÀÏ»¯','Íê¹¤','2020-02-02 16:13:49','2020-02-02 20:13:55',NULL,NULL,NULL,NULL,NULL),
+('RNG202002',5,'SWE003','Âú','ÖÐÇáÐÍ³µ','°×Ìì','³¬¼¶¹ÜÀíÔ±','2020-02-05 16:50:21','2020-02-04 16:50:23','ÏÖ½á','ÖÐ¹úÆ½°²±£ÏÕ',NULL,100,'','ÌùÄ¤','ÌùÄ¤','ÌùÄ¤','Íê¹¤','2020-02-04 16:50:45','2020-02-04 16:50:47',NULL,NULL,NULL,NULL,NULL),
+('RNG202003',5,'ZXC001','Âú','ÖÐÇáÐÍ³µ','°×Ìì','ÖÓ³¬','2020-02-04 22:36:17','2020-02-04 22:36:24','ÏÖ½á','ÖÐ¹úÆ½°²±£ÏÕ',NULL,100,NULL,'»»Ì¥','»»Ì¥','»»Ì¥','Íê¹¤','2020-02-04 22:37:18','2020-02-04 22:37:20',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `rescue` */
 
 DROP TABLE IF EXISTS `rescue`;
 
 CREATE TABLE `rescue` (
-  `number` VARCHAR(30) NOT NULL COMMENT 'æ•‘æ´ç¼–å·',
-  `carinfoid` INT(11) DEFAULT NULL COMMENT 'ä¸Žè½¦è¾†ä¿¡æ¯è¡¨å…³è”',
-  `staffno` VARCHAR(10) DEFAULT NULL COMMENT 'ä¸Žå‘˜å·¥å…³è”',
-  `rescueTeamid` INT(11) DEFAULT NULL COMMENT 'æ´¾å·¥ç­ç»„ä¸Žç­ç»„è¡¨å…³è”',
-  `type` VARCHAR(20) DEFAULT NULL COMMENT 'ä¸šåŠ¡ç±»åˆ«',
-  `worktimes` VARCHAR(20) DEFAULT NULL COMMENT 'æ–½å·¥ç­æ¬¡',
-  `getman` VARCHAR(20) DEFAULT NULL COMMENT 'æŽ¥è½¦äºº',
-  `workdate` DATETIME DEFAULT NULL COMMENT 'æ´¾å·¥æ—¶é—´',
-  `nowdate` DATETIME DEFAULT NULL COMMENT 'å‡ºå‘æ—¶é—´',
-  `address` VARCHAR(20) DEFAULT NULL COMMENT 'å‡ºå‘åœ°å€',
-  `car` VARCHAR(30) DEFAULT NULL COMMENT 'é©¾é©¶è½¦è¾†',
-  `liche` FLOAT DEFAULT NULL COMMENT 'è¡Œé©¶é‡Œç¨‹',
-  `worktime` DATETIME DEFAULT NULL COMMENT 'æ–½å·¥æ—¶é—´',
-  `overtime` DATETIME DEFAULT NULL COMMENT 'ç»“æŸæ—¶é—´',
-  `rescueaddress` VARCHAR(40) DEFAULT NULL COMMENT 'æ•‘æ´åœ°å€',
-  `setter` VARCHAR(30) DEFAULT NULL COMMENT 'ç»“ç®—æ–¹å¼',
-  `company` VARCHAR(30) DEFAULT NULL COMMENT 'èµ”æ¬¾å…¬å¸',
-  `price` FLOAT DEFAULT NULL COMMENT 'é¢„ä¼°é‡‘é¢',
-  `remark` VARCHAR(30) DEFAULT NULL COMMENT 'å¤‡æ³¨',
-  `state` VARCHAR(30) DEFAULT NULL COMMENT 'æŠ¥ä¿®é™ˆè¿°',
-  `fault` VARCHAR(30) DEFAULT NULL COMMENT 'æ•…éšœæè¿°',
-  `faultreasult` VARCHAR(30) DEFAULT NULL COMMENT 'æ•…éšœåŽŸå› ',
-  `status` VARCHAR(30) DEFAULT NULL COMMENT 'ç»´ä¿®çŠ¶æ€',
-  `orderTime` DATETIME DEFAULT NULL COMMENT 'å¼€å•æ—¶é—´',
-  `stockDater` DATETIME DEFAULT NULL COMMENT 'ç»“ç®—æ—¶é—´',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `number` varchar(30) NOT NULL COMMENT '¾ÈÔ®±àºÅ',
+  `carinfoid` int(11) DEFAULT NULL COMMENT 'Óë³µÁ¾ÐÅÏ¢±í¹ØÁª',
+  `staffno` varchar(10) DEFAULT NULL COMMENT 'ÓëÔ±¹¤¹ØÁª',
+  `rescueTeamid` int(11) DEFAULT NULL COMMENT 'ÅÉ¹¤°à×éÓë°à×é±í¹ØÁª',
+  `type` varchar(20) DEFAULT NULL COMMENT 'ÒµÎñÀà±ð',
+  `worktimes` varchar(20) DEFAULT NULL COMMENT 'Ê©¹¤°à´Î',
+  `getman` varchar(20) DEFAULT NULL COMMENT '½Ó³µÈË',
+  `workdate` datetime DEFAULT NULL COMMENT 'ÅÉ¹¤Ê±¼ä',
+  `nowdate` datetime DEFAULT NULL COMMENT '³ö·¢Ê±¼ä',
+  `address` varchar(20) DEFAULT NULL COMMENT '³ö·¢µØÖ·',
+  `car` varchar(30) DEFAULT NULL COMMENT '¼ÝÊ»³µÁ¾',
+  `liche` float DEFAULT NULL COMMENT 'ÐÐÊ»Àï³Ì',
+  `worktime` datetime DEFAULT NULL COMMENT 'Ê©¹¤Ê±¼ä',
+  `overtime` datetime DEFAULT NULL COMMENT '½áÊøÊ±¼ä',
+  `rescueaddress` varchar(40) DEFAULT NULL COMMENT '¾ÈÔ®µØÖ·',
+  `setter` varchar(30) DEFAULT NULL COMMENT '½áËã·½Ê½',
+  `company` varchar(30) DEFAULT NULL COMMENT 'Åâ¿î¹«Ë¾',
+  `price` float DEFAULT NULL COMMENT 'Ô¤¹À½ð¶î',
+  `remark` varchar(30) DEFAULT NULL COMMENT '±¸×¢',
+  `state` varchar(30) DEFAULT NULL COMMENT '±¨ÐÞ³ÂÊö',
+  `fault` varchar(30) DEFAULT NULL COMMENT '¹ÊÕÏÃèÊö',
+  `faultreasult` varchar(30) DEFAULT NULL COMMENT '¹ÊÕÏÔ­Òò',
+  `status` varchar(30) DEFAULT NULL COMMENT 'Î¬ÐÞ×´Ì¬',
+  `orderTime` datetime DEFAULT NULL COMMENT '¿ªµ¥Ê±¼ä',
+  `stockDater` datetime DEFAULT NULL COMMENT '½áËãÊ±¼ä',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`number`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `rescue` */
+
+insert  into `rescue`(`number`,`carinfoid`,`staffno`,`rescueTeamid`,`type`,`worktimes`,`getman`,`workdate`,`nowdate`,`address`,`car`,`liche`,`worktime`,`overtime`,`rescueaddress`,`setter`,`company`,`price`,`remark`,`state`,`fault`,`faultreasult`,`status`,`orderTime`,`stockDater`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+('IG202001',4,'SWE003',0,'ÖÐÇáÐÍ³µ','Ò¹Íí','ÍòÔóÀÖ','2020-02-04 22:33:47','2020-02-04 22:33:52','±±¾©½ÖÇø','ÏæB54352',200,'2020-02-04 22:34:04','2020-02-04 22:34:06','Ìì½ò¹¤ÒµÇø','ÏÖ½á','ÖÐ¹úÆ½°²±£ÏÕ',500,'µÚÒ»´Î¾ÈÔ®',NULL,NULL,NULL,'½Ó³µ','2020-02-02 17:12:38','2020-02-02 20:12:43',NULL,NULL,NULL,NULL,NULL),
+('IG202002',5,'ZXC001',0,'ÖÐÇáÐÍ³µ','°×Ìì','ÖÓ³¬','2020-02-02 19:03:08','2020-02-02 19:03:11','±±¾©½ÖÇø','ÏæB523F4',200,'2020-02-02 19:05:22','2020-02-02 19:05:24','Ìì½ò¹¤ÒµÇø','ÏÖ½á','ÖÐ¹úÆ½°²±£ÏÕ',500,'µÚÒ»´Î¾ÈÔ®','','','','½Ó³µ','2020-02-04 17:12:38','2020-02-02 20:12:43',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `role` */
 
 DROP TABLE IF EXISTS `role`;
 
 CREATE TABLE `role` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'è§’è‰²id',
-  `roleName` VARCHAR(20) DEFAULT NULL COMMENT 'è§’è‰²åç§°',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—??',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '½ÇÉ«id',
+  `roleName` varchar(20) DEFAULT NULL COMMENT '½ÇÉ«Ãû³Æ',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `role` */
 
@@ -900,108 +916,285 @@ CREATE TABLE `role` (
 DROP TABLE IF EXISTS `role_jurisdiction`;
 
 CREATE TABLE `role_jurisdiction` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'ç¼–å·',
-  `roleid` INT(4) DEFAULT NULL COMMENT 'è§’è‰²id',
-  `jurisdictionId` INT(4) DEFAULT NULL COMMENT 'æƒé™id',
-  `otherone` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` VARCHAR(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '±àºÅ',
+  `roleid` int(4) DEFAULT NULL COMMENT '½ÇÉ«id',
+  `jurisdictionId` int(4) DEFAULT NULL COMMENT 'È¨ÏÞid',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=596 DEFAULT CHARSET=utf8;
 
 /*Data for the table `role_jurisdiction` */
+
+insert  into `role_jurisdiction`(`id`,`roleid`,`jurisdictionId`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
+(221,2,1,'1',NULL,NULL,NULL,NULL),
+(222,2,8,'2',NULL,NULL,NULL,NULL),
+(223,2,7,'1',NULL,NULL,NULL,NULL),
+(224,2,9,'1',NULL,NULL,NULL,NULL),
+(225,2,10,'1',NULL,NULL,NULL,NULL),
+(226,2,11,'1',NULL,NULL,NULL,NULL),
+(227,2,12,'1',NULL,NULL,NULL,NULL),
+(228,2,13,'1',NULL,NULL,NULL,NULL),
+(229,2,2,'1',NULL,NULL,NULL,NULL),
+(230,2,14,'2',NULL,NULL,NULL,NULL),
+(231,2,3,'1',NULL,NULL,NULL,NULL),
+(232,2,15,'2',NULL,NULL,NULL,NULL),
+(233,2,16,'1',NULL,NULL,NULL,NULL),
+(234,2,17,'1',NULL,NULL,NULL,NULL),
+(235,2,18,'1',NULL,NULL,NULL,NULL),
+(236,2,19,'1',NULL,NULL,NULL,NULL),
+(237,2,4,'1',NULL,NULL,NULL,NULL),
+(238,2,20,'2',NULL,NULL,NULL,NULL),
+(239,2,21,'1',NULL,NULL,NULL,NULL),
+(240,2,5,'1',NULL,NULL,NULL,NULL),
+(241,2,22,'2',NULL,NULL,NULL,NULL),
+(242,2,23,'1',NULL,NULL,NULL,NULL),
+(243,2,6,'1',NULL,NULL,NULL,NULL),
+(244,2,25,'2',NULL,NULL,NULL,NULL),
+(245,2,24,'1',NULL,NULL,NULL,NULL),
+(246,1,1,'1',NULL,NULL,NULL,NULL),
+(247,1,2,'1',NULL,NULL,NULL,NULL),
+(248,1,3,'1',NULL,NULL,NULL,NULL),
+(249,1,4,'1',NULL,NULL,NULL,NULL),
+(250,1,5,'1',NULL,NULL,NULL,NULL),
+(251,1,6,'1',NULL,NULL,NULL,NULL),
+(252,1,7,'1',NULL,NULL,NULL,NULL),
+(253,1,8,'1',NULL,NULL,NULL,NULL),
+(254,1,9,'1',NULL,NULL,NULL,NULL),
+(255,1,10,'1',NULL,NULL,NULL,NULL),
+(256,1,11,'1',NULL,NULL,NULL,NULL),
+(257,1,12,'1',NULL,NULL,NULL,NULL),
+(258,1,13,'1',NULL,NULL,NULL,NULL),
+(259,1,14,'1',NULL,NULL,NULL,NULL),
+(260,1,15,'1',NULL,NULL,NULL,NULL),
+(261,1,16,'1',NULL,NULL,NULL,NULL),
+(262,1,17,'1',NULL,NULL,NULL,NULL),
+(263,1,18,'1',NULL,NULL,NULL,NULL),
+(264,1,19,'1',NULL,NULL,NULL,NULL),
+(265,1,20,'1',NULL,NULL,NULL,NULL),
+(266,1,21,'1',NULL,NULL,NULL,NULL),
+(267,1,22,'1',NULL,NULL,NULL,NULL),
+(268,1,23,'1',NULL,NULL,NULL,NULL),
+(269,1,24,'1',NULL,NULL,NULL,NULL),
+(270,1,25,'1',NULL,NULL,NULL,NULL),
+(271,3,1,'1',NULL,NULL,NULL,NULL),
+(272,3,2,'1',NULL,NULL,NULL,NULL),
+(273,3,3,'1',NULL,NULL,NULL,NULL),
+(274,3,4,'1',NULL,NULL,NULL,NULL),
+(275,3,5,'1',NULL,NULL,NULL,NULL),
+(276,3,6,'1',NULL,NULL,NULL,NULL),
+(277,3,7,'1',NULL,NULL,NULL,NULL),
+(278,3,8,'1',NULL,NULL,NULL,NULL),
+(279,3,9,'1',NULL,NULL,NULL,NULL),
+(280,3,10,'1',NULL,NULL,NULL,NULL),
+(281,3,11,'1',NULL,NULL,NULL,NULL),
+(282,3,12,'1',NULL,NULL,NULL,NULL),
+(283,3,13,'1',NULL,NULL,NULL,NULL),
+(284,3,14,'1',NULL,NULL,NULL,NULL),
+(285,3,15,'1',NULL,NULL,NULL,NULL),
+(286,3,16,'1',NULL,NULL,NULL,NULL),
+(287,3,17,'1',NULL,NULL,NULL,NULL),
+(288,3,18,'1',NULL,NULL,NULL,NULL),
+(289,3,19,'1',NULL,NULL,NULL,NULL),
+(290,3,20,'1',NULL,NULL,NULL,NULL),
+(291,3,21,'1',NULL,NULL,NULL,NULL),
+(292,3,22,'1',NULL,NULL,NULL,NULL),
+(293,3,23,'1',NULL,NULL,NULL,NULL),
+(294,3,24,'1',NULL,NULL,NULL,NULL),
+(295,3,25,'1',NULL,NULL,NULL,NULL),
+(296,4,1,'1',NULL,NULL,NULL,NULL),
+(297,4,2,'1',NULL,NULL,NULL,NULL),
+(298,4,3,'1',NULL,NULL,NULL,NULL),
+(299,4,4,'1',NULL,NULL,NULL,NULL),
+(300,4,5,'1',NULL,NULL,NULL,NULL),
+(301,4,6,'1',NULL,NULL,NULL,NULL),
+(302,4,7,'1',NULL,NULL,NULL,NULL),
+(303,4,8,'1',NULL,NULL,NULL,NULL),
+(304,4,9,'1',NULL,NULL,NULL,NULL),
+(305,4,10,'1',NULL,NULL,NULL,NULL),
+(306,4,11,'1',NULL,NULL,NULL,NULL),
+(307,4,12,'1',NULL,NULL,NULL,NULL),
+(308,4,13,'1',NULL,NULL,NULL,NULL),
+(309,4,14,'1',NULL,NULL,NULL,NULL),
+(310,4,15,'1',NULL,NULL,NULL,NULL),
+(311,4,16,'1',NULL,NULL,NULL,NULL),
+(312,4,17,'1',NULL,NULL,NULL,NULL),
+(313,4,18,'1',NULL,NULL,NULL,NULL),
+(314,4,19,'1',NULL,NULL,NULL,NULL),
+(315,4,20,'1',NULL,NULL,NULL,NULL),
+(316,4,21,'1',NULL,NULL,NULL,NULL),
+(317,4,22,'1',NULL,NULL,NULL,NULL),
+(318,4,23,'1',NULL,NULL,NULL,NULL),
+(319,4,24,'1',NULL,NULL,NULL,NULL),
+(320,4,25,'1',NULL,NULL,NULL,NULL),
+(321,5,1,'1',NULL,NULL,NULL,NULL),
+(322,5,2,'1',NULL,NULL,NULL,NULL),
+(323,5,3,'1',NULL,NULL,NULL,NULL),
+(324,5,4,'1',NULL,NULL,NULL,NULL),
+(325,5,5,'1',NULL,NULL,NULL,NULL),
+(326,5,6,'1',NULL,NULL,NULL,NULL),
+(327,5,7,'1',NULL,NULL,NULL,NULL),
+(328,5,8,'1',NULL,NULL,NULL,NULL),
+(329,5,9,'1',NULL,NULL,NULL,NULL),
+(330,5,10,'1',NULL,NULL,NULL,NULL),
+(331,5,11,'1',NULL,NULL,NULL,NULL),
+(332,5,12,'1',NULL,NULL,NULL,NULL),
+(333,5,13,'1',NULL,NULL,NULL,NULL),
+(334,5,14,'1',NULL,NULL,NULL,NULL),
+(335,5,15,'1',NULL,NULL,NULL,NULL),
+(336,5,16,'1',NULL,NULL,NULL,NULL),
+(337,5,17,'1',NULL,NULL,NULL,NULL),
+(338,5,18,'1',NULL,NULL,NULL,NULL),
+(339,5,19,'1',NULL,NULL,NULL,NULL),
+(340,5,20,'1',NULL,NULL,NULL,NULL),
+(341,5,21,'1',NULL,NULL,NULL,NULL),
+(342,5,22,'1',NULL,NULL,NULL,NULL),
+(343,5,23,'1',NULL,NULL,NULL,NULL),
+(344,5,24,'1',NULL,NULL,NULL,NULL),
+(345,5,25,'1',NULL,NULL,NULL,NULL),
+(471,6,1,NULL,NULL,NULL,NULL,NULL),
+(472,6,2,NULL,NULL,NULL,NULL,NULL),
+(473,6,3,NULL,NULL,NULL,NULL,NULL),
+(474,6,4,NULL,NULL,NULL,NULL,NULL),
+(475,6,5,NULL,NULL,NULL,NULL,NULL),
+(476,6,6,NULL,NULL,NULL,NULL,NULL),
+(477,6,7,NULL,NULL,NULL,NULL,NULL),
+(478,6,8,NULL,NULL,NULL,NULL,NULL),
+(479,6,9,NULL,NULL,NULL,NULL,NULL),
+(480,6,10,NULL,NULL,NULL,NULL,NULL),
+(481,6,11,NULL,NULL,NULL,NULL,NULL),
+(482,6,12,NULL,NULL,NULL,NULL,NULL),
+(483,6,13,NULL,NULL,NULL,NULL,NULL),
+(484,6,14,NULL,NULL,NULL,NULL,NULL),
+(485,6,15,NULL,NULL,NULL,NULL,NULL),
+(486,6,16,NULL,NULL,NULL,NULL,NULL),
+(487,6,17,NULL,NULL,NULL,NULL,NULL),
+(488,6,18,NULL,NULL,NULL,NULL,NULL),
+(489,6,19,NULL,NULL,NULL,NULL,NULL),
+(490,6,20,NULL,NULL,NULL,NULL,NULL),
+(491,6,21,NULL,NULL,NULL,NULL,NULL),
+(492,6,22,NULL,NULL,NULL,NULL,NULL),
+(493,6,23,NULL,NULL,NULL,NULL,NULL),
+(494,6,24,NULL,NULL,NULL,NULL,NULL),
+(495,6,25,NULL,NULL,NULL,NULL,NULL),
+(571,8,1,'2',NULL,NULL,NULL,NULL),
+(572,8,2,'2',NULL,NULL,NULL,NULL),
+(573,8,3,'2',NULL,NULL,NULL,NULL),
+(574,8,4,'2',NULL,NULL,NULL,NULL),
+(575,8,5,'2',NULL,NULL,NULL,NULL),
+(576,8,6,'2',NULL,NULL,NULL,NULL),
+(577,8,7,'2',NULL,NULL,NULL,NULL),
+(578,8,8,'2',NULL,NULL,NULL,NULL),
+(579,8,9,'2',NULL,NULL,NULL,NULL),
+(580,8,10,'2',NULL,NULL,NULL,NULL),
+(581,8,11,'2',NULL,NULL,NULL,NULL),
+(582,8,12,'2',NULL,NULL,NULL,NULL),
+(583,8,13,'2',NULL,NULL,NULL,NULL),
+(584,8,14,'2',NULL,NULL,NULL,NULL),
+(585,8,15,'2',NULL,NULL,NULL,NULL),
+(586,8,16,'2',NULL,NULL,NULL,NULL),
+(587,8,17,'2',NULL,NULL,NULL,NULL),
+(588,8,18,'2',NULL,NULL,NULL,NULL),
+(589,8,19,'2',NULL,NULL,NULL,NULL),
+(590,8,20,'2',NULL,NULL,NULL,NULL),
+(591,8,21,'2',NULL,NULL,NULL,NULL),
+(592,8,22,'2',NULL,NULL,NULL,NULL),
+(593,8,23,'2',NULL,NULL,NULL,NULL),
+(594,8,24,'2',NULL,NULL,NULL,NULL),
+(595,8,25,'2',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `staff` */
 
 DROP TABLE IF EXISTS `staff`;
 
 CREATE TABLE `staff` (
-  `staffNo` VARCHAR(10) NOT NULL COMMENT 'å‘˜å·¥ç¼–å·',
-  `name` VARCHAR(20) DEFAULT NULL COMMENT 'å‘˜å·¥å§“å',
-  `sex` VARCHAR(5) DEFAULT NULL COMMENT 'å‘˜å·¥æ€§åˆ«',
-  `departmentId` INT(4) DEFAULT NULL COMMENT 'éƒ¨é—¨id',
-  `account` VARCHAR(10) DEFAULT NULL COMMENT 'å‘˜å·¥è´¦å·',
-  `password` VARCHAR(8) DEFAULT '88888888' COMMENT 'å‘˜å·¥å¯†ç ',
-  `postId` INT(4) DEFAULT NULL COMMENT 'å²—ä½id',
-  `physicalCondition` VARCHAR(50) DEFAULT NULL COMMENT 'èº«ä½“çŠ¶å†µ',
-  `height` VARCHAR(10) DEFAULT NULL COMMENT 'èº«é«˜',
-  `nativePlace` VARCHAR(20) DEFAULT NULL COMMENT 'ç±è´¯',
-  `nation` VARCHAR(10) DEFAULT NULL COMMENT 'æ°‘æ—',
-  `maritalStatus` VARCHAR(10) DEFAULT NULL COMMENT 'å©šå§»çŠ¶æ€',
-  `educationBackground` VARCHAR(10) DEFAULT NULL COMMENT 'å­¦åŽ†',
-  `school` VARCHAR(10) DEFAULT NULL COMMENT 'æ¯•ä¸šå­¦æ ¡',
-  `major` VARCHAR(50) DEFAULT NULL COMMENT 'ä¸“ä¸š',
-  `professionalQualification` varchar(50) DEFAULT NULL COMMENT 'ä¸“ä¸šèµ„æ ¼',
-  `property` varchar(50) DEFAULT NULL COMMENT 'å±žæ€§',
-  `degree` varchar(50) DEFAULT NULL COMMENT 'å­¦ä½',
-  `authorizedStrength` varchar(50) DEFAULT NULL COMMENT 'ç¼–åˆ¶',
-  `idCardNo` varchar(50) DEFAULT '18' COMMENT 'èº«ä»½è¯',
-  `residence` varchar(50) DEFAULT NULL COMMENT 'æˆ·å£åœ°å€',
-  `presentAddress` varchar(50) DEFAULT NULL COMMENT 'çŽ°ä½åœ°å€',
-  `contactNumber` varchar(50) DEFAULT NULL COMMENT 'è”ç³»ç”µè¯',
-  `phone` varchar(50) DEFAULT NULL COMMENT 'æ‰‹æœº',
+  `staffNo` varchar(10) NOT NULL COMMENT 'Ô±¹¤±àºÅ',
+  `name` varchar(20) DEFAULT NULL COMMENT 'Ô±¹¤ÐÕÃû',
+  `sex` varchar(5) DEFAULT NULL COMMENT 'Ô±¹¤ÐÔ±ð',
+  `departmentId` int(4) DEFAULT NULL COMMENT '²¿ÃÅid',
+  `account` varchar(10) DEFAULT NULL COMMENT 'Ô±¹¤ÕËºÅ',
+  `password` varchar(8) DEFAULT '88888888' COMMENT 'Ô±¹¤ÃÜÂë',
+  `postId` int(4) DEFAULT NULL COMMENT '¸ÚÎ»id',
+  `physicalCondition` varchar(50) DEFAULT NULL COMMENT 'ÉíÌå×´¿ö',
+  `height` varchar(10) DEFAULT NULL COMMENT 'Éí¸ß',
+  `nativePlace` varchar(20) DEFAULT NULL COMMENT '¼®¹á',
+  `nation` varchar(10) DEFAULT NULL COMMENT 'Ãñ×å',
+  `maritalStatus` varchar(10) DEFAULT NULL COMMENT '»éÒö×´Ì¬',
+  `educationBackground` varchar(10) DEFAULT NULL COMMENT 'Ñ§Àú',
+  `school` varchar(10) DEFAULT NULL COMMENT '±ÏÒµÑ§Ð£',
+  `major` varchar(50) DEFAULT NULL COMMENT '×¨Òµ',
+  `professionalQualification` varchar(50) DEFAULT NULL COMMENT '×¨Òµ×Ê¸ñ',
+  `property` varchar(50) DEFAULT NULL COMMENT 'ÊôÐÔ',
+  `degree` varchar(50) DEFAULT NULL COMMENT 'Ñ§Î»',
+  `authorizedStrength` varchar(50) DEFAULT NULL COMMENT '±àÖÆ',
+  `idCardNo` varchar(50) DEFAULT '18' COMMENT 'Éí·ÝÖ¤',
+  `residence` varchar(50) DEFAULT NULL COMMENT '»§¿ÚµØÖ·',
+  `presentAddress` varchar(50) DEFAULT NULL COMMENT 'ÏÖ×¡µØÖ·',
+  `contactNumber` varchar(50) DEFAULT NULL COMMENT 'ÁªÏµµç»°',
+  `phone` varchar(50) DEFAULT NULL COMMENT 'ÊÖ»ú',
   `email` varchar(50) DEFAULT NULL COMMENT 'email',
-  `depositBank` varchar(50) DEFAULT NULL COMMENT 'å¼€æˆ·é“¶è¡Œ',
-  `bankAccount` varchar(50) DEFAULT NULL COMMENT 'é“¶è¡Œè´¦å·',
-  `emergencyContact` varchar(50) DEFAULT NULL COMMENT 'ç´§æ€¥è”ç³»äºº',
-  `emergencyPhone` varchar(50) DEFAULT NULL COMMENT 'ç´§æ€¥è”ç³»äººè”ç³»ç”µè¯',
-  `dateOnBoard` date DEFAULT NULL COMMENT 'å…¥èŒæ—¥æœŸ',
-  `theTrialDue` date DEFAULT NULL COMMENT 'è¯•ç”¨åˆ°æœŸ',
-  `birthdayDate` date DEFAULT NULL COMMENT 'å‡ºç”Ÿæ—¥æœŸ',
-  `contractStart` date DEFAULT NULL COMMENT 'åˆåŒå¼€å§‹',
-  `agreementEnds` date DEFAULT NULL COMMENT 'åˆåŒç»“æŸ',
-  `cardNumber` varchar(20) DEFAULT NULL COMMENT 'å¡è‡ªç¼–å·',
-  `internalCardNo` varchar(20) DEFAULT NULL COMMENT 'å¡å†…éƒ¨å·',
-  `referrer` varchar(20) DEFAULT NULL COMMENT 'æŽ¨èäºº',
-  `wholeOrderDiscountRight` varchar(20) DEFAULT NULL COMMENT 'æ•´å•æŠ˜æ‰£æƒ',
-  `timeDiscountRight` varchar(20) DEFAULT NULL COMMENT 'å·¥æ—¶æŠ˜æ‰£æƒ',
-  `rightToDiscount` varchar(20) DEFAULT NULL COMMENT 'å•†å“æŠ˜æ‰£æƒ',
-  `rightOfRelief` varchar(20) DEFAULT NULL COMMENT 'å‡å…æƒ',
-  `jobResume` varchar(1000) DEFAULT NULL COMMENT 'å·¥ä½œç®€åŽ†',
-  `educationexperience` varchar(1000) DEFAULT NULL COMMENT 'æ•™è‚²ç»åŽ†',
-  `memberOfFamily` varchar(1000) DEFAULT NULL COMMENT 'å®¶åº­æˆå‘˜',
-  `disciplinaryRecords` varchar(1000) DEFAULT NULL COMMENT 'å¥–æƒ©è®°å½•',
-  `employmentAdvice` varchar(1000) DEFAULT NULL COMMENT 'è˜ç”¨æ„è§',
-  `picture` varchar(1000) DEFAULT NULL COMMENT 'å‘˜å·¥ç›¸ç‰‡',
-  `roleId` int(4) DEFAULT NULL COMMENT 'è§’è‰²è¡¨id',
-  `isDimission` int(2) DEFAULT '0' COMMENT '0ä¸ºåœ¨èŒ1ä¸ºå·²ç¦»èŒ',
-  `otherone` varchar(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` varchar(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` varchar(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` varchar(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` varchar(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `depositBank` varchar(50) DEFAULT NULL COMMENT '¿ª»§ÒøÐÐ',
+  `bankAccount` varchar(50) DEFAULT NULL COMMENT 'ÒøÐÐÕËºÅ',
+  `emergencyContact` varchar(50) DEFAULT NULL COMMENT '½ô¼±ÁªÏµÈË',
+  `emergencyPhone` varchar(50) DEFAULT NULL COMMENT '½ô¼±ÁªÏµÈËÁªÏµµç»°',
+  `dateOnBoard` date DEFAULT NULL COMMENT 'ÈëÖ°ÈÕÆÚ',
+  `theTrialDue` date DEFAULT NULL COMMENT 'ÊÔÓÃµ½ÆÚ',
+  `birthdayDate` date DEFAULT NULL COMMENT '³öÉúÈÕÆÚ',
+  `contractStart` date DEFAULT NULL COMMENT 'ºÏÍ¬¿ªÊ¼',
+  `agreementEnds` date DEFAULT NULL COMMENT 'ºÏÍ¬½áÊø',
+  `cardNumber` varchar(20) DEFAULT NULL COMMENT '¿¨×Ô±àºÅ',
+  `internalCardNo` varchar(20) DEFAULT NULL COMMENT '¿¨ÄÚ²¿ºÅ',
+  `referrer` varchar(20) DEFAULT NULL COMMENT 'ÍÆ¼öÈË',
+  `wholeOrderDiscountRight` varchar(20) DEFAULT NULL COMMENT 'Õûµ¥ÕÛ¿ÛÈ¨',
+  `timeDiscountRight` varchar(20) DEFAULT NULL COMMENT '¹¤Ê±ÕÛ¿ÛÈ¨',
+  `rightToDiscount` varchar(20) DEFAULT NULL COMMENT 'ÉÌÆ·ÕÛ¿ÛÈ¨',
+  `rightOfRelief` varchar(20) DEFAULT NULL COMMENT '¼õÃâÈ¨',
+  `jobResume` varchar(1000) DEFAULT NULL COMMENT '¹¤×÷¼òÀú',
+  `educationexperience` varchar(1000) DEFAULT NULL COMMENT '½ÌÓý¾­Àú',
+  `memberOfFamily` varchar(1000) DEFAULT NULL COMMENT '¼ÒÍ¥³ÉÔ±',
+  `disciplinaryRecords` varchar(1000) DEFAULT NULL COMMENT '½±³Í¼ÇÂ¼',
+  `employmentAdvice` varchar(1000) DEFAULT NULL COMMENT 'Æ¸ÓÃÒâ¼û',
+  `picture` varchar(1000) DEFAULT NULL COMMENT 'Ô±¹¤ÏàÆ¬',
+  `roleId` int(4) DEFAULT NULL COMMENT '½ÇÉ«±íid',
+  `isDimission` int(2) DEFAULT '0' COMMENT '0ÎªÔÚÖ°1ÎªÒÑÀëÖ°',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`staffNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `staff` */
 
 insert  into `staff`(`staffNo`,`name`,`sex`,`departmentId`,`account`,`password`,`postId`,`physicalCondition`,`height`,`nativePlace`,`nation`,`maritalStatus`,`educationBackground`,`school`,`major`,`professionalQualification`,`property`,`degree`,`authorizedStrength`,`idCardNo`,`residence`,`presentAddress`,`contactNumber`,`phone`,`email`,`depositBank`,`bankAccount`,`emergencyContact`,`emergencyPhone`,`dateOnBoard`,`theTrialDue`,`birthdayDate`,`contractStart`,`agreementEnds`,`cardNumber`,`internalCardNo`,`referrer`,`wholeOrderDiscountRight`,`timeDiscountRight`,`rightToDiscount`,`rightOfRelief`,`jobResume`,`educationexperience`,`memberOfFamily`,`disciplinaryRecords`,`employmentAdvice`,`picture`,`roleId`,`isDimission`,`otherone`,`othertwo`,`otherthree`,`otherfour`,`otherfive`) values 
-('ASD002','å…‹èŽ±å°”','å¥³',9,'sdf','88888888',2,'è‰¯å¥½',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'18834535222','16623423663','1234237783@qq.com',NULL,NULL,NULL,'14124546574','2019-02-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL),
-('ASD003','å¢¨è²','ç”·',12,'xcv','88888888',3,'è‰¯å¥½',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'17775345332','18843242211','2312213453@qq.com',NULL,NULL,NULL,'14245657543',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL),
-('SWE001','å²è’‚å¤«','ç”·',3,'qwe','88888888',2,'è‰¯å¥½','173','æ¹–å—','å£®æ—','å·²å©š','æœ¬ç§‘','æ¹–å—å†œä¸šå¤§å­¦','è®¡ç®—æœºè½¯ä»¶','ä¸­çº§å·¥ç¨‹å¸ˆ','è®°è€ƒå‹¤è®°è–ª','ä¸€æœ¬','åœ¨ç¼–','430202199910011022','æ¹–å—çœæ ªæ´²å¸‚è·å¡˜åŒº','æ¹–å—çœé•¿æ²™å¸‚å¤©å…ƒåŒº','13142000286','13142000286','1525532629@qq.com','ä¸­å›½é“¶è¡Œ','74327342374238123','è©¹å§†æ–¯','15276222983','2019-02-02','2019-05-02','1999-10-01','2019-05-02','2020-05-02','2993827192','2131232131','å‡¯æ–‡','1','1','1','1','1','1','1','1','1','1',1,1,NULL,NULL,NULL,NULL,NULL),
-('SWE002','ç§‘æ¯”','ç”·',4,'asd','88888888',3,'è‰¯å¥½','188','æ¹–å—',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'12243545465','13156734327','3288321354@qq.com',NULL,NULL,NULL,'14248894324',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL),
-('SWE003','è’‚æ ¼','ç”·',6,'zxc','88888888',4,'è‰¯å¥½',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'15687846453','15323245675','2377894392@qq.com',NULL,NULL,NULL,'13456333423',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL),
-('ZXC001','å¸•å…‹','ç”·',11,'ert','88888888',5,'è‰¯å¥½',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'14565435322','13442355323','3231877432@qq.com',NULL,NULL,NULL,'14343253442',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL);
+('ASD002','¿ËÀ³¶û','Å®',9,'sdf','88888888',2,'Á¼ºÃ',NULL,NULL,'ºº×å',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'18834535222','16623423663','1234237783@qq.com',NULL,NULL,NULL,'14124546574','2019-02-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL),
+('ASD003','Ä«·Æ','ÄÐ',12,'xcv','88888888',3,'Á¼ºÃ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'17775345332','18843242211','2312213453@qq.com',NULL,NULL,NULL,'14245657543',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL),
+('SWE001','Ê·µÙ·ò','ÄÐ',3,'qwe','88888888',2,'Á¼ºÃ','173','ºþÄÏ','×³×å','ÒÑ»é','±¾¿Æ','ºþÄÏÅ©Òµ´óÑ§','¼ÆËã»úÈí¼þ','ÖÐ¼¶¹¤³ÌÊ¦','¼Ç¿¼ÇÚ¼ÇÐ½','Ò»±¾','ÔÚ±à','430202199910011022','ºþÄÏÊ¡ÖêÖÞÊÐºÉÌÁÇø','ºþÄÏÊ¡³¤É³ÊÐÌìÔªÇø','13142000286','13142000286','1525532629@qq.com','ÖÐ¹úÒøÐÐ','74327342374238123','Õ²Ä·Ë¹','15276222983','2019-02-02','2019-05-02','1999-10-01','2019-05-02','2020-05-02','2993827192','2131232131','¿­ÎÄ','1','1','1','1','1','1','1','1','1','1',1,0,NULL,NULL,NULL,NULL,NULL),
+('SWE002','¿Æ±È','ÄÐ',4,'asd','88888888',3,'Á¼ºÃ','188','ºþÄÏ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'12243545465','13156734327','3288321354@qq.com',NULL,NULL,NULL,'14248894324',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL),
+('SWE003','µÙ¸ñ','ÄÐ',6,'zxc','88888888',4,'Á¼ºÃ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'15687846453','15323245675','2377894392@qq.com',NULL,NULL,NULL,'13456333423',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL),
+('ZXC001','ÅÁ¿Ë','ÄÐ',11,'ert','88888888',5,'Á¼ºÃ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'18',NULL,NULL,'14565435322','13442355323','3231877432@qq.com',NULL,NULL,NULL,'14343253442',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `work` */
 
 DROP TABLE IF EXISTS `work`;
 
 CREATE TABLE `work` (
-  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'åˆ†å·¥id',
-  `instationWhite` int(4) DEFAULT NULL COMMENT 'ç«™å†…ç™½å¤©',
-  `instationBlack` int(4) DEFAULT NULL COMMENT 'ç«™å†…æ™šä¸Š',
-  `outsideWhite` int(4) DEFAULT NULL COMMENT 'ç«™å¤–ç™½å¤©',
-  `outsideBlack` int(4) DEFAULT NULL COMMENT 'ç«™å¤–æ™šä¸Š',
-  `workTime` datetime DEFAULT NULL COMMENT 'å·¥ä½œæ—¶é—´',
-  `artisanClassId` int(4) DEFAULT NULL COMMENT 'æŠ€å·¥ç­ç»„id',
-  `otherone` varchar(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ1',
-  `othertwo` varchar(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ2',
-  `otherthree` varchar(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ3',
-  `otherfour` varchar(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ4',
-  `otherfive` varchar(100) DEFAULT NULL COMMENT 'å…¶å®ƒå­—æ®µ5',
+  `id` int(4) NOT NULL AUTO_INCREMENT COMMENT '·Ö¹¤id',
+  `instationWhite` int(4) DEFAULT NULL COMMENT 'Õ¾ÄÚ°×Ìì',
+  `instationBlack` int(4) DEFAULT NULL COMMENT 'Õ¾ÄÚÍíÉÏ',
+  `outsideWhite` int(4) DEFAULT NULL COMMENT 'Õ¾Íâ°×Ìì',
+  `outsideBlack` int(4) DEFAULT NULL COMMENT 'Õ¾ÍâÍíÉÏ',
+  `workTime` datetime DEFAULT NULL COMMENT '¹¤×÷Ê±¼ä',
+  `artisanClassId` int(4) DEFAULT NULL COMMENT '¼¼¹¤°à×éid',
+  `otherone` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î1',
+  `othertwo` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î2',
+  `otherthree` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î3',
+  `otherfour` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î4',
+  `otherfive` varchar(100) DEFAULT NULL COMMENT 'ÆäËü×Ö¶Î5',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
