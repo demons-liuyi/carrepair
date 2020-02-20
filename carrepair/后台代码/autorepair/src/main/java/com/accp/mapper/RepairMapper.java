@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.accp.domain.MaintainHistary;
+import com.accp.domain.QueryGetGoods;
+import com.accp.domain.QueryItemRepair;
 import com.accp.domain.Repair;
 import com.accp.domain.RepairExample;
 
@@ -34,5 +36,7 @@ public interface RepairMapper {
     List<MaintainHistary> selectHistray(@Param("type") String type,@Param("content")String content);
     List<MaintainHistary> selectRepairItem(@Param("type") String type,@Param("content")String content);
     List<MaintainHistary> selectwl(@Param("type") String type,@Param("content")String content);
+    List<QueryGetGoods> queryGetGoods(@Param("tab") String tab, @Param("number")String number);
+    List<QueryItemRepair> queryItemRepair(@Param("tab") String tab, @Param("number")String number);
     
 }

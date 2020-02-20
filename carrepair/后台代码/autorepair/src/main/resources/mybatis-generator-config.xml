@@ -34,7 +34,7 @@
 			targetProject="src/main/java" type="XMLMAPPER" />
 			<!-- <table schema="student" tableName="student"></table> -->
 		
-			<table schema="getgood" tableName="getgood"></table>
+			<table schema="completed" tableName="completed"></table>
 			<!-- <table schema="major" tableName="major"></table>	
 			<table schema="exam" tableName="exam"></table>		
 			<table schema="course" tableName="course"></table>		 -->	

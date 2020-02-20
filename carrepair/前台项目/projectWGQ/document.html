@@ -25,6 +25,7 @@
 			.car div {
 				padding: 0;
 			}
+			.changestate
 			
 			.fontRed {
 				color: red;
@@ -370,7 +371,8 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>维修班组</label>
-								<input v-model="item.bzname" id="bz" bzid="" type="text" class="form-control">
+								<input v-model="item.bzname" id="bz" :bzid="item.bzid" type="text" class="form-control">
+								<button type="button" class="btn btn-success chosebz" style="margin-left: 0;">选择班组</button>
 							</div>
 							<div class="form-group">
 								<label class="control-label">免单原因</label>
@@ -436,7 +438,9 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>维修班组</label>
-								<input v-model="item.bzname" id="updatebz" bzid="" type="text" class="form-control">
+								<input v-model="item.bzname" id="updatebz" :bzid="item.bzid" type="text" class="form-control">
+								<button type="button" class="btn btn-success chosebz" style="margin-left: 0;" >选择班组</button>
+
 							</div>
 							<div class="form-group">
 								<label class="control-label">免单原因</label>
@@ -885,6 +889,7 @@
 						var staffname="克莱尔"
 						var op=$("<option selected='selected' value='"+staffno+"' >"+staffname+"</option>")
 						$("#fwman").append(op)
+						this.repair.staffname=staffname
 						this.repair.staffno=staffno;
 						
 					},
@@ -1099,7 +1104,14 @@
 							$("#table4").show()	
 						data = ["选择", "结算状态", "优惠后金额", "合计金额", "材料费", "工时费", "附加费", "结算时间", "结算人", "支付方式", "支付金额", "挂账金额", "到账亏盈", "发票种类", "发票号", "发票金额"];
 						$(".btns div").hide();
-						vm.jsInfo={sta:"",qprice:0.0,hprice:0.0,gsprice:0.0,clprice:0.0}
+						js();
+						
+						
+					}
+					vm.head = data;
+				});
+				function js(){
+											vm.jsInfo={sta:"",qprice:0.0,hprice:0.0,gsprice:0.0,clprice:0.0}
 						vm.jsInfo.sta="预估金额"
 						for (var i=0;i<vm.itemRepair.length;i++) {
 							vm.jsInfo.qprice+=vm.itemRepair[i].qprice*vm.itemRepair[i].count
@@ -1129,11 +1141,7 @@
 							vm.jsInfo.clprice+=vm.allCommodity[i].discountsPrice*vm.allCommodity[i].count
 							}
 						}
-						
-						
-					}
-					vm.head = data;
-				});
+				}
 				$("#chooseItem").click(function(){
 			   			$.ajax({
 						type:"post",
@@ -1145,6 +1153,7 @@
 						dataType:"json",
 						success:function(result){
 							vm.item=result
+							vm.item.fwman=vm.repair.staffname
 							changeitem();
 							
 						}
@@ -1203,7 +1212,7 @@
 							
 							
 							vm.item.count=1;
-							vm.item.fwman=$("#fwman").val();
+							
 							vm.item.bzid=$("#bz").attr("bzid");
 							vm.item.priceType=$("#priceType").val();
 							vm.item.bzname="";
@@ -1348,7 +1357,7 @@
 								
 							}
 							vm.commodity.discountsPrice=vm.commodity.qprice
-							vm.commodity=JSON.parse(JSON.stringify(vm.commodity))
+						
 				
 			}),
 
@@ -1396,7 +1405,7 @@
 							vm.item.gzresult="";
 							vm.item.gzinfo="";
 							vm.item.gdnumber="";
-							vm.item=JSON.parse(JSON.stringify(vm.item))
+						
 			})
 			$("#keppCommodity").click(function(){
 				for (var i=0;i<vm.allCommodity.length;i++) {
@@ -1441,6 +1450,8 @@
 			})
 			$("#addRepair").click(function(){
 				console.log(111)
+				var successid=1;
+				var cs=1;
 				vm.repair.befor=vm.carInfo.ordertime;
 				vm.repair.number=$(".number").html();
 				vm.repair.carinfoid=vm.carInfo.id;
@@ -1456,17 +1467,20 @@
 				$.ajax({
 					type:"post",
 					url:"http://localhost:8080/repair/addRepair",
-					async:true,
+					async:false,
 					data:JSON.stringify(vm.repair),
 	
 					dataType:"json",
 					contentType:"application/json;charset=utf-8",
 					success:function(result){
+					
 						
 					}
 				});
 				
 				if(vm.allCommodity.length!=0){
+					cs++;
+					successid++;
 					for (var i=0;i<vm.allCommodity.length;i++) {
 						vm.allCommodity[i].goodid=vm.allCommodity[i].commodityno
 								vm.allCommodity[i].wjid=vm.repair.number
@@ -1476,7 +1490,7 @@
 					$.ajax({
 						type:"post",
 						url:"http://localhost:8080/repair/addGetgood",
-						async:true,
+						async:false,
 						data:JSON.stringify(vm.allCommodity)
 						,
 							dataType:"json",
@@ -1489,8 +1503,11 @@
 	
 			
 				if(vm.itemRepair.length!=0){
+					cs++;
+					successid++;
 					for (var i=0;i<vm.itemRepair.length;i++) {
 						vm.itemRepair[i].itemid=vm.itemRepair[i].id
+						vm.$delete(vm.itemRepair[i],"id")
 						vm.itemRepair[i].teamid=vm.itemRepair[i].bzid
 						vm.itemRepair[i].fprice=vm.itemRepair[i].hprice	
 						vm.itemRepair[i].wjid=vm.repair.number
@@ -1499,7 +1516,7 @@
 				$.ajax({
 					type:"post",
 					url:"http://localhost:8080/repair/addItemRepair",
-					async:true,
+					async:false,
 					data:JSON.stringify(vm.itemRepair)
 					,
 					dataType:"json",
@@ -1511,6 +1528,8 @@
 				}
 			
 				if(vm.allewitems.length!=0){
+					cs++;
+					successid++;
 					for (var i=0;i<vm.allewitems.length;i++) {
 						vm.allewitems[i].repairid=vm.repair.number
 						vm.allewitems[i].pricetype=vm.allewitems[i].priceType
@@ -1519,7 +1538,7 @@
 				$.ajax({
 					type:"post",
 					url:"http://localhost:8080/repair/addEwitem",
-					async:true,
+					async:false,
 					data:JSON.stringify(vm.allewitems)
 					,
 					dataType:"json",
@@ -1529,9 +1548,15 @@
 					}
 				});
 				}
+				console.log(cs+"=="+successid)
 				
-				
+		if(cs==successid){
 	window.location.href="maintain.html"
+	}
+			})
+			$(".chosebz").click(function(){
+				vm.item.bzid="10005"
+				vm.item.bzname="马云组"
 			})
 			
 			});

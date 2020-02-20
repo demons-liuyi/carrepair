@@ -24,7 +24,15 @@
     <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
     <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
     <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
+     <result column="artisanClassName" property="artisanclassname" jdbcType="VARCHAR" />
+      <result column="artisanLevelName" property="artisanlevelname" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectByWhere" resultMap="BaseResultMap">
+  SELECT cla.`artisanClassName`,ar.*,lev.`artisanLevelName` FROM `artisan` ar
+left JOIN `artisanclass` cla ON cla.`id`=ar.`artisanClassId`
+left JOIN`artisanlevel` lev ON lev.`id`=ar.`artisanLevelId`
+WHERE ar.artisanClassId ='${bzid}' AND (ar.`artisanNo` LIKE '%${sel}%' OR ar.`artisanName` LIKE '%${sel}%' OR ar.`phone` LIKE '%${sel}%')
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

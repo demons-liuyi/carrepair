@@ -79,28 +79,29 @@
 </style>
 	</head>
 	<body>
+<div id="ctx">		
 <div class="container-fluid">
 	<div class="row firstdiv">
 		<div class="col-md-10"><h1>竣工检查</h1>
 		</div>
 		<div class="col-md-2" id="ser">
-			<button class="btn btn-default">搜索</button>
+			<button id="sele" class="btn btn-default">搜索</button>
 			<button class="btn btn-danger">关闭</button>
 		</div>
 	</div>
 	
 	<div id="ss" class="form-inline" >
 		
-		开单日期：<input style="margin-right: 5px;" class="form-control ss" type="date" /><i class="rili"></i>
-				<input  class="form-control ss" type="date" />
-		维修单号：<input class="form-control ss" type="text" />
-		单据状态：<select  class="form-control ss">
-			<option>已竣</option>
-			<option>未竣</option>
+		开单日期：<input id="date1" style="margin-right: 5px;" class="form-control ss" type="datetime" /><i class="rili"></i>
+				<input id="date2" class="form-control ss" type="datetime" />
+		维修单号：<input id="number" class="form-control ss" type="text" />
+		单据状态：<select id="cha"  class="form-control ss">
+			<option value="!=">未竣</option>
+			<option value="=">已竣</option>
 		</select>
-		车牌号：<input class="form-control ss" type="text" />
+		车牌号：<input id="carnumber" class="form-control ss" type="text" />
 		<div style="padding-top: 20px;">
-		车架号：<input class="form-control ss" type="text" />
+		车架号：<input id="carnumber1" class="form-control ss" type="text" />
 		</div>
 	</div>
 	<div id="caidan">
@@ -124,39 +125,30 @@
 				<td>完工时间</td>
 				<td>误工原因</td>
 				<td>返工数</td>
+				<td>返工原因</td>
+				<td>责任人</td>
+				<td>处罚金额</td>
 				
 			</tr>
+				<tr v-for="item in list" @dblclick="openTheDocument(item)">
+				<td>{{item.number}}</td>
+				<td>{{item.tname}}</td>
+				<td>{{item.type}}</td>
+				<td>{{item.worktime}}</td>
+				<td>{{item.clientname}}</td>
+				<td>{{item.carnumber}}</td>
+				<td>{{item.cartypename}}</td>
+				<td>{{item.carnumber1}}</td>
+				<td>{{item.ordertime}}</td>
+				<td>{{item.overworkdate}}</td>
+				<td>{{item.nowworkdate}}</td>
+				<td>{{item.reason}}</td>
+				<td>{{item.count}}</td>
+				<td>{{item.fgreason}}</td>
+				<td>{{item.name}}</td>
+				<td>{{item.price}}</td>
+			</tr>
 			
-				<tr>
-				<td>维修单号</td>
-				<td>单据类型</td>
-				<td>业务类型</td>
-				<td>施工班次</td>
-				<td>车主姓名</td>
-				<td>车牌号</td>
-				<td>车型</td>
-				<td>车架号</td>
-				<td>接车时间</td>
-				<td>预计完工</td>
-				<td>完工时间</td>
-				<td>误工原因</td>
-				<td>返工数</td>
-			</tr>
-				<tr>
-				<td>维修单号</td>
-				<td>单据类型</td>
-				<td>业务类型</td>
-				<td>施工班次</td>
-				<td>车主姓名</td>
-				<td>车牌号</td>
-				<td>车型</td>
-				<td>车架号</td>
-				<td>接车时间</td>
-				<td>预计完工</td>
-				<td>完工时间</td>
-				<td>误工原因</td>
-				<td>返工数</td>
-			</tr>
 		</table>
 	</div>
 <button id="motal" class="btn btn-primary btn-lg">竣工检查</button>
@@ -211,7 +203,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
+</div>
 	
 
 </div>
@@ -219,77 +211,75 @@
  <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
  <script src="static/js/vue.js" type="text/javascript" charset="utf-8"></script>
  <script type="text/javascript">
- 	$(function(){
- 		$("#motal").click(function(){
- 			$("#myModal").modal("show")
- 			
- 			if($("[name=hege]:checked").val()==1){
- 			$(".che:eq(1) input:not(:first)").each(function(){
- 				$(this).attr("disabled","true")
- 			})
- 			$(".che:eq(1) select").each(function(){
- 				$(this).attr("disabled","true")
- 			})
- 			$(".che:eq(0) input:not(:first)").each(function(){
- 				$(this).removeAttr("disabled")
- 			})
- 			$(".che:eq(0) select").each(function(){
- 				$(this).removeAttr("disabled")
- 			})
+ 	var vm=new Vue({
+ 		el:"#ctx",
+ 		data(){
+ 			return {
+ 				list:[]
+ 			}
+ 		},
 
- 			
- 		    }else{
- 			$(".che:eq(0) input:not(:first)").each(function(){
- 				$(this).attr("disabled","true")
- 			})
- 			$(".che:eq(0) select").each(function(){
- 				$(this).attr("disabled","true")
- 			})
- 			$(".che:eq(1) input:not(:first)").each(function(){
- 				$(this).removeAttr("disabled")
- 			})
- 			$(".che:eq(1) select").each(function(){
- 				$(this).removeAttr("disabled")
- 			})
+ 		methods:{
+ 			selectJunGong(tj,date1,date2,number,carnumber,carnumber1){
+ 				console.log(11)
+ 				$.ajax({
+ 					type:"post",
+ 					url:"http://localhost:8080/repair/selectJunGong",
+ 					data:{
+ 						tj:tj,
+ 						date1:date1,
+ 						date2:date2,
+ 						number:number,
+ 						carnumber:carnumber,
+ 						carnumber1:carnumber1
+ 					},
+ 					dataType:"json",
+ 					success:function(result){
+ 						console.log("11"+result)
+ 						vm.list=result
+ 					}
+ 				})
+ 			},
+ 				openTheDocument(item){
+					var carNumber=item.carnumber
+					if(item.number==""||item.tname==""){
+					window.location.href="document.html?carNumber="+encodeURI(carNumber) +"&&clientType="+vm.clientInfo.clientType+"";
+					}else{
+						if(item.tname=="维修"){
+					window.location.href="updateRepair.html?carNumber="+encodeURI(item.carnumber)+"&&status="+item.status+""+"&&number="+item.number+""+"&&clientType="+item.clientType+"";
 
- 		    }
- 		})
- 		 
- 				
- 		$("[name=hege]").change(function(){
- 			if($(this).val()==1){
- 			$(".che:eq(1) input:not(:first)").each(function(){
- 				$(this).attr("disabled","true")
- 			})
- 			$(".che:eq(1) select").each(function(){
- 				$(this).attr("disabled","true")
- 			})
- 			$(".che:eq(0) input:not(:first)").each(function(){
- 				$(this).removeAttr("disabled")
- 			})
- 			$(".che:eq(0) select").each(function(){
- 				$(this).removeAttr("disabled")
- 			})
+						}else{
+					window.location.href="updateRescue.html?carNumber="+encodeURI(item.carnumber)+"&&status="+item.status+""+"&&number="+item.number+""+"&&clientType="+item.clientType+"";
 
- 			
- 		    }else{
- 			$(".che:eq(0) input:not(:first)").each(function(){
- 				$(this).attr("disabled","true")
- 			})
- 			$(".che:eq(0) select").each(function(){
- 				$(this).attr("disabled","true")
- 			})
- 			$(".che:eq(1) input:not(:first)").each(function(){
- 				$(this).removeAttr("disabled")
- 			})
- 			$(".che:eq(1) select").each(function(){
- 				$(this).removeAttr("disabled")
- 			})
-
- 		    }
- 		})
- 		
+						}
+					}
+					}
+ 		}
  	})
+ 	$(function(){
+ 		$("#date1").val('2020-1-1')
+ 		$("#date2").val('2020-3-1')
+ 		vm.selectJunGong("!=","2020-1-1","2020-3-1","","","");
+ 	$("#cha").change(function(){
+ 		var tj=$(this).val()
+ 		var date1=$("#date1").val()
+ 		var date2=$("#date2").val()
+ 		var number=$("#number").val();
+ 		var carnumber=$("#carnumber").val()
+ 		var carnumber1=$("#carnumber1").val()
+ 		vm.selectJunGong(tj,date1,date2,number,carnumber,carnumber1);
+ 	})
+ 	$("#sele").click(function(){
+ 		var tj=$("#cha").val()
+ 		var date1=$("#date1").val()
+ 		var date2=$("#date2").val()
+ 		var number=$("#number").val();
+ 		var carnumber=$("#carnumber").val()
+ 		var carnumber1=$("#carnumber1").val()
+ 		vm.selectJunGong(tj,date1,date2,number,carnumber,carnumber1);
+ 	})
+ 	})
+
  	
  </script>
 	</body>

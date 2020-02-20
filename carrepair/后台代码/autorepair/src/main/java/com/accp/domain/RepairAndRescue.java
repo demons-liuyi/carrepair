@@ -20,8 +20,15 @@ public class RepairAndRescue {
     private Integer carinfoid;
 
     private String staffno;
+    private String clienttype;
 
-    private String oil;
+    public String getClienttype() {
+		return clienttype;
+	}
+	public void setClienttype(String clienttype) {
+		this.clienttype = clienttype;
+	}
+	private String oil;
 
   
 
