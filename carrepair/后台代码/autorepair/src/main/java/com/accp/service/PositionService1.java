@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.accp.domain.Cashier;
 import com.accp.domain.Department;
 import com.accp.domain.DepartmentExample;
 import com.accp.domain.Post;
 import com.accp.domain.PostExample;
 import com.accp.domain.Staff;
 import com.accp.domain.StaffExample;
+import com.accp.mapper.CashierMapper;
 import com.accp.mapper.DepartmentMapper;
 import com.accp.mapper.PostMapper;
 import com.accp.mapper.StaffMapper;
@@ -26,6 +28,8 @@ public class PositionService1 {
 	@Autowired
 	StaffMapper staffMapper;
 	
+	@Autowired
+	CashierMapper cashierMapper;
 	/**
 	 * 查询所有的岗位
 	 * @return 依据条件的返回结果
@@ -197,4 +201,11 @@ public class PositionService1 {
 		return staffMapper.selectByExample(example);
 	}
 	
+	/**
+	 * 新增一条结账数据
+	 * @return
+	 */
+	public Integer addCashier(Cashier record){
+		return cashierMapper.insert(record);
+	}
 }

@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.accp.domain.Cashier;
 import com.accp.domain.Department;
 import com.accp.domain.Post;
 import com.accp.domain.Staff;
@@ -561,4 +562,10 @@ public class PositionController1 {
 		public List<Staff> selectStaffByDepId(Integer depid){
 			return ps.selectStaffByDepId(depid);
 		}
+		@PostMapping("/addCashier")
+		@ResponseBody
+		public Integer addCashier(@RequestBody Cashier record) {
+			return ps.addCashier(record);
+		}
+		
 }
