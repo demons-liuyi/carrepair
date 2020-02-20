@@ -5,7 +5,7 @@ public class ItemRepair {
 
     private Integer isrepair;
 
-    private Integer wjid;
+    private String wjid;
 
     private Integer itemid;
 
@@ -15,7 +15,7 @@ public class ItemRepair {
 
     private String pricetype;
 
-    private String otherone;
+    private Long fprice;
 
     private String othertwo;
 
@@ -41,11 +41,11 @@ public class ItemRepair {
         this.isrepair = isrepair;
     }
 
-    public Integer getWjid() {
+    public String getWjid() {
         return wjid;
     }
 
-    public void setWjid(Integer wjid) {
+    public void setWjid(String wjid) {
         this.wjid = wjid;
     }
 
@@ -81,12 +81,12 @@ public class ItemRepair {
         this.pricetype = pricetype;
     }
 
-    public String getOtherone() {
-        return otherone;
+    public Long getFprice() {
+        return fprice;
     }
 
-    public void setOtherone(String otherone) {
-        this.otherone = otherone;
+    public void setFprice(Long fprice) {
+        this.fprice = fprice;
     }
 
     public String getOthertwo() {
