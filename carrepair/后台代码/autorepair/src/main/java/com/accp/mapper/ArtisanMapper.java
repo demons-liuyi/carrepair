@@ -27,4 +27,5 @@ public interface ArtisanMapper {
     int updateByPrimaryKeySelective(Artisan record);
 
     int updateByPrimaryKey(Artisan record);
+    List<Artisan> selectByWhere(@Param("bzid")String bzid,@Param("sel")String sel);
 }

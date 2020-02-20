@@ -3,14 +3,14 @@
 <mapper namespace="com.accp.mapper.GetgoodMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.Getgood" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="goodid" property="goodid" jdbcType="INTEGER" />
+    <result column="goodid" property="goodid" jdbcType="VARCHAR" />
     <result column="count" property="count" jdbcType="INTEGER" />
     <result column="item" property="item" jdbcType="VARCHAR" />
     <result column="priceType" property="pricetype" jdbcType="VARCHAR" />
-    <result column="discountsPrice" property="discountsprice" jdbcType="VARCHAR" />
+    <result column="discountsPrice" property="discountsprice" jdbcType="DECIMAL" />
     <result column="wjid" property="wjid" jdbcType="VARCHAR" />
     <result column="warehouse" property="warehouse" jdbcType="VARCHAR" />
-    <result column="isRepair" property="isrepair" jdbcType="VARCHAR" />
+    <result column="isRepair" property="isrepair" jdbcType="INTEGER" />
     <result column="cause" property="cause" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="otherone" property="otherone" jdbcType="VARCHAR" />
@@ -118,9 +118,9 @@
       cause, type, otherone, 
       othertwo, otherthree, otherfour, 
       otherfive)
-    values (#{id,jdbcType=INTEGER}, #{goodid,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, 
-      #{item,jdbcType=VARCHAR}, #{pricetype,jdbcType=VARCHAR}, #{discountsprice,jdbcType=VARCHAR}, 
-      #{wjid,jdbcType=VARCHAR}, #{warehouse,jdbcType=VARCHAR}, #{isrepair,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{goodid,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
+      #{item,jdbcType=VARCHAR}, #{pricetype,jdbcType=VARCHAR}, #{discountsprice,jdbcType=DECIMAL}, 
+      #{wjid,jdbcType=VARCHAR}, #{warehouse,jdbcType=VARCHAR}, #{isrepair,jdbcType=INTEGER}, 
       #{cause,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{otherone,jdbcType=VARCHAR}, 
       #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, 
       #{otherfive,jdbcType=VARCHAR})
@@ -182,7 +182,7 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="goodid != null" >
-        #{goodid,jdbcType=INTEGER},
+        #{goodid,jdbcType=VARCHAR},
       </if>
       <if test="count != null" >
         #{count,jdbcType=INTEGER},
@@ -194,7 +194,7 @@
         #{pricetype,jdbcType=VARCHAR},
       </if>
       <if test="discountsprice != null" >
-        #{discountsprice,jdbcType=VARCHAR},
+        #{discountsprice,jdbcType=DECIMAL},
       </if>
       <if test="wjid != null" >
         #{wjid,jdbcType=VARCHAR},
@@ -203,7 +203,7 @@
         #{warehouse,jdbcType=VARCHAR},
       </if>
       <if test="isrepair != null" >
-        #{isrepair,jdbcType=VARCHAR},
+        #{isrepair,jdbcType=INTEGER},
       </if>
       <if test="cause != null" >
         #{cause,jdbcType=VARCHAR},
@@ -241,7 +241,7 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.goodid != null" >
-        goodid = #{record.goodid,jdbcType=INTEGER},
+        goodid = #{record.goodid,jdbcType=VARCHAR},
       </if>
       <if test="record.count != null" >
         count = #{record.count,jdbcType=INTEGER},
@@ -253,7 +253,7 @@
         priceType = #{record.pricetype,jdbcType=VARCHAR},
       </if>
       <if test="record.discountsprice != null" >
-        discountsPrice = #{record.discountsprice,jdbcType=VARCHAR},
+        discountsPrice = #{record.discountsprice,jdbcType=DECIMAL},
       </if>
       <if test="record.wjid != null" >
         wjid = #{record.wjid,jdbcType=VARCHAR},
@@ -262,7 +262,7 @@
         warehouse = #{record.warehouse,jdbcType=VARCHAR},
       </if>
       <if test="record.isrepair != null" >
-        isRepair = #{record.isrepair,jdbcType=VARCHAR},
+        isRepair = #{record.isrepair,jdbcType=INTEGER},
       </if>
       <if test="record.cause != null" >
         cause = #{record.cause,jdbcType=VARCHAR},
@@ -293,14 +293,14 @@
   <update id="updateByExample" parameterType="map" >
     update getgood
     set id = #{record.id,jdbcType=INTEGER},
-      goodid = #{record.goodid,jdbcType=INTEGER},
+      goodid = #{record.goodid,jdbcType=VARCHAR},
       count = #{record.count,jdbcType=INTEGER},
       item = #{record.item,jdbcType=VARCHAR},
       priceType = #{record.pricetype,jdbcType=VARCHAR},
-      discountsPrice = #{record.discountsprice,jdbcType=VARCHAR},
+      discountsPrice = #{record.discountsprice,jdbcType=DECIMAL},
       wjid = #{record.wjid,jdbcType=VARCHAR},
       warehouse = #{record.warehouse,jdbcType=VARCHAR},
-      isRepair = #{record.isrepair,jdbcType=VARCHAR},
+      isRepair = #{record.isrepair,jdbcType=INTEGER},
       cause = #{record.cause,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=VARCHAR},
       otherone = #{record.otherone,jdbcType=VARCHAR},
@@ -316,7 +316,7 @@
     update getgood
     <set >
       <if test="goodid != null" >
-        goodid = #{goodid,jdbcType=INTEGER},
+        goodid = #{goodid,jdbcType=VARCHAR},
       </if>
       <if test="count != null" >
         count = #{count,jdbcType=INTEGER},
@@ -328,7 +328,7 @@
         priceType = #{pricetype,jdbcType=VARCHAR},
       </if>
       <if test="discountsprice != null" >
-        discountsPrice = #{discountsprice,jdbcType=VARCHAR},
+        discountsPrice = #{discountsprice,jdbcType=DECIMAL},
       </if>
       <if test="wjid != null" >
         wjid = #{wjid,jdbcType=VARCHAR},
@@ -337,7 +337,7 @@
         warehouse = #{warehouse,jdbcType=VARCHAR},
       </if>
       <if test="isrepair != null" >
-        isRepair = #{isrepair,jdbcType=VARCHAR},
+        isRepair = #{isrepair,jdbcType=INTEGER},
       </if>
       <if test="cause != null" >
         cause = #{cause,jdbcType=VARCHAR},
@@ -365,14 +365,14 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.Getgood" >
     update getgood
-    set goodid = #{goodid,jdbcType=INTEGER},
+    set goodid = #{goodid,jdbcType=VARCHAR},
       count = #{count,jdbcType=INTEGER},
       item = #{item,jdbcType=VARCHAR},
       priceType = #{pricetype,jdbcType=VARCHAR},
-      discountsPrice = #{discountsprice,jdbcType=VARCHAR},
+      discountsPrice = #{discountsprice,jdbcType=DECIMAL},
       wjid = #{wjid,jdbcType=VARCHAR},
       warehouse = #{warehouse,jdbcType=VARCHAR},
-      isRepair = #{isrepair,jdbcType=VARCHAR},
+      isRepair = #{isrepair,jdbcType=INTEGER},
       cause = #{cause,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
       otherone = #{otherone,jdbcType=VARCHAR},

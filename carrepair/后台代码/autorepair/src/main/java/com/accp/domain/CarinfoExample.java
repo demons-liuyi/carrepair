@@ -1802,6 +1802,7 @@ public class CarinfoExample {
             return (Criteria) this;
         }
 
+
         public Criteria andClientidIsNull() {
             addCriterion("clientid is null");
             return (Criteria) this;
@@ -1946,69 +1947,72 @@ public class CarinfoExample {
             addCriterion("otherone is null");
             return (Criteria) this;
         }
-
-        public Criteria andOtheroneIsNotNull() {
-            addCriterion("otherone is not null");
+        public Criteria andclientidIsNull() {
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneEqualTo(String value) {
-            addCriterion("otherone =", value, "otherone");
+        public Criteria andclientidIsNotNull() {
+            addCriterion("clientid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneNotEqualTo(String value) {
-            addCriterion("otherone <>", value, "otherone");
+        public Criteria andclientidEqualTo(String value) {
+            addCriterion("clientid =", value, "clientid");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneGreaterThan(String value) {
-            addCriterion("otherone >", value, "otherone");
+        public Criteria andclientidNotEqualTo(String value) {
+            addCriterion("clientid <>", value, "clientid");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneGreaterThanOrEqualTo(String value) {
-            addCriterion("otherone >=", value, "otherone");
+        public Criteria andclientidGreaterThan(String value) {
+            addCriterion("clientid >", value, "clientid");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneLessThan(String value) {
-            addCriterion("otherone <", value, "otherone");
+        public Criteria andclientidGreaterThanOrEqualTo(String value) {
+            addCriterion("clientid >=", value, "clientid");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneLessThanOrEqualTo(String value) {
-            addCriterion("otherone <=", value, "otherone");
+        public Criteria andclientidLessThan(String value) {
+            addCriterion("clientid <", value, "clientid");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneLike(String value) {
-            addCriterion("otherone like", value, "otherone");
+        public Criteria andclientidLessThanOrEqualTo(String value) {
+            addCriterion("clientid <=", value, "clientid");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneNotLike(String value) {
-            addCriterion("otherone not like", value, "otherone");
+        public Criteria andclientidLike(String value) {
+            addCriterion("clientid like", value, "clientid");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneIn(List<String> values) {
-            addCriterion("otherone in", values, "otherone");
+        public Criteria andclientidNotLike(String value) {
+            addCriterion("clientid not like", value, "clientid");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneNotIn(List<String> values) {
-            addCriterion("otherone not in", values, "otherone");
+        public Criteria andclientidIn(List<String> values) {
+            addCriterion("clientid in", values, "clientid");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneBetween(String value1, String value2) {
-            addCriterion("otherone between", value1, value2, "otherone");
+        public Criteria andclientidNotIn(List<String> values) {
+            addCriterion("clientid not in", values, "clientid");
             return (Criteria) this;
         }
 
-        public Criteria andOtheroneNotBetween(String value1, String value2) {
-            addCriterion("otherone not between", value1, value2, "otherone");
+        public Criteria andclientidBetween(String value1, String value2) {
+            addCriterion("clientid between", value1, value2, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andclientidNotBetween(String value1, String value2) {
+            addCriterion("clientid not between", value1, value2, "clientid");
             return (Criteria) this;
         }
 

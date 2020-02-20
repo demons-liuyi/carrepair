@@ -13,10 +13,10 @@ import com.accp.domain.Client;
 import com.accp.domain.Coll;
 import com.accp.domain.Maintainregist;
 import com.accp.domain.Repair;
+import com.accp.service.RepairService;
 import com.accp.service.carInfoService;
 import com.accp.service.clientService;
 import com.accp.service.maintainregistService;
-import com.accp.service.repairService;
 
  
 
@@ -29,7 +29,7 @@ public class carDataController {
 	@Autowired
 	clientService cs;
 	@Autowired
-	repairService rs;
+	RepairService rs;
 	@Autowired
 	maintainregistService ms;
 	

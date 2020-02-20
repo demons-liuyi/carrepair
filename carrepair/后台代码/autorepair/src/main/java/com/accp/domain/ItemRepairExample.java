@@ -234,52 +234,62 @@ public class ItemRepairExample {
             return (Criteria) this;
         }
 
-        public Criteria andWjidEqualTo(Integer value) {
+        public Criteria andWjidEqualTo(String value) {
             addCriterion("wjid =", value, "wjid");
             return (Criteria) this;
         }
 
-        public Criteria andWjidNotEqualTo(Integer value) {
+        public Criteria andWjidNotEqualTo(String value) {
             addCriterion("wjid <>", value, "wjid");
             return (Criteria) this;
         }
 
-        public Criteria andWjidGreaterThan(Integer value) {
+        public Criteria andWjidGreaterThan(String value) {
             addCriterion("wjid >", value, "wjid");
             return (Criteria) this;
         }
 
-        public Criteria andWjidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andWjidGreaterThanOrEqualTo(String value) {
             addCriterion("wjid >=", value, "wjid");
             return (Criteria) this;
         }
 
-        public Criteria andWjidLessThan(Integer value) {
+        public Criteria andWjidLessThan(String value) {
             addCriterion("wjid <", value, "wjid");
             return (Criteria) this;
         }
 
-        public Criteria andWjidLessThanOrEqualTo(Integer value) {
+        public Criteria andWjidLessThanOrEqualTo(String value) {
             addCriterion("wjid <=", value, "wjid");
             return (Criteria) this;
         }
 
-        public Criteria andWjidIn(List<Integer> values) {
+        public Criteria andWjidLike(String value) {
+            addCriterion("wjid like", value, "wjid");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjidNotLike(String value) {
+            addCriterion("wjid not like", value, "wjid");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjidIn(List<String> values) {
             addCriterion("wjid in", values, "wjid");
             return (Criteria) this;
         }
 
-        public Criteria andWjidNotIn(List<Integer> values) {
+        public Criteria andWjidNotIn(List<String> values) {
             addCriterion("wjid not in", values, "wjid");
             return (Criteria) this;
         }
 
-        public Criteria andWjidBetween(Integer value1, Integer value2) {
+        public Criteria andWjidBetween(String value1, String value2) {
             addCriterion("wjid between", value1, value2, "wjid");
             return (Criteria) this;
         }
 
-        public Criteria andWjidNotBetween(Integer value1, Integer value2) {
+        public Criteria andWjidNotBetween(String value1, String value2) {
             addCriterion("wjid not between", value1, value2, "wjid");
             return (Criteria) this;
         }
@@ -464,6 +474,66 @@ public class ItemRepairExample {
             return (Criteria) this;
         }
 
+        public Criteria andFpriceIsNull() {
+            addCriterion("fprice is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceIsNotNull() {
+            addCriterion("fprice is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceEqualTo(Long value) {
+            addCriterion("fprice =", value, "fprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceNotEqualTo(Long value) {
+            addCriterion("fprice <>", value, "fprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceGreaterThan(Long value) {
+            addCriterion("fprice >", value, "fprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceGreaterThanOrEqualTo(Long value) {
+            addCriterion("fprice >=", value, "fprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceLessThan(Long value) {
+            addCriterion("fprice <", value, "fprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceLessThanOrEqualTo(Long value) {
+            addCriterion("fprice <=", value, "fprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceIn(List<Long> values) {
+            addCriterion("fprice in", values, "fprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceNotIn(List<Long> values) {
+            addCriterion("fprice not in", values, "fprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceBetween(Long value1, Long value2) {
+            addCriterion("fprice between", value1, value2, "fprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andFpriceNotBetween(Long value1, Long value2) {
+            addCriterion("fprice not between", value1, value2, "fprice");
+            return (Criteria) this;
+        }
+
         public Criteria andPricetypeIsNull() {
             addCriterion("priceType is null");
             return (Criteria) this;
@@ -531,76 +601,6 @@ public class ItemRepairExample {
 
         public Criteria andPricetypeNotBetween(String value1, String value2) {
             addCriterion("priceType not between", value1, value2, "pricetype");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneIsNull() {
-            addCriterion("otherone is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneIsNotNull() {
-            addCriterion("otherone is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneEqualTo(String value) {
-            addCriterion("otherone =", value, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneNotEqualTo(String value) {
-            addCriterion("otherone <>", value, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneGreaterThan(String value) {
-            addCriterion("otherone >", value, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneGreaterThanOrEqualTo(String value) {
-            addCriterion("otherone >=", value, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneLessThan(String value) {
-            addCriterion("otherone <", value, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneLessThanOrEqualTo(String value) {
-            addCriterion("otherone <=", value, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneLike(String value) {
-            addCriterion("otherone like", value, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneNotLike(String value) {
-            addCriterion("otherone not like", value, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneIn(List<String> values) {
-            addCriterion("otherone in", values, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneNotIn(List<String> values) {
-            addCriterion("otherone not in", values, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneBetween(String value1, String value2) {
-            addCriterion("otherone between", value1, value2, "otherone");
-            return (Criteria) this;
-        }
-
-        public Criteria andOtheroneNotBetween(String value1, String value2) {
-            addCriterion("otherone not between", value1, value2, "otherone");
             return (Criteria) this;
         }
 

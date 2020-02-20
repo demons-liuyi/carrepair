@@ -27,4 +27,5 @@ public interface ArtisanclassMapper {
     int updateByPrimaryKeySelective(Artisanclass record);
 
     int updateByPrimaryKey(Artisanclass record);
+   
 }

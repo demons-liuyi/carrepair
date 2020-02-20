@@ -19,6 +19,55 @@
     <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
     <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
+    <resultMap id="BaseResultMap1" type="com.accp.domain.JunGong" extends="BaseResultMap" >
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="ordertime" property="ordertime" jdbcType="TIMESTAMP" />
+    <result column="overworkdate" property="overworkdate" jdbcType="TIMESTAMP" />
+     <result column="nowworkdate" property="nowworkdate" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="clientType" property="clientType" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="clientname" property="clientname" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+
+    <result column="fgreason" property="fgreason" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="carnumber" property="carnumber" jdbcType="VARCHAR" />
+    <result column="carnumber1" property="carnumber1" jdbcType="VARCHAR" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="worktime" property="worktime" jdbcType="VARCHAR" />
+    <result column="cartypename" property="cartypename" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectJunGong" resultMap="BaseResultMap1">
+  SELECT *FROM (SELECT repair.status,repair.type,client.name clientname,carinfo.carNumber,repair.number,'维修' AS tname,repair.orderTime,
+repair.overworkdate,repair.nowworkDate,repair.`worktime`,car.`carTypeName`
+,carinfo.`carNumber1`,com.reason,com.count,com.fgreason,staff.`name`,com.price,clienttype.`clientType`
+ FROM REPAIR JOIN `carinfo` ON carinfo.id=repair.carinfoId
+ LEFT JOIN `client` ON client.number=carinfo.clientid
+ LEFT JOIN `clienttype` ON clienttype.`id`=client.`typeId`
+ LEFT JOIN `car` ON car.`id`=carinfo.`carId`
+ LEFT JOIN `completed` com ON com.wjid=repair.number
+  LEFT JOIN `staff` ON staff.staffNo=com.dutyid
+ UNION ALL
+ SELECT rescue.status,rescue.type,client.name clientname,carinfo.carNumber,rescue.number,'救援' AS tname,rescue.orderTime,
+rescue.nowdate,rescue.overtime,rescue.`worktimes`,car.`carTypeName`
+,carinfo.`carNumber1`,com.reason,com.count,com.fgreason,staff.`name`,com.price,clienttype.`clientType`
+ FROM rescue LEFT JOIN `carinfo` ON carinfo.id=rescue.carinfoId
+ LEFT JOIN `car` ON car.`id`=carinfo.`carId`
+  
+  LEFT JOIN `completed` com ON com.wjid=rescue.number
+
+  LEFT JOIN `staff` ON staff.staffNo=com.dutyid
+ LEFT JOIN `client` ON client.number=carinfo.clientid
+LEFT JOIN `clienttype` ON clienttype.`id`=client.`typeId` 
+ ) item
+ WHERE
+ item.status ${tj} '完工' AND ((item.ordertime &gt;='${date1}' AND item.ordertime &lt;='${date2}')AND item.number LIKE '%${number}%'
+AND item.carNumber LIKE '%${carnumber}%' AND item.carNumber1 LIKE '%${carnumber1}%' 
+ )
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

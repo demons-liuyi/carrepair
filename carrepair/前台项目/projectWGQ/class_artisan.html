@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>班组技工</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="static/css/jquery.contextMenu.css"/>
+		<style>
+			ul li {
+				display: inline-block;
+				font-size: 16px;
+				margin-left: 20px;
+			}
+			
+			a {
+				color: black;
+			}
+			input{
+				height: 30px;
+			}
+						#header {
+				width: auto;
+				height: 70px;
+				border: 1px solid red;
+				background-color: aliceblue;
+			}
+			
+			#buttondiv {
+				width: auto;
+				height: 50px;
+				border: 1px solid red;
+				background-color: whitesmoke;
+			}
+			
+			h2 {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			#selectdiv {
+				float: right;
+				display: inline-block;
+				height: 40px;
+				width: 480px;
+				border: 0px solid red;
+				margin-top: 18px;
+				padding-left: 300px;
+			}
+			
+			#rightbuttondiv {
+				float: right;
+			}
+			
+			#ul {
+				list-style-type: none;
+				padding-top: 13px;
+				margin-right: 40px;
+			}
+			
+			li {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			#font {
+				font-size: 18px;
+			}
+			
+			#img {
+				color: orange;
+			}
+			
+			#selectbtn {
+				background-color: orange;
+				color: white;
+			}
+			
+			#closebtn {
+				background-color: gainsboro;
+				color: white;
+			}
+			
+			#exitregistration {
+				display: none;
+				border: 1px solid green;
+				position: absolute;
+				left: 450px;
+				top: 150px;
+				width: 750px;
+				height: 400px;
+				background-color: lightgray;
+			}
+			
+			#exitregistrationh2 {
+				margin-bottom: 15px;
+			}
+			
+			#exitregistrationlinediv {
+				background-color: darkblue;
+				width: 750px;
+				height: 20px;
+			}
+			
+			#exitregistrationspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#exitregistrationbodydiv {
+				margin-top: 8px;
+				margin-left: 9px;
+				width: 730px;
+				height: 360px;
+				background-color: white;
+			}
+			
+			#employeescard {
+				border: 1px solid red;
+				width: 1200px;
+				height: 665px;
+				position: absolute;
+				left: 220px;
+				top: 80px;
+				display: none;
+				background-color: white;
+			}
+			
+			#employeescardlinediv {
+				background-color: darkblue;
+				width: 1200px;
+				height: 20px;
+			}
+			
+			#employeescardspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#employeescardfork {
+				font-size: 52px;
+				position: absolute;
+				left: 680px;
+				top: 150px;
+			}
+			
+			#closespan {
+				font-size: 32px;
+				position: absolute;
+				left: 1140px;
+				top: 40px;
+			}
+			
+			#information {
+				margin-left: 25px;
+				border: 0px solid red;
+				background-color: wheat;
+				width: 1150px;
+				height: 550px;
+			}
+			
+			#savebtn {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 600px;
+				top: 35px;
+			}
+			
+			#word {
+				margin-left: 30px;
+			}
+			
+			#exitregistrationmarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 450px;
+				top: 45px;
+			}
+			
+			#fork {
+				font-size: 32px;
+				position: absolute;
+				left: 680px;
+				top: 50px;
+			}
+			
+			#exitregistrationcontent {
+				width: 680px;
+				height: 280px;
+				margin-left: 21px;
+				background-color: wheat;
+			}
+			
+			#exitregistrationcontentdiv {
+				background-color: white;
+				width: 630px;
+				height: 180px;
+				margin-top: 15px;
+				margin-left: 25px;
+				overflow: scroll;
+			}
+			
+			#selectemployee {
+				border: 1px solid green;
+				position: absolute;
+				left: 570px;
+				top: 100px;
+				width: 500px;
+				height: 550px;
+				background-color: lightgray;
+				display: none;
+			}
+			
+			#selectemployeeh2 {
+				margin-bottom: 15px;
+			}
+			
+			#selectemployeespan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#selectemployeelinediv {
+				background-color: darkblue;
+				width: 500px;
+				height: 20px;
+			}
+			
+			#selectemployeediv {
+				border: 0px solid deepskyblue;
+			}
+			
+			#selectemployeecontentdiv {
+				border: 1px solid deepskyblue;
+				width: 450px;
+				height: 450px;
+				margin-left: 20px;
+			}
+			
+			#selectemployeeremove {
+				font-size: 32px;
+				position: absolute;
+				left: 440px;
+				top: 45px;
+			}
+			
+			#selectemployeemarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 300px;
+				top: 42px;
+			}
+			
+			.qwe {
+				z-index: 999;
+			}
+			
+			#else {
+				position: absolute;
+				display: none;
+			}
+			
+			#staffquery {
+				display: none;
+				border: 1px solid green;
+				position: absolute;
+				left: 450px;
+				top: 150px;
+				width: 735px;
+				height: 430px;
+				background-color: white;
+			}
+			
+			#staffqueryspan {
+				color: white;
+				margin-left: 5px;
+			}
+			
+			#staffqueryh2 {
+				margin-bottom: 15px;
+			}
+			
+			#staffquerylinediv {
+				background-color: darkblue;
+				width: 735px;
+				height: 20px;
+				color: white;
+			}
+			
+			#staffquerymarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 500px;
+				top: 36px;
+			}
+			
+			#staffqueryfork {
+				font-size: 32px;
+				position: absolute;
+				left: 680px;
+				top: 40px;
+			}
+			
+			#staffquerycontent {
+				width: 690px;
+				height: 330px;
+				margin-left: 21px;
+				background-color: wheat;
+			}
+			
+			#permissioncopy {
+				background-color: whitesmoke;
+				color: white;
+				width: 700px;
+				height: 600px;
+				border: 1px solid red;
+				position: absolute;
+				left: 400px;
+				top: 120px;
+				z-index: 888;
+				display: none;
+			}
+			
+			#permissioncopyh2 {
+				margin-bottom: 15px;
+				color: darkgray;
+			}
+			
+			#permissioncopylinediv {
+				background-color: darkblue;
+				width: 700px;
+				height: 20px;
+			}
+			
+			#permissioncopymarksure {
+				background-color: lawngreen;
+				color: white;
+				width: 100px;
+				position: absolute;
+				left: 500px;
+				top: 42px;
+			}
+			
+			#permissioncopyremove {
+				font-size: 32px;
+				position: absolute;
+				left: 640px;
+				top: 45px;
+				color: darkgray;
+			}
+			
+			#select {
+				background-color: orange;
+				color: white;
+			}
+			
+			#permissioncopycontent {
+				width: 650px;
+				height: 485px;
+				margin-left: 22px;
+				border: 1px solid red;
+				background-color: white;
+			}
+			
+			#permissioncopyblue {
+				height: 40px;
+				width: 650px;
+				background-color: dodgerblue;
+			}
+			
+			#permissioncopyfunction {
+				height: 50px;
+				width: 650px;
+				background-color: wheat;
+			}
+			
+			#permission {
+				height: 50px;
+				background-color: deepskyblue;
+			}
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			
+			*:before,
+			*:after {
+				box-sizing: border-box;
+			}
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			.l_tree_container {
+				width: 100%;
+				height: 100%;
+				box-shadow: 0 0 3px #ccc;
+				margin: 13px;
+				position: relative;
+			}
+			
+			.l_tree {
+				width: calc(100% - 44px);
+				height: 100%;
+				padding-left: 42px;
+			}
+			
+			.l_tree_branch {
+				width: 100%;
+				height: 100%;
+				display: block;
+				padding: 13px;
+				position: relative;
+			}
+			
+			.l_tree_branch .l_tree_children_btn {
+				width: 19px;
+				height: 19px;
+				background-color: #23b1f0;
+				font-size: 14px;
+				text-align: center;
+				color: #ffffff;
+				outline: none;
+				border: 0;
+				cursor: pointer;
+			}
+			
+			ul.l_tree:before {
+				content: '';
+				border-left: 1px dashed #999999;
+				height: calc(100%);
+				position: absolute;
+				left: 10px;
+				top: 0px;
+			}
+			
+			.l_tree .l_tree_branch:last-child::before {
+				content: '';
+				width: 3px;
+				height: calc(100% - 24px);
+				display: block;
+				background-color: #ffffff;
+				position: absolute;
+				bottom: 0;
+				left: -34px;
+			}
+			
+			.l_tree,
+			.l_tree_branch {
+				position: relative;
+			}
+			
+			.l_tree_branch::after {
+				content: '';
+				width: 40px;
+				height: 0;
+				border-bottom: 1px dashed #000;
+				position: absolute;
+				right: calc(100% - 9px);
+				top: 22px;
+			}
+			
+			.l_tree_container>.l_tree::before,
+			.l_tree_container>.l_tree>.l_tree_branch::after {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="ctx">
+			<nav class="navbar navbar-default" style="background-color: aliceblue;">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#" style="font-weight: bold; font-size: 26px;">班级技工</a>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<form class="navbar-form navbar-left" role="search">
+								<div class="form-group">
+									<input id="sel" type="text" class="form-control" placeholder="匹配工号/姓名/手机">
+								</div>
+								<button id="ss" type="button" class="btn btn-warning" style="width: 70px;">搜索</button>
+								<button type="submit" class="btn btn-default" style="background-color: #8C8C8C; color: white;">关闭</button>
+							</form>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div>
+				<ul>
+					<li @click="addartisan()"><a href="javaScript:void(0)"><span class="glyphicon glyphicon-plus" style="color: darkorange;"></span>增加员工</a></li>
+					<li @click="updateartisan()"><a href="javaScript:void(0)"><span class="glyphicon glyphicon-pencil" style="color: darkorange;"></span>修改</a></li>
+					<li @click="deleteartisan()"><a href="javaScript:void(0)"><span class="glyphicon glyphicon-remove-circle" style="color: darkorange;"></span>删除</a></li>
+					<li><a href="javaScript:void(0)"><span class="glyphicon glyphicon-search" style="color: darkorange;"></span>查询</a></li>
+					<li><a href="javaScript:void(0)"><span class="glyphicon glyphicon-share" style="color: darkorange;"></span>导出</a></li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+			<ptree :model="list"></ptree>
+
+			</div>
+			<div class="col-md-10">
+				<table id="tablelist" class="table table-striped table-hover" border="1px">
+					<tr style="background-color: #BCE8F1">
+						<th>选择</th>
+						<th>班组编号</th>
+						<th>班组名称</th>
+						<th>技工编号</th>
+						<th>技工名称</th>
+						<th>技工星级</th>
+						<th>性别</th>
+						<th>手机</th>
+						<th>地址</th>
+						<th>出生日期</th>
+						<th>组长</th>
+						<th>登录名</th>
+					</tr>
+					<tr v-for="ar in ar">
+						<td><input type="radio" name="che"></td>
+						<td>{{ar.artisanclassid}}</td>
+						<td>{{ar.artisanclassname}}</td>
+						<td>{{ar.artisanno}}</td>
+						<td>{{ar.artisanname}}</td>
+						<td>{{ar.artisanlevelname}}</td>
+						<td>{{ar.sex}}</td>
+						<td>{{ar.phone}}</td>
+						<td>{{ar.address}}</td>
+						<td>{{ar.birthday}}</td>
+						<td v-if="ar.groupleader==1">组长</td>
+						<td v-else>组员</td>
+						<td>{{ar.account}}</td>
+					</tr>
+				</table>
+			</div>
+		
+		<div id="myDialog" data-backdrop="static" class="modal fade">
+			<div class="modal-dialog  modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">技工资料</h4>
+					</div>
+					<div class="modal-body text-center">
+						<table style=" background-color: whitesmoke">
+							<tr>
+								<td>技工编号<input v-model="artisan.artisanno"/></td>
+								<td>技工姓名<input v-model="artisan.artisanname"/></td>
+								<td>性别<select v-model="artisan.sex"  style="width: 220px; height: 30px;">
+									<option>男</option>
+									<option>女</option>
+								</select></td>
+								<td><input id="groupheader" style="height: 12px;" type="checkbox"/>组长</td>
+							</tr>
+							<tr>
+								<td colspan="2">所在班组<input disabled="disabled" v-model="artisan.artisanclassname" type="text"  /></td>
+								<td>手机<input v-model="artisan.phone" style="width: 220px;"/></td>
+								<td>登录账户<input v-model="artisan.account"/></td>
+							</tr>
+							<tr>
+								<td colspan="2">地址<input v-model="artisan.address" style="width: 400px;" /></td>
+								<td>出生日期<input v-model="artisan.birthday" type="date" style="width: 210px" /></td>
+								<td>微信号<input v-model="artisan.wechat"  /></td>
+							</tr>
+							<tr>
+								<td colspan="2">身份证号<input v-model="artisan.idcardno" style="width: 400px;"/></td>
+								<td colspan="2">户口地址<input v-model="artisan.residence"  style="width: 420px;"/></td>
+							</tr>
+							<tr>
+								<td colspan="2">开户银行<select v-model="artisan.bank"   style="width: 400px; height: 30px;">
+									<option>工商银行</option>
+									<option>农业银行</option>
+								</select></td>
+								<td>银行账户<input v-model="artisan.bankaccount" type="text" style="width: 210px;" /></td>
+								<td>星级<select v-model="artisan.artisanlevelid" style="width: 200px; height: 30px;">
+									<option v-for="item in level" :value="item.id">{{item.artisanlevelname}}</option>
+									
+								</select></td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									维修工种<input v-model="artisan.maintaintype" style="width: 860px;" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									维修品牌<input v-model="artisan.maintainbrand" style="width: 860px;" />
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer text-center">
+							<button type="button" id="addArtisan" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> 保存</button>
+						</div>
+				</div>
+			</div>
+		</div>
+	<div id="updatemyDialog" data-backdrop="static" class="modal fade">
+			<div class="modal-dialog  modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">技工资料</h4>
+					</div>
+					<div class="modal-body text-center">
+						<table style=" background-color: whitesmoke">
+							<tr>
+								<td>技工编号<input disabled="disabled" v-model="artisan.artisanno"/></td>
+								<td>技工姓名<input v-model="artisan.artisanname"/></td>
+								<td>性别<select v-model="artisan.sex"  style="width: 220px; height: 30px;">
+									<option>男</option>
+									<option>女</option>
+								</select></td>
+								<td><input id="groupheader" style="height: 12px;" type="checkbox"/>组长</td>
+							</tr>
+							<tr>
+								<td colspan="2">所在班组<input disabled="disabled" v-model="artisan.artisanclassname" type="text"  /></td>
+								<td>手机<input v-model="artisan.phone" style="width: 220px;"/></td>
+								<td>登录账户<input v-model="artisan.account"/></td>
+							</tr>
+							<tr>
+								<td colspan="2">地址<input v-model="artisan.address" style="width: 400px;" /></td>
+								<td>出生日期<input v-model="artisan.birthday" type="date" style="width: 210px" /></td>
+								<td>微信号<input v-model="artisan.wechat"  /></td>
+							</tr>
+							<tr>
+								<td colspan="2">身份证号<input v-model="artisan.idcardno" style="width: 400px;"/></td>
+								<td colspan="2">户口地址<input v-model="artisan.residence"  style="width: 420px;"/></td>
+							</tr>
+							<tr>
+								<td colspan="2">开户银行<select v-model="artisan.bank"   style="width: 400px; height: 30px;">
+									<option selected="selected" >{{artisan.bank}}</option>
+									<option>农业银行</option>
+								</select></td>
+								<td>银行账户<input v-model="artisan.bankaccount" type="text" style="width: 210px;" /></td>
+								<td>星级<select v-model="artisan.artisanlevelid" style="width: 200px; height: 30px;">
+									<option v-for="item in level" :value="item.id">{{item.artisanlevelname}}</option>
+									
+								</select></td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									维修工种<input v-model="artisan.maintaintype" style="width: 860px;" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									维修品牌<input v-model="artisan.maintainbrand" style="width: 860px;" />
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer text-center">
+							<button type="button" id="updateArtisan" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> 保存</button>
+						</div>
+				</div>
+			</div>
+		</div>		
+		<div id="mydialogTow"  data-backdrop="static" class="modal fade">
+			<div class="modal-dialog  modal-lg" style="width: 1500px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">班组权重</h4>
+					</div>
+					<div class="modal-body text-center">
+						<iframe style="border: 1px;" src="tog_weight.html" width="1450px" height="500px"></iframe>
+					</div>
+				</div>
+		</div>
+		</div>
+		<div id="addbz"  data-backdrop="static" class="modal fade">
+			<div class="modal-dialog  modal-lg" >
+				<div class="modal-content">
+					<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">添加班组</h4>
+					</div>
+					<div class="modal-body text-center">
+						<p>班组名称：<input type="text" v-model="al.artisanclassname"/></p>
+						<p>班组权重：<input type="text" v-model="al.artisanclassweight"/></p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="keppadd" class="btn btn-danger" >保存</button>
+				</div>
+		</div>
+		</div>
+		<div id="updatebz"  data-backdrop="static" class="modal fade">
+			<div class="modal-dialog  modal-lg" >
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">修改班组</h4>
+					</div>
+					<div class="modal-body text-center">
+						<p>班组编号：<input type="text" v-model="al.id"/></p>
+						<p>班组名称：<input type="text" v-model="al.artisanclassname"/></p>
+						<p>班组权重：<input type="text" v-model="al.artisanclassweight"/></p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="keppupdate" class="btn btn-danger" >保存</button>
+				</div>				
+		</div>
+		</div>		
+		</div>
+		<script type="text/javascript" src="static/js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="static/js/vue.js"></script>
+		<script type="text/javascript" src="static/js/jquery.contextMenu.js"></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#ctx",
+				data() {
+					return {
+						list:[],
+						al:{},
+						ar:[],
+						artisan:{artisanclassid:""},
+						level:[]
+					}
+				},
+				created:function(){
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/leg/selectNodes",
+						dataType:"json",
+						success:function(res){
+							vm.list=res
+						}
+					})
+				$.ajax({
+					type:"post",
+					url:"http://localhost:8080/level/query",
+					dataType:"json",
+					success:function(res){
+						vm.level=res
+					}
+				})
+				},
+				methods: {
+					addartisan:function() {
+						if(vm.artisan.artisanclassid==""){
+							alert("请选择班组！！")
+							return;
+						}
+						$("#myDialog").modal('show');
+					},
+					updateartisan:function() {
+						if(vm.artisan.artisanclassid==""){
+							alert("请选择班组！！")
+							return;
+						}
+					$("#tablelist tr:not(:first)").each(function(index,obj){
+						if($(this).find("td:first input")[0].checked==true){
+							vm.artisan=vm.ar[index]
+							vm.artisan=JSON.parse(JSON.stringify(vm.artisan))
+						}
+					})
+					if(vm.artisan.groupleader==1){
+						
+						$("#groupheader").attr("checked","true")
+					}else{
+						$("#groupheader").removeAttr("checked")
+					}
+						
+						$("#updatemyDialog").modal('show');
+					},
+					deleteartisan(){
+					
+						$("#tablelist tr:not(:first)").each(function(index,obj){
+						if($(this).find("td:first input")[0].checked==true){
+								
+							$.ajax({
+							type:"post",
+							url:"http://localhost:8080/level/deleteArtisan",
+							data:{
+								artisanno:vm.ar[index].artisanno
+							},
+							async:false,
+							success:function(res){
+								if(res>0){
+									alert("删除成功")
+									
+								}
+							}
+						})
+							
+						}
+					})
+						$.ajax({
+							type:"post",
+							url:"http://localhost:8080/level/selectByWhere",
+							async:false,
+							data:{
+								bzid:vm.artisan.artisanclassid,
+								sel:""
+							},
+							dataType:"json",
+							success:function(res){
+								vm.ar=res
+							}
+						})
+					}
+					,togweight:function(){
+						$("#mydialogTow").modal('show');
+					}
+				}
+			})			
+		Vue.component("ptree", {
+				props: {
+					 model: {}
+				},
+				template: `
+					<ul class="l_tree" style="margin-left:0px; width:200px">
+						<li class="l_tree_branch" v-for='item in model'>
+							<div  @click="tick(item)"  @contextmenu.prevent="fork(item)"  class="l_tree_click">
+								<button type="button" class="l_tree_children_btn" v-if="item.nodes"  @click="toggle(item)">{{ !item.show ? '-' : '+' }}</button>
+                    			<a :bh='item.id' :lavel='item.parentid' :weight='item.artisanclassweight' :bzname='item.artisanclassname'  href='javascript:;' class="l_folder">
+                    			{{item.artisanclassname}}</a>
+							</div>						 
+							<ptree v-show="!item.show" v-if="item.nodes" :model = "item.nodes"></ptree>
+						</li>
+					</ul>
+				`,
+
+				methods: {
+					tick(item){
+		
+						if(item.parentid!=0){
+							var bzid=item.id
+							console.log(bzid)
+							$("#ss").attr("bzid",bzid)
+							vm.artisan.artisanclassname=item.artisanclassname
+							vm.artisan.artisanclassid=item.id
+							vm.artisan=JSON.parse(JSON.stringify(vm.artisan))
+							var sel=$("#sel").val();
+							this.selectByWhere(bzid,sel)
+						}else{
+							vm.artisan={artisanclassid:""}
+						}
+					},
+					fork(item){ 
+						$("[name="+item.artisanclassname+"]").attr("class","glyphicon glyphicon-remove");
+						if(item.nodes==null){
+							return;
+						}
+						for(var i=0;i<item.nodes.length;i++){					 
+							$("[name="+item.nodes[i].artisanclassname+"]").attr("class","glyphicon glyphicon-remove");
+						}						 
+					},
+					openHTML(item) {
+						openIFM(item);
+					},
+					toggle: function(item) {
+						var idx = this.model.indexOf(item);
+						Vue.set(this.model[idx], 'show', !item.show)
+					},
+				 	selectByWhere(bzid,sel){
+						$.ajax({
+							type:"post",
+							url:"http://localhost:8080/level/selectByWhere",
+							async:true,
+							data:{
+								bzid:bzid,
+								sel:sel
+							},
+							dataType:"json",
+							success:function(res){
+								vm.ar=res
+							}
+						});
+			}
+				}
+			});
+			$(function(){
+				$.contextMenu({
+				selector: '.l_folder',
+				callback: function(key, options){	//key为items的键，options为items的数据对象。
+					if(key == 'edit'){
+						if($(options.$trigger[0]).attr("lavel")==0){
+							alert("此班组无法修改")
+						}else{
+							vm.al.id=$(options.$trigger[0]).attr("bh")
+							vm.al.artisanclassname=$(options.$trigger[0]).attr("bzname")
+							vm.al.artisanclassweight=$(options.$trigger[0]).attr("weight")
+							vm.al.parentid=$(options.$trigger[0]).attr("lavel")
+							vm.al=JSON.parse(JSON.stringify(vm.al))
+							$("#updatebz").modal("show")
+						}
+					}
+					if(key == 'add'){
+						if($(options.$trigger[0]).attr("lavel")!=0){
+							alert("此班组无法添加")
+						}else{
+						vm.al.parentid=$(options.$trigger[0]).attr("bh")
+						vm.al=JSON.parse(JSON.stringify(vm.al))
+								$("#addbz").modal("show")
+
+						}
+					}
+					if(key == 'delete'){
+						if($(options.$trigger[0]).attr("lavel")==0){
+							alert("此班组无法删除")
+						}else{
+							$.ajax({
+								type:"post",
+								url:"http://localhost:8080/leg/nodesDelete",
+								data:{
+									id:$(options.$trigger[0]).attr("bh")
+								},
+								dataType:"json",
+								success:function(res){
+									if(res>0){
+										alert("删除成功！")
+										changebz()
+									}
+								}
+							})
+						}
+					}
+				},
+				items: {
+					"add": {name: "添加班组", icon: "add"},	 //icon: 为图标。{}可以放数据id: $('').val()
+					"edit": {name: "修改班组", icon: "edit"},
+		            "delete": {name: "删除班组", icon: "delete"}
+				}
+			});
+			function changebz(){
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/leg/selectNodes",
+						dataType:"json",
+						success:function(res){
+							vm.list=res
+						}
+					})
+			}
+			$("#keppadd").click(function(){
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/leg/nodesAdd",
+						dataType:"json",
+						data:JSON.stringify(vm.al),
+						contentType:"application/json;charset=uft-8",
+						success:function(res){
+							if(res>0){
+								alert("添加成功！！")
+								vm.al={}
+								$("#addbz").modal("hide")
+								changebz();
+							}
+						}
+					})				
+			})
+			$("#keppupdate").click(function(){
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/leg/nodesUpdate",
+						dataType:"json",
+						data:JSON.stringify(vm.al),
+						contentType:"application/json;charset=uft-8",
+						success:function(res){
+							if(res>0){
+								alert("修改成功！！")
+								vm.al={}
+								$("#updatebz").modal("hide")
+								changebz();
+							}
+						}
+					})				
+			})
+			$("#ss").click(function(){
+				var bzid=$(this).attr("bzid")
+				var sel=$("#sel").val()
+					$.ajax({
+							type:"post",
+							url:"http://localhost:8080/level/selectByWhere",
+							async:true,
+							data:{
+								bzid:bzid,
+								sel:sel
+							},
+							dataType:"json",
+							success:function(res){
+								vm.ar=res
+							}
+						});
+			})
+			$("#addArtisan").click(function(){
+				if($("#groupheader")[0].checked==true){
+					vm.artisan.groupleader="1"
+				}else{
+					vm.artisan.groupleader="0"
+				}
+				$.ajax({
+					type:"post",
+					url:"http://localhost:8080/level/addArtisan",
+					data:JSON.stringify(vm.artisan),
+					async:false,
+					contentType:"application/json;charset=utf-8",
+					success:function(res){
+						if(res>0){
+							alert("新增成功")
+							$("#myDialog").modal('hide');
+						}
+					}
+				})
+						$.ajax({
+							type:"post",
+							url:"http://localhost:8080/level/selectByWhere",
+							async:false,
+							data:{
+								bzid:vm.artisan.artisanclassid,
+								sel:""
+							},
+							dataType:"json",
+							success:function(res){
+								vm.ar=res
+							}
+						});	
+						vm.artisan={artisanclassid:""}
+				
+			})
+			$("#updateArtisan").click(function(){
+				if($("#groupheader")[0].checked==true){
+					
+					vm.artisan.groupleader="1"
+				}else{
+					vm.artisan.groupleader="0"
+				}
+				vm.artisan=JSON.parse(JSON.stringify(vm.artisan))
+				$.ajax({
+					type:"post",
+					url:"http://localhost:8080/level/updateArtisan",
+					data:JSON.stringify(vm.artisan),
+					async:false,
+					contentType:"application/json;charset=utf-8",
+					success:function(res){
+						if(res>0){
+							alert("修改成功")
+							$("#updatemyDialog").modal('hide');
+
+						}
+					}
+				})
+						 $.ajax({
+							type:"post",
+							url:"http://localhost:8080/level/selectByWhere",
+							async:false,
+							data:{
+								bzid:vm.artisan.artisanclassid,
+								sel:""
+							},
+							dataType:"json",
+							success:function(res){
+								vm.ar=res
+							}
+						});	
+
+						vm.artisan={artisanclassid:""}
+				
+			})
+
+
+			})
+
+		</script>
+	</body>
+
+</html>
