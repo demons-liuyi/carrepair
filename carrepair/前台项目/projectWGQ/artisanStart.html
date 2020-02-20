@@ -89,6 +89,7 @@
 </style>
 	</head>
 	<body>
+		<div id="ctx">
 <div class="container-fluid">
 	<div class="row firstdiv">
 		<div class="col-md-10"><h1>技工星级</h1>
@@ -100,17 +101,16 @@
 	</div>
 	<div>
 	<div id="ss" class="form-inline" >
-		等级编码：<input class="form-control ss" type="text" />
 		
-		等级名称：<input class="form-control ss" type="text" />
+		等级名称：<input v-model="level.artisanlevelname" class="form-control ss" type="text" />
 		
-		提成权重：<input class="form-control ss" type="text" />
+		提成权重：<input v-model="level.artisanlevelweight" class="form-control ss" type="text" />
 		</div>
 	
 	<div style="display: inline-block; float: right;" id="caidan">
-	<a><i class="tianjia"></i>增加</a>
-	<a><i class="shanchu"></i>删除</a>
-	<a><i class="baocun"></i>保存</a>
+	<a href="javascript:void(0)" @click="getnull"><i class="tianjia"></i>增加</a>
+	<a href="javascript:void(0)" @click="delete1"><i class="shanchu"></i>删除</a>
+	<a href="javascript:void(0)" @click="keep"><i class="baocun"></i>保存</a>
 		
 	</div>
 	</div>
@@ -122,17 +122,12 @@
 				<td>等级名称</td>
 				<td>提成权重</td>
 			</tr>
-			
-				<tr>
-				<td>维修单号</td>
-				<td>单据类型</td>
-				<td>业务类型</td>
+			<tr v-for="level in list" @click="querybyid(level)">
+				<td>{{level.id}}</td>
+				<td>{{level.artisanlevelname}}</td>
+				<td>{{level.artisanlevelweight}}</td>
 			</tr>
-				<tr>
-				<td>维修单号</td>
-				<td>单据类型</td>
-				<td>业务类型</td>
-			</tr>
+
 		</table>
 	</div>
 </div>
@@ -140,11 +135,99 @@
 	
 
 </div>
+</div>
  <script type="text/javascript" src="static/js/jquery.min.js"></script>
  <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
  <script src="static/js/vue.js" type="text/javascript" charset="utf-8"></script>
  <script type="text/javascript">
+		var vm=new Vue({
+			el:"#ctx",
+			data(){
+				return {
+					list:[],
+					level:{}
+				}
+			},
+			methods:{
+				query(){
+				$.ajax({
+					type:"post",
+					url:"http://localhost:8080/level/query",
+					dataType:"json",
+					success:function(res){
+						vm.list=res
+					}
+				})
+				},
+				getnull(){
+					this.level={}
+				},
+				 querybyid(level){
+				 	vm.level=level
+				 	vm.level=JSON.parse(JSON.stringify(vm.level))
+				 },
+				 keep(){
+				 	
+				 	if(vm.level.id!=null){
+				    $.ajax({
+					type:"post",
+					url:"http://localhost:8080/level/update",
+					data:
+						JSON.stringify(vm.level)
+					,
+					contentType:"application/json;charset=utf-8",
+					dataType:"json",
+					success:function(res){
+						if(res>0){
+							vm.level={}
+							alert("修改成功")
+							vm.query();
+						}
+					}
+				})	
+				}else{
+				 	$.ajax({
+					type:"post",
+					url:"http://localhost:8080/level/add",
+					data:
+						JSON.stringify(vm.level)
+					,
+					contentType:"application/json;charset=utf-8",
+					dataType:"json",
+					success:function(res){
+						if(res>0){
+								alert("新增成功")
+							vm.level={}
+						vm.query();
+						}
+					}
+				})
+				 	}
+				 },
+				
 
+				 delete1(){
+				  $.ajax({
+					type:"post",
+					url:"http://localhost:8080/level/delete",
+					data:{
+						id:vm.level.id
+					},
+					dataType:"json",
+					success:function(res){
+						if(res>0){
+							vm.level={}
+							alert("删除成功")
+							vm.query();
+						}
+					}
+				})		
+				 }
+			}
+		})
+		$(function(){
+			vm.query()
+		})
  	
  </script>
 	</body>

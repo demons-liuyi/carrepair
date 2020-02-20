@@ -174,52 +174,62 @@ public class GetgoodExample {
             return (Criteria) this;
         }
 
-        public Criteria andGoodidEqualTo(Integer value) {
+        public Criteria andGoodidEqualTo(String value) {
             addCriterion("goodid =", value, "goodid");
             return (Criteria) this;
         }
 
-        public Criteria andGoodidNotEqualTo(Integer value) {
+        public Criteria andGoodidNotEqualTo(String value) {
             addCriterion("goodid <>", value, "goodid");
             return (Criteria) this;
         }
 
-        public Criteria andGoodidGreaterThan(Integer value) {
+        public Criteria andGoodidGreaterThan(String value) {
             addCriterion("goodid >", value, "goodid");
             return (Criteria) this;
         }
 
-        public Criteria andGoodidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andGoodidGreaterThanOrEqualTo(String value) {
             addCriterion("goodid >=", value, "goodid");
             return (Criteria) this;
         }
 
-        public Criteria andGoodidLessThan(Integer value) {
+        public Criteria andGoodidLessThan(String value) {
             addCriterion("goodid <", value, "goodid");
             return (Criteria) this;
         }
 
-        public Criteria andGoodidLessThanOrEqualTo(Integer value) {
+        public Criteria andGoodidLessThanOrEqualTo(String value) {
             addCriterion("goodid <=", value, "goodid");
             return (Criteria) this;
         }
 
-        public Criteria andGoodidIn(List<Integer> values) {
+        public Criteria andGoodidLike(String value) {
+            addCriterion("goodid like", value, "goodid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodidNotLike(String value) {
+            addCriterion("goodid not like", value, "goodid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodidIn(List<String> values) {
             addCriterion("goodid in", values, "goodid");
             return (Criteria) this;
         }
 
-        public Criteria andGoodidNotIn(List<Integer> values) {
+        public Criteria andGoodidNotIn(List<String> values) {
             addCriterion("goodid not in", values, "goodid");
             return (Criteria) this;
         }
 
-        public Criteria andGoodidBetween(Integer value1, Integer value2) {
+        public Criteria andGoodidBetween(String value1, String value2) {
             addCriterion("goodid between", value1, value2, "goodid");
             return (Criteria) this;
         }
 
-        public Criteria andGoodidNotBetween(Integer value1, Integer value2) {
+        public Criteria andGoodidNotBetween(String value1, String value2) {
             addCriterion("goodid not between", value1, value2, "goodid");
             return (Criteria) this;
         }
@@ -434,62 +444,52 @@ public class GetgoodExample {
             return (Criteria) this;
         }
 
-        public Criteria andDiscountspriceEqualTo(String value) {
+        public Criteria andDiscountspriceEqualTo(Long value) {
             addCriterion("discountsPrice =", value, "discountsprice");
             return (Criteria) this;
         }
 
-        public Criteria andDiscountspriceNotEqualTo(String value) {
+        public Criteria andDiscountspriceNotEqualTo(Long value) {
             addCriterion("discountsPrice <>", value, "discountsprice");
             return (Criteria) this;
         }
 
-        public Criteria andDiscountspriceGreaterThan(String value) {
+        public Criteria andDiscountspriceGreaterThan(Long value) {
             addCriterion("discountsPrice >", value, "discountsprice");
             return (Criteria) this;
         }
 
-        public Criteria andDiscountspriceGreaterThanOrEqualTo(String value) {
+        public Criteria andDiscountspriceGreaterThanOrEqualTo(Long value) {
             addCriterion("discountsPrice >=", value, "discountsprice");
             return (Criteria) this;
         }
 
-        public Criteria andDiscountspriceLessThan(String value) {
+        public Criteria andDiscountspriceLessThan(Long value) {
             addCriterion("discountsPrice <", value, "discountsprice");
             return (Criteria) this;
         }
 
-        public Criteria andDiscountspriceLessThanOrEqualTo(String value) {
+        public Criteria andDiscountspriceLessThanOrEqualTo(Long value) {
             addCriterion("discountsPrice <=", value, "discountsprice");
             return (Criteria) this;
         }
 
-        public Criteria andDiscountspriceLike(String value) {
-            addCriterion("discountsPrice like", value, "discountsprice");
-            return (Criteria) this;
-        }
-
-        public Criteria andDiscountspriceNotLike(String value) {
-            addCriterion("discountsPrice not like", value, "discountsprice");
-            return (Criteria) this;
-        }
-
-        public Criteria andDiscountspriceIn(List<String> values) {
+        public Criteria andDiscountspriceIn(List<Long> values) {
             addCriterion("discountsPrice in", values, "discountsprice");
             return (Criteria) this;
         }
 
-        public Criteria andDiscountspriceNotIn(List<String> values) {
+        public Criteria andDiscountspriceNotIn(List<Long> values) {
             addCriterion("discountsPrice not in", values, "discountsprice");
             return (Criteria) this;
         }
 
-        public Criteria andDiscountspriceBetween(String value1, String value2) {
+        public Criteria andDiscountspriceBetween(Long value1, Long value2) {
             addCriterion("discountsPrice between", value1, value2, "discountsprice");
             return (Criteria) this;
         }
 
-        public Criteria andDiscountspriceNotBetween(String value1, String value2) {
+        public Criteria andDiscountspriceNotBetween(Long value1, Long value2) {
             addCriterion("discountsPrice not between", value1, value2, "discountsprice");
             return (Criteria) this;
         }
@@ -644,62 +644,52 @@ public class GetgoodExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsrepairEqualTo(String value) {
+        public Criteria andIsrepairEqualTo(Integer value) {
             addCriterion("isRepair =", value, "isrepair");
             return (Criteria) this;
         }
 
-        public Criteria andIsrepairNotEqualTo(String value) {
+        public Criteria andIsrepairNotEqualTo(Integer value) {
             addCriterion("isRepair <>", value, "isrepair");
             return (Criteria) this;
         }
 
-        public Criteria andIsrepairGreaterThan(String value) {
+        public Criteria andIsrepairGreaterThan(Integer value) {
             addCriterion("isRepair >", value, "isrepair");
             return (Criteria) this;
         }
 
-        public Criteria andIsrepairGreaterThanOrEqualTo(String value) {
+        public Criteria andIsrepairGreaterThanOrEqualTo(Integer value) {
             addCriterion("isRepair >=", value, "isrepair");
             return (Criteria) this;
         }
 
-        public Criteria andIsrepairLessThan(String value) {
+        public Criteria andIsrepairLessThan(Integer value) {
             addCriterion("isRepair <", value, "isrepair");
             return (Criteria) this;
         }
 
-        public Criteria andIsrepairLessThanOrEqualTo(String value) {
+        public Criteria andIsrepairLessThanOrEqualTo(Integer value) {
             addCriterion("isRepair <=", value, "isrepair");
             return (Criteria) this;
         }
 
-        public Criteria andIsrepairLike(String value) {
-            addCriterion("isRepair like", value, "isrepair");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsrepairNotLike(String value) {
-            addCriterion("isRepair not like", value, "isrepair");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsrepairIn(List<String> values) {
+        public Criteria andIsrepairIn(List<Integer> values) {
             addCriterion("isRepair in", values, "isrepair");
             return (Criteria) this;
         }
 
-        public Criteria andIsrepairNotIn(List<String> values) {
+        public Criteria andIsrepairNotIn(List<Integer> values) {
             addCriterion("isRepair not in", values, "isrepair");
             return (Criteria) this;
         }
 
-        public Criteria andIsrepairBetween(String value1, String value2) {
+        public Criteria andIsrepairBetween(Integer value1, Integer value2) {
             addCriterion("isRepair between", value1, value2, "isrepair");
             return (Criteria) this;
         }
 
-        public Criteria andIsrepairNotBetween(String value1, String value2) {
+        public Criteria andIsrepairNotBetween(Integer value1, Integer value2) {
             addCriterion("isRepair not between", value1, value2, "isrepair");
             return (Criteria) this;
         }

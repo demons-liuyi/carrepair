@@ -8,12 +8,18 @@
     <result column="model" property="model" jdbcType="VARCHAR" />
     <result column="mileage" property="mileage" jdbcType="VARCHAR" />
     <result column="artisanClassId" property="artisanclassid" jdbcType="INTEGER" />
+     <result column="artisanClassName" property="artisanclassname" jdbcType="VARCHAR" />
+ 
     <result column="otherone" property="otherone" jdbcType="VARCHAR" />
     <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
     <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
     <result column="otherfour" property="otherfour" jdbcType="VARCHAR" />
     <result column="otherfive" property="otherfive" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="queryall" resultMap="BaseResultMap">
+  SELECT le.`id`,le.`licensePlateNumber`,le.`brand`,le.`model`,ar.`artisanClassName`,le.mileage,le.artisanclassid 
+FROM `legworkcat` le LEFT JOIN `artisanclass` ar ON le.`artisanClassId`=ar.`id`
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

@@ -3,7 +3,7 @@ package com.accp.domain;
 public class Getgood {
     private Integer id;
 
-    private Integer goodid;
+    private String goodid;
 
     private Integer count;
 
@@ -11,13 +11,13 @@ public class Getgood {
 
     private String pricetype;
 
-    private String discountsprice;
+    private Long discountsprice;
 
     private String wjid;
 
     private String warehouse;
 
-    private String isrepair;
+    private Integer isrepair;
 
     private String cause;
 
@@ -41,11 +41,11 @@ public class Getgood {
         this.id = id;
     }
 
-    public Integer getGoodid() {
+    public String getGoodid() {
         return goodid;
     }
 
-    public void setGoodid(Integer goodid) {
+    public void setGoodid(String goodid) {
         this.goodid = goodid;
     }
 
@@ -73,11 +73,11 @@ public class Getgood {
         this.pricetype = pricetype;
     }
 
-    public String getDiscountsprice() {
+    public Long getDiscountsprice() {
         return discountsprice;
     }
 
-    public void setDiscountsprice(String discountsprice) {
+    public void setDiscountsprice(Long discountsprice) {
         this.discountsprice = discountsprice;
     }
 
@@ -97,11 +97,11 @@ public class Getgood {
         this.warehouse = warehouse;
     }
 
-    public String getIsrepair() {
+    public Integer getIsrepair() {
         return isrepair;
     }
 
-    public void setIsrepair(String isrepair) {
+    public void setIsrepair(Integer isrepair) {
         this.isrepair = isrepair;
     }
 

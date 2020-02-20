@@ -6,9 +6,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.DataFormat;
@@ -17,34 +14,29 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accp.domain.Carinfo;
 import com.accp.domain.Cashier;
 import com.accp.domain.Client;
-import com.accp.domain.Coll;
 import com.accp.domain.Dimission;
 import com.accp.domain.Repair;
 import com.accp.domain.Staff;
+import com.accp.service.RepairService;
 import com.accp.service.carInfoService;
 import com.accp.service.cashierService;
 import com.accp.service.clientService;
 import com.accp.service.dimissionService;
-import com.accp.service.repairService;
 import com.accp.service.staffService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 
  
 
@@ -62,7 +54,7 @@ public class excelController {
 	@Autowired
 	clientService cs;
 	@Autowired
-	repairService rs;
+	RepairService rs;
 	@Autowired
 	cashierService ccs;
 	
@@ -97,27 +89,27 @@ public class excelController {
 		Workbook wb = new XSSFWorkbook();
 		CellStyle cellStyle = wb.createCellStyle();
 		DataFormat format= wb.createDataFormat();
-        cellStyle.setDataFormat(format.getFormat("yyyyÄêmÔÂdÈÕ"));
-		Sheet sheet = wb.createSheet("½áËã×ÊÁÏ");
+        cellStyle.setDataFormat(format.getFormat("yyyyï¿½ï¿½mï¿½ï¿½dï¿½ï¿½"));
+		Sheet sheet = wb.createSheet("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		Row titleRow = sheet.createRow(0);
-		titleRow.createCell(0).setCellValue("ÏúÊÛµ¥ºÅ");
-		titleRow.createCell(1).setCellValue("µ¥¾ÝÀàÐÍ");
-		titleRow.createCell(2).setCellValue("½áËã·½Ê½");
-		titleRow.createCell(3).setCellValue("µ¥¾Ý×´Ì¬");
-		titleRow.createCell(4).setCellValue("½áËã×´Ì¬");
-		titleRow.createCell(5).setCellValue("½áËãÊ±¼ä");
-		titleRow.createCell(6).setCellValue("½áËãÈË");
-		titleRow.createCell(7).setCellValue("½áËã½ð¶î");
-		titleRow.createCell(8).setCellValue("ÒµÎñÀàÐÍ");
-		titleRow.createCell(9).setCellValue("¿Í»§Ãû³Æ");
-		titleRow.createCell(10).setCellValue("³µÅÆºÅ");
-		titleRow.createCell(11).setCellValue("³µÐÍ");
-		titleRow.createCell(12).setCellValue("³µ¼ÜºÅ");
-		titleRow.createCell(13).setCellValue("ÁªÏµµç»°");
-		titleRow.createCell(14).setCellValue("±£ÏÕ¹«Ë¾");
-		titleRow.createCell(15).setCellValue("·þÎñ¹ËÎÊ");
-		titleRow.createCell(16).setCellValue("Íê³ÉÊ±¼ä");
-		titleRow.createCell(17).setCellValue("±¸×¢");
+		titleRow.createCell(0).setCellValue("ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½");
+		titleRow.createCell(1).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(2).setCellValue("ï¿½ï¿½ï¿½ã·½Ê½");
+		titleRow.createCell(3).setCellValue("ï¿½ï¿½ï¿½ï¿½×´Ì¬");
+		titleRow.createCell(4).setCellValue("ï¿½ï¿½ï¿½ï¿½×´Ì¬");
+		titleRow.createCell(5).setCellValue("ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½");
+		titleRow.createCell(6).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(7).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(8).setCellValue("Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(9).setCellValue("ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(10).setCellValue("ï¿½ï¿½ï¿½Æºï¿½");
+		titleRow.createCell(11).setCellValue("ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(12).setCellValue("ï¿½ï¿½ï¿½Üºï¿½");
+		titleRow.createCell(13).setCellValue("ï¿½ï¿½Ïµï¿½ç»°");
+		titleRow.createCell(14).setCellValue("ï¿½ï¿½ï¿½Õ¹ï¿½Ë¾");
+		titleRow.createCell(15).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(16).setCellValue("ï¿½ï¿½ï¿½Ê±ï¿½ï¿½");
+		titleRow.createCell(17).setCellValue("ï¿½ï¿½×¢");
 		for(int i=0;i<lastlist.size();i++) {
 			Row row = sheet.createRow(i+1);
 			Cell qwe1 = row.createCell(0);
@@ -261,13 +253,13 @@ public class excelController {
 		}
 		HttpHeaders headers = new HttpHeaders();
 		try {
-			headers.setContentDispositionFormData("attachment", new String("½áËã×ÊÁÏ.xlsx".getBytes("utf-8"),"iso-8859-1"));
+			headers.setContentDispositionFormData("attachment", new String("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.xlsx".getBytes("utf-8"),"iso-8859-1"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		System.out.println("³É¹¦£¡");
+		System.out.println("ï¿½É¹ï¿½ï¿½ï¿½");
 		return new ResponseEntity<byte[]>(baos.toByteArray(),headers,HttpStatus.OK);
 	}
 	
@@ -346,35 +338,35 @@ public class excelController {
 		Workbook wb = new XSSFWorkbook();
 		CellStyle cellStyle = wb.createCellStyle();
 		DataFormat format= wb.createDataFormat();
-        cellStyle.setDataFormat(format.getFormat("yyyyÄêmÔÂdÈÕ"));
-		Sheet sheet = wb.createSheet("³µÁ¾×ÊÁÏ");
+        cellStyle.setDataFormat(format.getFormat("yyyyï¿½ï¿½mï¿½ï¿½dï¿½ï¿½"));
+		Sheet sheet = wb.createSheet("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		Row titleRow = sheet.createRow(0);
-		titleRow.createCell(0).setCellValue("¿Í»§±àºÅ");
-		titleRow.createCell(1).setCellValue("¿Í»§Ãû³Æ");
-		titleRow.createCell(2).setCellValue("ÏêÏ¸µØÖ·");
-		titleRow.createCell(3).setCellValue("ÁªÏµÈË");
-		titleRow.createCell(4).setCellValue("ÊÖ»ú");
-		titleRow.createCell(5).setCellValue("¿Í»§ÉúÈÕ");
-		titleRow.createCell(6).setCellValue("¿Í»§Àà±ð");
-		titleRow.createCell(7).setCellValue("»áÔ±¿¨ºÅ");
-		titleRow.createCell(8).setCellValue("Èë»áÈÕÆÚ");
-		titleRow.createCell(9).setCellValue("»áÔ±µ½ÆÚ");
-		titleRow.createCell(10).setCellValue("±¸×¢");
-		titleRow.createCell(11).setCellValue("½¨µµÈÕÆÚ");
-		titleRow.createCell(12).setCellValue("·þÎñ¹ËÎÊ");
-		titleRow.createCell(13).setCellValue("ÒµÎñÔ±µç»°");
-		titleRow.createCell(14).setCellValue("ÕËÆÚ(Ìì)");
-		titleRow.createCell(15).setCellValue("¹ÒÕË¶î¶È");
-		titleRow.createCell(16).setCellValue("ÀÛ¼Æ»ý·Ö");
-		titleRow.createCell(17).setCellValue("¶¨½ð½ð¶î");
-		titleRow.createCell(18).setCellValue("¿Í»§Ê¡");
-		titleRow.createCell(19).setCellValue("¿Í»§ÊÐ");
-		titleRow.createCell(20).setCellValue("¿Í»§Çø");
-		titleRow.createCell(21).setCellValue("ÄÉË°ÈËÊ¶±ðºÅ");
-		titleRow.createCell(22).setCellValue("×¢²áµç»°");
-		titleRow.createCell(23).setCellValue("¿ª»§ÒøÐÐ");
-		titleRow.createCell(24).setCellValue("ÒøÐÐÕËºÅ");
-		titleRow.createCell(25).setCellValue("×¢²áµØÖ·");
+		titleRow.createCell(0).setCellValue("ï¿½Í»ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(1).setCellValue("ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(2).setCellValue("ï¿½ï¿½Ï¸ï¿½ï¿½Ö·");
+		titleRow.createCell(3).setCellValue("ï¿½ï¿½Ïµï¿½ï¿½");
+		titleRow.createCell(4).setCellValue("ï¿½Ö»ï¿½");
+		titleRow.createCell(5).setCellValue("ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(6).setCellValue("ï¿½Í»ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(7).setCellValue("ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(8).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(9).setCellValue("ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(10).setCellValue("ï¿½ï¿½×¢");
+		titleRow.createCell(11).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(12).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(13).setCellValue("Òµï¿½ï¿½Ô±ï¿½ç»°");
+		titleRow.createCell(14).setCellValue("ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½)");
+		titleRow.createCell(15).setCellValue("ï¿½ï¿½ï¿½Ë¶ï¿½ï¿½");
+		titleRow.createCell(16).setCellValue("ï¿½Û¼Æ»ï¿½ï¿½ï¿½");
+		titleRow.createCell(17).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(18).setCellValue("ï¿½Í»ï¿½Ê¡");
+		titleRow.createCell(19).setCellValue("ï¿½Í»ï¿½ï¿½ï¿½");
+		titleRow.createCell(20).setCellValue("ï¿½Í»ï¿½ï¿½ï¿½");
+		titleRow.createCell(21).setCellValue("ï¿½ï¿½Ë°ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½");
+		titleRow.createCell(22).setCellValue("×¢ï¿½ï¿½ç»°");
+		titleRow.createCell(23).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(24).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½");
+		titleRow.createCell(25).setCellValue("×¢ï¿½ï¿½ï¿½Ö·");
 		for(int i=0;i<lastlist.size();i++) {
 			Row row = sheet.createRow(i+1);
 			Cell cellStaffno = row.createCell(0);
@@ -557,13 +549,13 @@ public class excelController {
 		}
 		HttpHeaders headers = new HttpHeaders();
 		try {
-			headers.setContentDispositionFormData("attachment", new String("¿Í»§×ÊÁÏ.xlsx".getBytes("utf-8"),"iso-8859-1"));
+			headers.setContentDispositionFormData("attachment", new String("ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½.xlsx".getBytes("utf-8"),"iso-8859-1"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		System.out.println("³É¹¦£¡");
+		System.out.println("ï¿½É¹ï¿½ï¿½ï¿½");
 		return new ResponseEntity<byte[]>(baos.toByteArray(),headers,HttpStatus.OK);
 	}
 	
@@ -644,34 +636,34 @@ public class excelController {
 		Workbook wb = new XSSFWorkbook();
 		CellStyle cellStyle = wb.createCellStyle();
 		DataFormat format= wb.createDataFormat();
-        cellStyle.setDataFormat(format.getFormat("yyyyÄêmÔÂdÈÕ"));
-		Sheet sheet = wb.createSheet("³µÁ¾×ÊÁÏ");
+        cellStyle.setDataFormat(format.getFormat("yyyyï¿½ï¿½mï¿½ï¿½dï¿½ï¿½"));
+		Sheet sheet = wb.createSheet("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		Row titleRow = sheet.createRow(0);
-		titleRow.createCell(0).setCellValue("³µÅÆºÅÂë");
-		titleRow.createCell(1).setCellValue("³µÁ¾Æ·ÅÆ");
-		titleRow.createCell(2).setCellValue("³µÁ¾ÐÍºÅ");
-		titleRow.createCell(3).setCellValue("¼ÝÊ»Ô±");
-		titleRow.createCell(4).setCellValue("¼ÝÊ»Ô±µç»°");
-		titleRow.createCell(5).setCellValue("³öÉúÈÕÆÚ");
-		titleRow.createCell(6).setCellValue("³µÁ¾¹éÊô");
-		titleRow.createCell(7).setCellValue("¼ÝÖ¤µ½ÆÚ");
-		titleRow.createCell(8).setCellValue("³µ¼ÜºÅ");
-		titleRow.createCell(9).setCellValue("·¢¶¯»úºÅ");
-		titleRow.createCell(10).setCellValue("·¢¶¯»úÆ·ÅÆ");
-		titleRow.createCell(11).setCellValue("³µÁ¾Äê¿î");
-		titleRow.createCell(12).setCellValue("Àï³Ì");
-		titleRow.createCell(13).setCellValue("ÔØÖØ");
-		titleRow.createCell(14).setCellValue("¹ºÂòÈÕÆÚ");
-		titleRow.createCell(15).setCellValue("ÉÌÆ·ÈÕÆÚ");
-		titleRow.createCell(16).setCellValue("³µ¼ìµ½ÆÚ");
-		titleRow.createCell(17).setCellValue("½»Ç¿ÏÕ±£ÏÕ¹«Ë¾");
-		titleRow.createCell(18).setCellValue("½»Ç¿ÏÕµ½ÆÚ");
-		titleRow.createCell(19).setCellValue("ÉÌÒµÏÕ±£ÏÕ¹«Ë¾");
-		titleRow.createCell(20).setCellValue("ÉÌÒµÏÕµ½ÆÚ");
-		titleRow.createCell(21).setCellValue("ÔÚÎÒÍ¶±£³µ");
-		titleRow.createCell(22).setCellValue("È¼ÓÍÀà±ð");
-		titleRow.createCell(23).setCellValue("ÏÂ´Î±£ÑøÀï³Ì");
-		titleRow.createCell(24).setCellValue("ÏÂ´Î±£ÑøÈÕÆÚ");
+		titleRow.createCell(0).setCellValue("ï¿½ï¿½ï¿½Æºï¿½ï¿½ï¿½");
+		titleRow.createCell(1).setCellValue("ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½");
+		titleRow.createCell(2).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½");
+		titleRow.createCell(3).setCellValue("ï¿½ï¿½Ê»Ô±");
+		titleRow.createCell(4).setCellValue("ï¿½ï¿½Ê»Ô±ï¿½ç»°");
+		titleRow.createCell(5).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(6).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(7).setCellValue("ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(8).setCellValue("ï¿½ï¿½ï¿½Üºï¿½");
+		titleRow.createCell(9).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(10).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½");
+		titleRow.createCell(11).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(12).setCellValue("ï¿½ï¿½ï¿½");
+		titleRow.createCell(13).setCellValue("ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(14).setCellValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(15).setCellValue("ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(16).setCellValue("ï¿½ï¿½ï¿½ìµ½ï¿½ï¿½");
+		titleRow.createCell(17).setCellValue("ï¿½ï¿½Ç¿ï¿½Õ±ï¿½ï¿½Õ¹ï¿½Ë¾");
+		titleRow.createCell(18).setCellValue("ï¿½ï¿½Ç¿ï¿½Õµï¿½ï¿½ï¿½");
+		titleRow.createCell(19).setCellValue("ï¿½ï¿½Òµï¿½Õ±ï¿½ï¿½Õ¹ï¿½Ë¾");
+		titleRow.createCell(20).setCellValue("ï¿½ï¿½Òµï¿½Õµï¿½ï¿½ï¿½");
+		titleRow.createCell(21).setCellValue("ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(22).setCellValue("È¼ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(23).setCellValue("ï¿½Â´Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(24).setCellValue("ï¿½Â´Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		for(int i=0;i<lastlist.size();i++) {
 			Row row = sheet.createRow(i+1);
 			Cell cellCarNumber = row.createCell(0);
@@ -861,13 +853,13 @@ public class excelController {
 		}
 		HttpHeaders headers = new HttpHeaders();
 		try {
-			headers.setContentDispositionFormData("attachment", new String("³µÁ¾×ÊÁÏ.xlsx".getBytes("utf-8"),"iso-8859-1"));
+			headers.setContentDispositionFormData("attachment", new String("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.xlsx".getBytes("utf-8"),"iso-8859-1"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		System.out.println("³É¹¦£¡");
+		System.out.println("ï¿½É¹ï¿½ï¿½ï¿½");
 		return new ResponseEntity<byte[]>(baos.toByteArray(),headers,HttpStatus.OK);
 	}
 	
@@ -891,16 +883,16 @@ public class excelController {
 		Workbook wb = new XSSFWorkbook();
 		CellStyle cellStyle = wb.createCellStyle();
 		DataFormat format= wb.createDataFormat();
-        cellStyle.setDataFormat(format.getFormat("yyyyÄêmÔÂdÈÕ"));
-		Sheet sheet = wb.createSheet("ÀëÖ°Ô±¹¤Êý¾Ý");
+        cellStyle.setDataFormat(format.getFormat("yyyyï¿½ï¿½mï¿½ï¿½dï¿½ï¿½"));
+		Sheet sheet = wb.createSheet("ï¿½ï¿½Ö°Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		Row titleRow = sheet.createRow(0);
-		titleRow.createCell(0).setCellValue("²¿ÃÅ");
-		titleRow.createCell(1).setCellValue("Ô±¹¤±àºÅ");
-		titleRow.createCell(2).setCellValue("ÐÕÃû");
-		titleRow.createCell(3).setCellValue("ÐÔ±ð");
+		titleRow.createCell(0).setCellValue("ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(1).setCellValue("Ô±ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(2).setCellValue("ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(3).setCellValue("ï¿½Ô±ï¿½");
 		titleRow.createCell(4).setCellValue("Ö°Î»");
-		titleRow.createCell(5).setCellValue("ÀëÖ°ÈÕÆÚ");
-		titleRow.createCell(6).setCellValue("ÀëÖ°Ô­Òò");
+		titleRow.createCell(5).setCellValue("ï¿½ï¿½Ö°ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(6).setCellValue("ï¿½ï¿½Ö°Ô­ï¿½ï¿½");
 		for(int i=0;i<lastlist.size();i++) {
 			Row row = sheet.createRow(i+1);
 			Cell cellDepartmentName = row.createCell(0);
@@ -928,13 +920,13 @@ public class excelController {
 		}
 		HttpHeaders headers = new HttpHeaders();
 		try {
-			headers.setContentDispositionFormData("attachment", new String("ÀëÖ°Ô±¹¤Êý¾Ý.xlsx".getBytes("utf-8"),"iso-8859-1"));
+			headers.setContentDispositionFormData("attachment", new String("ï¿½ï¿½Ö°Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.xlsx".getBytes("utf-8"),"iso-8859-1"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		System.out.println("³É¹¦£¡");
+		System.out.println("ï¿½É¹ï¿½ï¿½ï¿½");
 		return new ResponseEntity<byte[]>(baos.toByteArray(),headers,HttpStatus.OK);
 	}
 	
@@ -957,15 +949,15 @@ public class excelController {
 		}
 		Workbook wb = new XSSFWorkbook();
 		CellStyle cellStyle = wb.createCellStyle();
-		Sheet sheet = wb.createSheet("ÔÚÖ°Ô±¹¤Êý¾Ý");
+		Sheet sheet = wb.createSheet("ï¿½ï¿½Ö°Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		Row titleRow = sheet.createRow(0);
-		titleRow.createCell(0).setCellValue("²¿ÃÅ");
-		titleRow.createCell(1).setCellValue("Ô±¹¤±àºÅ");
-		titleRow.createCell(2).setCellValue("ÐÕÃû");
-		titleRow.createCell(3).setCellValue("·Ö»ú/¶ÌºÅ");
-		titleRow.createCell(4).setCellValue("Ö±²¦");
-		titleRow.createCell(5).setCellValue("ÊÖ»ú");
-		titleRow.createCell(6).setCellValue("ÓÊÏä");
+		titleRow.createCell(0).setCellValue("ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(1).setCellValue("Ô±ï¿½ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(2).setCellValue("ï¿½ï¿½ï¿½ï¿½");
+		titleRow.createCell(3).setCellValue("ï¿½Ö»ï¿½/ï¿½Ìºï¿½");
+		titleRow.createCell(4).setCellValue("Ö±ï¿½ï¿½");
+		titleRow.createCell(5).setCellValue("ï¿½Ö»ï¿½");
+		titleRow.createCell(6).setCellValue("ï¿½ï¿½ï¿½ï¿½");
 		for(int i=0;i<lastlist.size();i++) {
 			Row row = sheet.createRow(i+1);
 			Cell cellDepartmentName = row.createCell(0);
@@ -992,13 +984,13 @@ public class excelController {
 		}
 		HttpHeaders headers = new HttpHeaders();
 		try {
-			headers.setContentDispositionFormData("attachment", new String("ÔÚÖ°Ô±¹¤Êý¾Ý.xlsx".getBytes("utf-8"),"iso-8859-1"));
+			headers.setContentDispositionFormData("attachment", new String("ï¿½ï¿½Ö°Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.xlsx".getBytes("utf-8"),"iso-8859-1"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		System.out.println("³É¹¦£¡");
+		System.out.println("ï¿½É¹ï¿½ï¿½ï¿½");
 		return new ResponseEntity<byte[]>(baos.toByteArray(),headers,HttpStatus.OK);
 	}
 	

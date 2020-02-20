@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.accp.domain.Cashier;
 import com.accp.domain.Repair;
+import com.accp.service.RepairService;
 import com.accp.service.cashierService;
-import com.accp.service.repairService;
 
 @RestController
 @RequestMapping("/settlementCenter")
 public class settlementCenterController {
 	
 	@Autowired
-	repairService rs;
+	RepairService rs;
 	@Autowired
 	cashierService cs;
 	

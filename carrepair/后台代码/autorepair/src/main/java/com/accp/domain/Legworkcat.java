@@ -12,8 +12,17 @@ public class Legworkcat {
     private String mileage;
 
     private Integer artisanclassid;
+    private String artisanclassname;
 
-    private String otherone;
+    public String getArtisanclassname() {
+		return artisanclassname;
+	}
+
+	public void setArtisanclassname(String artisanclassname) {
+		this.artisanclassname = artisanclassname;
+	}
+
+	private String otherone;
 
     private String othertwo;
 

@@ -16,6 +16,7 @@ public class Carinfo {
 	
 	private String loadnumber;
 	
+
 	private Boolean check;
 	
 	private String clientname;
@@ -28,7 +29,11 @@ public class Carinfo {
 		this.clientname = clientname;
 	}
 
-	public String getCarbrandname() {
+
+
+	
+    public String getCarbrandname() {
+
 		return carbrandname;
 	}
 
@@ -138,9 +143,11 @@ public class Carinfo {
 
     private String clientid;
 
+
     private String insuredcar;
 
     private String otherone;
+
 
     private String othertwo;
 
@@ -262,6 +269,7 @@ public class Carinfo {
         this.engineid = engineid;
     }
 
+
     public String getDeadweight() {
         return deadweight;
     }
@@ -269,6 +277,7 @@ public class Carinfo {
     public void setDeadweight(String deadweight) {
         this.deadweight = deadweight;
     }
+
 
     public Date getBuydate() {
         return buydate;
@@ -358,6 +367,7 @@ public class Carinfo {
         this.maintaindate = maintaindate;
     }
 
+
     public String getClientid() {
         return clientid;
     }
@@ -378,11 +388,9 @@ public class Carinfo {
         return otherone;
     }
 
-    public void setOtherone(String otherone) {
-        this.otherone = otherone;
-    }
 
-    public String getOthertwo() {
+
+	public String getOthertwo() {
         return othertwo;
     }
 
@@ -413,4 +421,60 @@ public class Carinfo {
     public void setOtherfive(String otherfive) {
         this.otherfive = otherfive;
     }
+    private String carTypeName;
+    private String carBrandName;
+    
+ 
+
+	public String getCarTypeName() {
+		return carTypeName;
+	}
+
+	public void setCarTypeName(String carTypeName) {
+		this.carTypeName = carTypeName;
+	}
+
+	public String getCarBrandName() {
+		return carBrandName;
+	}
+
+	public void setCarBrandName(String carBrandName) {
+		this.carBrandName = carBrandName;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getOrdertime() {
+		return ordertime;
+	}
+
+	public void setOrdertime(Date ordertime) {
+		this.ordertime = ordertime;
+	}
+	
+
+
+	public Date getJjdate() {
+		return jjdate;
+	}
+
+	public void setJjdate(Date jjdate) {
+		this.jjdate = jjdate;
+	}
+
+	private String name;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date ordertime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date jjdate;
 }

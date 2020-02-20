@@ -89,6 +89,7 @@
 </style>
 	</head>
 	<body>
+		<div id="ctx">
 <div class="container-fluid">
 	<div class="row firstdiv">
 		<div class="col-md-10"><h1>外勤车辆</h1>
@@ -100,46 +101,42 @@
 	</div>
 	<div>
 	<div id="ss" class="form-inline" >
-		车牌号：<input class="form-control ss" type="text" />
+		车牌号：<input v-model="level.licenseplatenumber" class="form-control ss" type="text" />
 		
-		品牌：<input class="form-control ss" type="text" />
+		品牌：<input v-model="level.brand" class="form-control ss" type="text" />
 		
-		车型：<input class="form-control ss" type="text" />
-		当前里程：<input class="form-control ss" type="text" />
-		班组：<select style="width: 150px;" class="form-control ss">
-			 <option></option>
+		车型：<input v-model="level.model" class="form-control ss" type="text" />
+		当前里程：<input v-model="level.mileage" class="form-control ss" type="text" />
+		班组：<select class="form-control ss" v-model="level.artisanclassid">
+			<option v-for="i in artisan" :value="i.id">{{i.artisanclassname}}</option>
 		</select>
+		
 		</div>
 	
 	<div style="display: inline-block; float: right;" id="caidan">
-	<a><i class="tianjia"></i>增加</a>
-	<a><i class="shanchu"></i>删除</a>
-	<a><i class="baocun"></i>保存</a>
+	<a href="javascript:void(0)" @click="getnull"><i class="tianjia"></i>增加</a>
+	<a href="javascript:void(0)" @click="delete1"><i class="shanchu"></i>删除</a>
+	<a href="javascript:void(0)" @click="keep"><i class="baocun"></i>保存</a>
 		
 	</div>
 	</div>
 	<div>
 		<table class="table table-hover table-bordered">
 			<tr class="head">
+				<td>编号</td>
 				<td>车牌号</td>
 				<td>品牌</td>
 				<td>车型</td>
 				<td>当前里程</td>
 				<td>归属班组</td>
 			</tr>
-			<tr>
-				<td>车牌号</td>
-				<td>品牌</td>
-				<td>车型</td>
-				<td>当前里程</td>
-				<td>归属班组</td>
-			</tr>
-				<tr>
-				<td>车牌号</td>
-				<td>品牌</td>
-				<td>车型</td>
-				<td>当前里程</td>
-				<td>归属班组</td>
+			<tr v-for="level in list" @click="querybyid(level)">
+				<td>{{level.id}}</td>
+				<td>{{level.licenseplatenumber}}</td>
+				<td>{{level.brand}}</td>
+				<td>{{level.model}}</td>
+				<td>{{level.mileage}}</td>
+				<td>{{level.artisanclassname}}</td>
 			</tr>
 		</table>
 	</div>
@@ -148,11 +145,114 @@
 	
 
 </div>
+</div>
  <script type="text/javascript" src="static/js/jquery.min.js"></script>
  <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
  <script src="static/js/vue.js" type="text/javascript" charset="utf-8"></script>
  <script type="text/javascript">
+	var vm=new Vue({
+			el:"#ctx",
+			data(){
+				return {
+					list:[],
+					level:{},
+					artisan:[]
+				}
+			},
 
+			methods:{
+				query(){
+				$.ajax({
+					type:"post",
+					url:"http://localhost:8080/leg/queryAll",
+					dataType:"json",
+					success:function(res){
+						vm.list=res
+					}
+				})
+				},
+				getnull(){
+					this.level={}
+				},
+				 querybyid(level){
+				 	vm.level=level
+				 	vm.level=JSON.parse(JSON.stringify(vm.level))
+				 },
+				 keep(){
+				 	
+				 	if(vm.level.id!=null){
+				    $.ajax({
+					type:"post",
+					url:"http://localhost:8080/leg/update",
+					data:
+						JSON.stringify(vm.level)
+					,
+					contentType:"application/json;charset=utf-8",
+					dataType:"json",
+					success:function(res){
+						if(res>0){
+							vm.level={}
+							alert("修改成功")
+							vm.query();
+						}
+					}
+				})	
+				}else{
+				 	$.ajax({
+					type:"post",
+					url:"http://localhost:8080/leg/add",
+					data:
+						JSON.stringify(vm.level)
+					,
+					contentType:"application/json;charset=utf-8",
+					dataType:"json",
+					success:function(res){
+						if(res>0){
+								alert("新增成功")
+							vm.level={}
+						vm.query();
+						}
+					}
+				})
+				 	}
+				 },
+				
+
+				 delete1(){
+				  $.ajax({
+					type:"post",
+					url:"http://localhost:8080/leg/delete",
+					data:{
+						id:vm.level.id
+					},
+					dataType:"json",
+					success:function(res){
+						if(res>0){
+							vm.level={}
+							alert("删除成功")
+							vm.query();
+						}
+					}
+				})		
+				 }
+			}
+		})
+		$(function(){
+			vm.query()
+				$.ajax({
+					type:"post",
+					url:"http://localhost:8080/leg/selectAll",
+					dataType:"json",
+					success:function(res){
+						vm.artisan=res
+					}
+				})
+			$("#chose").click(function(){
+				vm.level.artisanclassname="马云队"
+				vm.level.artisanclassid="10005"
+			})
+		})
+ 	
  	
  </script>
 	</body>

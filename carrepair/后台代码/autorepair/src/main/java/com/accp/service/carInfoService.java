@@ -8,9 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.accp.domain.Carinfo;
+
 import com.accp.domain.CarinfoExample;
 import com.accp.domain.Coll;
 import com.accp.domain.CarinfoExample.Criteria;
+
+import com.accp.domain.ClientAndCar;
+
 import com.accp.mapper.CarinfoMapper;
 
 @Service
@@ -108,6 +112,12 @@ public class carInfoService {
 	public List<Carinfo> selectCarInfoByClientNumber(String number){
 		List<Carinfo> list=cm.selectCarInfoByClientNumber(number);
 		return list;
+	}
+	public ClientAndCar selectClientAndCar(String carNumber) {
+		return cm.selectClientAndCar(carNumber);
+	}
+	public Carinfo selectCarinfo(String carNumber) {
+		return cm.selectCarInfo(carNumber);
 	}
 	
 }

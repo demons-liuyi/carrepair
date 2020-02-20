@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import java.util.List;
+
 public class Artisanclass {
     private Integer id;
 
@@ -17,7 +19,16 @@ public class Artisanclass {
 
     private String otherfour;
 
-    private String otherfive;
+    public List<Artisanclass> getNodes() {
+		return nodes;
+	}
+
+	public void setNodes(List<Artisanclass> nodes) {
+		this.nodes = nodes;
+	}
+
+	private String otherfive;
+    private List<Artisanclass> nodes;
 
     public Integer getId() {
         return id;

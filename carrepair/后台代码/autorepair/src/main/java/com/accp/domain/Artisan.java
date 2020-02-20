@@ -10,8 +10,26 @@ public class Artisan {
     private String artisanno;
 
     private String artisanname;
+    private String artisanclassname;
+    private String artisanlevelname;
 
-    private String sex;
+    public String getArtisanclassname() {
+		return artisanclassname;
+	}
+
+	public void setArtisanclassname(String artisanclassname) {
+		this.artisanclassname = artisanclassname;
+	}
+
+	public String getArtisanlevelname() {
+		return artisanlevelname;
+	}
+
+	public void setArtisanlevelname(String artisanlevelname) {
+		this.artisanlevelname = artisanlevelname;
+	}
+
+	private String sex;
 
     private Integer artisanclassid;
 

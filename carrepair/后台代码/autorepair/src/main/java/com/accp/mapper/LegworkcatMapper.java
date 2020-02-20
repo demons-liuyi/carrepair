@@ -27,4 +27,5 @@ public interface LegworkcatMapper {
     int updateByPrimaryKeySelective(Legworkcat record);
 
     int updateByPrimaryKey(Legworkcat record);
+    List<Legworkcat> queryall();
 }
