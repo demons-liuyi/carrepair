@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrapStyle/bootstrapStyle.css" />
+		<link rel="stylesheet" href="fonts/font_rdupt/iconfont.css" />
+		<style type="text/css">
+			body,
+			html {
+				height: 100%;
+			}
+			
+			.header {
+				padding-top: 0.5em;
+				padding-bottom: 0.5em;
+				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
+				box-shadow: 1px 1px 4px 3px #E6E6E6;
+				margin-bottom: 0.5em;
+			}
+			
+			.background-def {
+				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
+			}
+			
+			.header-lable {
+				font-weight: 600;
+				font-size: 1.3em;
+				padding-left: 1.5em;
+				padding-top: 0.5em;
+				padding-bottom: 0.5em;
+			}
+			
+			.header-r {
+				padding: 0.5em;
+			}
+			
+			.border-def {
+				box-shadow: 1px 1px 4px 3px #E6E6E6;
+				border-radius: 0.5em;
+				margin: 1em 0.5em;
+				padding: 1em 1em;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="container-fluid" style="height: 100%;">
+			<div class="header row">
+				<div class="col-lg-10"><label class="header-lable">维修单</label></div>
+				<div class="header-r col-md-2">
+					<button class="btn btn-default">关闭</button>
+				</div>
+			</div>
+
+			<div class="row border-def ">
+				<div class="col-md-2">
+					<span>单号：</span><span danhao=11>a100000</span>
+				</div>
+				<div class="col-md-10">
+					<a><i class="iconfont icon-dayin"></i>委托书</a>
+					<a><i class="iconfont icon-dayin"></i>结算单</a>
+					<a><i class="glyphicon glyphicon-picture"></i>照片</a>
+					<a data-toggle="modal" data-target=".mo1"><i class="glyphicon glyphicon-file"></i>附单</a>
+				</div>
+			</div>
+			<div class="border-def">
+				<form class="form-inline">
+					<div class="form-group">
+						<table>
+
+							<tr>
+
+								<td>车牌号</td>
+								<td><input type="text" class="form-control"></td>
+								<td>车架号</td>
+								<td><input type="text" class="form-control"></td>
+								<td>车辆型号</td>
+								<td><input type="text" class="form-control"></td>
+								<td>车辆品牌</td>
+								<td><input type="text" class="form-control"></td>
+							</tr>
+							<tr>
+
+								<td>发动机号</td>
+								<td><input type="text" class="form-control"></td>
+								<td>发动机品牌</td>
+								<td><input type="text" class="form-control"></td>
+								<td>服务顾问</td>
+								<td>
+									<select class="form-control">
+										<option>请选择</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+
+								<td>车主姓名</td>
+								<td><input type="text" class="form-control"></td>
+								<td>驾驶员</td>
+								<td><input type="text" class="form-control"></td>
+								<td>联系电话</td>
+								<td><input type="text" class="form-control"></td>
+							</tr>
+							<tr>
+
+								<td>进厂里程</td>
+								<td><input type="text" class="form-control"></td>
+								<td>进厂油量</td>
+								<td>
+									<select class="form-control">
+										<option>请选择</option>
+									</select>
+								</td>
+								<td>上次里程</td>
+								<td><input type="text" class="form-control"></td>
+								<td>进厂时间</td>
+								<td><input type="text" class="form-control"></td>
+							</tr>
+							<tr>
+
+								<td>业务类别</td>
+								<td>
+									<select class="form-control">
+										<option>请选择</option>
+									</select>
+								</td>
+								<td>施工班次</td>
+								<td>
+									<select class="form-control">
+										<option>请选择</option>
+									</select>
+								</td>
+								<td>接车人</td>
+								<td><input type="text" class="form-control"></td>
+								<td>预计完工</td>
+								<td>
+									<select class="form-control">
+										<option>请选择</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+
+								<td>结算方式</td>
+								<td>
+									<select class="form-control">
+										<option>请选择</option>
+									</select>
+								</td>
+								<td>赔款公司</td>
+								<td><input type="text" class="form-control"></td>
+								<td>完工时间</td>
+								<td><input type="text" class="form-control"></td>
+								<td>上次进厂</td>
+								<td>
+									<select class="form-control">
+										<option>请选择</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+						<span>估计金额</span><input type="text" class="form-control">
+						<span>接待备注</span><input style="width: 42em; margin-left: 0.6em;" type="text" class="form-control">
+						<p><span>报修称述</span></p>
+						<div>
+							<textarea style="width: 40em;"></textarea>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<div class="row border-def" style="height: 44.5%;">
+				<div class="col-md-12" style=" overflow: auto;height: 100%;">
+					<div>
+
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active">
+								<a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+							</li>
+							<li role="presentation">
+								<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+							</li>
+							<li role="presentation">
+								<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a>
+							</li>
+							<li role="presentation">
+								<a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
+							</li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="home">1
+								<table class="table table-hover table-bordered" style="width: 4500px">
+									<thead>
+										<tr>
+											<td>编号</td>
+											<td>数量</td>
+											<td>价格</td>
+											<td>优惠后的单价</td>
+											<td>编号</td>
+											<td>数量</td>
+											<td>价格</td>
+											<td>优惠后的单价</td>
+											<td>编号</td>
+											<td>数量</td>
+											<td>价格</td>
+											<td>优惠后的单价</td>
+											<td>编号</td>
+											<td>数量</td>
+											<td>价格</td>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+
+										</tr>
+										<tr>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+
+										</tr>
+
+										<tr>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+											<td>1111</td>
+											<td>2222</td>
+
+										</tr>
+
+									</tbody>
+								</table>
+
+							</div>
+							<div role="tabpanel" class="tab-pane" id="profile">2</div>
+							<div role="tabpanel" class="tab-pane" id="messages">3.</div>
+							<div role="tabpanel" class="tab-pane" id="settings">4</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+		<!-- Large modal -->
+
+		<div class="mo1 modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">维修附单</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-inline">
+							<div class="form-group"><span>单号</span>
+								<input class="form-control" type="text">
+								<span>附单下次保养里程</span><input type="text"></div>
+
+							<div>
+
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active">
+										<a href="#xiamgmu" aria-controls="xiamgmu" role="tab" data-toggle="tab">维修项目</a>
+									</li>
+									<li role="presentation">
+										<a href="#lingliao" aria-controls="lingliao" role="tab" data-toggle="tab">领料情况</a>
+									</li>
+								</ul>
+
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="xiamgmu">
+										<div>
+											<div style="padding: 1em 1em;">&nbsp;&nbsp;
+												<span>领料情况</span>&nbsp;&nbsp;<a>增加</a>
+												&nbsp;&nbsp;<a>删除</a></div>
+											<table class=" table table-hover table-bordered">
+												
+												<tr>
+													<td>商品编号</td>
+													<td>商品名称</td>
+													<td>品牌</td>
+													<td>规格</td>
+													<td>单位</td>
+													<td>数量</td>
+													<td>优惠前单价格</td>
+													<td>优惠后单价</td>
+													<td>优惠后金额</td>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td>2</td>
+													<td>3</td>
+													<td>4</td>
+													<td>5</td>
+													<td>6</td>
+													<td>7</td>
+													<td>8</td>
+													<td>9</td>
+													
+												</tr>
+												
+											</table>
+											
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="lingliao">...</div>
+								</div>
+
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+	</body>
+
+</html>

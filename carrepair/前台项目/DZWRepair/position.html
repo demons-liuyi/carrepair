@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>岗位定义</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="fonts/font_rdupt/iconfont.css" />
+		<style type="text/css">
+			body,
+			html {
+				background: white;
+				height: 100%;
+				width: 100%;
+			}
+			/**
+			 * 头部
+			 */
+			
+			.header {
+				flex-direction: row;
+				padding: 1em 2em;
+				justify-content: space-between;
+				width: 100%;
+				display: flex;
+				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
+				box-shadow: 1px 1px 4px 3px #E6E6E6;
+			}
+			
+			.header-l {
+				font-weight: 600;
+				font-size: 1.3em;
+				padding: 0.2em 1em;
+			}
+			
+			.header-r {}
+			
+			.header-r input {
+				width: 25em;
+				padding: 0.3em 1em;
+			}
+			
+			.box-border-a-shadow {
+				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				margin: 0.5em 1em;
+				border-radius: 0.5em;
+			}
+			/**
+			 * table上面的选择栏
+			 */
+			
+			.t-input {
+				background: white;
+				padding-left: 1.5em;
+				padding-top: 0.5em;
+				padding-bottom: 0.5em;
+				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				border-radius: 0.5em;
+				margin: 0.5em 1em;
+			}
+			/**
+			 * 百框内
+			 */
+			
+			.tit-tab {
+				display: flex;
+				justify-content: flex-end;
+				padding: 0.5em 0;
+				margin: 0.5em 1em;
+				border-radius: 0.5em;
+				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
+				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+			}
+			
+			.t-span {
+				margin-left: 0.5em;
+				font-weight: 500;
+			}
+			
+			.form-control {
+				height: 2.5em;
+				font-size: 0.8em;
+			}
+			/**
+			 * 表格div
+			 */
+			
+			.tb-body {
+				background: white;
+				padding: 1em 1em;
+				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				border-radius: 0.5em;
+				margin: 0.5em 1em;
+			}
+			
+			.bacolor {}
+			
+			.liMenu {
+				cursor: pointer;
+			}
+			
+			.liMenu.hover {
+				background: linear-gradient(to right, rgb(201, 214, 255), rgb(226, 226, 226));
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class="header">
+			<div class="header-l">
+				<span>
+					
+					岗位定义
+				</span>
+
+			</div>
+			<div class="header-r">
+
+				<button class="btn btn-default">关闭</button>
+
+			</div>
+		</div>
+		<div id="ctx">
+			<div class="t-input">
+				<form class="form-inline">
+					<div class=" form-group">
+						<span class="t-span">岗位编号</span><input class="form-control" type="text" v-model="gangwei.id" />
+						<span>岗位名称</span><input type="text" class="form-control" v-model="gangwei.postname" />
+
+						<!--<input class="btn btn-default btn-group-sm" style="width: 6em;" @click="selectPosition" value="查询">-->
+
+						<a @click="addPo"><i class="iconfont icon-lishibiaodan"></i>增加</a>
+
+						<a @click="UpPo"><i class="iconfont icon-lishibiaodan"></i>保存</a>
+						<a  data-target="#myModal" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="iconfont icon-lishibiaodan"></i>删除</a>
+						<a @click="exportExcel"><i class="iconfont icon-lishibiaodan"></i>导出</a>
+					</div>
+
+				</form>
+			</div>
+
+			<div class="tb-body " style="display: flex;">
+				<div class="col-md-4 ">
+					<table class="table table-bordered ">
+						<tr class="tit-tr">
+							<td>销售单号</td>
+							<td>单据类型</td>
+
+						</tr>
+
+						<tr v-for="pp,index in position" @click="clickXZ(index,pp)" class="liMenu" :class="index==inx?'hover':''" :key="index">
+							<td>{{pp.id}}</td>
+							<td>{{pp.postname}}</td>
+
+						</tr>
+					</table>
+				</div>
+
+			</div>
+			
+<!-- Small modal
+		<button type="button" class="btn btn-primary" data-target="#myModal" data-toggle="modal" data-target=".bs-example-modal-sm">刪除</button>
+ -->
+		
+		<div class="modal fade" tabindex="-1" role="dialog" id="myModal" >
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">刪除</h4>
+					</div>
+					<div class="modal-body">
+						<p>你是否要删除当前选中的数据？</p>
+					</div>
+					<div class="modal-footer">
+						<a type="button" class="btn btn-default" data-dismiss="modal">取消</a>
+						<button type="button" class="btn btn-primary" data-dismiss="modal"  @click="DelPo">确定</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+
+		</div>
+	
+		
+		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#ctx",
+				data() {
+
+					return {
+						gangwei: {
+							id: "",
+							postname: ""
+						},
+						position: {},
+						inx: 0
+					};
+				},
+				methods: {
+					selectPosition() {
+						var that = this;
+						console.log(that.gangwei.postname);
+						var po = JSON.stringify(that.gangwei);
+						$.ajax({
+							url: "http://localhost:8080/positionSelect",
+							data: po,
+							contentType: "application/json;charset=utf-8",
+							type: "post",
+							dataType: "json",
+							success: function(result) {
+								console.log(result)
+								that.position = result;
+							}
+
+						})
+
+					},
+					addPo() {
+						var that = this;
+						console.log(that.gangwei.postname);
+						var po = JSON.stringify(that.gangwei);
+						$.ajax({
+							url: "http://localhost:8080/addPost",
+							data: po,
+							contentType: "application/json;charset=utf-8",
+							type: "post",
+							success: function(result) {
+								console.log(result)
+								if(result == 0) {
+									alert("该数据编号已存在，无法进行新增！")
+								}
+								that.selectPosition();
+
+							}
+
+						})
+					},
+					UpPo() {
+						var that = this;
+						console.log(that.gangwei.postname);
+						var po = JSON.stringify(that.gangwei);
+						$.ajax({
+							url: "http://localhost:8080/updatePost",
+							data: po,
+							contentType: "application/json;charset=utf-8",
+							type: "post",
+							success: function(result) {
+								console.log(result)
+								if(result == 0) {
+									alert("该数据编号不存在，无法进行修改！")
+								}
+								that.selectPosition();
+							}
+
+						})
+					},
+					DelPo() {
+						var that = this;
+						console.log(that.gangwei.postname);
+						var po = JSON.stringify(that.gangwei);
+						$.ajax({
+							url: "http://localhost:8080/deletePost",
+							data: po,
+							contentType: "application/json;charset=utf-8",
+							type: "post",
+							success: function(result) {
+								console.log(result)
+								if(result == 0) {
+									alert("该数据不存在，无法进行删除！")
+								}
+								that.selectPosition();
+							}
+
+						})
+					},
+					clickXZ(index, pp) {
+						var that = this;
+						that.gangwei = pp;
+						this.inx = index;
+
+					},exportExcel(){
+						
+						window.location.href="http://localhost:8080/exportExcel"
+						
+					}
+				},
+				created: function() {
+					this.selectPosition();
+				}
+			})
+		</script>
+		<script type="text/javascript">
+			
+		</script>
+
+	</body>
+
+</html>
