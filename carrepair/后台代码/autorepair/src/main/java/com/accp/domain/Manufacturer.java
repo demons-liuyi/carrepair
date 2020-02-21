@@ -1,7 +1,7 @@
 package com.accp.domain;
 
 public class Manufacturer {
-    private String number;
+    private Integer number;
 
     private String name;
 
@@ -21,7 +21,7 @@ public class Manufacturer {
 
     private String brank;
 
-    private String type;
+    private Integer type;
 
     private String otherone;
 
@@ -33,11 +33,11 @@ public class Manufacturer {
 
     private String otherfive;
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
@@ -113,11 +113,11 @@ public class Manufacturer {
         this.brank = brank;
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 

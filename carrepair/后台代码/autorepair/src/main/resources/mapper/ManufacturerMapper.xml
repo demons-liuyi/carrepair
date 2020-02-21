@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.accp.mapper.ManufacturerMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.Manufacturer" >
-    <id column="number" property="number" jdbcType="VARCHAR" />
+    <id column="number" property="number" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="manage" property="manage" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
     <result column="payment" property="payment" jdbcType="VARCHAR" />
     <result column="laver" property="laver" jdbcType="VARCHAR" />
     <result column="brank" property="brank" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="otherone" property="otherone" jdbcType="VARCHAR" />
     <result column="othertwo" property="othertwo" jdbcType="VARCHAR" />
     <result column="otherthree" property="otherthree" jdbcType="VARCHAR" />
@@ -95,15 +95,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from manufacturer
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from manufacturer
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.accp.domain.ManufacturerExample" >
     delete from manufacturer
@@ -118,10 +118,10 @@
       brank, type, otherone, 
       othertwo, otherthree, otherfour, 
       otherfive)
-    values (#{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+    values (#{number,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{manage,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
       #{banknumber,jdbcType=VARCHAR}, #{payment,jdbcType=VARCHAR}, #{laver,jdbcType=VARCHAR}, 
-      #{brank,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{otherone,jdbcType=VARCHAR}, 
+      #{brank,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{otherone,jdbcType=VARCHAR}, 
       #{othertwo,jdbcType=VARCHAR}, #{otherthree,jdbcType=VARCHAR}, #{otherfour,jdbcType=VARCHAR}, 
       #{otherfive,jdbcType=VARCHAR})
   </insert>
@@ -179,7 +179,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="number != null" >
-        #{number,jdbcType=VARCHAR},
+        #{number,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -209,7 +209,7 @@
         #{brank,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="otherone != null" >
         #{otherone,jdbcType=VARCHAR},
@@ -238,7 +238,7 @@
     update manufacturer
     <set >
       <if test="record.number != null" >
-        number = #{record.number,jdbcType=VARCHAR},
+        number = #{record.number,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -268,7 +268,7 @@
         brank = #{record.brank,jdbcType=VARCHAR},
       </if>
       <if test="record.type != null" >
-        type = #{record.type,jdbcType=VARCHAR},
+        type = #{record.type,jdbcType=INTEGER},
       </if>
       <if test="record.otherone != null" >
         otherone = #{record.otherone,jdbcType=VARCHAR},
@@ -292,7 +292,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update manufacturer
-    set number = #{record.number,jdbcType=VARCHAR},
+    set number = #{record.number,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       manage = #{record.manage,jdbcType=VARCHAR},
@@ -302,7 +302,7 @@
       payment = #{record.payment,jdbcType=VARCHAR},
       laver = #{record.laver,jdbcType=VARCHAR},
       brank = #{record.brank,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
       otherone = #{record.otherone,jdbcType=VARCHAR},
       othertwo = #{record.othertwo,jdbcType=VARCHAR},
       otherthree = #{record.otherthree,jdbcType=VARCHAR},
@@ -343,7 +343,7 @@
         brank = #{brank,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=VARCHAR},
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="otherone != null" >
         otherone = #{otherone,jdbcType=VARCHAR},
@@ -361,7 +361,7 @@
         otherfive = #{otherfive,jdbcType=VARCHAR},
       </if>
     </set>
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.Manufacturer" >
     update manufacturer
@@ -374,12 +374,12 @@
       payment = #{payment,jdbcType=VARCHAR},
       laver = #{laver,jdbcType=VARCHAR},
       brank = #{brank,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
       otherone = #{otherone,jdbcType=VARCHAR},
       othertwo = #{othertwo,jdbcType=VARCHAR},
       otherthree = #{otherthree,jdbcType=VARCHAR},
       otherfour = #{otherfour,jdbcType=VARCHAR},
       otherfive = #{otherfive,jdbcType=VARCHAR}
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </update>
 </mapper>

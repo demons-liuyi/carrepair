@@ -160,403 +160,11 @@
 			#word {
 				margin-left: 30px;
 			}
-			
-			#exitregistrationmarksure {
-				background-color: lawngreen;
-				color: white;
-				width: 100px;
-				position: absolute;
-				left: 450px;
-				top: 45px;
-			}
-			
-			#fork {
-				font-size: 32px;
-				position: absolute;
-				left: 680px;
-				top: 50px;
-			}
-			
-			#exitregistrationcontent {
-				width: 680px;
-				height: 280px;
-				margin-left: 21px;
-				background-color: wheat;
-			}
-			
-			#exitregistrationcontentdiv {
-				background-color: white;
-				width: 630px;
-				height: 180px;
-				margin-top: 15px;
-				margin-left: 25px;
-				overflow: scroll;
-			}
-			
-			#selectemployee {
-				border: 1px solid green;
-				position: absolute;
-				left: 570px;
-				top: 100px;
-				width: 500px;
-				height: 550px;
-				background-color: lightgray;
-				display: none;
-			}
-			
-			#selectemployeeh2 {
-				margin-bottom: 15px;
-			}
-			
-			#selectemployeespan {
-				color: white;
-				margin-left: 5px;
-			}
-			
-			#selectemployeelinediv {
-				background-color: darkblue;
-				width: 500px;
-				height: 20px;
-			}
-			
-			#selectemployeediv {
-				border: 0px solid deepskyblue;
-			}
-			
-			#selectemployeecontentdiv {
-				border: 1px solid deepskyblue;
-				width: 450px;
-				height: 450px;
-				margin-left: 20px;
-			}
-			
-			#selectemployeeremove {
-				font-size: 32px;
-				position: absolute;
-				left: 440px;
-				top: 45px;
-			}
-			
-			#selectemployeemarksure {
-				background-color: lawngreen;
-				color: white;
-				width: 100px;
-				position: absolute;
-				left: 300px;
-				top: 42px;
-			}
-			
-			.qwe {
-				z-index: 999;
-			}
-			
-			#else {
-				position: absolute;
-				display: none;
-			}
-			
-			#staffquery {
-				display: none;
-				border: 1px solid green;
-				position: absolute;
-				left: 450px;
-				top: 150px;
-				width: 735px;
-				height: 430px;
-				background-color: white;
-			}
-			
-			#staffqueryspan {
-				color: white;
-				margin-left: 5px;
-			}
-			
-			#staffqueryh2 {
-				margin-bottom: 15px;
-			}
-			
-			#staffquerylinediv {
-				background-color: darkblue;
-				width: 735px;
-				height: 20px;
-				color: white;
-			}
-			
-			#staffquerymarksure {
-				background-color: lawngreen;
-				color: white;
-				width: 100px;
-				position: absolute;
-				left: 500px;
-				top: 36px;
-			}
-			
-			#staffqueryfork {
-				font-size: 32px;
-				position: absolute;
-				left: 680px;
-				top: 40px;
-			}
-			
-			#staffquerycontent {
-				width: 690px;
-				height: 330px;
-				margin-left: 21px;
-				background-color: wheat;
-			}
-			
-			#departmentchoice {
-				border: 1px solid green;
-				position: absolute;
-				left: 570px;
-				top: 100px;
-				width: 500px;
-				height: 585px;
-				background-color: lightgray;
-				display: none;
-				z-index: 888;
-			}
-			
-			#departmentchoiceh2 {
-				margin-bottom: 15px;
-			}
-			
-			#departmentchoicespan {
-				color: white;
-				margin-left: 5px;
-			}
-			
-			#departmentchoicelinediv {
-				background-color: darkblue;
-				width: 500px;
-				height: 20px;
-			}
-			
-			#departmentchoicediv {
-				border: 0px solid deepskyblue;
-			}
-			
-			#departmentchoicecontentdiv {
-				border: 1px solid deepskyblue;
-				width: 450px;
-				height: 450px;
-				margin-left: 20px;
-			}
-			
-			#departmentchoiceremove {
-				font-size: 32px;
-				position: absolute;
-				left: 440px;
-				top: 45px;
-			}
-			
-			#departmentchoicemarksure {
-				background-color: lawngreen;
-				color: white;
-				width: 100px;
-				position: absolute;
-				left: 300px;
-				top: 42px;
-			}
 		</style>
 	</head>
 
 	<body>
 		<div class="container-fluid">
-
-			<div id="staffquery">
-				<div id="staffquerylinediv">
-					<span id="staffqueryspan">员工查询</span>
-				</div>
-				<div id="staffquerybodydiv">
-					<h2 id="staffqueryh2">员工查询</h2>
-					<button @click="employeeinfomakesure()" id="staffquerymarksure" class="btn btn-default">
-						<span class="glyphicon glyphicon-ok"></span> 确定
-					</button>
-					<span id="staffqueryfork" @click="closestaffquery()" class="glyphicon glyphicon-remove"></span>
-					<div id="staffquerycontent">
-						<p style="padding-top: 10px;">
-							<span style="margin-left: 10px;">员工编号：</span>
-							<input v-model="employeeinfo.staffno" style="width: 140px;" type="text">
-							<span style="margin-left: 20px;">员工姓名：</span>
-							<input v-model="employeeinfo.name" style="width: 140px;" type="text">
-							<span style="margin-left: 20px;">性别：</span>
-							<input v-model="employeeinfo.sex" style="width: 100px;" type="text">
-						</p>
-						<p>
-							<span style="margin-left: 10px;">岗位：</span>
-							<select name="postselect">
-								<option postid=""></option>
-								<option v-bind:postid="item.id" v-for="item in posts">{{item.postname}}</option>
-							</select>
-							<span style="margin-left: 20px;">所在部门：</span>
-							<input name="departmentidanddepartmentname" v-model="employeeinfo.departmentid" type="text" />
-							<button @click="opendepartmentchoice()"><span class="caret"></span></button>
-						</p>
-						<p>
-							<span style="margin-left: 10px;">身体状况：</span>
-							<input v-model="employeeinfo.physicalcondition" style="width: 160px;" type="text">
-							<span style="margin-left: 20px;">身高：</span>
-							<input v-model="employeeinfo.height" style="width: 100px;" type="text">
-							<span style="margin-left: 20px;">籍贯：</span>
-							<input v-model="employeeinfo.nativeplace" type="text" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">民族：</span>
-							<input v-model="employeeinfo.nation" type="text" />
-							<span style="margin-left: 20px;">婚姻状况：</span>
-							<input v-model="employeeinfo.maritalstatus" type="text" />
-							<span style="margin-left: 20px;">学历：</span>
-							<input style="width: 120px;" v-model="employeeinfo.educationbackground" type="text" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">毕业学校：</span>
-							<input v-model="employeeinfo.school" type="text" />
-							<span style="margin-left: 20px;">专业：</span>
-							<input v-model="employeeinfo.major" type="text" />
-							<span style="margin-left: 20px;">专业资格：</span>
-							<input style="width: 120px;" v-model="employeeinfo.professionalqualification" type="text" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">生日：</span>
-							<input v-model="employeeinfo.birthdaydate" type="date" />
-							<span style="margin-left: 20px;">学位：</span>
-							<input type="text" v-model="employeeinfo.degree" />
-							<span style="margin-left: 20px;">编制：</span>
-							<input type="text" v-model="employeeinfo.authorizedstrength" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">身份证号：</span>
-							<input v-model="employeeinfo.idcardno" type="text" />
-							<span style="margin-left: 20px;">入职日期 从：</span>
-							<input v-model="employeeinfo.dateofentryone" type="date" />
-							<span style="margin-left: 20px;">至：</span>
-							<input v-model="employeeinfo.dateofentrytwo" type="date" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">试用日期 从：</span>
-							<input v-model="employeeinfo.thetrialdateone" type="date" />
-							<span style="margin-left: 20px;">至：</span>
-							<input v-model="employeeinfo.thetrialdatetwo" type="date" />
-							<span style="margin-left: 20px;">属性：</span>
-							<input type="text" v-model="employeeinfo.property" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">合同开始 从：</span>
-							<input v-model="employeeinfo.contractstartdateone" type="date" />
-							<span style="margin-left: 20px;">至：</span>
-							<input v-model="employeeinfo.contractstartdatetwo" type="date" />
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div id="selectemployee">
-				<div id="selectemployeelinediv">
-					<span id="selectemployeespan">选择员工</span>
-				</div>
-				<div id="selectemployeediv">
-					<h2 id="selectemployeeh2">选择员工</h2>
-					<button @click="makesurestaff()" id="selectemployeemarksure" class="btn btn-default">
-						<span class="glyphicon glyphicon-ok"></span> 确定
-					</button>
-					<span @click="closeselectemployee()" id="selectemployeeremove" class="glyphicon glyphicon-remove"></span>
-					<div>
-						<div id="selectemployeecontentdiv">
-							<select style="width: 450px;">
-								<option>0000-成高</option>
-							</select>
-							<select @change="updatecondition($event)" style="width: 450px;">
-								<option did="">所有</option>
-								<option v-bind:did="item.id" v-for="item in department">{{item.departmentname}}</option>
-							</select>
-							<div style="overflow: scroll;">
-								<table border="1px" class="table">
-									<thead>
-										<tr style="background-color: deepskyblue;">
-											<tr>
-												<td></td>
-												<td>部门名称</td>
-												<td>工号</td>
-												<td>姓名</td>
-											</tr>
-										</tr>
-									</thead>
-									<tbody>
-										<tr @dblclick="staffcheck(item)" @click="staffshift(item)" v-for="item in staff">
-											<td style="width: 40px;">
-												<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
-											</td>
-											<td>{{item.departmentname}}</td>
-											<td>{{item.staffno}}</td>
-											<td>{{item.name}}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div id="exitregistration">
-				<div id="exitregistrationlinediv">
-					<span id="exitregistrationspan">离职登记</span>
-				</div>
-				<div id="exitregistrationbodydiv">
-					<h2 id="exitregistrationh2">离职登记</h2>
-					<button @click="makesureadddimission()" id="exitregistrationmarksure" class="btn btn-default">
-						<span class="glyphicon glyphicon-ok"></span> 确定
-					</button>
-					<span id="fork" @click="closeexitregistration()" class="glyphicon glyphicon-remove"></span>
-					<div id="exitregistrationcontent">
-						<p style="padding-top: 10px;"><span style="margin-left: 10px;">员工姓名：</span>
-							<input readonly="readonly" name="staffname" type="text" style="width: 220px;">
-
-							<button @click="openselectemployee()"><span class="caret"></span></button>
-							<span style="margin-left: 118px;">离职日期：</span><input name="dimissiondate" type="date" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">离职原因：</span>
-							<input name="dimissionreason" type="text" style="width: 560px;">
-						</p>
-						<div id="exitregistrationcontentdiv">
-							<table border="1px" class="table" style="min-width:1500px;">
-								<thead>
-									<tr style="background-color: deepskyblue;">
-										<td></td>
-										<td>领用日期</td>
-										<td>员工编号</td>
-										<td>员工姓名</td>
-										<td>类别编码</td>
-										<td>类别编码</td>
-										<td>领用日期</td>
-										<td>员工编号</td>
-										<td>员工姓名</td>
-										<td>类别编码</td>
-										<td>类别编码</td>
-									</tr>
-								</thead>
-								<tbody>
-									<td></td>
-									<td>领用日期</td>
-									<td>员工编号</td>
-									<td>员工姓名</td>
-									<td>类别编码</td>
-									<td>类别编码</td>
-									<td>领用日期</td>
-									<td>员工编号</td>
-									<td>员工姓名</td>
-									<td>类别编码</td>
-									<td>类别编码</td>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
 			<div id="header">
 				<h2>离职登记</h2>
 				<div id="selectdiv">
@@ -570,7 +178,7 @@
 					<ul>
 						<li>
 							<span id="img" class="glyphicon glyphicon-user"></span>
-							<span @click="openexitregistration()" id="font">离职</span>
+							<span @click="openDimission()" data-toggle="modal" data-target="#myModal" id="font">离职</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-print"></span>
@@ -578,7 +186,7 @@
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-share"></span>
-							<span @click="openemployeescard()" id="font">打开</span>
+							<span data-toggle="modal" data-target="#xx" @click="openemployeescard()" id="font">打开</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-remove-circle"></span>
@@ -586,11 +194,11 @@
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-list-alt"></span>
-							<span @click="openstaffquery()" id="font">查询</span>
+							<span @click="openstaffquery()" data-toggle="modal" data-target="#yy" id="font">查询</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-share"></span>
-							<span id="font">导出</span>
+							<span @click="exportExcel()" id="font">导出</span>
 						</li>
 					</ul>
 				</div>
@@ -629,19 +237,530 @@
 				</div>
 			</div>
 
-			<div id="departmentchoice">
-				<div id="departmentchoicelinediv">
-					<span id="departmentchoicespan">部门定义</span>
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-02-18
+            	描述：员工卡片
+            -->
+			<div id="xx" class="mo1 modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="border-bottom:0px">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">员工卡片</h4>
+						</div>
+						<div class="modal-body">
+
+							<div class="row border-def" style="height: 44.5%;">
+								<div class="col-md-12" style=" overflow: auto;height: 100%;">
+									<div>
+
+										<!-- Nav tabs -->
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active">
+												<a href="#home" aria-controls="home" role="tab" data-toggle="tab">基本信息</a>
+											</li>
+											<li role="presentation">
+												<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">其他信息</a>
+											</li>
+
+										</ul>
+
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="home">
+												<div>
+													<form class="form-inline form-dinyi">
+														<table style="border-collapse:separate;border-spacing:5px;">
+															<tr>
+																<td><span>员工编号：</span></td>
+																<td><input disabled class="form-control" type="text" v-model="staffinfo.staffno" /></td>
+																<td><span>员工姓名：</span></td>
+																<td><input v-model="staffinfo.name" class="form-control" type="text" /></td>
+																<td><span>员工性别：</span></td>
+																<td>
+
+																	<select v-model="staffinfo.sex" name="sex" class="form-control" style="height: 2.6em;">
+																		<option></option>
+																		<option>男</option>
+																		<option>女</option>
+																	</select>
+
+																</td>
+															</tr>
+
+															<tr>
+
+																<td><span>所在部门：</span></td>
+																<td>
+																	<input class="form-control" v-model="staffinfo.departmentname" type="text" name="depid" style="width: 5em;" disabled />
+																</td>
+
+															</tr>
+															<tr>
+																<td><span>登陆账户：</span></td>
+																<td><input class="form-control" v-model="staffinfo.account" type="text" /></td>
+																<td><span>岗位：</span></td>
+																<td>
+
+																	<input class="form-control" v-model="staffinfo.postid" type="text" />
+																</td>
+																<td><span>身体状况：</span></td>
+																<td><input class="form-control" v-model="staffinfo.physicalcondition" type="text" /></td>
+															</tr>
+															<tr>
+																<td><span>身高：</span></td>
+																<td>
+																	<input v-model="staffinfo.height" class="form-control" type="text" />
+																</td>
+																<td> <span>籍贯：</span></td>
+																<td>
+																	<input v-model="staffinfo.nativeplace" class="form-control" type="text" />
+																</td>
+																<td>
+																	<span>民族：</span></td>
+																<td>
+																	<input v-model="staffinfo.nation" class="form-control" type="text" />
+																</td>
+															</tr>
+															<tr>
+																<td><span>婚姻状况：</span></td>
+																<td>
+																	<input v-model="staffinfo.maritalstatus" class="form-control" type="text" />
+																</td>
+																<td><span>学历：</span></td>
+																<td>
+																	<input v-model="staffinfo.educationbackground" class="form-control" type="text" />
+																</td>
+																<td><span>毕业学校：</span></td>
+																<td><input v-model="staffinfo.school" class="form-control" type="text" /></td>
+															</tr>
+
+															<tr>
+																<td><span>专业：</span></td>
+																<td><input v-model="staffinfo.major" class="form-control" type="text" /></td>
+																<td><span>专业资格：</span></td>
+																<td><input v-model="staffinfo.professionalqualification" class="form-control" type="text" /></td>
+
+															</tr>
+															<tr>
+																<td><span>属性：</span></td>
+																<td>
+																	<input v-model="staffinfo.property" class="form-control" type="text" />
+																</td>
+																<td><span>学位：</span></td>
+																<td>
+																	<input v-model="staffinfo.degree" class="form-control" type="text" />
+																</td>
+															</tr>
+
+															<tr>
+
+																<td><span>编制：</span></td>
+																<td>
+																	<input v-model="staffinfo.authorizedstrength" class="form-control" type="text" />
+																</td>
+																<td><span>身份证号：</span></td>
+																<td><input v-model="staffinfo.idcardno" class="form-control" type="text" /></td>
+																<td><span>户口地址：</span></td>
+																<td><input v-model="staffinfo.residence" class="form-control" type="text" /></td>
+															</tr>
+
+															<tr>
+																<td><span>现住地址：</span></td>
+																<td><input v-model="staffinfo.presentaddress" class="form-control" type="text" /></td>
+																<td><span>联系电话：</span></td>
+																<td><input v-model="staffinfo.contactnumber" class="form-control" type="text" /></td>
+																<td><span>手机：</span></td>
+																<td><input v-model="staffinfo.phone" class="form-control" type="text" /></td>
+															</tr>
+
+															<tr>
+																<td><span>eMail：</span></td>
+																<td><input v-model="staffinfo.email" class="form-control" type="text" /></td>
+																<td><span>开户银行：</span></td>
+																<td><input v-model="staffinfo.depositbank" class="form-control" type="text" /></td>
+
+															</tr>
+															<tr>
+
+																<td><span>银行账号：</span></td>
+																<td><input v-model="staffinfo.bankaccount" class="form-control" type="text" /></td>
+															</tr>
+															<tr>
+																<td><span>紧急联系人：</span></td>
+																<td><input v-model="staffinfo.emergencycontact" class="form-control" type="text" /></td>
+																<td><span>联系人电话：</span></td>
+																<td><input v-model="staffinfo.emergencyphone" class="form-control" type="text" /></td>
+															</tr>
+															<tr>
+																<td><span>入职日期：</span></td>
+																<td><input class="form-control" v-model="staffinfo.dateonboard" type="date"></td>
+																<td><span>试用到期：</span></td>
+																<td><input class="form-control" v-model="staffinfo.thetrialdue" type="date"></td>
+
+															</tr>
+															<tr>
+																<td><span>出生日期：</span></td>
+																<td><input class="form-control" v-model="staffinfo.birthdaydate" type="date"></td>
+																<td><span>合同开始：</span></td>
+																<td><input class="form-control" v-model="staffinfo.contractstart" type="date"></td>
+																<td><span>合同结束：</span></td>
+																<td><input class="form-control" v-model="staffinfo.agreementends" type="date"></td>
+
+															</tr>
+															<tr>
+																<td><span>卡自编号：</span></td>
+																<td><input v-model="staffinfo.cardnumber" class="form-control" type="text" /></td>
+																<td><span>卡内部号：</span></td>
+																<td><input v-model="staffinfo.internalcardno" class="form-control" type="text" /></td>
+																<td><span>推荐人：</span></td>
+																<td><input v-model="staffinfo.referrer" class="form-control" type="text" /></td>
+															</tr>
+															<tr>
+																<td><span>整单折扣权%：</span></td>
+																<td><input v-model="staffinfo.wholeorderdiscountright" class="form-control" type="text" /></td>
+																<td><span>工时折扣权%：</span></td>
+																<td><input v-model="staffinfo.timediscountright" class="form-control" type="text" /></td>
+															</tr>
+															<tr>
+																<td><span>商品折扣权%：</span></td>
+																<td><input v-model="staffinfo.righttodiscount" class="form-control" type="text" /></td>
+																<td><span>减免权：</span></td>
+																<td><input v-model="staffinfo.rightofrelief" class="form-control" type="text" /></td>
+															</tr>
+														</table>
+													</form>
+												</div>
+
+											</div>
+											<div role="tabpanel" class="tab-pane" id="profile">
+
+												<table>
+													<tr>
+														<td>工作简历:</td>
+														<td><textarea v-model="staffinfo.jobresume"></textarea></td>
+
+													</tr>
+													<tr>
+														<td>教育经历:</td>
+														<td><textarea v-model="staffinfo.educationexperience"></textarea></td>
+
+													</tr>
+													<tr>
+														<td>家庭成员:</td>
+														<td><textarea v-model="staffinfo.memberoffamily"></textarea></td>
+
+													</tr>
+													<tr>
+														<td>奖惩记录:</td>
+														<td><textarea v-model="staffinfo.disciplinaryrecords"></textarea></td>
+
+													</tr>
+													<tr>
+														<td>聘用意见:</td>
+														<td><textarea v-model="staffinfo.employmentadvice"></textarea></td>
+													</tr>
+													<tr>
+														<td>就职情况：</td>
+														<td>
+
+															<select name="" v-model="staffinfo.isdimission" class="form-control" style="height: 2.6em;width: 10em;">
+																<option value="0">在职</option>
+																<option value="1">离职</option>
+															</select>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
 				</div>
-				<div id="departmentchoicediv">
-					<h2 id="departmentchoiceh2">部门选择</h2>
-					<button @click="departmentchoiceqwe()" id="departmentchoicemarksure" class="btn btn-default">
-						<span class="glyphicon glyphicon-ok"></span> 选择
-					</button>
-					<span @click="closedepartmentchoice()" id="departmentchoiceremove" class="glyphicon glyphicon-remove"></span>
-					<div>
-						<div id="departmentchoicecontentdiv">
-							<select style="width: 450px;">
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-02-18
+            	描述：离职登记
+            -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">离职登记</h4>
+						</div>
+						<div class="modal-body">
+							<div style="display: inline;">
+								<span style="position: relative;left: 10px;top: 23px;">员工姓名：</span>
+								<div style="position: relative;left: 84px;bottom: 6px;" class="input-group">
+									<input style="width: 155px;" type="text" readonly="readonly" name="staffname" class="form-control">
+									<span style="width: 155px;" class="input-group-btn">
+        								<button data-toggle="modal" data-target="#myModal1" class="btn btn-default" type="button">
+        									<span class="glyphicon glyphicon-triangle-bottom">		
+        									</span>
+									</button>
+									</span>
+								</div>
+								<span style="position: relative;left: 310px;bottom: 32px;">离职日期：</span>
+								<input style="width: 135px;position: relative;left: 384px;bottom: 60px;" class="form-control" name="dimissiondate" type="date" />
+							</div>
+							<div style="position: relative;bottom: 30px;">
+								<span style="margin-left: 10px;display: inline-block;">离职原因：</span>
+								<input style="display: inline-block;width: 437px;" class="form-control" name="dimissionreason" type="text">
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" @click="insertDimission()" data-dismiss="modal" class="btn btn-primary">确定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-02-18
+            	描述：员工查询
+          -->
+			<div id="yy" class="mo1 modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="border-bottom:0px">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">员工查询</h4>
+						</div>
+						<div class="modal-body">
+
+							<div class="row border-def" style="height: 44.5%;">
+								<div class="col-md-12" style=" overflow: auto;height: 100%;">
+									<div>
+										<!-- Tab panes -->
+										<div class="tab-content">
+
+											<div>
+												<form class="form-inline form-dinyi">
+													<table style="border-collapse:separate;border-spacing:5px;">
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">员工编号：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.staffno" style="width: 140px;" type="text">
+															</td>
+															<td>
+																<span style="margin-left: 20px;">员工姓名：</span>
+															</td>
+															<td>
+
+																<input class="form-control" v-model="employeeinfo.name" style="width: 140px;" type="text">
+															</td>
+															<td>
+																<span style="margin-left: 20px;">性别：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.sex" style="width: 100px;" type="text">
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">岗位：</span></td>
+															<td>
+																<select class="form-control" style="width: 120px;" name="postselect">
+																	<option postid=""></option>
+																	<option v-bind:postid="item.id" v-for="item in posts">{{item.postname}}</option>
+																</select>
+															</td>
+															<td>
+																<span style="margin-left: 20px;">所在部门：</span>
+															</td>									 
+															<td colspan="2">															
+																<div class="input-group">
+																	<input style="width: 155px;" type="text" v-model="employeeinfo.departmentid" name="departmentidanddepartmentname" class="form-control">
+																	<span style="width: 155px;" class="input-group-btn">
+        																<button data-toggle="modal" data-target="#myModal4" class="btn btn-default" type="button">
+        																<span class="glyphicon glyphicon-triangle-bottom">		
+        																</span>
+																	</button>
+																	</span>
+																</div>
+															</td>			 
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">身体状况：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.physicalcondition" style="width: 160px;" type="text">
+															</td>
+															<td>
+																<span style="margin-left: 20px;">身高：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.height" style="width: 100px;" type="text">
+															</td>
+															<td>
+																<span style="margin-left: 20px;">籍贯：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.nativeplace" type="text" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">民族：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.nation" type="text" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">婚姻状况：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.maritalstatus" type="text" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">学历：</span>
+															</td>
+															<td>
+																<input class="form-control" style="width: 120px;" v-model="employeeinfo.educationbackground" type="text" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">毕业学校：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.school" type="text" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">专业：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.major" type="text" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">专业资格：</span>
+															</td>
+															<td>
+																<input class="form-control" style="width: 120px;" v-model="employeeinfo.professionalqualification" type="text" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">生日：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.birthdaydate" type="date" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">学位：</span>
+															</td>
+															<td>
+																<input class="form-control" type="text" v-model="employeeinfo.degree" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">编制：</span>
+															</td>
+															<td>
+																<input class="form-control" type="text" v-model="employeeinfo.authorizedstrength" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">身份证号：</span>
+															</td>
+															<td>
+																<input class="form-control" class="form-control" v-model="employeeinfo.idcardno" type="text" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">入职日期 从：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.dateofentryone" type="date" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">至：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.dateofentrytwo" type="date" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">试用日期 从：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.thetrialdateone" type="date" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">至：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.thetrialdatetwo" type="date" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">属性：</span>
+															</td>
+															<td>
+																<input class="form-control" type="text" v-model="employeeinfo.property" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">合同开始 从：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.contractstartdateone" type="date" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">至：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.contractstartdatetwo" type="date" />
+															</td>
+														</tr>
+													</table>
+												</form>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭窗口</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="employeeinfomakesure()">提交新增</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-02-18
+            	描述：部门选择
+            -->
+			<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">部门选择</h4>
+						</div>
+						<div class="modal-body">
+							<select style="width: 568px;border-radius: 5px;">
 								<option>0000-成高</option>
 							</select>
 							<div style="overflow: scroll;">
@@ -669,162 +788,69 @@
 								</table>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div style="border: 0px solid red;margin-top: 20px;margin-left: 20px;">
-					<span>合计:<span>{{department.length}}</span>条记录</span>
-				</div>
-			</div>
-
-			<div id="employeescard">
-				<div id="employeescardlinediv">
-					<span id="employeescardspan">员工卡片</span>
-				</div>
-				<h2>员工卡片</h2>
-				<button id="savebtn" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> 保存</button>
-				<ul style="border: 1px solid red; display: inline;float: right; margin-right: 120px;margin-top: 20px;">
-					<li>
-						<span id="img" class="glyphicon glyphicon-print"></span>
-						<span id="font">打印</span>
-					</li>
-					<li>
-						<span id="img" class="glyphicon glyphicon-tower"></span>
-						<span id="font">实名认证</span>
-					</li>
-				</ul>
-				<span id="closespan" @click="closeemployeescard()" class="glyphicon glyphicon-remove"></span>
-				<div id="information">
-					<ul class="nav nav-tabs">
-						<li id="ifli" role="presentation" class="active">
-							<a @click="showif()" style="color: black;" href="#">基本资料</a>
-						</li>
-						<li id="elseli" role="presentation">
-							<a @click="showelse()" style="color: black;" href="#">其它信息</a>
-						</li>
-					</ul>
-					<br />
-					<br />
-					<div id="else">
-						<p style="margin-left: 60px;"><span>工作简历</span>
-							<textarea cols="55" v-model="staffinfo.jobresume" rows="5"></textarea>
-							<span>教育经历</span>
-							<textarea cols="55" v-model="staffinfo.educationexperience" rows="5"></textarea></p>
-						<p style="margin-top: 20px;margin-left: 60px;"><span>家庭成员</span>
-							<textarea cols="55" v-model="staffinfo.memberoffamily" rows="5"></textarea>
-							<span>奖惩记录</span>
-							<textarea cols="55" v-model="staffinfo.disciplinaryrecords" rows="5"></textarea></p>
-						<p style="margin-top: 20px;margin-left: 60px;"><span>聘用记录</span>
-							<textarea cols="55" v-model="staffinfo.employmentadvice" rows="5"></textarea>
-						</p>
-					</div>
-					<div id="info">
-						<p>
-							<span id="word">员工编号：</span><input v-model="staffinfo.staffno" type="text" />
-							<span id="word">员工姓名：</span><input v-model="staffinfo.name" type="text" />
-							<span id="word">性别：</span>
-							<select>
-								<option selected="selected" v-if="staffinfo.sex==item" v-for="item in sex">{{item}}</option>
-								<option v-else>{{item}}</option>
-							</select>
-						</p>
-						<p>
-							<span id="word">所在门店：</span><input value="0000  成高" type="text" />
-							<span id="word">所在部门：</span>
-							<input name="departmentname" v-model="staffinfo.departmentid+staffinfo.departmentname" type="text" />
-							<button @click="opendepartmentchoice()"><span class="caret"></span></button>
-						</p>
-						<p>
-							<span id="word">登陆账号：</span><input v-model="staffinfo.account" type="text" />
-							<span id="word">岗位：</span>
-							<select>
-								<option selected="selected" v-if="staffinfo.postid==item.id" v-for="item in posts">{{item.postname}}</option>
-								<option v-else>{{item.postname}}</option>
-							</select>
-							<span id="word">身体状况：</span><input v-model="staffinfo.physicalcondition" type="text" />
-						</p>
-						<p>
-							<span id="word">身高：</span><input v-model="staffinfo.height" type="text" />
-							<span id="word">籍贯：</span>
-							<select>
-								<option selected="selected" v-if="staffinfo.nativeplace==item" v-for="item in nativeplace">{{item}}</option>
-								<option v-else>{{item}}</option>
-							</select>
-							<span id="word">民族：</span>
-							<select>
-								<option selected="selected" v-if="staffinfo.nation==item" v-for="item in nation">{{item}}</option>
-								<option v-else>{{item}}</option>
-							</select>
-						</p>
-						<p>
-							<span id="word">婚姻状况：</span>
-							<select>
-								<option selected="selected" v-if="staffinfo.maritalstatus==item" v-for="item in maritalstatus">{{item}}</option>
-								<option v-else>{{item}}</option>
-							</select>
-							<span id="word">学历：</span>
-
-							<select>
-								<option selected="selected" v-if="staffinfo.educationbackground==item" v-for="item in educationbackground">{{item}}</option>
-								<option v-else>{{item}}</option>
-							</select>
-							<span id="word">毕业学校：</span><input v-model="staffinfo.school" type="text" />
-						</p>
-						<p>
-							<span id="word">专业：</span><input v-model="staffinfo.major" type="text" />
-							<span id="word">专业资格：</span>
-
-							<select>
-								<option selected="selected" v-if="staffinfo.professionalqualification==item" v-for="item in professionalqualification">{{item}}</option>
-								<option v-else>{{item}}</option>
-							</select>
-							<span id="word">属性：</span>
-
-							<select>
-								<option selected="selected" v-if="staffinfo.property==item" v-for="item in property">{{item}}</option>
-								<option v-else>{{item}}</option>
-							</select>
-							<span id="word">学位：</span><input v-model="staffinfo.degree" type="text" />
-						</p>
-						<p>
-							<span id="word">编制：</span><input v-model="staffinfo.authorizedstrength" type="text" />
-							<span id="word">身份证号：</span><input v-model="staffinfo.idcardno" type="text" />
-							<span id="word">户口地址：</span><input v-model="staffinfo.residence" type="text" />
-						</p>
-						<p>
-							<span id="word">现住地址：</span><input v-model="staffinfo.presentaddress" type="text" />
-							<span id="word">联系电话：</span><input v-model="staffinfo.contactnumber" type="text" />
-							<span id="word">手机：</span><input v-model="staffinfo.phone" type="text" />
-						</p>
-						<p>
-							<span id="word">Email：</span><input v-model="staffinfo.email" type="text" />
-							<span id="word">开户银行：</span><input v-model="staffinfo.depositbank" type="text" />
-							<span id="word">银行账号：</span><input v-model="staffinfo.bankaccount" type="text" />
-						</p>
-						<p>
-							<span id="word">紧急联系人：</span><input v-model="staffinfo.emergencycontact" type="text" />
-							<span id="word">联系电话：</span><input v-model="staffinfo.emergencyphone" type="text" />
-						</p>
-						<p>
-							<span id="word">入职日期：</span><input v-model="staffinfo.dateonboard" type="date" />
-							<span id="word">试用到期：</span><input v-model="staffinfo.thetrialdue" type="date" />
-							<span id="word">出生日期：</span><input v-model="staffinfo.birthdaydate" type="date" />
-							<span id="word">合同开始：</span><input v-model="staffinfo.contractstart" type="date" />
-						</p>
-						<p>
-							<span id="word">合同结束：</span><input v-model="staffinfo.agreementends" type="date" />
-							<span id="word">卡自编号：</span><input v-model="staffinfo.cardnumber" type="text" />
-							<span id="word">卡内部号：</span><input v-model="staffinfo.internalcardno" type="text" />
-							<span id="word">推荐人：</span><input v-model="staffinfo.referrer" type="text" />
-						</p>
-						<p>
-							<span id="word">整单折扣权%：</span><input v-model="staffinfo.wholeorderdiscountright" type="text" />
-							<span id="word">工时折扣权%：</span><input v-model="staffinfo.timediscountright" type="text" />
-							<span id="word">商品折扣权%：</span><input v-model="staffinfo.righttodiscount" type="text" />
-							<span id="word">减免权：</span><input v-model="staffinfo.rightofrelief" type="text" />
-						</p>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button @click="checkDepartment()" data-dismiss="modal" type="button" class="btn btn-primary">确定</button>
+						</div>
 					</div>
 				</div>
 			</div>
+
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-02-18
+            	描述：选择员工
+            -->
+			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">选择员工</h4>
+						</div>
+						<div class="modal-body">
+							<div>
+								<select style="width: 565px;border-radius: 5px;margin-bottom: 5px;">
+									<option>0000-成高</option>
+								</select>
+								<select @change="updatecondition($event)" style="width: 565px;border-radius: 5px;margin-bottom: 10px;">
+									<option did="">所有</option>
+									<option v-bind:did="item.id" v-for="item in department">{{item.departmentname}}</option>
+								</select>
+								<div style="overflow: scroll;">
+									<table class="table table-bordered">
+										<thead>
+											<tr style="background-color: deepskyblue;">
+												<tr>
+													<td></td>
+													<td>部门名称</td>
+													<td>工号</td>
+													<td>姓名</td>
+												</tr>
+											</tr>
+										</thead>
+										<tbody>
+											<tr @dblclick="staffcheck(item)" @click="staffshift(item)" v-for="item in staff">
+												<td style="width: 40px;">
+													<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+												</td>
+												<td>{{item.departmentname}}</td>
+												<td>{{item.staffno}}</td>
+												<td>{{item.name}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" @click="checkStaff()" data-dismiss="modal" class="btn btn-primary">确定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 
 		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
@@ -928,19 +954,18 @@
 			}
 			//根据条件查询离职员工信息
 			function queryDimissionInfoByCondition() {
-				var postid=$("[name=postselect]").find("option:selected").attr("postid");
-				vm.employeeinfo.postid=postid;
-				var arr=vm.employeeinfo.departmentid.split(" ");
-				vm.employeeinfo.departmentid=arr[0];
-				var staff=JSON.stringify(vm.employeeinfo);
-				//console.log(staff);
-			 
+				var postid = $("[name=postselect]").find("option:selected").attr("postid");
+				vm.employeeinfo.postid = postid;
+				var arr = vm.employeeinfo.departmentid.split(" ");
+				vm.employeeinfo.departmentid = arr[0];
+				var staff = JSON.stringify(vm.employeeinfo);
+
 				$.ajax({
 					url: "http://localhost:8080/exitRegistration/queryDimissionInfoByCondition",
-					data:staff,
+					data: staff,
 					type: "post",
 					dataType: "json",
-					contentType:"application/json;charset=utf-8",
+					contentType: "application/json;charset=utf-8",
 					xhrFields: {
 						withCredentials: true
 					},
@@ -952,19 +977,21 @@
 						console.log(error);
 					}
 				});
-			}	
+			}
 			//根据编号或姓名查询离职员工信息
-			function selectDimissionInfoByStaffNoOrName(condition) {		 
+			function selectDimissionInfoByStaffNoOrName(condition) {
 				$.ajax({
 					url: "http://localhost:8080/exitRegistration/selectDimissionInfoByStaffNoOrName",
-					data:{condition:condition},
+					data: {
+						condition: condition
+					},
 					type: "post",
-					dataType: "json",		
+					dataType: "json",
 					xhrFields: {
 						withCredentials: true
 					},
 					success: function(response) {
-						vm.data = response;				
+						vm.data = response;
 					},
 					error: function(error) {
 						console.log(error);
@@ -986,9 +1013,8 @@
 						withCredentials: true
 					},
 					success: function(response) {
-						//console.log(response);
 						queryDimission();
-						queryCountFromDimission();
+
 					},
 					error: function(error) {
 						console.log(error);
@@ -1010,12 +1036,40 @@
 					success: function(response) {
 						//console.log(response);
 						queryDimission();
-						queryCountFromDimission();
+
 					},
 					error: function(error) {
 						console.log(error);
 					}
 				});
+			}
+			//导出数据
+			function exportExcel() {
+				var condition = $("[name=condition]").val();
+				if(condition != null && condition != "") {
+					vm.employeeinfo.name = condition;
+					vm.employeeinfo.check = true;
+				} else {
+					vm.employeeinfo.check = false;
+				}
+				var staff = JSON.stringify(vm.employeeinfo);
+				console.log(staff);
+				var form = document.createElement("form");
+				form.style.display = 'none';
+				form.action = "http://localhost:8080/excel/dimissionExportExcel";
+				form.method = "post";
+				document.body.appendChild(form);
+				for(var key in vm.employeeinfo) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = key;
+					input.value = vm.employeeinfo[key];
+					form.appendChild(input);
+				}
+				form.submit();
+				form.remove();
+				vm.employeeinfo.name = "";
+				vm.employeeinfo.check = "";
 			}
 			var vm = new Vue({
 				el: ".container-fluid",
@@ -1032,25 +1086,97 @@
 						maritalstatus: ["未婚", "已婚"],
 						educationbackground: ["大专", "本科", "硕士", "博士"],
 						professionalqualification: ["初级工程师", "中级工程师", "高级工程师"],
-						property: ["记考勤计薪", "不计考勤计薪", "记考勤不记薪", "不计考勤不记薪"],		 
-						employeeinfo:{"staffno":"","name":"","sex":"","postid":"","departmentid":""
-						,"physicalcondition":"","height":"","nativeplace":"","nation":"","maritalstatus":""
-						,"educationbackground":"","school":"","major":"","professionalqualification":""
-						,"birthdaydate":"","degree":"","authorizedstrength":"","idcardno":"","dateofentryone":""
-						,"dateofentrytwo":"","contractstartdateone":"","contractstartdatetwo":"","property":""
-						,"thetrialdateone":"","thetrialdatetwo":""}
+						property: ["记考勤计薪", "不计考勤计薪", "记考勤不记薪", "不计考勤不记薪"],
+						employeeinfo: {
+							"staffno": "",
+							"name": "",
+							"sex": "",
+							"postid": "",
+							"departmentid": "",
+							"physicalcondition": "",
+							"height": "",
+							"nativeplace": "",
+							"nation": "",
+							"maritalstatus": "",
+							"educationbackground": "",
+							"school": "",
+							"major": "",
+							"professionalqualification": "",
+							"birthdaydate": "",
+							"degree": "",
+							"authorizedstrength": "",
+							"idcardno": "",
+							"dateofentryone": "",
+							"dateofentrytwo": "",
+							"contractstartdateone": "",
+							"contractstartdatetwo": "",
+							"property": "",
+							"thetrialdateone": "",
+							"thetrialdatetwo": ""
+						}
 					}
-					
+
 				},
-				created: function() {				 
+				created: function() {
 					queryDimission();
+					query("");
+					selectAllDepartment();
+					selectAllPost();
 				},
 				methods: {
-					selectdata:function(){
-						var condition=$("[name=condition]").val();
+					//选择部门
+					checkDepartment: function() {
+						for(var i = 0; i < vm.department.length; i++) {
+							if(vm.department[i].check == true) {
+								vm.employeeinfo.departmentid = vm.department[i].id + " " + vm.department[i].departmentname;
+								vm.staffinfo.departmentname = vm.department[i].departmentname;
+								vm.staffinfo.departmentid = vm.department[i].id;
+							}
+						}
+					},
+					//打开离职登记
+					openDimission: function() {
+						$("[name=staffname]").val("");
+						$("[name=dimissiondate]").val("");
+						$("[name=dimissionreason]").val("");
+					},
+					//添加离职信息
+					insertDimission: function() {
+						var staffname = $("[name=staffname]").val();
+						var dimissiondate = $("[name=dimissiondate]").val();
+						var dimissionreason = $("[name=dimissionreason]").val();
+						console.log(staffname);
+						console.log(dimissiondate);
+						console.log(dimissionreason);
+						if(staffname == "" || staffname == "" || staffname == " ") {
+							alert("请填写离职员工姓名！");
+							return;
+						}
+						if(dimissiondate == "" || dimissiondate == "" || dimissiondate == " ") {
+							alert("请填写离职日期！");
+							return;
+						}
+						if(dimissionreason == "" || dimissionreason == "" || dimissionreason == " ") {
+							alert("请填写离职原因！");
+							return;
+						}
+						addDimission(staffname, dimissiondate, dimissionreason);
+					},
+					//选中员工
+					checkStaff: function() {
+						var that = this;
+						for(var i = 0; i < that.staff.length; i++) {
+							if(that.staff[i].check == true) {
+								$("[name=staffname]").val(that.staff[i].staffno + "  " + that.staff[i].name);
+							}
+						}
+					},
+					selectdata: function() {
+						var condition = $("[name=condition]").val();
 						selectDimissionInfoByStaffNoOrName(condition);
 					},
-					employeeinfomakesure:function(){
+					//根据条件查询员工
+					employeeinfomakesure: function() {
 						queryDimissionInfoByCondition();
 						$("#staffquery").removeClass("show");
 					},
@@ -1058,7 +1184,7 @@
 						var departmentname = event.target.value;
 						if(departmentname == "所有") {
 							departmentname = "";
-						}	 
+						}
 						query(departmentname);
 					},
 					makesureadddimission: function() {
@@ -1107,7 +1233,7 @@
 						}
 						item.check = true;
 					},
-					opendepartmentchoice: function() {				 
+					opendepartmentchoice: function() {
 						selectAllDepartment();
 						$("#departmentchoice").addClass("show");
 					},
@@ -1119,19 +1245,19 @@
 						vm.staffinfo.departmentid = item.id;
 						for(var i = 0; i < vm.department.length; i++) {
 							if(vm.department[i].check == true) {
-								vm.employeeinfo.departmentid=vm.department[i].id+" "+vm.department[i].departmentname;
+								vm.employeeinfo.departmentid = vm.department[i].id + " " + vm.department[i].departmentname;
 							}
-						}					 
+						}
 						$("#departmentchoice").removeClass("show");
 					},
 					departmentchoiceqwe: function() {
 						for(var i = 0; i < vm.department.length; i++) {
 							if(vm.department[i].check == true) {
-								vm.employeeinfo.departmentid=vm.department[i].id+" "+vm.department[i].departmentname;
+								vm.employeeinfo.departmentid = vm.department[i].id + " " + vm.department[i].departmentname;
 								vm.staffinfo.departmentname = vm.department[i].departmentname;
-								vm.staffinfo.departmentid = vm.department[i].id;	
+								vm.staffinfo.departmentid = vm.department[i].id;
 							}
-						}	 				 
+						}
 						$("#departmentchoice").removeClass("show");
 					},
 					departmentshift: function(item) {
@@ -1151,14 +1277,40 @@
 							}
 						}
 					},
+					//导出数据
+					exportExcel: function() {
+						exportExcel();
+					},
+					//打开员工查询
 					openstaffquery: function() {
 						selectAllPost();
-						vm.employeeinfo={"staffno":"","name":"","sex":"","postid":"","departmentid":""
-						,"physicalcondition":"","height":"","nativeplace":"","nation":"","maritalstatus":""
-						,"educationbackground":"","school":"","major":"","professionalqualification":""
-						,"birthdaydate":"","degree":"","authorizedstrength":"","idcardno":"","dateofentryone":""
-						,"dateofentrytwo":"","contractstartdateone":"","contractstartdatetwo":"","property":""
-						,"thetrialdateone":"","thetrialdatetwo":""};
+						vm.employeeinfo = {
+							"staffno": "",
+							"name": "",
+							"sex": "",
+							"postid": "",
+							"departmentid": "",
+							"physicalcondition": "",
+							"height": "",
+							"nativeplace": "",
+							"nation": "",
+							"maritalstatus": "",
+							"educationbackground": "",
+							"school": "",
+							"major": "",
+							"professionalqualification": "",
+							"birthdaydate": "",
+							"degree": "",
+							"authorizedstrength": "",
+							"idcardno": "",
+							"dateofentryone": "",
+							"dateofentrytwo": "",
+							"contractstartdateone": "",
+							"contractstartdatetwo": "",
+							"property": "",
+							"thetrialdateone": "",
+							"thetrialdatetwo": ""
+						};
 						$("#staffquery").addClass("show");
 					},
 					closestaffquery: function() {
@@ -1188,10 +1340,10 @@
 						}
 						//console.log(that.staffinfo);
 						selectAllPost();
-						$("#employeescard").addClass("show");
+
 					},
 					closeemployeescard: function() {
-						vm.employeeinfo=[];
+						vm.employeeinfo = [];
 						$("#employeescard").removeClass("show");
 					},
 					openexitregistration: function() {
@@ -1217,8 +1369,7 @@
 					openselectemployee: function() {
 						$("#selectemployee").addClass("show");
 						$("#selectemployee").addClass("qwe");
-						query("");
-						selectAllDepartment();
+
 					},
 					closeselectemployee: function() {
 						$("#selectemployee").removeClass("show");

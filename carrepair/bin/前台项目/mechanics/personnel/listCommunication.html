@@ -114,6 +114,7 @@
 				margin-left: 21px;
 				background-color: wheat;
 			}
+			
 			#departmentchoice {
 				border: 1px solid green;
 				position: absolute;
@@ -173,93 +174,223 @@
 	<body>
 		<div class="container-fluid">
 
-			<div id="staffquery">
-				<div id="staffquerylinediv">
-					<span id="staffqueryspan">员工查询</span>
-				</div>
-				<div id="staffquerybodydiv">
-					<h2 id="staffqueryh2">员工查询</h2>
-					<button @click="employeeinfomakesure()" id="staffquerymarksure" class="btn btn-default">
-						<span class="glyphicon glyphicon-ok"></span> 确定
-					</button>
-					<span id="staffqueryfork" @click="closestaffquery()" class="glyphicon glyphicon-remove"></span>
-					<div id="staffquerycontent">
-						<p style="padding-top: 10px;">
-							<span style="margin-left: 10px;">员工编号：</span>
-							<input v-model="employeeinfo.staffno" style="width: 140px;" type="text">
-							<span style="margin-left: 20px;">员工姓名：</span>
-							<input v-model="employeeinfo.name" style="width: 140px;" type="text">
-							<span style="margin-left: 20px;">性别：</span>
-							<input v-model="employeeinfo.sex" style="width: 100px;" type="text">
-						</p>
-						<p>
-							<span style="margin-left: 10px;">岗位：</span>
-							<select name="postselect">
-								<option postid=""></option>
-								<option v-bind:postid="item.id" v-for="item in posts">{{item.postname}}</option>
-							</select>
-							<span style="margin-left: 20px;">所在部门：</span>
-							<input name="departmentidanddepartmentname" v-model="employeeinfo.departmentid" type="text" />
-							<button @click="opendepartmentchoice()"><span class="caret"></span></button>
-						</p>
-						<p>
-							<span style="margin-left: 10px;">身体状况：</span>
-							<input v-model="employeeinfo.physicalcondition" style="width: 160px;" type="text">
-							<span style="margin-left: 20px;">身高：</span>
-							<input v-model="employeeinfo.height" style="width: 100px;" type="text">
-							<span style="margin-left: 20px;">籍贯：</span>
-							<input v-model="employeeinfo.nativeplace" type="text" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">民族：</span>
-							<input v-model="employeeinfo.nation" type="text" />
-							<span style="margin-left: 20px;">婚姻状况：</span>
-							<input v-model="employeeinfo.maritalstatus" type="text" />
-							<span style="margin-left: 20px;">学历：</span>
-							<input style="width: 120px;" v-model="employeeinfo.educationbackground" type="text" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">毕业学校：</span>
-							<input v-model="employeeinfo.school" type="text" />
-							<span style="margin-left: 20px;">专业：</span>
-							<input v-model="employeeinfo.major" type="text" />
-							<span style="margin-left: 20px;">专业资格：</span>
-							<input style="width: 120px;" v-model="employeeinfo.professionalqualification" type="text" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">生日：</span>
-							<input v-model="employeeinfo.birthdaydate" type="date" />
-							<span style="margin-left: 20px;">学位：</span>
-							<input type="text" v-model="employeeinfo.degree" />
-							<span style="margin-left: 20px;">编制：</span>
-							<input type="text" v-model="employeeinfo.authorizedstrength" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">身份证号：</span>
-							<input v-model="employeeinfo.idcardno" type="text" />
-							<span style="margin-left: 20px;">入职日期 从：</span>
-							<input v-model="employeeinfo.dateofentryone" type="date" />
-							<span style="margin-left: 20px;">至：</span>
-							<input v-model="employeeinfo.dateofentrytwo" type="date" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">试用日期 从：</span>
-							<input v-model="employeeinfo.thetrialdateone" type="date" />
-							<span style="margin-left: 20px;">至：</span>
-							<input v-model="employeeinfo.thetrialdatetwo" type="date" />
-							<span style="margin-left: 20px;">属性：</span>
-							<input type="text" v-model="employeeinfo.property" />
-						</p>
-						<p>
-							<span style="margin-left: 10px;">合同开始 从：</span>
-							<input v-model="employeeinfo.contractstartdateone" type="date" />
-							<span style="margin-left: 20px;">至：</span>
-							<input v-model="employeeinfo.contractstartdatetwo" type="date" />
-						</p>
+			<!--
+            	作者：1424432629@qq.com
+            	时间：2020-02-18
+            	描述：员工查询
+          -->
+			<div id="yy" class="mo1 modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="border-bottom:0px">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">员工查询</h4>
+						</div>
+						<div class="modal-body">
+
+							<div class="row border-def" style="height: 44.5%;">
+								<div class="col-md-12" style=" overflow: auto;height: 100%;">
+									<div>
+										<!-- Tab panes -->
+										<div class="tab-content">
+
+											<div>
+												<form class="form-inline form-dinyi">
+													<table style="border-collapse:separate;border-spacing:5px;">
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">员工编号：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.staffno" style="width: 140px;" type="text">
+															</td>
+															<td>
+																<span style="margin-left: 20px;">员工姓名：</span>
+															</td>
+															<td>
+
+																<input class="form-control" v-model="employeeinfo.name" style="width: 140px;" type="text">
+															</td>
+															<td>
+																<span style="margin-left: 20px;">性别：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.sex" style="width: 100px;" type="text">
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">岗位：</span></td>
+															<td>
+																<select class="form-control" style="width: 120px;" name="postselect">
+																	<option postid=""></option>
+																	<option v-bind:postid="item.id" v-for="item in posts">{{item.postname}}</option>
+																</select>
+															</td>
+															<td>
+																<span style="margin-left: 20px;">所在部门：</span></td>
+															<td>
+																<input class="form-control" name="departmentidanddepartmentname" v-model="employeeinfo.departmentid" type="text" />
+															</td>
+															<td>
+																<button data-toggle="modal" data-target="#myModal3" class="btn btn-default"><span class="caret"></span></button>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">身体状况：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.physicalcondition" style="width: 160px;" type="text">
+															</td>
+															<td>
+																<span style="margin-left: 20px;">身高：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.height" style="width: 100px;" type="text">
+															</td>
+															<td>
+																<span style="margin-left: 20px;">籍贯：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.nativeplace" type="text" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">民族：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.nation" type="text" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">婚姻状况：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.maritalstatus" type="text" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">学历：</span>
+															</td>
+															<td>
+																<input class="form-control" style="width: 120px;" v-model="employeeinfo.educationbackground" type="text" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">毕业学校：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.school" type="text" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">专业：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.major" type="text" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">专业资格：</span>
+															</td>
+															<td>
+																<input class="form-control" style="width: 120px;" v-model="employeeinfo.professionalqualification" type="text" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">生日：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.birthdaydate" type="date" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">学位：</span>
+															</td>
+															<td>
+																<input class="form-control" type="text" v-model="employeeinfo.degree" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">编制：</span>
+															</td>
+															<td>
+																<input class="form-control" type="text" v-model="employeeinfo.authorizedstrength" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">身份证号：</span>
+															</td>
+															<td>
+																<input class="form-control" class="form-control" v-model="employeeinfo.idcardno" type="text" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">入职日期 从：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.dateofentryone" type="date" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">至：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.dateofentrytwo" type="date" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">试用日期 从：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.thetrialdateone" type="date" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">至：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.thetrialdatetwo" type="date" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">属性：</span>
+															</td>
+															<td>
+																<input class="form-control" type="text" v-model="employeeinfo.property" />
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span style="margin-left: 10px;">合同开始 从：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.contractstartdateone" type="date" />
+															</td>
+															<td>
+																<span style="margin-left: 20px;">至：</span>
+															</td>
+															<td>
+																<input class="form-control" v-model="employeeinfo.contractstartdatetwo" type="date" />
+															</td>
+														</tr>
+													</table>
+												</form>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭窗口</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="employeeinfomakesure()">提交新增</button>
+								</div>
+							</div>
+
+						</div>
 					</div>
 				</div>
 			</div>
-			
+
 			<div id="departmentchoice">
 				<div id="departmentchoicelinediv">
 					<span id="departmentchoicespan">部门定义</span>
@@ -324,11 +455,11 @@
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-list-alt"></span>
-							<span @click="openstaffquery()" id="font">查询</span>
+							<span data-toggle="modal" data-target="#yy" @click="openstaffquery()" id="font">查询</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-share"></span>
-							<span id="font">导出</span>
+							<span @click="exportExcel()" id="font">导出</span>
 						</li>
 					</ul>
 				</div>
@@ -383,7 +514,6 @@
 					},
 					success: function(response) {
 						vm.data = response;
-						
 					},
 					error: function(error) {
 						console.log(error);
@@ -408,12 +538,14 @@
 				});
 			}
 			//根据编号或姓名查询员工通讯名录信息
-			function selectStaffPhoneByStaffNoOrName(condition) {		 
+			function selectStaffPhoneByStaffNoOrName(condition) {
 				$.ajax({
 					url: "http://localhost:8080/listCommunication/selectStaffPhoneByStaffNoOrName",
-					data:{condition:condition},
+					data: {
+						condition: condition
+					},
 					type: "post",
-					dataType: "json",		
+					dataType: "json",
 					xhrFields: {
 						withCredentials: true
 					},
@@ -446,17 +578,17 @@
 			}
 			//根据条件查询员工通讯名录信息
 			function selectStaffPhoneByCondition() {
-				var postid=$("[name=postselect]").find("option:selected").attr("postid");
-				vm.employeeinfo.postid=postid;
-				var arr=vm.employeeinfo.departmentid.split(" ");
-				vm.employeeinfo.departmentid=arr[0];
-				var staff=JSON.stringify(vm.employeeinfo);
+				var postid = $("[name=postselect]").find("option:selected").attr("postid");
+				vm.employeeinfo.postid = postid;
+				var arr = vm.employeeinfo.departmentid.split(" ");
+				vm.employeeinfo.departmentid = arr[0];
+				var staff = JSON.stringify(vm.employeeinfo);
 				$.ajax({
 					url: "http://localhost:8080/listCommunication/selectStaffPhoneByCondition",
-					data:staff,
+					data: staff,
 					type: "post",
 					dataType: "json",
-					contentType:"application/json;charset=utf-8",
+					contentType: "application/json;charset=utf-8",
 					xhrFields: {
 						withCredentials: true
 					},
@@ -469,35 +601,85 @@
 					}
 				});
 			}
+			//导出数据
+			function exportExcel() {
+				var condition = $("[name=condition]").val();
+				if(condition != null && condition != "") {
+					vm.employeeinfo.name = condition;
+					vm.employeeinfo.check = true;
+				} else {
+					vm.employeeinfo.check = false;
+				}
+				var staff = JSON.stringify(vm.employeeinfo);
+				console.log(staff);
+				 
+				var form = document.createElement("form");
+				form.style.display = 'none';
+				form.action = "http://localhost:8080/excel/staffExportExcel";
+				form.method = "post";
+				document.body.appendChild(form);
+				for(var key in vm.employeeinfo) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = key;
+					input.value = vm.employeeinfo[key];
+					form.appendChild(input);
+				}
+				form.submit();
+				form.remove();
+				vm.employeeinfo.name=""; 
+				vm.employeeinfo.check="";
+			}
 			var vm = new Vue({
 				el: ".container-fluid",
 				data() {
 					return {
-						data:{},
-						employeeinfo:{"staffno":"","name":"","sex":"","postid":"","departmentid":""
-						,"physicalcondition":"","height":"","nativeplace":"","nation":"","maritalstatus":""
-						,"educationbackground":"","school":"","major":"","professionalqualification":""
-						,"birthdaydate":"","degree":"","authorizedstrength":"","idcardno":"","dateofentryone":""
-						,"dateofentrytwo":"","contractstartdateone":"","contractstartdatetwo":"","property":""
-						,"thetrialdateone":"","thetrialdatetwo":""},
+						data: {},
+						employeeinfo: {
+							"staffno": "",
+							"name": "",
+							"sex": "",
+							"postid": "",
+							"departmentid": "",
+							"physicalcondition": "",
+							"height": "",
+							"nativeplace": "",
+							"nation": "",
+							"maritalstatus": "",
+							"educationbackground": "",
+							"school": "",
+							"major": "",
+							"professionalqualification": "",
+							"birthdaydate": "",
+							"degree": "",
+							"authorizedstrength": "",
+							"idcardno": "",
+							"dateofentryone": "",
+							"dateofentrytwo": "",
+							"contractstartdateone": "",
+							"contractstartdatetwo": "",
+							"property": "",
+							"thetrialdateone": "",
+							"thetrialdatetwo": ""
+						},
 						posts: {},
 						department: []
 					}
 				},
-				created: function() {				 
+				created: function() {
 					selectStaffPhone();
 				},
 				methods: {
-					opendepartmentchoice: function() {				 
+					opendepartmentchoice: function() {
 						selectAllDepartment();
 						$("#departmentchoice").addClass("show");
 					},
 					departmentchoiceqwe: function() {
 						for(var i = 0; i < vm.department.length; i++) {
 							if(vm.department[i].check == true) {
-								vm.employeeinfo.departmentid=vm.department[i].id+" "+vm.department[i].departmentname;	
+								vm.employeeinfo.departmentid = vm.department[i].id + " " + vm.department[i].departmentname;
 							}
-						}	 				 
+						}
 						$("#departmentchoice").removeClass("show");
 					},
 					closedepartmentchoice: function() {
@@ -506,9 +688,9 @@
 					departmentcheck: function(item) {
 						for(var i = 0; i < vm.department.length; i++) {
 							if(vm.department[i].check == true) {
-								vm.employeeinfo.departmentid=vm.department[i].id+" "+vm.department[i].departmentname;
+								vm.employeeinfo.departmentid = vm.department[i].id + " " + vm.department[i].departmentname;
 							}
-						}					 
+						}
 						$("#departmentchoice").removeClass("show");
 					},
 					departmentshift: function(item) {
@@ -518,13 +700,42 @@
 						}
 						item.check = true;
 					},
-					employeeinfomakesure:function(){
+					//员工查询
+					employeeinfomakesure: function() {
 						selectStaffPhoneByCondition();
 						$("#staffquery").removeClass("show");
 					},
-					selectdata:function(){
-						var condition=$("[name=condition]").val();
+					//搜索员工信息
+					selectdata: function() {
+						var condition = $("[name=condition]").val();
 						console.log(condition);
+						this.employeeinfo = {
+							"staffno": "",
+							"name": "",
+							"sex": "",
+							"postid": "",
+							"departmentid": "",
+							"physicalcondition": "",
+							"height": "",
+							"nativeplace": "",
+							"nation": "",
+							"maritalstatus": "",
+							"educationbackground": "",
+							"school": "",
+							"major": "",
+							"professionalqualification": "",
+							"birthdaydate": "",
+							"degree": "",
+							"authorizedstrength": "",
+							"idcardno": "",
+							"dateofentryone": "",
+							"dateofentrytwo": "",
+							"contractstartdateone": "",
+							"contractstartdatetwo": "",
+							"property": "",
+							"thetrialdateone": "",
+							"thetrialdatetwo": ""
+						};
 						selectStaffPhoneByStaffNoOrName(condition);
 					},
 					datashift: function(item) {
@@ -534,15 +745,40 @@
 						}
 						item.check = true;
 					},
+					//导出数据
+					exportExcel: function() {
+						exportExcel();
+					},
 					openstaffquery: function() {
 						selectAllPost();
-						vm.employeeinfo={"staffno":"","name":"","sex":"","postid":"","departmentid":""
-						,"physicalcondition":"","height":"","nativeplace":"","nation":"","maritalstatus":""
-						,"educationbackground":"","school":"","major":"","professionalqualification":""
-						,"birthdaydate":"","degree":"","authorizedstrength":"","idcardno":"","dateofentryone":""
-						,"dateofentrytwo":"","contractstartdateone":"","contractstartdatetwo":"","property":""
-						,"thetrialdateone":"","thetrialdatetwo":""};
-						$("#staffquery").addClass("show");
+						vm.employeeinfo = {
+							"staffno": "",
+							"name": "",
+							"sex": "",
+							"postid": "",
+							"departmentid": "",
+							"physicalcondition": "",
+							"height": "",
+							"nativeplace": "",
+							"nation": "",
+							"maritalstatus": "",
+							"educationbackground": "",
+							"school": "",
+							"major": "",
+							"professionalqualification": "",
+							"birthdaydate": "",
+							"degree": "",
+							"authorizedstrength": "",
+							"idcardno": "",
+							"dateofentryone": "",
+							"dateofentrytwo": "",
+							"contractstartdateone": "",
+							"contractstartdatetwo": "",
+							"property": "",
+							"thetrialdateone": "",
+							"thetrialdatetwo": ""
+						};
+						 
 					},
 					closestaffquery: function() {
 						$("#staffquery").removeClass("show");

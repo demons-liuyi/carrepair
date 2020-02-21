@@ -12,14 +12,14 @@
 			#header {
 				width: auto;
 				height: 70px;
-				border: 1px solid red;
+				border: 0px solid red;
 				background-color: aliceblue;
 			}
 			
 			#buttondiv {
 				width: auto;
 				height: 50px;
-				border: 1px solid red;
+				border: 0px solid red;
 				background-color: whitesmoke;
 			}
 			
@@ -73,7 +73,7 @@
 			
 			#exitregistration {
 				display: none;
-				border: 1px solid green;
+				border: 0px solid green;
 				position: absolute;
 				left: 450px;
 				top: 150px;
@@ -106,7 +106,7 @@
 			}
 			
 			#employeescard {
-				border: 1px solid red;
+				border: 0px solid red;
 				width: 1200px;
 				height: 665px;
 				position: absolute;
@@ -195,7 +195,7 @@
 			}
 			
 			#selectemployee {
-				border: 1px solid green;
+				border: 0px solid green;
 				position: absolute;
 				left: 570px;
 				top: 100px;
@@ -225,7 +225,7 @@
 			}
 			
 			#selectemployeecontentdiv {
-				border: 1px solid deepskyblue;
+				border: 0px solid deepskyblue;
 				width: 450px;
 				height: 450px;
 				margin-left: 20px;
@@ -258,7 +258,7 @@
 			
 			#staffquery {
 				display: none;
-				border: 1px solid green;
+				border: 0px solid green;
 				position: absolute;
 				left: 450px;
 				top: 150px;
@@ -311,7 +311,7 @@
 				color: white;
 				width: 700px;
 				height: 600px;
-				border: 1px solid red;
+				border: 0px solid red;
 				position: absolute;
 				left: 400px;
 				top: 120px;
@@ -353,22 +353,22 @@
 			}
 			
 			#permissioncopycontent {
-				width: 650px;
-				height: 485px;
+				width: 525px;
+				height: 355px;
 				margin-left: 22px;
-				border: 1px solid red;
+				border: 0px solid red;
 				background-color: white;
 			}
 			
 			#permissioncopyblue {
 				height: 40px;
-				width: 650px;
+				width: 525px;
 				background-color: dodgerblue;
 			}
 			
 			#permissioncopyfunction {
 				height: 50px;
-				width: 650px;
+				width: 525px;
 				background-color: wheat;
 			}
 			
@@ -475,16 +475,18 @@
             	作者：1424432629@qq.com
             	时间：2020-01-04
             	描述：角色定义           	
-           -->
-			<div id="permissioncopy">
-				<div id="permissioncopylinediv">
-					<span id="selectemployeespan">角色定义</span>
-				</div>
-				<h2 id="permissioncopyh2">角色定义</h2>
-				<span @click="closepermissioncopy()" id="permissioncopyremove" class="glyphicon glyphicon-remove"></span>
-				<div id="permissioncopycontent">
+          -->		
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">角色定义</h4>
+						</div>
+						<div class="modal-body">
+							<div id="permissioncopycontent">
 					<div id="permissioncopyfunction">
-						<ul style="padding-top: 10px;padding-left:350px;color: black;">
+						<ul style="padding-top: 10px;padding-left:270px;color: black;">
 							<li>
 								<span id="img" class="glyphicon glyphicon-plus"></span>
 								<span id="font">增加</span>
@@ -524,8 +526,20 @@
 							<td>员工编号</td>	 
 						</tbody>
 					</table>
+					<span style="color: red;margin-left: 21px;">合计：{{post.length}}条记录</span>
 				</div>
+
 				<span style="color: red;">合计：条记录</span>
+
+				 
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary">确定</button>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
 			<!--
@@ -592,17 +606,22 @@
 				</div>
 				<div id="rightbuttondiv">
 					<ul id="ul">
-						<li>
+						<!--<li>
 							<span id="img" class="glyphicon glyphicon-floppy-saved"></span>
 							<span id="font">全部选择</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-floppy-remove"></span>
+
 							<span @click="openstaffquery()" id="font">全部取消</span>
 						</li>
+
+							<span @click="cancelAll()" id="font">全部取消</span>
+						</li>-->
+
 						<li>
 							<span id="img" class="glyphicon glyphicon-tower"></span>
-							<span @click="openpermissioncopy()" id="font">角色定义</span>
+							<span  data-toggle="modal" data-target="#myModal" @click="openpermissioncopy()" id="font">角色定义</span>
 						</li>
 					</ul>
 				</div>
@@ -612,15 +631,25 @@
 					<li>
 						<span id="font">模块权限</span>
 					</li>
+
 					<li>
 						<span id="font">单据权限</span>
+
+					<!--<li>
+						<span @click="danjuClick()" id="font">单据权限</span>
+
 					</li>
 					<li>
 						<span id="font">数据权限</span>
 					</li>
 					<li>
+
 						<span id="font">仓库开单</span>
 					</li>
+
+						<span @click="cangkuClick()" id="font">仓库开单</span>
+					</li>-->
+>>>>>>> refs/heads/liuyi
 				</ul>
 			</div>
 			<ptree name="tree" :model="perms"></ptree>
@@ -634,8 +663,58 @@
 		<script>
 			function selectAllPostInfo(){
 				$.ajax({
-					url: "http://localhost:8080/rolePermissionSettings/selectAllPostInfo",
-					 
+					url: "http://localhost:8080/rolePermissionSettings/selectAllPostInfo",				
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.post = response;
+						console.log(vm.post);
+						for(var i = 0; i < vm.post.length; i++) {
+							if(vm.post[i].check == true) {
+								$("[name=postId]").val(vm.post[i].id);
+								$("[name=postName]").val(vm.post[i].postname);
+							}
+						}
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据岗位编号查询权限
+			function selectJurisdictionByPostid() {
+				var postid = $("[name=postname]").find(":checked").attr("postid");
+				$.ajax({
+					url: "http://localhost:8080/rolePermissionSettings/selectJurisdictionByPostid",
+					data: {
+						postid: postid
+					},
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.perms = response;
+						console.log(vm.perms);
+
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//根据角色编号删除所有角色权限
+			function deleteAllJurisdictionByPostId(postid) {
+				$.ajax({
+					url: "http://localhost:8080/rolePermissionSettings/deleteAllJurisdictionByPostId",
+					data: {
+						postid: postid
+					},
+>>>>>>> refs/heads/liuyi
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -696,7 +775,7 @@
 				});
 			}
 			//根据岗位编号删除岗位信息		
-			function deletePost(postid){
+			function deletePost(postid) {
 				$.ajax({
 					url: "http://localhost:8080/rolePermissionSettings/deletePost",
 					data: {
@@ -711,7 +790,7 @@
 						console.log(response);
 						selectAllPostInfo();
 						selectJurisdictionByPostid();
-						
+
 					},
 					error: function(error) {
 						console.log(error);
@@ -719,12 +798,12 @@
 				});
 			}
 			//根据岗位编号修改岗位信息		
-			function updatePost(postid,postname){
+			function updatePost(postid, postname) {
 				$.ajax({
 					url: "http://localhost:8080/rolePermissionSettings/updatePost",
 					data: {
 						postId: postid,
-						postName:postname
+						postName: postname
 					},
 					type: "post",
 					dataType: "json",
@@ -734,7 +813,7 @@
 					success: function(response) {
 						console.log(response);
 						selectAllPostInfo();
-									 		
+
 					},
 					error: function(error) {
 						console.log(error);
@@ -742,12 +821,12 @@
 				});
 			}
 			//新增岗位信息		
-			function insertPost(postid,postname){
+			function insertPost(postid, postname) {
 				$.ajax({
 					url: "http://localhost:8080/rolePermissionSettings/insertPost",
 					data: {
-						postId:postid,
-						postName:postname
+						postId: postid,
+						postName: postname
 					},
 					type: "post",
 					dataType: "json",
@@ -757,7 +836,7 @@
 					success: function(response) {
 						console.log(response);
 						selectAllPostInfo();
-						
+
 					},
 					error: function(error) {
 						console.log(error);
@@ -816,6 +895,112 @@
 					selectChange:function(){
 						var postid=$("[name=postName]").find(":checked").attr("postid"); 
 						if(postid!=null){
+					//全部选择
+					checkAll: function() {
+						$("[type=checkbox]").prop("checked", true);
+					},
+					//全部取消
+					cancelAll: function() {
+						$("[type=checkbox]").prop("checked", false);
+					},
+					//新增岗位
+					insertPost: function() {
+						$("[name=postId]").val(this.post.length + 1);
+						$("[name=postName]").val("");
+					},
+					//删除岗位
+					deletePost: function() {
+						var that = this;
+						if(confirm("确定删除此岗位吗？") == true) {
+							for(var i = 0; i < that.post.length; i++) {
+								if(that.post[i].check == true) {
+									deletePost(that.post[i].id);
+								}
+							}
+						}
+					},
+					//保存岗位
+					savePost: function() {
+						var postid = $("[name=postId]").val();
+						var postname = $("[name=postName]").val();
+						if(postid > vm.post.length) {
+							//新增
+							insertPost(postid, postname);
+						} else {
+							//修改
+							updatePost(postid, postname);
+						}
+					},
+					//切换岗位选择
+					switchPost: function(item) {
+						var that = this;
+						for(var i = 0; i < that.post.length; i++) {
+							that.post[i].check = false;
+						}
+						item.check = true;
+						var id = item.id;
+						var name = item.postname;
+						$("[name=postId]").val(id);
+						$("[name=postName]").val(name);
+					},
+					//模块点击事件
+					mokuaiClick: function() {
+						$("[name=cangku]").hide();
+						$("[name=shuju]").hide();
+						$("[name=danju]").hide();
+						selectJurisdictionByPostid();
+					},
+					//单据点击事件
+					danjuClick: function() {
+						$("[name=cangku]").hide();
+						$("[name=shuju]").hide();
+						$("[name=danju]").show();
+						this.perms = [];
+					},
+					//数据点击事件
+					shujuClick: function() {
+						$("[name=cangku]").hide();
+						$("[name=shuju]").show();
+						$("[name=danju]").hide();
+						this.perms = [];
+					},
+					//仓库点击事件
+					cangkuClick: function() {
+						$("[name=cangku]").show();
+						$("[name=shuju]").hide();
+						$("[name=danju]").hide();
+					},
+					//切换单据选择
+					switchDanju: function(item) {
+						var that = this;
+						for(var i = 0; i < that.danju.length; i++) {
+							that.danju[i].check = false;
+						}
+						item.check = true;
+					},
+					switchShuju: function(item) {
+						var that = this;
+						for(var i = 0; i < that.shuju.length; i++) {
+							that.shuju[i].check = false;
+						}
+						item.check = true;
+					},
+					switchCangku: function(item) {
+						var that = this;
+						for(var i = 0; i < that.cangku.length; i++) {
+							that.cangku[i].check = false;
+						}
+						item.check = true;
+					},
+					//保存角色权限
+					saveJurisdiction: function() {
+						saveJurisdiction();
+					},
+					//修改select事件
+					selectChange: function() {
+						var postid = $("[name=postname]").find(":checked").attr("postid");
+						if(postid != null) {
+>>>>>>> refs/heads/liuyi
 							console.log(postid);
 							$("[name=tree]").show(); 
 						}
@@ -859,6 +1044,15 @@
 					},
 					openpermissioncopy: function() {
 						$("#permissioncopy").addClass("show");
+						var that = this;
+						for(var i = 0; i < that.post.length; i++) {
+
+							if(that.post[i].check == true) {
+								console.log(123);
+								$("[name=postId]").val(that.post[i].id);
+								$("[name=postName]").val(that.post[i].postname);
+							}
+						}					 
 					},
 					closepermissioncopy: function() {
 						$("#permissioncopy").removeClass("show");
