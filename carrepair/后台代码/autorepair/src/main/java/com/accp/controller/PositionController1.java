@@ -562,6 +562,7 @@ public class PositionController1 {
 		public List<Staff> selectStaffByDepId(Integer depid){
 			return ps.selectStaffByDepId(depid);
 		}
+		//新增结账
 		@PostMapping("/addCashier")
 		@ResponseBody
 		public Integer addCashier(@RequestBody Cashier record) {
