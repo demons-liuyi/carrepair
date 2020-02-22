@@ -14,14 +14,14 @@
 				width: auto;
 				height: 70px;
 				border: 0px solid red;
-				background-color: aliceblue;
+				 
 			}
 			
 			#buttondiv {
 				width: auto;
 				height: 50px;
 				border: 0px solid red;
-				background-color: antiquewhite;
+				 
 			}
 			
 			h2 {
@@ -58,12 +58,12 @@
 			}
 			
 			#img {
-				color: orange;
+				color: black;
 			}
 			
 			#selectbtn {
-				background-color: orange;
-				color: white;
+				background-color: white;
+				color: black;
 			}
 			
 			#staffquery {
@@ -121,7 +121,7 @@
 				width: auto;
 				height: 40px;
 				border: 0px solid lightskyblue;
-				background-color: lightskyblue;
+				 
 			}
 			
 			#functionul {
@@ -755,7 +755,7 @@
 			<div id="customerinfo">
 				<table border="1px" class="table table-bordered" style="min-width:2500px;">
 					<thead>
-						<tr style="background-color: deepskyblue;">
+						<tr>
 							<td></td>
 							<td>客户编号</td>
 							<td>客户名称</td>
@@ -764,17 +764,15 @@
 							<td>手机</td>
 							<td>客户生日</td>
 							<td>客户类别</td>
-							<td>会员卡号</td>
-							<td>入会日期</td>
-							<td>会员到期</td>
+							 
 							<td>备注</td>
 							<td>建档日期</td>
 							<td>服务顾问</td>
 							<td>业务员电话</td>
 							<td>账期(天)</td>
 							<td>挂账额度</td>
-							<td>累计积分</td>
-							<td>定金金额</td>
+							 
+							 
 							<td>客户省</td>
 							<td>客户市</td>
 							<td>客户区</td>
@@ -797,17 +795,15 @@
 							<td>{{item.phone}}</td>
 							<td>{{item.borndate}}</td>
 							<td>{{item.clienttype}}</td>
-							<td></td>
-							<td></td>
-							<td></td>
+							 
 							<td>{{item.remark}}</td>
 							<td>{{item.date}}</td>
 							<td>{{item.staffname}}</td>
 							<td>{{item.counselorname}}</td>
 							<td>{{item.paymentdays}}</td>
 							<td>{{item.paymentsize}}</td>
-							<td>{{item.integral}}</td>
-							<td></td>
+							 
+						 
 							<td>{{item.sheng}}</td>
 							<td>{{item.shi}}</td>
 							<td>{{item.qv}}</td>
@@ -830,7 +826,7 @@
 				</div>
 				<table name="tableone" border="1px" class="table table-bordered" style="min-width:2500px;">
 					<thead>
-						<tr style="background-color: deepskyblue;">
+						<tr>
 							<td></td>
 							<td v-for="item in data">{{item}}</td>
 						</tr>
@@ -871,7 +867,7 @@
 				</table>
 				<table name="tabletwo" border="1px" class="table table-bordered" style="min-width:2500px;">
 					<thead>
-						<tr style="background-color: deepskyblue;">
+						<tr >
 							<td></td>
 							<td>单据类型</td>
 							<td>销售单号</td>
@@ -901,7 +897,7 @@
 				</table>
 				<table name="tablethree" border="1px" class="table table-bordered" style="min-width:2500px;">
 					<thead>
-						<tr style="background-color: deepskyblue;">
+						<tr >
 							<td></td>
 							<td>回访时间</td>
 							<td>客户编码</td>
@@ -1157,7 +1153,7 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="selectClientInfoByCondition()">保存</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="selectClientInfoByCondition()">确定</button>
 								</div>
 							</div>
 						</div>
@@ -1495,7 +1491,7 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" @click="closecustomerdata()" class="btn btn-default" data-dismiss="modal">关闭</button>
-									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="insertClientAndCarInfo()">保存</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="insertClientAndCarInfo()">确定</button>
 								</div>
 							</div>
 						</div>
@@ -1577,7 +1573,7 @@
 					<div id="customerclassifytable">
 						<table border="1px" class="table">
 							<thead>
-								<tr style="background-color: deepskyblue;">
+								<tr>
 									<td></td>
 									<td>分类编码</td>
 									<td>客户类别</td>
@@ -1786,7 +1782,7 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" @click="closecustomerdata()" class="btn btn-default" data-dismiss="modal">关闭</button>
-									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="savecustomer()">保存</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="savecustomer()">确定</button>
 								</div>
 							</div>
 						</div>
@@ -2037,7 +2033,7 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" @click="closecustomerdata()" class="btn btn-default" data-dismiss="modal">关闭</button>
-									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="saveCarInfo()">保存</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="saveCarInfo()">确定</button>
 								</div>
 							</div>
 						</div>
@@ -2075,7 +2071,7 @@
 													<div style="float: left;display: inline;" id="carbrand">
 														<table border="1px" class="table">
 															<thead>
-																<tr style="background-color: deepskyblue;">
+																<tr>
 																	<td></td>
 																	<td>编码</td>
 																	<td>品牌名称</td>
@@ -2097,7 +2093,7 @@
 													<div style="float: left;display: inline;" id="cartype">
 														<table border="1px" class="table">
 															<thead>
-																<tr style="background-color: deepskyblue;">
+																<tr>
 																	<td></td>
 																	<td>车型ID</td>
 																	<td>车型名称</td>
@@ -2149,7 +2145,7 @@
 				<div id="selectcustomertable">
 					<table border="1px" class="table" style="min-width:2500px;">
 						<thead>
-							<tr style="background-color: deepskyblue;">
+							<tr>
 								<td></td>
 								<td>客户编号</td>
 								<td>客户名称</td>
@@ -2231,7 +2227,7 @@
 						<div class="modal-body">
 							<table border="1px" class="table">
 								<thead>
-									<tr style="background-color: deepskyblue;">
+									<tr>
 										<td></td>
 										<td>客户编号</td>
 										<td>客户名称</td>
@@ -2285,7 +2281,7 @@
 								<div style="overflow: scroll;">
 									<table class="table table-bordered">
 										<thead>
-											<tr style="background-color: deepskyblue;">
+											<tr>
 												<tr>
 													<td></td>
 													<td>部门名称</td>

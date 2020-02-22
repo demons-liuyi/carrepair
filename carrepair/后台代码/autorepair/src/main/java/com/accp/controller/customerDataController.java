@@ -163,6 +163,7 @@ public class customerDataController {
 	@RequestMapping("/selectCarBrandByCondition")
 	public List<Carbrand> selectCarBrandByCondition(String condition){
 		List<Carbrand> list=cbs.selectCarBrandByCondition(condition);
+		 
 		for(int i=0;i<list.size();i++) {
 			if(i==0) {
 				list.get(i).setCheck(true);
@@ -202,14 +203,23 @@ public class customerDataController {
 	@RequestMapping("/queryClientInfoByCondition")
 	public List<Client> queryClientInfoByCondition(String condition){
 		List<Client> list=cs.queryClientInfoByCondition(condition);
+		List<Client> qwelist=cs.selectClientInfo();
+		List<Client> lastlist=new ArrayList<Client>();
 		for(int i=0;i<list.size();i++) {
-			if(i==0) {
-				list.get(i).setCheck(true);
-			}else {
-				list.get(i).setCheck(false);	
+			for(int j=0;j<qwelist.size();j++) {
+				if(list.get(i).getNumber().equals(qwelist.get(j).getNumber())) {
+					lastlist.add(qwelist.get(j));
+				}
 			}
 		}
-		return list;
+		for(int i=0;i<lastlist.size();i++) {
+			if(i==0) {
+				lastlist.get(i).setCheck(true);
+			}else {
+				lastlist.get(i).setCheck(false);	
+			}
+		}
+		return lastlist;
 	}
 	
 	

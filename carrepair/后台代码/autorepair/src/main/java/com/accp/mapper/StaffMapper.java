@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface StaffMapper {
+	Staff selectStaffByAccountAndPassword(@Param("account") String account,@Param("password") String password);
+	
 	Staff selectStaffByNoLast();
 	
 	Staff selectStaffByStaffNo(String staffno);

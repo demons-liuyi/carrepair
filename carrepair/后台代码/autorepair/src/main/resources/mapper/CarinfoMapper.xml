@@ -62,7 +62,17 @@ loadnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance
  (SELECT NAME FROM CLIENT WHERE number=clientid) clientname
   FROM carinfo WHERE carnumber='${number}'
   </select>
-
+   <select id="selectCarInfoByCarNumber" resultMap="BaseResultPlus">
+  	SELECT * FROM carinfo WHERE carinfo.`carNumber`='${number}'
+  </select>
+ <select id="selectCarInfoByClientNumber" resultMap="BaseResultPlus">
+  	SELECT c.carnumber,(SELECT carbrandname FROM carbrand WHERE id=c.carbrandid) carbrandname,
+(SELECT cartypename FROM car WHERE car.id=c.carid) cartypename,carer,carerphone,borndate,affiliation,drivinglicence,carnumber1,enginenumber,
+(SELECT enginebrandname FROM enginebrand WHERE id=c.engineid) enginebrandname,yearprice,mileage,
+(SELECT car.deadweight FROM car WHERE car.id=c.carid) 
+loadnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance,syinsurancedate,fueloiltype,maintain,maintaindate,insuredcar,deadweight
+ FROM carinfo c WHERE clientid='${number}'
+  </select>
 
     <resultMap type="com.accp.domain.ClientAndCar" id="BaseResult1" extends="BaseResultMap">
   	<result column="name" property="name" jdbcType="VARCHAR" />
@@ -114,22 +124,6 @@ LEFT JOIN car ON car.`id`=carinfo.`carId`
 LEFT JOIN `enginebrand` ENGINE ON engine.id=carinfo.`engineId`
 LEFT JOIN `clienttype` TYPE ON type.id=client.`typeId`
  WHERE carNumber =#{carNumber}
-
-  </select>
-  <select id="selectCarInfoByClientNumber" resultMap="BaseResultPlus">
-  	SELECT c.carnumber,(SELECT carbrandname FROM carbrand WHERE id=c.carbrandid) carbrandname,
-(SELECT cartypename FROM car WHERE car.id=c.carid) cartypename,carer,carerphone,borndate,affiliation,drivinglicence,carnumber1,enginenumber,
-
-(SELECT enginebrandname FROM enginebrand WHERE id=c.engineid) enginebrandname,yearprice,mileage,
-(SELECT car.deadweight FROM car WHERE car.id=c.carid) 
-loadnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance,syinsurancedate,fueloiltype,maintain,maintaindate,insuredcar,deadweight
- FROM carinfo c WHERE clientid='${number}'
-
-(SELECT enginebrandname FROM enginebrand WHERE id=(SELECT engineid FROM car WHERE car.id=c.carid)) enginebrandname,yearprice,mileage,
-(SELECT car.deadweight FROM car WHERE car.id=c.carid) 
-deadweightnumber,buydate,dutydate,carcheckdate,jqinsurance,jqinsurancedate,syinsurance,syinsurancedate,fueloiltype,maintain,maintaindate
- FROM car_client cc
-INNER JOIN carinfo c ON c.id=cc.carid WHERE clientid='${number}'
 
   </select>
   <sql id="Example_Where_Clause" >

@@ -16,8 +16,13 @@ public class jurisdictionService {
 	@Autowired
 	JurisdictionMapper jm;
 	
-	public List<Jurisdiction> findEach(){
-		List<Jurisdiction> list=jm.selectByExample(null);
+	public List<Jurisdiction> findJurisdictionByStaffno(Integer postid){
+		List<Jurisdiction> list=jm.selectJurisdictionByPostid(postid);
+		return list;
+	}
+	
+	public List<Jurisdiction> findEach(Integer postid){
+		List<Jurisdiction> list=jm.selectJurisdictionByPostid(postid);
 		Jurisdiction jur=new Jurisdiction();
 		jur.setId(0);
 		each(jur,list);
@@ -34,6 +39,7 @@ public class jurisdictionService {
 				newjur.setJurisdictionname(j.getJurisdictionname());
 				newjur.setParentid(j.getParentid());
 				newjur.setPath(j.getPath());
+				newjur.setJudge(j.getJudge());
 				jur.getChildrens().add(newjur);
 				each(newjur,jurs);
 			}

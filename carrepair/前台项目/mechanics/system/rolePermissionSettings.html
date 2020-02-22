@@ -13,7 +13,7 @@
 				width: auto;
 				height: 70px;
 				border: 0px solid red;
-				background-color: aliceblue;
+				background-color: whitesmoke;
 			}
 			
 			#buttondiv {
@@ -58,17 +58,17 @@
 			}
 			
 			#img {
-				color: orange;
+				color: black;
 			}
 			
 			#selectbtn {
-				background-color: orange;
-				color: white;
+				background-color: white;
+				color: black;
 			}
 			
 			#closebtn {
-				background-color: gainsboro;
-				color: white;
+				background-color: white;
+				color: black;
 			}
 			
 			#exitregistration {
@@ -374,8 +374,9 @@
 			
 			#permission {
 				height: 50px;
-				background-color: deepskyblue;
+				background-color: gainsboro;
 			}
+			
 			* {
 				box-sizing: border-box;
 				margin: 0;
@@ -475,7 +476,7 @@
             	作者：1424432629@qq.com
             	时间：2020-01-04
             	描述：角色定义           	
-          -->		
+          -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -485,53 +486,52 @@
 						</div>
 						<div class="modal-body">
 							<div id="permissioncopycontent">
-					<div id="permissioncopyfunction">
-						<ul style="padding-top: 10px;padding-left:270px;color: black;">
-							<li>
-								<span id="img" class="glyphicon glyphicon-plus"></span>
-								<span id="font">增加</span>
-							</li>
-							<li>
-								<span id="img" class="glyphicon glyphicon-floppy-remove"></span>
-								<span @click="openstaffquery()" id="font">删除</span>
-							</li>
-							<li>
-								<span id="img" class="glyphicon glyphicon-floppy-saved"></span>
-								<span id="font">保存</span>
-							</li>
-						</ul>
-					</div>
-					<div id="permissioncopyblue">
-						<p style="padding-top: 8px;">
-							<span style="margin-left: 20px;">角色代码：</span>
-							<input type="text" />
-							 
-							<span style="margin-left: 20px;">角色名称：</span>
-							<input type="text" />
-						</p>
-						 
-					</div>
-					<table style="background-color: whitesmoke;color: black;" border="1px" class="table">
-						<thead>
-							<tr style="background-color: deepskyblue;">
-								<td></td>
-								<td>角色编码</td>
-								<td>角色名称</td>
-								
-							</tr>
-						</thead>
-						<tbody>
-							<td></td>
-							<td>领用日期</td>
-							<td>员工编号</td>	 
-						</tbody>
-					</table>
-					<span style="color: red;margin-left: 21px;">合计：{{post.length}}条记录</span>
-				</div>
+								<div id="permissioncopyfunction">
+									<ul style="padding-top: 10px;padding-left:270px;color: black;">
+										<li>
+											<span id="img" class="glyphicon glyphicon-plus"></span>
+											<span @click="insertPost()" id="font">增加</span>
+										</li>
+										<li>
+											<span id="img" class="glyphicon glyphicon-floppy-remove"></span>
+											<span @click="deletePost()" id="font">删除</span>
+										</li>
+										<li>
+											<span id="img" class="glyphicon glyphicon-floppy-saved"></span>
+											<span @click="savePost()" id="font">保存</span>
+										</li>
+									</ul>
+								</div>
+								<div id="permissioncopyblue">
+									<p style="padding-top: 8px;">
+										<span style="margin-left: 20px;">角色代码：</span>
+										<input style="color: black;" readonly="readonly" name="postId" type="text" />
+										<span style="margin-left: 20px;">角色名称：</span>
+										<input style="color: black;" name="postName" type="text" />
+									</p>
+								</div>
+								<table style="background-color: whitesmoke;color: black;" border="1px" class="table">
+									<thead>
+										<tr>
+											<td></td>
+											<td>角色编码</td>
+											<td>角色名称</td>
 
-				<span style="color: red;">合计：条记录</span>
+										</tr>
+									</thead>
+									<tbody>
+										<tr @click="switchPost(item)" v-for="item in post">
+											<td style="width: 40px;">
+												<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+											</td>
+											<td>{{item.id}}</td>
+											<td>{{item.postname}}</td>
+										</tr>
+									</tbody>
+								</table>
+								<span style="color: red;margin-left: 21px;">合计：{{post.length}}条记录</span>
+							</div>
 
-				 
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -539,7 +539,6 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 
 			<!--
@@ -567,7 +566,7 @@
 							</select>
 							<table border="1px" class="table">
 								<thead>
-									<tr style="background-color: deepskyblue;">
+									<tr>
 										<td></td>
 										<td>部门名称</td>
 										<td>工号</td>
@@ -588,18 +587,23 @@
 
 			<div id="header">
 				<h2>员工权限设置</h2>
+				<!--
+                	作者：1424432629@qq.com
+                	时间：2020-02-13
+                	描述：
+                
 				<input style="margin-left: 850px;" type="checkbox" />
-				<span style="position: absolute;top: 30px;left: 1090px;">同步员工权限</span>
+				<span style="position: absolute;top: 30px;left: 1090px;">同步员工权限</span> -->
 				<div id="selectdiv">
-					
-					<button id="selectbtn" class="btn btn-default">保存</button>
+
+					<button @click="saveJurisdiction()" id="selectbtn" class="btn btn-default">保存</button>
 					<button id="closebtn" class="btn btn-default">关闭</button>
 				</div>
 			</div>
 			<div id="buttondiv">
 				<div style="display: inline-block;margin-top: 10px;margin-left: 10px;">
 					<span>员工姓名：</span>
-					<select name="postName" @change="selectChange()" style="width: 280px;">
+					<select name="postname" @change="selectChange()" style="width: 280px;">
 						<option></option>
 						<option v-bind:postid="item.id" v-for="item in post">{{item.postname}}</option>
 					</select>
@@ -608,20 +612,15 @@
 					<ul id="ul">
 						<!--<li>
 							<span id="img" class="glyphicon glyphicon-floppy-saved"></span>
-							<span id="font">全部选择</span>
+							<span @click="checkAll()" id="font">全部选择</span>
 						</li>
 						<li>
 							<span id="img" class="glyphicon glyphicon-floppy-remove"></span>
-
-							<span @click="openstaffquery()" id="font">全部取消</span>
-						</li>
-
 							<span @click="cancelAll()" id="font">全部取消</span>
 						</li>-->
-
 						<li>
 							<span id="img" class="glyphicon glyphicon-tower"></span>
-							<span  data-toggle="modal" data-target="#myModal" @click="openpermissioncopy()" id="font">角色定义</span>
+							<span data-toggle="modal" data-target="#myModal" @click="openpermissioncopy()" id="font">角色定义</span>
 						</li>
 					</ul>
 				</div>
@@ -629,30 +628,78 @@
 			<div id="permission">
 				<ul style="padding-top: 10px;">
 					<li>
-						<span id="font">模块权限</span>
+						<span @click="mokuaiClick()" id="font">模块权限</span>
 					</li>
-
-					<li>
-						<span id="font">单据权限</span>
-
 					<!--<li>
 						<span @click="danjuClick()" id="font">单据权限</span>
-
 					</li>
 					<li>
-						<span id="font">数据权限</span>
+						<span @click="shujuClick()" id="font">数据权限</span>
 					</li>
 					<li>
-
-						<span id="font">仓库开单</span>
-					</li>
-
 						<span @click="cangkuClick()" id="font">仓库开单</span>
 					</li>-->
->>>>>>> refs/heads/liuyi
 				</ul>
 			</div>
 			<ptree name="tree" :model="perms"></ptree>
+			<table name="danju" border="1px" style="width: 295px;" class="table">
+				<thead>
+					<tr>
+						<td></td>
+						<td>单据名称</td>
+						<td>审核权</td>
+						<td>反审核权</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr @click="switchDanju(item)" v-for="item in danju">
+						<td style="width: 40px;">
+							<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+						</td>
+						<td>{{item.name}}</td>
+						<td><input style="margin-left: 14px;" type="checkbox"></td>
+						<td><input style="margin-left: 22px;" type="checkbox"></td>
+					</tr>
+				</tbody>
+			</table>
+			<table name="shuju" border="1px" style="width: 230px;" class="table">
+				<thead>
+					<tr>
+						<td></td>
+						<td>项目名称</td>
+						<td>有权</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr @click="switchShuju(item)" v-for="item in shuju">
+						<td style="width: 40px;">
+							<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+						</td>
+						<td>{{item.name}}</td>
+						<td><input style="margin-left: 8px;" type="checkbox"></td>
+					</tr>
+				</tbody>
+			</table>
+			<table name="cangku" border="1px" style="width: 240px;" class="table">
+				<thead>
+					<tr>
+						<td></td>
+						<td>仓库名称</td>
+						<td>开单权</td>
+						<td>查询权</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr @click="switchCangku(item)" v-for="item in cangku">
+						<td style="width: 40px;">
+							<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+						</td>
+						<td>{{item.name}}</td>
+						<td><input style="margin-left: 14px;" type="checkbox"></td>
+						<td><input style="margin-left: 14px;" type="checkbox"></td>
+					</tr>
+				</tbody>
+			</table>
 			<div><span>记录条数：</span>
 			</div>
 		</div>
@@ -661,9 +708,11 @@
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<script>
-			function selectAllPostInfo(){
+			//查询所有岗位信息
+			function selectAllPostInfo() {
 				$.ajax({
-					url: "http://localhost:8080/rolePermissionSettings/selectAllPostInfo",				
+					url: "http://localhost:8080/rolePermissionSettings/selectAllPostInfo",
+
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -714,43 +763,47 @@
 					data: {
 						postid: postid
 					},
->>>>>>> refs/heads/liuyi
 					type: "post",
 					dataType: "json",
 					xhrFields: {
 						withCredentials: true
 					},
 					success: function(response) {
-						console.log(response);
-						vm.post = response;
+
 					},
 					error: function(error) {
 						console.log(error);
 					}
 				});
 			}
-			//根据岗位编号查询权限
-			function selectJurisdictionByPostid(){
-				$.ajax({
-						url: "http://localhost:8080/rolePermissionSettings/selectJurisdictionByPostid",
-						type: "post",
-						dataType: "json",
-						xhrFields: {
-							withCredentials: true
-						},
-						success: function(response) {
-							vm.perms = response;
-							console.log(vm.perms);
-						},
-						error: function(error) {
-							console.log(error);
-						}
-				});						
+			//保存角色权限
+			function saveJurisdiction() {
+				var postid = $("[name=postname]").find(":checked").attr("postid");
+				if(postid == null) {
+					alert("请选择员工角色！");
+					return;
+				}
+				//var perms = JSON.stringify(vm.perms);
+				//console.log(perms);
+				//console.log(vm.perms);
+
+				deleteAllJurisdictionByPostId(postid);
+				console.log("qwe");
+				//console.log(vm.perms);		 
+				for(var i = 0; i < vm.perms.length; i++) {
+					insertJurisdictionInfo(vm.perms[i].id, postid, vm.perms[i].judge);
+					//if(vm.perms[i].childrens.length > 0) {
+					for(var j = 0; j < vm.perms[i].childrens.length; j++) {
+						insertJurisdictionInfo(vm.perms[i].childrens[j].id, postid, vm.perms[i].childrens[j].judge);
+					}
+					//}
+				}
 				alert("修改成功！");
 				selectJurisdictionByPostid();
 			}
 			//增加员工角色权限
 			function insertJurisdictionInfo(id, postid, judge) {
+				console.log("*******");
 				console.log(id);
 				console.log(postid);
 				console.log(judge);
@@ -767,7 +820,7 @@
 						withCredentials: true
 					},
 					success: function(response) {
-						console.log(response);
+						//console.log(response);
 					},
 					error: function(error) {
 						console.log(error);
@@ -845,7 +898,7 @@
 			}
 			var permsTree = Vue.component("ptree", {
 				props: {
-					 model: {}
+					model: {}
 				},
 				template: `
 					<ul class="l_tree" style="margin-left:20px">
@@ -853,7 +906,8 @@
 							<div @click="tick(item)"  @contextmenu.prevent="fork(item)"  class="l_tree_click">
 								<button type="button" class="l_tree_children_btn" v-if="item.childrens"  @click="toggle(item)">{{ !item.show ? '-' : '+' }}</button>
                     			<span class="l_folder">
-                    			<span v-bind:name="item.jurisdictionname" style="color:green" class="glyphicon glyphicon-ok"></span>
+                    			<span v-bind:name="item.jurisdictionname" v-if="item.judge==1" style="color:green" class="glyphicon glyphicon-ok"></span>
+                    			<span v-bind:name="item.jurisdictionname" v-else style="color:red" class="glyphicon glyphicon-remove"></span>
                     			{{item.jurisdictionname}}</span>
 							</div>						 
 							<ptree v-show="!item.show" v-if="item.childrens" :model = "item.childrens"></ptree>
@@ -862,17 +916,25 @@
 				`,
 
 				methods: {
-					tick(item){
-						$("[name="+item.jurisdictionname+"]").attr("class","glyphicon glyphicon-ok");
-						for(var i=0;i<item.childrens.length;i++){						 
-							$("[name="+item.childrens[i].jurisdictionname+"]").attr("class","glyphicon glyphicon-ok");
+					tick(item) {
+						$("[name=" + item.jurisdictionname + "]").css("color", "green");
+						$("[name=" + item.jurisdictionname + "]").attr("class", "glyphicon glyphicon-ok");
+						item.judge = "1";
+						for(var i = 0; i < item.childrens.length; i++) {
+							$("[name=" + item.childrens[i].jurisdictionname + "]").css("color", "green");
+							$("[name=" + item.childrens[i].jurisdictionname + "]").attr("class", "glyphicon glyphicon-ok");
+							item.childrens[i].judge = "1";
 						}
 					},
-					fork(item){ 
-						$("[name="+item.jurisdictionname+"]").attr("class","glyphicon glyphicon-remove");
-						for(var i=0;i<item.childrens.length;i++){					 
-							$("[name="+item.childrens[i].jurisdictionname+"]").attr("class","glyphicon glyphicon-remove");
-						}						 
+					fork(item) {
+						$("[name=" + item.jurisdictionname + "]").css("color", "red");
+						$("[name=" + item.jurisdictionname + "]").attr("class", "glyphicon glyphicon-remove");
+						item.judge = "2";
+						for(var i = 0; i < item.childrens.length; i++) {
+							$("[name=" + item.childrens[i].jurisdictionname + "]").css("color", "red");
+							$("[name=" + item.childrens[i].jurisdictionname + "]").attr("class", "glyphicon glyphicon-remove");
+							item.childrens[i].judge = "2";
+						}
 					},
 					openHTML(item) {
 						openIFM(item);
@@ -888,13 +950,146 @@
 				data() {
 					return {
 						perms: [],
-						post:[]
+						post: {},
+						danju: [{
+								check: true,
+								"name": "商品入库单"
+							},
+							{
+								check: false,
+								"name": "商品盘点单"
+							},
+							{
+								check: false,
+								"name": "调仓单"
+							},
+							{
+								check: false,
+								"name": "技工备料单"
+							},
+							{
+								check: false,
+								"name": "维修单"
+							},
+							{
+								check: false,
+								"name": "维修领料单"
+							},
+							{
+								check: false,
+								"name": "商品采购单"
+							},
+							{
+								check: false,
+								"name": "销售单"
+							},
+							{
+								check: false,
+								"name": "其它出库单"
+							},
+							{
+								check: false,
+								"name": "三包品退原厂单"
+							}
+						],
+						shuju: [{
+								check: true,
+								"name": "更改历史"
+							},
+							{
+								check: false,
+								"name": "看保单利润"
+							},
+							{
+								check: false,
+								"name": "看成本"
+							},
+							{
+								check: false,
+								"name": "删除客户"
+							},
+							{
+								check: false,
+								"name": "导出客户"
+							},
+							{
+								check: false,
+								"name": "免单权"
+							},
+							{
+								check: false,
+								"name": "导出商品"
+							},
+							{
+								check: false,
+								"name": "导出厂商"
+							},
+							{
+								check: false,
+								"name": "看售前"
+							},
+							{
+								check: false,
+								"name": "表单设计权"
+							},
+							{
+								check: false,
+								"name": "导出保单"
+							},
+							{
+								check: false,
+								"name": "看他人销售单"
+							},
+							{
+								check: false,
+								"name": "看车辆合格证位置"
+							},
+							{
+								check: false,
+								"name": "改车辆合格证位置"
+							},
+							{
+								check: false,
+								"name": "看开票"
+							},
+							{
+								check: false,
+								"name": "库存车封存权"
+							},
+							{
+								check: false,
+								"name": "看销售额"
+							},
+							{
+								check: false,
+								"name": "导出销售"
+							}
+						],
+						cangku: [{
+								check: true,
+								"name": "配件仓"
+							},
+							{
+								check: false,
+								"name": "装具仓"
+							},
+							{
+								check: false,
+								"name": "精品仓"
+							},
+							{
+								check: false,
+								"name": "旧件仓"
+							},
+							{
+								check: false,
+								"name": "重汽旧件"
+							}
+						]
+
 					}
 				},
 				methods: {
-					selectChange:function(){
-						var postid=$("[name=postName]").find(":checked").attr("postid"); 
-						if(postid!=null){
 					//全部选择
 					checkAll: function() {
 						$("[type=checkbox]").prop("checked", true);
@@ -1000,9 +1195,8 @@
 					selectChange: function() {
 						var postid = $("[name=postname]").find(":checked").attr("postid");
 						if(postid != null) {
->>>>>>> refs/heads/liuyi
 							console.log(postid);
-							$("[name=tree]").show(); 
+							selectJurisdictionByPostid();
 						}
 					},
 					openstaffquery: function() {
@@ -1042,8 +1236,8 @@
 					closeselectemployee: function() {
 						$("#selectemployee").removeClass("show");
 					},
+					//打开角色定义
 					openpermissioncopy: function() {
-						$("#permissioncopy").addClass("show");
 						var that = this;
 						for(var i = 0; i < that.post.length; i++) {
 
@@ -1052,15 +1246,19 @@
 								$("[name=postId]").val(that.post[i].id);
 								$("[name=postName]").val(that.post[i].postname);
 							}
-						}					 
+						}
+
 					},
+					//关闭角色定义
 					closepermissioncopy: function() {
 						$("#permissioncopy").removeClass("show");
 					}
-				},created:function(){
+				},
+				created: function() {
 					selectAllPostInfo();
-					selectJurisdictionByPostid();
-					$("[name=tree]").hide();
+					$("[name=danju]").hide();
+					$("[name=shuju]").hide();
+					$("[name=cangku]").hide();
 				}
 			});
 		</script>

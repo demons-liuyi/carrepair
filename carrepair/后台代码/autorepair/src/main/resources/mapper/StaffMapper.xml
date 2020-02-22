@@ -102,6 +102,10 @@
 		<result column="departmentname" property="departmentname"
 			jdbcType="VARCHAR" />
 	</resultMap>
+	<select id="selectStaffByAccountAndPassword" resultMap="BaseResultMap">
+		select * from staff where account='${account}' and password='${password}'
+	</select>
+	
 <select id="selectStaffByNoLast" resultMap="BaseResultMap">
 	
 		SELECT * FROM staff ORDER BY staffNo DESC LIMIT 1

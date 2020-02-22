@@ -13,14 +13,14 @@
 				width: auto;
 				height: 70px;
 				border: 0px solid red;
-				background-color: aliceblue;
+				 
 			}
 			
 			#buttondiv {
 				width: auto;
 				height: 50px;
 				border: 0px solid red;
-				background-color: antiquewhite;
+			 
 			}
 			
 			h2 {
@@ -57,12 +57,12 @@
 			}
 			
 			#img {
-				color: orange;
+				color: black;
 			}
 			
 			#selectbtn {
-				background-color: orange;
-				color: white;
+				background-color: white;
+				color: black;
 			}
 			
 			#staffquery {
@@ -1032,7 +1032,7 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" @click="closecustomerdata()" class="btn btn-default" data-dismiss="modal">关闭</button>
-									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="saveCarInfo()">保存</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="saveCarInfo()">确定</button>
 								</div>
 							</div>
 						</div>
@@ -1056,7 +1056,7 @@
 				<div id="selectcustomertable">
 					<table border="1px" class="table" style="min-width:2500px;">
 						<thead>
-							<tr style="background-color: deepskyblue;">
+							<tr>
 								<td></td>
 								<td>客户编号</td>
 								<td>客户名称</td>
@@ -1163,10 +1163,10 @@
 																		<span id="img" class="glyphicon glyphicon-remove"></span>
 																		<span @click="deletebaoyang()" id="font">删除</span>
 																	</li>
-																	<li>
+																	<!--<li>
 																		<span id="img" class="glyphicon glyphicon-list-alt"></span>
 																		<span id="font">导出</span>
-																	</li>
+																	</li>-->
 																</ul>
 															</div>
 															<div style="clear: both;padding-top: 10px;">
@@ -1175,7 +1175,7 @@
 															<div id="customerclassifytable">
 																<table border="1px" class="table">
 																	<thead>
-																		<tr style="background-color: deepskyblue;">
+																		<tr>
 																			<td></td>
 																			<td>车牌号</td>
 																			<td>保养名称</td>
@@ -1490,7 +1490,7 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="selectCarInformationByCondition()">保存</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" @click="selectCarInformationByCondition()">确定</button>
 								</div>
 							</div>
 						</div>
@@ -1522,7 +1522,7 @@
 								<div style="overflow: scroll;">
 									<table class="table table-bordered">
 										<thead>
-											<tr style="background-color: deepskyblue;">
+											<tr >
 												<tr>
 													<td></td>
 													<td>部门名称</td>
@@ -1576,14 +1576,14 @@
 												<div>
 													<div>
 														<input style="border-radius: 5px;margin-left: 30px;" name="carBrandCondition" style="width: 150px;margin-left: 30px;" placeholder="品牌编码/品牌名称" type="text" />
-														<button @click="selectCarBrandByCondition()" id="select" class="btn btn-default">搜索</button>
+														<button @click="selectCarBrandByCondition()" id="select" style="background-color: black;color: white;" class="btn btn-default">搜索</button>
 														<input style="border-radius: 5px;margin-left: 120px;" name="carCondition" style="width: 150px;margin-left: 122px;" placeholder="车型编码/车型名称" type="text" />
 														<button @click="selectCarByCondition()" id="select" class="btn btn-default">搜索</button>
 													</div>
 													<div style="float: left;display: inline;" id="carbrand">
 														<table border="1px" class="table">
 															<thead>
-																<tr style="background-color: deepskyblue;">
+																<tr>
 																	<td></td>
 																	<td>编码</td>
 																	<td>品牌名称</td>
@@ -1605,7 +1605,7 @@
 													<div style="float: left;display: inline;" id="cartype">
 														<table border="1px" class="table">
 															<thead>
-																<tr style="background-color: deepskyblue;">
+																<tr>
 																	<td></td>
 																	<td>车型ID</td>
 																	<td>车型名称</td>
@@ -1718,9 +1718,9 @@
 			</div>
 
 			<div id="customerinfo">
-				<table border="1px" class="table" style="min-width:2500px;">
+				<table border="1px" class="table table-hover table-bordered" style="min-width:2500px;">
 					<thead>
-						<tr style="background-color: deepskyblue;">
+						<tr>
 							<td></td>
 							<td>车牌号码</td>
 							<td>车辆品牌</td>
@@ -1793,9 +1793,9 @@
 						<li class="pastbuy" @click="cuttopastbuy()" id="functionli">历史维修</li>
 					</ul>
 				</div>
-				<table name="tableone" border="1px" class="table" style="min-width:2500px;">
+				<table name="tableone" border="1px" class="table table-hover table-bordered" style="min-width:2500px;">
 					<thead>
-						<tr style="background-color: deepskyblue;">
+						<tr>
 							<td></td>
 							<td>客户编码</td>
 							<td>客户名称</td>
@@ -1855,9 +1855,9 @@
 
 					</tbody>
 				</table>
-				<table name="tabletwo" border="1px" class="table" style="min-width:2500px;">
+				<table name="tabletwo" border="1px" class="table table-hover table-bordered" style="min-width:2500px;">
 					<thead>
-						<tr style="background-color: deepskyblue;">
+						<tr>
 							<td></td>
 							<td>单据类型</td>
 							<td>销售单号</td>
@@ -1903,7 +1903,7 @@
 						<div class="modal-body">
 							<table border="1px" class="table">
 								<thead>
-									<tr style="background-color: deepskyblue;">
+									<tr>
 										<td></td>
 										<td>客户编号</td>
 										<td>客户名称</td>
