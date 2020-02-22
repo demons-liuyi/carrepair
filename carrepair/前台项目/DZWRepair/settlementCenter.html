@@ -142,7 +142,7 @@
 						<div class=" form-group">
 							<span class="t-span">开单日期：</span>
 							<input name="startDate" readonly="readonly" type="date" />
-							<input name="nowDate" readonly="readonly" style="margin-left: 10px;" type="date"/>
+							<input name="nowDate" readonly="readonly" style="margin-left: 10px;" type="date" />
 
 							<span class="t-span">结账状态：</span>
 							<select name="status" @change="changeSelect()" class="form-control">
@@ -278,7 +278,7 @@
 									</p>
 									<p>
 										<span>结算状态：</span>
-										<select>
+										<select name="cashierstatic">
 											<option>正常结算</option>
 											<option>部分结算</option>
 											<option>挂账结算</option>
@@ -287,18 +287,44 @@
 								</div>
 								<div style="float: right;margin-top: 30px;margin-right: 50px;">
 									实收金额：<span name="money"></span>
-									<input type="text" />
+									<input type="text" name="moneynum" @change="setchange()" />
 									<button class="btn btn-success">一键付款</button>
 								</div>
 							</div>
+							<div>
+								<form class=" ">
+									<table>
+										<tr>
+											<td></td>
+										</tr>
+										<tr>
+											<td><span style="font-size: 1.2em;font-weight: 500;">支付方式：</span></td>
+										</tr>
+										<tr>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>现金</td>
+											<td><input name="zhifu" type="radio" id="" value="现金" /></td>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>微信支付</td>
+											<td><input name="zhifu" type="radio" id="" value="微信支付" /></td>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>信用卡</td>
+											<td><input name="zhifu" type="radio" id="" value="信用卡" /></td>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>支付宝</td>
+											<td><input name="zhifu" type="radio" id="" value="支付宝" /></td>
+										</tr>
+									</table>
+								</form>
+							</div>
 
 							<div>
-								<span>找零：</span><span>0.0</span>
+								<span>找零：</span><span name="change" v-text="cashi.change"></span>
 
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button style="margin-right: 35px;" class="btn btn-success">结算</button>
+							<button style="margin-right: 35px;" class="btn btn-success" @click="addCashier()">结算</button>
 						</div>
 					</div>
 				</div>
@@ -317,14 +343,15 @@
 					xhrFields: {
 						withCredentials: true
 					},
-					success: function(response) {				 
+					success: function(response) {
 						vm.billingInformation = response;
-						console.log(response)
-						for(var i = 0; i < vm.billingInformation.length; i++) {			 
-						if(vm.billingInformation[i].check == true) {					
-							$("[name=startDate]").attr("value",vm.billingInformation[i].ordertime);
+						for(var i = 0; i < vm.billingInformation.length; i++) {
+							if(vm.billingInformation[i].check == true) {
+								$("[name=startDate]").attr("value", vm.billingInformation[i].ordertime);
+							}
+
+							vm.setCashier();
 						}
-					}
 					},
 					error: function(error) {
 						console.log(error);
@@ -340,15 +367,14 @@
 					xhrFields: {
 						withCredentials: true
 					},
-					success: function(response) {					 
+					success: function(response) {
 						vm.billingInformation = response;
-						console.log(response)
-						for(var i = 0; i < vm.billingInformation.length; i++) {					 
-						if(vm.billingInformation[i].check == true) {					
-							$("[name=startDate]").attr("value",vm.billingInformation[i].ordertime);
+						for(var i = 0; i < vm.billingInformation.length; i++) {
+							if(vm.billingInformation[i].check == true) {
+								$("[name=startDate]").attr("value", vm.billingInformation[i].ordertime);
+							}
+
 						}
-						
-					}
 					},
 					error: function(error) {
 						console.log(error);
@@ -385,7 +411,22 @@
 
 					return {
 						billingInformation: {},
-						cashier:{},
+						cashier: {},
+						cashi: {
+
+							totalnum: null, //总金额
+							cashierstatic: "已支付", //结算状态
+							paymenttype: null, //支付方式
+							invoiceno: null, //发票表id
+							cashiertime: null, //结算时间
+							staffid: null, //员工表id检查该员工的角色是否有权限使用内部券
+							oncredit: null, //挂账金额
+							interior: null, //内部免单金额
+							clientId: null, //客户编号
+							change: null, //找零
+							number: null, //销售单号
+							otherone: 1, //其他字段
+						}
 					};
 				},
 				methods: {
@@ -404,9 +445,9 @@
 					//打开收银
 					openCashier: function() {
 						var that = this;
-						
+
 						for(var i = 0; i < that.billingInformation.length; i++) {
-							
+
 							if(that.billingInformation[i].check == true) {
 								$("[name=customerPrice]").val(that.billingInformation[i].price);
 								var price = that.billingInformation[i].price;
@@ -429,13 +470,13 @@
 					switchTr: function(item) {
 						var that = this;
 						for(var i = 0; i < that.billingInformation.length; i++) {
-							
+
 							that.billingInformation[i].check = false;
 						}
 						item.check = true;
 						that.cashier = item;
 						console.log(that.cashier);
-						$("[name=startDate]").attr("value",item.ordertime);
+						$("[name=startDate]").attr("value", item.ordertime);
 					},
 					//打开单据
 					openRepairOrder: function() {
@@ -443,7 +484,7 @@
 					},
 					//改变下拉框事件
 					changeSelect: function() {
-						var id = $("[name=status]").find(":checked").attr("attrid");					 
+						var id = $("[name=status]").find(":checked").attr("attrid");
 						if(id == 1) {
 							selectUnfinished();
 							$("[name=cashdesk]").show();
@@ -453,23 +494,61 @@
 							$("[name=rollback]").show();
 							$("[name=cashdesk]").hide();
 						}
-					},setCashier:function(){
+					},
+					setCashier: function() {
 						var that = this;
 						console.log(that.billingInformation)
 						for(var i = 0; i < that.billingInformation.length; i++) {
-								if(that.billingInformation[i].check == true) {
-									that.cashier = that.billingInformation[i];	
-									console.log(that.cashier.totalNum)
-								}
+							if(that.billingInformation[i].check == true) {
+								that.cashier = that.billingInformation[i];
+
+							}
 						}
-						
-						
+						console.log("这里是初始赋值")
+						console.log(that.cashier);
+
+					},
+					addCashier: function() {
+						var that = this;
+						that.cashi.paymenttype = $("[name=zhifu]").val();
+						that.cashi.cashierstatic = $("[name=cashierstatic]").val();
+						that.cashi.number = that.cashier.number;
+						that.cashi.clientid = that.cashier.clientname;
+						that.cashi.cashiertime = new Date();
+						that.cashi.totalnum = Number($("[name=customerMoney]").text());
+						that.cashi.clientId = that.cashier.clientname;
+						if($("[name=cashierstatic]").val() == "挂账结算") {
+							that.cashi.oncredit = Number($("[name=moneynum]").val()).toFixed(1);
+						}
+						console.log(that.cashi);
+						if($("[name=moneynum]").val() != "") {
+							var record = JSON.stringify(that.cashi);
+							$.ajax({
+								type: "post",
+								data: record,
+								contentType: "application/json;charset=utf-8",
+								url: "http://localhost:8080/addCashier",
+								success: function(result) {
+									alert(result)
+								}
+							});
+						}
+					},
+					setchange: function() {
+						var that = this;
+						if($("[name=moneynum]").val() != "") {
+							that.cashi.change = Number(($("[name=moneynum]").val() - Number($(" [name=customerMoney]").text())).toFixed(1));
+
+							console.log(that.cashi.change)
+						} else if($("[name=moneynum]").val() == "") {
+							console.log("没填")
+						}
+
 					}
 				},
 				created: function() {
 					var that = this;
-					selectUnfinished();	
-					
+					selectUnfinished();
 					var now = new Date();
 					//格式化日，如果小于9，前面补0
 					var day = ("0" + now.getDate()).slice(-2);
@@ -478,10 +557,8 @@
 					//拼装完整日期格式
 					var today = now.getFullYear() + "-" + (month) + "-" + (day);
 					//完成赋值				 
-					$("[name=nowDate]").attr("value",today);
+					$("[name=nowDate]").attr("value", today);
 					$("[name=rollback]").hide();
-					that.setCashier();
-					
 				}
 			})
 		</script>
