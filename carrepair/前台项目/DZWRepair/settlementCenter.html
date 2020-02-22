@@ -164,8 +164,7 @@
 								<span @click="openCashier()" data-toggle="modal" data-target=".mo2" id="font">收银</span>
 							</li>
 							<li name="rollback">
-								<span id="img" class="glyphicon glyphicon-print"></span>
-								<span @click="rollback()" id="font">回滚</span>
+								
 							</li>
 							<li>
 								<span id="img" class="iconfont icon-biaodan"></span>
@@ -261,14 +260,14 @@
 									<td style="padding-left: 25px;">
 										<input readonly="readonly" value="0.98" type="text"></td>
 									<td style="padding-left: 25px;">
-										<input readonly="readonly" name="taxes" type="text"></td>
+										<input  readonly="readonly" name="taxes" type="text"></td>
 									<td style="padding-left: 25px;">
 										<select name="moweishu" @change="moweishu">
 											<option attrid=0>请选择</option>
 											<option attrid=1>抹税金</option>
 										</select>
 									</td>
-									<td style="padding-left: 25px;"><input type="text"></td>
+									<td style="padding-left: 25px;"><input type="text" name="jfen" @change="moneyjfen()" oninput = "value=value.replace(/[^\d]/g,'')"></td>
 								</tr>
 							</table>
 							<div class="row">
@@ -287,8 +286,8 @@
 								</div>
 								<div style="float: right;margin-top: 30px;margin-right: 50px;">
 									实收金额：<span name="money"></span>
-									<input type="text" name="moneynum" />
-									<button class="btn btn-success">一键付款</button>
+									<input type="text" name="moneynum" @change="setchange()" oninput = "value=value.replace(/[^\d]/g,'')"/>
+									<button class="btn btn-success" data-target="#myModal" data-toggle="modal" data-target=".bs-example-modal-sm">确认支付</button>
 								</div>
 							</div>
 							<div>
@@ -303,7 +302,7 @@
 										<tr>
 											<td>&nbsp;&nbsp;&nbsp;</td>
 											<td>现金</td>
-											<td><input name="zhifu" type="radio" id="" value="现金" /></td>
+											<td><input checked name="zhifu" type="radio" id="" value="现金" /></td>
 											<td>&nbsp;&nbsp;&nbsp;</td>
 											<td>微信支付</td>
 											<td><input name="zhifu" type="radio" id="" value="微信支付" /></td>
@@ -324,11 +323,35 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button style="margin-right: 35px;" class="btn btn-success" @click="addCashier()">结算</button>
+							<button style="margin-right: 35px;" class="btn btn-default"  data-dismiss="modal">取消</button>
 						</div>
 					</div>
 				</div>
 			</div>
+			
+			
+			
+			
+			<div class="modal fade" tabindex="-1" role="dialog" id="myModal" >
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">支付</h4>
+					</div>
+					<div class="modal-body">
+						<p>已确认金额现在提交？</p>
+					</div>
+					<div class="modal-footer">
+						<a type="button" class="btn btn-default" data-dismiss="modal">取消</a>
+						<button type="button" class="btn btn-primary" data-dismiss="modal"  @click="addCashier()">确定</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
 		</div>
 		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="js/vue.min.js"></script>
@@ -436,10 +459,12 @@
 							var taxes = $("[name=taxes]").val();
 							var price = $("[name=customerMoney]").text();
 							var money = $("[name=customerPrice]").val();
-							if(price == money) {
-								return;
+							if($("[name=moweishu]").val()=="抹税金"){
+								
+								$("[name=customerMoney]").text(Number(money).toFixed(2));
+							}else if($("[name=moweishu]").val()=="请选择"){
+								$("[name=customerMoney]").text(money+taxes)
 							}
-							$("[name=customerMoney]").text(price - taxes);
 						}
 					},
 					//打开收银
@@ -518,10 +543,10 @@
 						that.cashi.totalnum = Number($("[name=customerMoney]").text());
 						that.cashi.clientId = that.cashier.clientname;
 						if($("[name=cashierstatic]").val() == "挂账结算") {
-							that.cashi.oncredit = Number($("[name=moneynum]").val()).toFixed(1);
+							that.cashi.oncredit = Number($("[name=moneynum]").val()).toFixed(2);
 						}
 						console.log(that.cashi);
-						if($("[name=moneynum]").val() != "") {
+						if($("[name=moneynum]").val() != ""&&that.cashi.change>=0) {
 							var record = JSON.stringify(that.cashi);
 							$.ajax({
 								type: "post",
@@ -532,17 +557,34 @@
 									alert(result)
 								}
 							});
+						}else{
+							
+							alert("请填写付款额度")
 						}
 					},
 					setchange: function() {
 						var that = this;
 						if($("[name=moneynum]").val() != "") {
-							that.cashi.change = Number(($("[name=moneynum]").val() - Number($(" [name=customerMoney]").text())).toFixed(1));
+							that.cashi.change = Number(($("[name=moneynum]").val() - Number($(" [name=customerMoney]").text())).toFixed(2));
 							console.log(that.cashi.change)
 						} else if($("[name=moneynum]").val() == "") {
 							console.log("没填")
 						}
 
+					},moneyjfen:function(){
+						let that = this;
+						if($("[name=jfen]").val() != "") {
+							
+							$("[name=customerMoney]").text(Number(Number($("[name=taxes]").val())+Number($("[name=customerPrice]").val())-Number($("[name=jfen]").val())).toFixed(2))
+							
+							if($("[name=customerMoney]").text()<0){
+								
+								$("[name=customerMoney]").text(0)
+							}
+						}else if($("[name=jfen]").val() == ""){
+							
+							$("[name=customerMoney]").text(Number($("[name=taxes]").val())+Number($("[name=customerPrice]").val()))
+						}
 					}
 				},
 				created: function() {
