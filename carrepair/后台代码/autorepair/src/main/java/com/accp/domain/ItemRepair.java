@@ -13,9 +13,13 @@ public class ItemRepair {
 
     private Integer count;
 
-    private Long fprice;
+
+
 
     private String pricetype;
+
+    private Long fprice;
+
 
     private String othertwo;
 
@@ -88,7 +92,7 @@ public class ItemRepair {
     public void setPricetype(String pricetype) {
         this.pricetype = pricetype;
     }
-
+    
     public String getOthertwo() {
         return othertwo;
     }

@@ -6,25 +6,31 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface JurisdictionMapper {
-    int countByExample(JurisdictionExample example);
+	List<Jurisdiction> findByParentid(Integer parentid);
 
-    int deleteByExample(JurisdictionExample example);
+	List<Jurisdiction> findByUid(Integer uid);
 
-    int deleteByPrimaryKey(Integer id);
+	List<Jurisdiction> selectJurisdictionByPostid(@Param("postid") Integer postid);
 
-    int insert(Jurisdiction record);
+	int countByExample(JurisdictionExample example);
 
-    int insertSelective(Jurisdiction record);
+	int deleteByExample(JurisdictionExample example);
 
-    List<Jurisdiction> selectByExample(JurisdictionExample example);
+	int deleteByPrimaryKey(Integer id);
 
-    Jurisdiction selectByPrimaryKey(Integer id);
+	int insert(Jurisdiction record);
 
-    int updateByExampleSelective(@Param("record") Jurisdiction record, @Param("example") JurisdictionExample example);
+	int insertSelective(Jurisdiction record);
 
-    int updateByExample(@Param("record") Jurisdiction record, @Param("example") JurisdictionExample example);
+	List<Jurisdiction> selectByExample(JurisdictionExample example);
 
-    int updateByPrimaryKeySelective(Jurisdiction record);
+	Jurisdiction selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKey(Jurisdiction record);
+	int updateByExampleSelective(@Param("record") Jurisdiction record, @Param("example") JurisdictionExample example);
+
+	int updateByExample(@Param("record") Jurisdiction record, @Param("example") JurisdictionExample example);
+
+	int updateByPrimaryKeySelective(Jurisdiction record);
+
+	int updateByPrimaryKey(Jurisdiction record);
 }

@@ -4,7 +4,21 @@ import java.security.Permissions;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+
+@Component
 public class Jurisdiction {
+	private String judge;
+	
+	public String getJudge() {
+		return judge;
+	}
+
+	public void setJudge(String judge) {
+		this.judge = judge;
+	}
+
 	private List<Jurisdiction> childrens = new ArrayList<Jurisdiction>();
 	
     public List<Jurisdiction> getChildrens() {

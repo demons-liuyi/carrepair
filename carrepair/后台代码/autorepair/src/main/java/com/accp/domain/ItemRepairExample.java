@@ -604,6 +604,7 @@ public class ItemRepairExample {
             return (Criteria) this;
         }
 
+
         public Criteria andOthertwoIsNull() {
             addCriterion("othertwo is null");
             return (Criteria) this;
