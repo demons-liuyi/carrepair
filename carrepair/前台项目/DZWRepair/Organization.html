@@ -1468,7 +1468,6 @@
 									// 获取当前节点
 									var currentNode = e.node;
 									var ref = $("#jstree_demo_div").jstree(true);
-									var that = this;
 									console.log(e.node.id)
 									that.depiddd=e.node.id;
 									console.log(that.depiddd)
@@ -1653,7 +1652,7 @@
 						//这里是点击部门查询对应的员工信息
 						var that = this;
 						var depidd = that.depiddd;
-						alert(depidd);
+						
 						$.ajax({
 							type: "post",
 							url: "http://localhost:8080/selectStaffByDepId",
