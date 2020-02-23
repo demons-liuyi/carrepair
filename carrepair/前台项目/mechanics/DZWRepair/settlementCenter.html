@@ -176,7 +176,7 @@
 					</div>
 
 				</div>
-				<div class="tb-body" style="overflow: auto;height:84%;">
+				<div class="tb-body" style="overflow: auto;height:82%;">
 
 					<table class="table table-bordered" style="width:  3200px;">
 						<thead>
@@ -500,7 +500,12 @@
 					},
 					//打开单据
 					openRepairOrder: function() {
-
+						var that = this;
+						var number=that.cashier.number
+						var status = that.cashier.status
+						var carnumber = that.cashier.carnumber;
+						var clientType = 1
+						window.location.href="../../projectWGQ/updateRepair.html?carNumber="+carnumber+"&status="+status+"&number="+number+"&clientType="+clientType
 					},
 					//改变下拉框事件
 					changeSelect: function() {
@@ -581,6 +586,9 @@
 
 							$("[name=customerMoney]").text(Number($("[name=taxes]").val()) + Number($("[name=customerPrice]").val()))
 						}
+					},
+					toupdaterepair(){
+						
 					}
 				},
 				created: function() {
