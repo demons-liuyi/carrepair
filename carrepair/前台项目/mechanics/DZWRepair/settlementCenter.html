@@ -13,13 +13,15 @@
 				height: 100%;
 				width: 100%;
 			}
-			#img{
+			
+			#img {
 				color: #000000;
 			}
-			#ctx{
-				
+			
+			#ctx {
 				height: 96%;
 			}
+			
 			.header {
 				flex-direction: row;
 				padding: 1em 2em;
@@ -40,7 +42,6 @@
 			}
 			
 			.header-r input {
-				
 				width: 25em;
 				padding: 0.3em 1em;
 			}
@@ -51,8 +52,7 @@
 				box-shadow: 1px 1px 2px 0px #E6E6E6;
 			}
 			
-			.tit-tr {
-			}
+			.tit-tr {}
 			
 			.bt-cx {
 				padding-left: 3em;
@@ -78,8 +78,6 @@
 				border-radius: 0.5em;
 				margin: 0.5em 1em;
 			}
-			
-		
 			
 			.box-border-a-shadow {
 				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
@@ -160,18 +158,18 @@
 					<div class="col-md-3">
 						<ul>
 							<li name="cashdesk">
-								<span id="img" class="iconfont icon-lishibiaodan"></span>
+								<i class="glyphicon glyphicon-qrcode"></i>
 								<span @click="openCashier()" data-toggle="modal" data-target=".mo2" id="font">收银</span>
 							</li>
 							<li name="rollback">
-								
+
 							</li>
 							<li>
-								<span id="img" class="iconfont icon-biaodan"></span>
+								<i class="glyphicon glyphicon-list-alt"></i>
 								<span @click="openRepairOrder()" id="font">打开单据</span>
 							</li>
 							<li>
-								<span id="img" class="glyphicon glyphicon-share"></span>
+								<i class="glyphicon glyphicon-download-alt"></i>
 								<span @click="exportExcel()" id="font">导出</span>
 							</li>
 						</ul>
@@ -260,14 +258,14 @@
 									<td style="padding-left: 25px;">
 										<input readonly="readonly" value="0.98" type="text"></td>
 									<td style="padding-left: 25px;">
-										<input  readonly="readonly" name="taxes" type="text"></td>
+										<input readonly="readonly" name="taxes" type="text"></td>
 									<td style="padding-left: 25px;">
 										<select name="moweishu" @change="moweishu">
 											<option attrid=0>请选择</option>
 											<option attrid=1>抹税金</option>
 										</select>
 									</td>
-									<td style="padding-left: 25px;"><input type="text" name="jfen" @change="moneyjfen()" oninput = "value=value.replace(/[^\d]/g,'')"></td>
+									<td style="padding-left: 25px;"><input type="text" name="jfen" @change="moneyjfen()" oninput="value=value.replace(/[^\d]/g,'')"></td>
 								</tr>
 							</table>
 							<div class="row">
@@ -286,7 +284,7 @@
 								</div>
 								<div style="float: right;margin-top: 30px;margin-right: 50px;">
 									实收金额：<span name="money"></span>
-									<input type="text" name="moneynum" @change="setchange()" oninput = "value=value.replace(/[^\d]/g,'')"/>
+									<input type="text" name="moneynum" @change="setchange()" oninput="value=value.replace(/[^\d]/g,'')" />
 									<button class="btn btn-success" data-target="#myModal" data-toggle="modal" data-target=".bs-example-modal-sm">确认支付</button>
 								</div>
 							</div>
@@ -323,35 +321,32 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button style="margin-right: 35px;" class="btn btn-default"  data-dismiss="modal">取消</button>
+							<button style="margin-right: 35px;" class="btn btn-default" data-dismiss="modal">取消</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			
-			
-			
-			<div class="modal fade" tabindex="-1" role="dialog" id="myModal" >
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title">支付</h4>
+
+			<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">支付</h4>
+						</div>
+						<div class="modal-body">
+							<p>已确认金额现在提交？</p>
+						</div>
+						<div class="modal-footer">
+							<a type="button" class="btn btn-default" data-dismiss="modal">取消</a>
+							<button type="button" class="btn btn-primary" data-dismiss="modal" @click="addCashier()">确定</button>
+						</div>
 					</div>
-					<div class="modal-body">
-						<p>已确认金额现在提交？</p>
-					</div>
-					<div class="modal-footer">
-						<a type="button" class="btn btn-default" data-dismiss="modal">取消</a>
-						<button type="button" class="btn btn-primary" data-dismiss="modal"  @click="addCashier()">确定</button>
-					</div>
+					<!-- /.modal-content -->
 				</div>
-				<!-- /.modal-content -->
+				<!-- /.modal-dialog -->
 			</div>
-			<!-- /.modal-dialog -->
-		</div>
-		<!-- /.modal -->
+			<!-- /.modal -->
 		</div>
 		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="js/vue.min.js"></script>
@@ -459,11 +454,11 @@
 							var taxes = $("[name=taxes]").val();
 							var price = $("[name=customerMoney]").text();
 							var money = $("[name=customerPrice]").val();
-							if($("[name=moweishu]").val()=="抹税金"){
-								
+							if($("[name=moweishu]").val() == "抹税金") {
+
 								$("[name=customerMoney]").text(Number(money).toFixed(2));
-							}else if($("[name=moweishu]").val()=="请选择"){
-								$("[name=customerMoney]").text(money+taxes)
+							} else if($("[name=moweishu]").val() == "请选择") {
+								$("[name=customerMoney]").text(money + taxes)
 							}
 						}
 					},
@@ -546,7 +541,7 @@
 							that.cashi.oncredit = Number($("[name=moneynum]").val()).toFixed(2);
 						}
 						console.log(that.cashi);
-						if($("[name=moneynum]").val() != ""&&that.cashi.change>=0) {
+						if($("[name=moneynum]").val() != "" && that.cashi.change >= 0) {
 							var record = JSON.stringify(that.cashi);
 							$.ajax({
 								type: "post",
@@ -557,8 +552,8 @@
 									alert(result)
 								}
 							});
-						}else{
-							
+						} else {
+
 							alert("请填写付款额度")
 						}
 					},
@@ -571,19 +566,20 @@
 							console.log("没填")
 						}
 
-					},moneyjfen:function(){
+					},
+					moneyjfen: function() {
 						let that = this;
 						if($("[name=jfen]").val() != "") {
-							
-							$("[name=customerMoney]").text(Number(Number($("[name=taxes]").val())+Number($("[name=customerPrice]").val())-Number($("[name=jfen]").val())).toFixed(2))
-							
-							if($("[name=customerMoney]").text()<0){
-								
+
+							$("[name=customerMoney]").text(Number(Number($("[name=taxes]").val()) + Number($("[name=customerPrice]").val()) - Number($("[name=jfen]").val())).toFixed(2))
+
+							if($("[name=customerMoney]").text() < 0) {
+
 								$("[name=customerMoney]").text(0)
 							}
-						}else if($("[name=jfen]").val() == ""){
-							
-							$("[name=customerMoney]").text(Number($("[name=taxes]").val())+Number($("[name=customerPrice]").val()))
+						} else if($("[name=jfen]").val() == "") {
+
+							$("[name=customerMoney]").text(Number($("[name=taxes]").val()) + Number($("[name=customerPrice]").val()))
 						}
 					}
 				},
