@@ -700,8 +700,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<div><span>记录条数：</span>
-			</div>
+			 
 		</div>
 
 		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
@@ -783,47 +782,36 @@
 					alert("请选择员工角色！");
 					return;
 				}
-				//var perms = JSON.stringify(vm.perms);
-				//console.log(perms);
-				//console.log(vm.perms);
-
 				deleteAllJurisdictionByPostId(postid);
-				console.log("qwe");
-				//console.log(vm.perms);		 
+				console.log("qwe");	
+				var permsArray = [];
 				for(var i = 0; i < vm.perms.length; i++) {
-					insertJurisdictionInfo(vm.perms[i].id, postid, vm.perms[i].judge);
-					//if(vm.perms[i].childrens.length > 0) {
+					permsArray.push({id:vm.perms[i].id,postid:postid,judge:vm.perms[i].judge});
 					for(var j = 0; j < vm.perms[i].childrens.length; j++) {
-						insertJurisdictionInfo(vm.perms[i].childrens[j].id, postid, vm.perms[i].childrens[j].judge);
+						permsArray.push({id:vm.perms[i].childrens[j].id,postid:postid,judge:vm.perms[i].childrens[j].judge});		
 					}
-					//}
 				}
+				insertJurisdictionInfo(permsArray);
 				alert("修改成功！");
 				selectJurisdictionByPostid();
 			}
 			//增加员工角色权限
-			function insertJurisdictionInfo(id, postid, judge) {
-				console.log("*******");
-				console.log(id);
-				console.log(postid);
-				console.log(judge);
+			function insertJurisdictionInfo(permsArray) {
+				console.log(JSON.stringify(permsArray));
 				$.ajax({
-					url: "http://localhost:8080/rolePermissionSettings/insertJurisdictionInfo",
-					data: {
-						id: id,
-						postid: postid,
-						judge: judge
-					},
+					url: "http://localhost:8080/rolePermissionSettings/addJurisdictionInfo",
+					data: JSON.stringify(permsArray),
 					type: "post",
-					dataType: "json",
+					dataType: "text",
+					contentType:"application/json;charset=utf-8",
 					xhrFields: {
 						withCredentials: true
 					},
 					success: function(response) {
-						//console.log(response);
+						console.log(response);
 					},
 					error: function(error) {
-						console.log(error);
+						 
 					}
 				});
 			}

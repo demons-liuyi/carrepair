@@ -9,6 +9,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Jurisdiction {
+	private Integer postid; 
+	
+	public Integer getPostid() {
+		return postid;
+	}
+
+	public void setPostid(Integer postid) {
+		this.postid = postid;
+	}
+
 	private String judge;
 	
 	public String getJudge() {
