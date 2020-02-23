@@ -14,7 +14,9 @@
 			html {
 				height: 100%;
 			}
-			
+			a{
+				color: #000000;
+			}
 			.container-fluid {
 				height: 100%;
 			}
@@ -32,12 +34,10 @@
 			 */
 			
 			.header {
-				height: 6.8%;
+				height: 10%;
 				padding-top: 1em;
 				padding-bottom: 1em;
-				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
-				box-shadow: 1px 1px 4px 3px #E6E6E6;
-				margin-bottom: 0.5em;
+				
 			}
 			
 			.header-l {
@@ -73,7 +73,7 @@
 			.tit-tab {
 				border-radius: 0.5em;
 				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
-				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
 				padding: 1em 0.5em;
 			}
 			
@@ -104,7 +104,8 @@
 			 */
 			
 			.shuzhuang {
-				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
+				padding-top: 1em;
 				height: 100%;
 			}
 			/**
@@ -112,9 +113,8 @@
 			 */
 			
 			.zhuti {
-				margin-left: 0.5em;
-				margin-right: 0.5em;
-				height: 85%;
+				
+				height: 83%;
 			}
 			/**
 			 * 模态框
@@ -134,17 +134,20 @@
 		<div class="container-fluid" id="ctx">
 			<div class="row header">
 				<div class="col-md-4 header-l ">
-					<span>
+					<h2>
 					组织结构
-				</span>
+				</h2>
 				</div>
 				<div class="col-md-4"></div>
-				<div class="header-r col-md-4">
+				<div class="header-r col-md-4" style="margin-top: 1.5em;">
 					<form class="form-inline ">
-						<div class="col-md-7">
+						<div class="col-md-10">
 							<input type="text" placeholder="匹配工号/姓名/手机" class="form-control" id="inpstr" v-model="str" />
-							<input type="button" class="btn btn-info" value="搜索" @click="selectStaffTable"></div>
-						<div class="col-md-5"><button class="btn btn-default">关闭</button></div>
+							<button type="button" class="btn btn-default" @click="selectStaffTable">搜索</button>
+							<button class="btn btn-default">关闭</button>
+						</div>
+							
+						<div class="col-md-2"></div>
 
 					</form>
 				</div>
@@ -1466,6 +1469,9 @@
 									var ref = $("#jstree_demo_div").jstree(true);
 									console.log(e.node.id)
 									that.depiddd=e.node.id;
+									if(e.node.id<3){
+										that.depiddd=0;
+									}
 									console.log(that.depiddd)
 									that.selectStaffByDepId();
 								});

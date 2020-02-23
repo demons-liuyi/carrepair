@@ -195,6 +195,9 @@ public class PositionService1 {
 	 * @return list
 	 */
 	public List<Staff> selectStaffByDepId(Integer depid) {
+		if (depid==0) {
+			return staffMapper.selectByExample(null);
+		}
 		StaffExample example = new StaffExample();
 		StaffExample.Criteria criteria = example.createCriteria();
 		criteria.andDepartmentidEqualTo(depid);

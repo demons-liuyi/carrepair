@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>结算中心</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="fonts/font_rdupt/iconfont.css" />
 		<style>
@@ -13,14 +13,19 @@
 				height: 100%;
 				width: 100%;
 			}
-			
+			#img{
+				color: #000000;
+			}
+			#ctx{
+				
+				height: 96%;
+			}
 			.header {
 				flex-direction: row;
 				padding: 1em 2em;
 				justify-content: space-between;
 				width: 100%;
 				display: flex;
-				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
 				box-shadow: 1px 1px 4px 3px #E6E6E6;
 			}
 			
@@ -30,21 +35,23 @@
 				padding: 0.2em 1em;
 			}
 			
-			.header-r {}
+			.header-r {
+				margin-top: 1em;
+			}
 			
 			.header-r input {
+				
 				width: 25em;
 				padding: 0.3em 1em;
 			}
 			
 			.tit-tab {
 				display: flex;
-				justify-content: flex-end;
 				padding: 0.5em 0;
+				box-shadow: 1px 1px 2px 0px #E6E6E6;
 			}
 			
 			.tit-tr {
-				background-color: #31B0D5;
 			}
 			
 			.bt-cx {
@@ -57,9 +64,7 @@
 				padding-left: 1.5em;
 				padding-top: 0.5em;
 				padding-bottom: 0.5em;
-				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
 				border-radius: 0.5em;
-				margin: 0.5em 1em;
 			}
 			
 			.t-input-1 {
@@ -74,12 +79,7 @@
 				margin: 0.5em 1em;
 			}
 			
-			.tit-tab {
-				margin: 0.5em 1em;
-				border-radius: 0.5em;
-				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
-				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
-			}
+		
 			
 			.box-border-a-shadow {
 				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
@@ -122,22 +122,22 @@
 		<div id="ctx">
 			<div class="header">
 				<div class="header-l">
-					<span>
+					<h2>
 					
 					结算中心
-				</span>
+				</h2>
 
 				</div>
 				<div class="header-r">
 
-					<button class="btn btn-success bt-cx">
+					<button class="btn btn-default bt-cx">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查询</button>
 					<button class="btn btn-default">关闭</button>
 				</div>
 			</div>
 
 			<div style="height: 92%">
-				<div class="t-input">
+				<div class="t-input" class="col-md-4">
 					<form class="form-inline">
 						<div class=" form-group">
 							<span class="t-span">开单日期：</span>
@@ -156,7 +156,7 @@
 						</div>
 					</form>
 				</div>
-				<div class="tit-tab">
+				<div class="tit-tab" class="col-md-8">
 					<div class="col-md-3">
 						<ul>
 							<li name="cashdesk">
