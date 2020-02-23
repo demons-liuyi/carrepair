@@ -241,6 +241,35 @@
 					</table>
 				</div>
 			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="allcar">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择车辆</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>车牌号</th>
+								<th>驾驶人</th>
+								<th>驾驶人电话</th>
+							</tr>
+							<tr v-for="item in allcar">
+								<td><input name="cc" type="radio"></td>
+								<td>{{item.carnumber}}</td>
+								<td>{{item.carer}}</td>
+								<td>{{item.carerphone}}</td>
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary itemkeep">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<script src="static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
@@ -255,7 +284,8 @@
 					return {
 						head: ["单据状态", "业务类型", "客户姓名", "车牌号", "手机号","维修单号", "单据类型", "开单时间", "预计完工", "完工时间", "结算时间", "预估金额", "服务顾问", "接车人"],
 						list: [],
-						clientInfo:{name:"",carnumber:""}
+						clientInfo:{name:"",carnumber:""},
+						allcar:[]
 					}
 				},
 				methods:{
@@ -391,7 +421,8 @@
 			});	
 			}
 		   function selectRepairing(type,content,cpc){
-		 console.log(11)
+					console.log(type)
+					console.log(content)
 					console.log(cpc)
 					$.ajax({
 						type:"post",
@@ -431,23 +462,45 @@
 				$("#queryCarNumber").click(function(){
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectClientAndCar",
+						url:"http://localhost:8080/repair/selectAllCar",
 						async:true,
-						data:{
-							carNumber:'湘A12356'
-						},
 						dateType:"json",
 						success:function(result){
-							vm.clientInfo=result
-							$("#kehu").val(vm.clientInfo.name)
+							vm.allcar=result
+						
 						}
 					});
+					$("#allcar").modal("show")
+
 				})
 				selectRepairing("carNumber","","**")
 				$("#tokd").click(function(){
 					var carNumber=$("#carNumber").val()
 					window.location.href="document.html?carNumber="+encodeURI(carNumber) +"&&clientType="+vm.clientInfo.clientType+"";
 					
+				})
+				$(".itemkeep").click(function(){
+					var carnumber=''
+					$("#allcar tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							carnumber=$(this).find("td:eq(1)").html();
+						}
+					})
+				
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectClientAndCar",
+						async:true,
+						data:{
+							carNumber:carnumber
+						},
+						dateType:"json",
+						success:function(result){
+							vm.clientInfo=result
+							$("#allcar").modal("hide")
+							$("#kehu").val(vm.clientInfo.name)
+						}
+					});
 				})
 			});
 	

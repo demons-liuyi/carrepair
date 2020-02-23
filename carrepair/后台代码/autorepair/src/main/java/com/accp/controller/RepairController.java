@@ -22,10 +22,12 @@ import com.accp.domain.QueryGetGoods;
 import com.accp.domain.QueryItemRepair;
 import com.accp.domain.Repair;
 import com.accp.domain.Rescue;
+import com.accp.domain.Staff;
 import com.accp.service.ItemRepairService;
 import com.accp.service.JunGongService;
 import com.accp.service.RepairService;
 import com.accp.service.carInfoService;
+import com.accp.service.staffService;
 
 @Controller
 @RequestMapping("/repair")
@@ -38,6 +40,8 @@ public class RepairController {
 			ItemRepairService itemRepairService;
 			@Autowired
 			JunGongService ser;
+			@Autowired
+			staffService ss;			
 		@RequestMapping("/selectRepairAndRescue")
 		@ResponseBody
 		public List<Repair> selectRepairAndResuce(String type,String content,String cpc){
@@ -222,6 +226,30 @@ public class RepairController {
 		public int addRescueCom(@RequestBody Completed com){
 		
 			return repairService.addRescueCom(com);
+		}
+		@RequestMapping("/selectAllCar")
+		@ResponseBody
+		public List<Carinfo> selectAllCar(){
+		
+			return repairService.selectAllCar();
+		}
+		@RequestMapping("/selectAllStaff")
+		@ResponseBody
+		public List<Staff> selectAllStaff(){
+		
+			return ss.selectAllStaff();
+		}
+		@RequestMapping("/selectAllItem")
+		@ResponseBody
+		public List<Maintenanceitems> selectAllItem(){
+		
+			return repairService.selectAllItem();
+		}
+		@RequestMapping("/selectAllCommodity")
+		@ResponseBody
+		public List<Commodity> selectAllCommodity(){
+		
+			return repairService.selectAllCommodity();
 		}
 		
 		

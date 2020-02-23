@@ -344,7 +344,7 @@
 					</table>
 				</div>
 			</div>
-			<div class="modal fade" tabindex="-1" role="dialog" id="maintenanceItems">
+		<div class="modal fade" tabindex="-1" role="dialog" id="maintenanceItems">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -358,7 +358,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>价类</label>
-								<select v-model="item.priceType" id="priceType"  class="form-control">
+								<select style="width: 150px;" v-model="item.priceType" id="priceType"  class="form-control">
 									<option selected="selected" value="自费" >自费</option>
 									<option value="免单">免单</option>
 									<option value="保修">保修</option>
@@ -370,26 +370,25 @@
 								<input v-model="item.fwman" id="fwPeople" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label class="control-label"><span class="fontRed">★</span>数量</label>
-								<input v-model="item.count" id="count" type="text" class="form-control">
-							</div>
+								<label class="control-label"><span class="fontRed">★</span>数量</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input v-model="item.count" style="width: 150px;" id="count" type="text" class="form-control">
+							</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>优惠前单价</label>
 								<input v-model="item.qprice" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label class="control-label"><span class="fontRed">★</span>优惠后单价</label>
-								<input v-model="item.hprice" id="hprice" type="text" class="form-control">
-							</div>
+								<label class="control-label"><span class="fontRed">★</span>优惠后价</label>
+								<input v-model="item.hprice" style="width: 150px;" id="hprice" type="text" class="form-control">
+							</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>维修班组</label>
-								<input v-model="item.bzname" id="bz" :bzid="item.bzid" type="text" class="form-control">
-								<button type="button" class="btn btn-success chosebz" style="margin-left: 0;" >选择班组</button>
-							
+								<input style="width: 130px;" v-model="item.bzname" id="bz" :bzid="item.bzid" type="text" class="form-control">
+								<button type="button" class="btn btn-success chosebz" style="margin-left: 0;">选择班组</button>
 							</div>
 							<div class="form-group">
 								<label class="control-label">免单原因</label>
-								<select id="mdresult" class="form-control" disabled="disabled">
+								<select id="mdresult" style="width: 130px;" class="form-control" disabled="disabled">
 									<option></option>
 								</select>
 							</div>
@@ -426,7 +425,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>价类</label>
-								<select id="updatepriceType" v-model="item.priceType"  class="form-control">
+								<select id="updatepriceType" style="width: 150px;" v-model="item.priceType"  class="form-control">
 									<option selected="selected" value="自费" >自费</option>
 									<option value="免单">免单</option>
 									<option value="保修">保修</option>
@@ -438,22 +437,22 @@
 								<input v-model="item.fwman" id="updatefwPeople" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label class="control-label"><span class="fontRed">★</span>数量</label>
-								<input v-model="item.count" id="updatecount" type="text" class="form-control">
-							</div>
+								<label class="control-label"><span class="fontRed">★</span>数量</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input v-model="item.count" style="width: 140px;" id="updatecount" type="text" class="form-control">
+							</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>优惠前单价</label>
 								<input v-model="item.qprice" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label class="control-label"><span class="fontRed">★</span>优惠后单价</label>
-								<input v-model="item.hprice" id="updatehprice" type="text" class="form-control">
+								<label class="control-label"><span class="fontRed">★</span>优惠后价</label>
+								<input v-model="item.hprice" style="width: 150px;" id="updatehprice" type="text" class="form-control">
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>维修班组</label>
-								<input v-model="item.bzname" id="updatebz" :bzid="item.bzid" type="text" class="form-control">
+								<input v-model="item.bzname" style="width: 150px;" id="updatebz" :bzid="item.bzid" type="text" class="form-control">
 								<button type="button" class="btn btn-success chosebz" style="margin-left: 0;" >选择班组</button>
-							
+
 							</div>
 							<div class="form-group">
 								<label class="control-label">免单原因</label>
@@ -480,7 +479,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal fade" tabindex="-1" role="dialog" id="materialRequirement">
+	<div class="modal fade" tabindex="-1" role="dialog" id="materialRequirement">
 				<div class="modal-dialog" role="document" style="width: 1000px;">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -519,12 +518,12 @@
 								<input v-model="commodity.cartype" disabled="disabled" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label class="control-label">单位</label>
+								<label class="control-label">单位</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<input v-model="commodity.unit" disabled="disabled" type="text" class="form-control">
 							</div>
 							<div class="form-group">
 								<label class="control-label">价类</label>
-								<select v-model="commodity.priceType" id="wlpriceType" class="form-control">
+								<select v-model="commodity.priceType" style="width: 100px;" id="wlpriceType" class="form-control">
 									<option selected="selected" value="自费" >自费</option>
 									<option value="免单">免单</option>
 									<option value="保修">保修</option>
@@ -543,7 +542,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">免单原因</label>
-								<select id="cause" disabled="disabled" v-model="commodity.cause" class="form-control">
+								<select id="cause" style="width: 200px; margin-left: 5px;" disabled="disabled" v-model="commodity.cause" class="form-control">
 
 								</select>
 							</div>
@@ -823,11 +822,13 @@
             			<option>天气恶劣</option>
             			<option>人手不足</option>
             		</select></p>
-            		<p>质检员：<select v-model="com.work"   style="width:134px;  margin-left: 38px;" class="form-control">
+            		<p>质检员：<select   style="width:134px;  margin-left: 38px;" class="form-control chosework">
             			<option>无</option>
+            			<option>选择</option>
             		</select></p>
-            		<p>责任人：<select v-model="com.duty" style="width:134px;  margin-left: 38px;" class="form-control">
+            		<p>责任人：<select   style="width:134px;  margin-left: 38px;" class="form-control choseduty">
             			<option>无</option>
+            			<option>选择</option>
             		</select></p>
             		<p>处罚金额：
             		<input v-model="com.price"  style="width:134px;  margin-left: 20px;"  class="form-control" type="text" />
@@ -842,8 +843,9 @@
             			<option>人手不足</option>
             		</select></p>
 
-            	         	<p>责任人：<select v-model="com.duty" style="width:134px;  margin-left: 38px;" class="form-control">
+            	         	<p>责任人：<select   style="width:134px;  margin-left: 38px;" class="form-control choseduty">
             			<option>无</option>
+            			<option>选择</option>
             		</select></p>处罚金额：
             		<input v-model="com.price"  style="width:134px;  margin-left: 20px;"  class="form-control" type="text" />
             		</p>
@@ -858,6 +860,35 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpage">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择顾问</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>员工编号</th>
+								<th>员工姓名</th>
+								
+							</tr>
+							<tr v-for="item in allstaff">
+								<td><input name="cc" type="radio"></td>
+								<td>{{item.staffno}}</td>
+								<td>{{item.name}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpage">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>	
 		</div>
 		<script src="static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
@@ -892,7 +923,8 @@
 						jsInfo:{sta:"",qprice:0.0,hprice:0.0,gsprice:0.0,clprice:0.0},
 						arrayList:[],
 						repair:{},
-						com:{}
+						com:{},
+						allstaff:[]
 					}
 				},
 				created:function(){
@@ -1846,6 +1878,61 @@
 				});
 					
 				})
+				$(".chosework").change(function(){
+				if($(this).val()=="选择"){
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectAllStaff",
+						async:true,
+						dateType:"json",
+						success:function(result){
+							vm.allstaff=result
+						
+						}
+					});	
+					$("#otherpage").attr("type","work")
+					$("#otherpage").modal("show")
+					
+				}
+				})
+				$(".choseduty").change(function(){
+				if($(this).val()=="选择"){
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectAllStaff",
+						async:true,
+						dateType:"json",
+						success:function(result){
+							vm.allstaff=result
+						
+						}
+					});	
+					$("#otherpage").attr("type","duty")
+					$("#otherpage").modal("show")
+					
+				}
+				})				
+				$(".otherpage").click(function(){
+									var staffno=''
+									var staffname=''
+						$("#otherpage tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							 staffno=$(this).find("td:eq(1)").html();
+							 staffname=$(this).find("td:eq(2)").html();
+						}
+					})
+						if($("#otherpage").attr("type")=="work"){
+					vm.com.workid=staffno
+
+					$(".chosework").append("<option selected='selected' >"+staffname+"</option>")
+					}else{
+						vm.com.dutyid=staffno
+
+					$(".choseduty").append("<option selected='selected' >"+staffname+"</option>")
+					}
+					$("#otherpage").modal("hide")
+				})
+				
 			});
 		</script>
 	</body>

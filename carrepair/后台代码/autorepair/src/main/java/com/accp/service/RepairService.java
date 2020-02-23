@@ -1,12 +1,12 @@
 package com.accp.service;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.accp.domain.Carinfo;
 import com.accp.domain.Commodity;
 import com.accp.domain.Completed;
 import com.accp.domain.CompletedExample;
@@ -17,15 +17,18 @@ import com.accp.domain.GetgoodExample;
 import com.accp.domain.ItemRepair;
 import com.accp.domain.ItemRepairExample;
 import com.accp.domain.MaintainHistary;
+import com.accp.domain.Maintenanceitems;
 import com.accp.domain.QueryGetGoods;
 import com.accp.domain.QueryItemRepair;
 import com.accp.domain.Repair;
 import com.accp.domain.Rescue;
+import com.accp.mapper.CarinfoMapper;
 import com.accp.mapper.CommodityMapper;
 import com.accp.mapper.CompletedMapper;
 import com.accp.mapper.EwitemMapper;
 import com.accp.mapper.GetgoodMapper;
 import com.accp.mapper.ItemRepairMapper;
+import com.accp.mapper.MaintenanceitemsMapper;
 import com.accp.mapper.RepairMapper;
 import com.accp.mapper.RescueMapper;
 
@@ -46,6 +49,10 @@ public class RepairService {
 			RescueMapper rescueMapper;
 			@Autowired
 			CompletedMapper comMapper;
+			@Autowired
+			CarinfoMapper carMapper;
+			@Autowired
+			MaintenanceitemsMapper mcMapper;
 			public List<Repair> selectSettleAccounts(){ 
 				List<Repair> list=repairMapper.selectSettleAccounts(); 
 				return list; 
@@ -264,4 +271,13 @@ public class RepairService {
 			}
 			return 0;
 		}
+		public List<Carinfo> selectAllCar(){
+			return carMapper.selectAllCarInfo();
+		}
+		public List<Maintenanceitems> selectAllItem(){
+			return mcMapper.selectByExample(null);
+		}
+		public List<Commodity> selectAllCommodity(){
+			return ComMapper.selectByExample(null);
+		}	
 }

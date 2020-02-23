@@ -150,4 +150,7 @@ public class staffService {
 		int i=sm.updateByPrimaryKeySelective(record);
 		return i;
 	}
+	public List<Staff> selectAllStaff(){
+		return sm.selectByExample(null);
+	}
 }

@@ -108,20 +108,23 @@
 						<input disabled="disabled" v-model="carInfo.carer" type="text" class="form-control"> 车辆型号
 						<input v-model="carInfo.carTypeName" disabled="disabled" type="text" class="form-control"> 车辆品牌
 						<input v-model="carInfo.carBrandName" disabled="disabled" type="text" class="form-control"> 发动机号
-						<input v-model="carInfo.enginenumber" disabled="disabled" type="text" class="form-control"> 发动机品牌
-						<input v-model="carInfo.enginebrandname" disabled="disabled" type="text" class="form-control">
+						<input v-model="carInfo.enginenumber" disabled="disabled" type="text" class="form-control"> 
 					</p>
 					<p>
+						发动机品牌
+						<input v-model="carInfo.enginebrandname" style="width: 180px;" disabled="disabled" type="text" class="form-control">
 						<span class="fontRed">服务顾问</span>
-						<select id="fwman" v-model="repair.staffno" class="form-control" style="width: 78px; margin-right:0 ;">
+						<select id="fwman" v-model="repair.staffno" class="form-control" style="width: 120px; margin-right:0 ;">
 							<option value="">无</option>
 						</select>
 						<button type="button" class="btn btn-success" style="margin-left: 0;" @click="openStaff">选择顾问</button> <span class="fontRed">车主姓名</span>
 						<input v-model="carInfo.name" disabled="disabled" type="text" class="form-control"> &nbsp;&nbsp;&nbsp; 车架号
 						<input v-model="carInfo.carnumber1" disabled="disabled" type="text" class="form-control">联系电话
-						<input v-model="carInfo.carerphone" disabled="disabled" type="text" class="form-control"> 进厂里程
-						<input v-model="carInfo.mileage" disabled="disabled" type="text" class="form-control"> &nbsp;&nbsp;&nbsp;进厂油量
-						<select v-model="repair.oil" class="form-control" style="width: 170px;">
+						<input v-model="carInfo.carerphone" disabled="disabled" type="text" class="form-control"> &nbsp;&nbsp;&nbsp;
+					</p>
+					<p>
+						进厂油量
+						<select v-model="repair.oil" class="form-control" style="width: 190px;">
 							<option>空</option>
 							<option>1/2</option>
 							<option>1/3</option>
@@ -130,10 +133,10 @@
 							<option>2/4</option>
 							<option>3/4</option>
 						</select>
-					</p>
-					<p>
+						 进厂里程
+						<input v-model="carInfo.mileage" disabled="disabled" type="text" class="form-control">
 						<span class="fontRed">业务类别</span>
-						<select v-model="repair.type" class="form-control" style="width: 170px;">
+						<select v-model="repair.type" class="form-control" style="width:210px;">
 							<option>中国重汽</option>
 							<option>陕汽重卡</option>
 							<option>中国一汽</option>
@@ -142,25 +145,29 @@
 							<option>中轻型车</option>
 							<option>其它</option>
 						</select> <span class="fontRed">施工班次</span>
-						<select v-model="repair.worktime" class="form-control" style="width: 170px;">
+						<select v-model="repair.worktime" class="form-control" style="width: 210px;">
 							<option>白天</option>
 							<option>夜晚</option>
-						</select>上次里程<input disabled="disabled" type="text" class="form-control"> 进厂时间
-						<input id="nowdate" v-model="carInfo.jjdate"  disabled="disabled" type="datetime" class="form-control" style="width: 170px;"> &nbsp;&nbsp;&nbsp;接车人
-						<input v-model="repair.getman" disabled="disabled"  type="text" class="form-control"> &nbsp;&nbsp;&nbsp;预计完工
-						<input v-model="repair.overworkdate" type="date" class="form-control" style="width: 170px;">
+						</select>上次里程<input disabled="disabled" type="text" class="form-control"> 
 					</p>
 					<p>
+						进厂时间
+						<input id="nowdate" v-model="carInfo.jjdate"  disabled="disabled" type="datetime" class="form-control" style="width: 190px;"> &nbsp;&nbsp;&nbsp;接车人
+						<input v-model="repair.getman" disabled="disabled"  type="text" class="form-control"> &nbsp;&nbsp;&nbsp;预计完工
+						<input v-model="repair.overworkdate" type="date" class="form-control" style="width: 200px;">
 						<span class="fontRed">结算方式</span>
-						<select v-model="repair.setter" class="form-control" style="width: 170px;">
+						<select v-model="repair.setter" class="form-control" style="width: 210px;">
 							<option>现结</option>
 							<option>挂账</option>
 							<option>返修</option>
 						</select> <span class="fontRed">预估金额</span>
-						<input v-model="repair.price" disabled="disabled" type="text" class="form-control">赔款公司
-						<input v-model="repair.company" type="text" class="form-control"> 完工时间
-						<input disabled="disabled" type="date" class="form-control" style="width: 170px;"> 上次进厂
-						<input disabled="disabled" v-model="carInfo.ordertime" type="date" class="form-control" style="width: 170px;"> &nbsp;&nbsp;&nbsp;接待备注
+						<input v-model="repair.price" disabled="disabled" type="text" class="form-control">
+					</p>
+					<p>
+						赔款公司
+						<input v-model="repair.company" style="width: 190px;" type="text" class="form-control"> 完工时间
+						<input disabled="disabled" type="date" class="form-control" style="width: 200px;"> 上次进厂
+						<input disabled="disabled" v-model="carInfo.ordertime" type="date" class="form-control" style="width: 210px;"> &nbsp;&nbsp;&nbsp;接待备注
 						<input v-model="repair.remark" type="text" class="form-control">
 					</p>
 					<p>
@@ -193,8 +200,6 @@
 							<button id="adds" type="button" class="btn btn-default">多个增加</button>
 							<button @click="update" type="button" class="btn btn-default">修改</button>
 							<button @click="delete1" type="button" class="btn btn-default">删除</button>
-							<button type="button" class="btn btn-default">维修班组</button>
-							<button type="button" class="btn btn-default">重置价格</button>
 						</div>
 						<div class="btn-group" style="display: none;">
 							<button type="button" class="btn btn-default">领料情况</button>
@@ -346,7 +351,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>价类</label>
-								<select v-model="item.priceType" id="priceType"  class="form-control">
+								<select style="width: 150px;" v-model="item.priceType" id="priceType"  class="form-control">
 									<option selected="selected" value="自费" >自费</option>
 									<option value="免单">免单</option>
 									<option value="保修">保修</option>
@@ -358,25 +363,26 @@
 								<input v-model="item.fwman" id="fwPeople" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label class="control-label"><span class="fontRed">★</span>数量</label>
-								<input v-model="item.count" id="count" type="text" class="form-control">
-							</div>
+								<label class="control-label"><span class="fontRed">★</span>数量</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input v-model="item.count" style="width: 150px;" id="count" type="text" class="form-control">
+							</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>优惠前单价</label>
 								<input v-model="item.qprice" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label class="control-label"><span class="fontRed">★</span>优惠后单价</label>
-								<input v-model="item.hprice" id="hprice" type="text" class="form-control">
-							</div>
+								<label class="control-label"><span class="fontRed">★</span>优惠后价</label>
+								<input v-model="item.hprice" style="width: 150px;" id="hprice" type="text" class="form-control">
+							</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>维修班组</label>
-								<input v-model="item.bzname" id="bz" :bzid="item.bzid" type="text" class="form-control">
+								<input style="width: 130px;" v-model="item.bzname" id="bz" :bzid="item.bzid" type="text" class="form-control">
+								
 								<button type="button" class="btn btn-success chosebz" style="margin-left: 0;">选择班组</button>
 							</div>
 							<div class="form-group">
 								<label class="control-label">免单原因</label>
-								<select id="mdresult" class="form-control" disabled="disabled">
+								<select id="mdresult" style="width: 130px;" class="form-control" disabled="disabled">
 									<option></option>
 								</select>
 							</div>
@@ -413,7 +419,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>价类</label>
-								<select id="updatepriceType" v-model="item.priceType"  class="form-control">
+								<select id="updatepriceType" style="width: 150px;" v-model="item.priceType"  class="form-control">
 									<option selected="selected" value="自费" >自费</option>
 									<option value="免单">免单</option>
 									<option value="保修">保修</option>
@@ -425,20 +431,20 @@
 								<input v-model="item.fwman" id="updatefwPeople" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label class="control-label"><span class="fontRed">★</span>数量</label>
-								<input v-model="item.count" id="updatecount" type="text" class="form-control">
-							</div>
+								<label class="control-label"><span class="fontRed">★</span>数量</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input v-model="item.count" style="width: 140px;" id="updatecount" type="text" class="form-control">
+							</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>优惠前单价</label>
 								<input v-model="item.qprice" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label class="control-label"><span class="fontRed">★</span>优惠后单价</label>
-								<input v-model="item.hprice" id="updatehprice" type="text" class="form-control">
+								<label class="control-label"><span class="fontRed">★</span>优惠后价</label>
+								<input v-model="item.hprice" style="width: 150px;" id="updatehprice" type="text" class="form-control">
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>维修班组</label>
-								<input v-model="item.bzname" id="updatebz" :bzid="item.bzid" type="text" class="form-control">
+								<input v-model="item.bzname" style="width: 150px;" id="updatebz" :bzid="item.bzid" type="text" class="form-control">
 								<button type="button" class="btn btn-success chosebz" style="margin-left: 0;" >选择班组</button>
 
 							</div>
@@ -506,12 +512,12 @@
 								<input v-model="commodity.cartype" disabled="disabled" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label class="control-label">单位</label>
+								<label class="control-label">单位</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<input v-model="commodity.unit" disabled="disabled" type="text" class="form-control">
 							</div>
 							<div class="form-group">
 								<label class="control-label">价类</label>
-								<select v-model="commodity.priceType" id="wlpriceType" class="form-control">
+								<select v-model="commodity.priceType" style="width: 100px;" id="wlpriceType" class="form-control">
 									<option selected="selected" value="自费" >自费</option>
 									<option value="免单">免单</option>
 									<option value="保修">保修</option>
@@ -530,7 +536,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">免单原因</label>
-								<select id="cause" disabled="disabled" v-model="commodity.cause" class="form-control">
+								<select id="cause" style="width: 200px; margin-left: 5px;" disabled="disabled" v-model="commodity.cause" class="form-control">
 
 								</select>
 							</div>
@@ -792,6 +798,180 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpage">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择顾问</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>员工编号</th>
+								<th>员工姓名</th>
+								
+							</tr>
+							<tr v-for="item in allstaff">
+								<td><input name="cc" type="radio"></td>
+								<td>{{item.staffno}}</td>
+								<td>{{item.name}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpage">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpagebz">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择班组</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>班组编号</th>
+								<th>班组名称</th>
+								
+							</tr>
+							<tr v-for="item in artisan">
+								<td><input name="cc" type="radio"></td>
+								<td>{{item.id}}</td>
+								<td>{{item.artisanclassname}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpagebz">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpagewx">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择维修项目</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>项目编号</th>
+								<th>项目名称</th>
+								
+							</tr>
+							<tr v-for="item in mainten">
+								<td><input name="cc"  type="radio"></td>
+								<td>{{item.id}}</td>
+								<td>{{item.itemsname}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpagewx">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpagewxs">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择维修项目</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>项目编号</th>
+								<th>项目名称</th>
+								
+							</tr>
+							<tr v-for="item in mainten">
+								<td><input  type="checkbox"></td>
+								<td>{{item.id}}</td>
+								<td>{{item.itemsname}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpagewxs">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpagexq">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择商品</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>商品编号</th>
+								<th>商品名称</th>
+								
+							</tr>
+							<tr v-for="item in commoditys">
+								<td><input  type="checkbox"></td>
+								<td>{{item.commodityno}}</td>
+								<td>{{item.name}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpagexq">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpagell">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择商品</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>商品编号</th>
+								<th>商品名称</th>
+								
+							</tr>
+							<tr v-for="item in commoditys">
+								<td><input  type="checkbox"></td>
+								<td>{{item.commodityno}}</td>
+								<td>{{item.name}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpagell">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>				
 		</div>
 		<script src="static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
@@ -825,7 +1005,11 @@
 						allCommodity:[],
 						jsInfo:{sta:"",qprice:0.0,hprice:0.0,gsprice:0.0,clprice:0.0},
 						arrayList:[],
-						repair:{number:""}
+						repair:{number:""},
+						allstaff:[],
+						artisan:[],
+						mainten:[],
+						commoditys:[]
 					}
 				},
 				created:function(){
@@ -885,12 +1069,18 @@
 				,
 				methods: {
 					openStaff() {
-						var staffno="ASD002"
-						var staffname="克莱尔"
-						var op=$("<option selected='selected' value='"+staffno+"' >"+staffname+"</option>")
-						$("#fwman").append(op)
-						this.repair.staffname=staffname
-						this.repair.staffno=staffno;
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectAllStaff",
+						async:true,
+						dateType:"json",
+						success:function(result){
+							vm.allstaff=result
+						
+						}
+					});	
+					$("#otherpage").modal("show");
+
 						
 					},
 					openMaintenanceItems() {
@@ -1143,12 +1333,34 @@
 						}
 				}
 				$("#chooseItem").click(function(){
-			   			$.ajax({
+						$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectAllItem",
+						async:true,
+						dataType:"json",
+						success:function(result){
+							vm.mainten=result;
+							
+						}
+					});					
+					$("#otherpagewx").modal("show")
+				})
+				$(".otherpagewx").click(function(){
+					var id=0;
+					
+					$("#otherpagewx tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							id=$(this).find("td:eq(1)").html();
+							
+						}
+					})
+					
+						$.ajax({
 						type:"post",
 						url:"http://localhost:8080/repair/selectById",
 						async:true,
 						data:{
-							id:"10005"
+							id:id
 						},
 						dataType:"json",
 						success:function(result){
@@ -1158,8 +1370,7 @@
 							
 						}
 					});
-				
-				
+					$("#otherpagewx").modal("hide")
 				})
 				function selectItemByid(id){
 					$.ajax({
@@ -1213,7 +1424,7 @@
 							
 							vm.item.count=1;
 							
-							vm.item.bzid=$("#bz").attr("bzid");
+							
 							vm.item.priceType=$("#priceType").val();
 							vm.item.bzname="";
 							vm.item.mdresult=$("#mdresult").val();
@@ -1247,7 +1458,26 @@
 					changeitem();
 			});
 			$("#adds").click(function(){
-				var sz=["10007","10008","10009"];
+						$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectAllItem",
+						async:true,
+						dataType:"json",
+						success:function(result){
+							vm.mainten=result;
+							
+						}
+					});					
+					$("#otherpagewxs").modal("show")		
+			})
+			$(".otherpagewxs").click(function(){
+				var sz=[];
+					$("#otherpagewxs tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							sz.push($(this).find("td:eq(1)").html());
+						}
+					})
+			
 				for (var i=0;i<sz.length;i++) {
 					   	$.ajax({
 						type:"post",
@@ -1277,8 +1507,8 @@
 						})
 					
 				}
-				vm.getsume();
-				
+				vm.getsume();	
+				$("#otherpagewxs").modal("hide")
 			})
 			$("#keepewitems").click(function(){
 				if(vm.ewitems.isupdate!="1"){
@@ -1297,7 +1527,27 @@
 				}
 			})
 			$("#addCommodity").click(function(){
-				var sz=["0Z0 258 007 090","0Z0 280 130 039"]
+				$("#otherpagexq").modal("show");
+						$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectAllCommodity",
+						async:true,
+						dataType:"json",
+						success:function(result){
+							vm.commoditys=result;
+							
+						}
+					});					
+
+				
+			})
+			$(".otherpagexq").click(function(){
+				var sz=[]
+					$("#otherpagexq tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							sz.push($(this).find("td:eq(1)").html());
+						}
+					})				
 					for (var i=0;i<sz.length;i++) {
 				$.ajax({
 					type:"post",
@@ -1323,7 +1573,7 @@
 					}
 				})
 					}
-				
+					$("#otherpagexq").modal("hide")
 			})
 			$("#wlpriceType").change(function(){
 							var clientType=$("#clientType").val();
@@ -1417,8 +1667,26 @@
 				$("#materialRequirement").modal("hide")
 			})
 			$("#wladd").click(function(){
-				
-				var sz=["0Z0 258 007 090","0Z0 280 130 039"]
+				$("#otherpagell").modal("show");
+						$.ajax({
+						type:"post",
+						url:"http://localhost:8080/repair/selectAllCommodity",
+						async:true,
+						dataType:"json",
+						success:function(result){
+							vm.commoditys=result;
+							
+						}
+					});					
+
+			})
+			$(".otherpagell").click(function(){
+				var sz=[]
+					$("#otherpagexq tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							sz.push($(this).find("td:eq(1)").html());
+						}
+					})	
 					for (var i=0;i<sz.length;i++) {
 				$.ajax({
 					type:"post",
@@ -1444,6 +1712,7 @@
 					}
 				})
 					}
+					$("#otherpagell").modal("hide")
 			})
 			$("#llkeep").click(function(){
 				$("#receiveMaterial").modal("hide")
@@ -1555,11 +1824,44 @@
 	}
 			})
 			$(".chosebz").click(function(){
-				vm.item.bzid="10005"
-				vm.item.bzname="马云组"
+					$.ajax({
+					type:"post",
+					url:"http://localhost:8080/leg/selectAll",
+					dataType:"json",
+					success:function(res){
+						vm.artisan=res
+					}
+				})
+					$("#otherpagebz").modal("show")
+			})
+			$(".otherpagebz").click(function(){
+					$("#otherpagebz tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							vm.item.bzid=$(this).find("td:eq(1)").html();
+							vm.item.bzname=$(this).find("td:eq(2)").html();
+						}
+					})
+					$("#otherpagebz").modal("hide")
+			})
+			$(".otherpage").click(function(){
+				var staffno=''
+				var staffname=''
+						$("#otherpage tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							 staffno=$(this).find("td:eq(1)").html();
+							 staffname=$(this).find("td:eq(2)").html();
+						}
+					})
+
+						var op=$("<option selected='selected' value='"+staffno+"' >"+staffname+"</option>")
+						$("#fwman").append(op)
+						vm.repair.staffname=staffname
+						vm.repair.staffno=staffno;
+						$("#otherpage").modal("hide")
 			})
 			
 			});
+			
 		</script>
 	</body>
 
