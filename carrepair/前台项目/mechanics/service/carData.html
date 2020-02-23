@@ -2921,8 +2921,10 @@
 							"maintaindate": ""
 						}
 						$("[name=carnumber]").removeAttr("readonly");
+						$("[name=customernumberandname]").val("");
+						$("[name=insuredcar]").prop("checked",false);
 						selectAllEngineBrand();
-
+							
 					},
 					//打开修改车资料窗体
 					openupdatecarinfoedit: function() {

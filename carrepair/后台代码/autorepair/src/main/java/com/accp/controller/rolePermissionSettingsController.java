@@ -3,6 +3,7 @@ package com.accp.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,7 @@ import com.accp.domain.Post;
 import com.accp.service.jurisdictionService;
 import com.accp.service.postJurisdictionService;
 import com.accp.service.postService;
+import com.accp.vo.JurisdictionInfo;
 
 @RestController
 @RequestMapping("/rolePermissionSettings")
@@ -47,6 +49,19 @@ public class rolePermissionSettingsController {
 	public String deletePost(Integer postId) {
 		int i=ps.deletePost(postId);
 		if(i>0) {
+			return "1";
+		}else {
+			return "0";
+		}
+	}
+	
+	@RequestMapping("/addJurisdictionInfo")
+	public String addJurisdictionInfo(@RequestBody List<JurisdictionInfo> list) {
+		int j=0;
+		for(int i=0;i<list.size();i++) {
+			 j=pjs.insertJurisdictionInfo(list.get(i).getId(), list.get(i).getPostid(), list.get(i).getJudge());
+		}
+		if(j>0) {
 			return "1";
 		}else {
 			return "0";
