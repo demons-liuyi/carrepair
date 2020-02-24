@@ -190,6 +190,7 @@
 		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="js/vue.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
 		<script type="text/javascript">
 			var vm = new Vue({
 				el: "#ctx",
@@ -210,7 +211,7 @@
 						console.log(that.gangwei.postname);
 						var po = JSON.stringify(that.gangwei);
 						$.ajax({
-							url: "http://localhost:8080/positionSelect",
+							url: data.ip+"/positionSelect",
 							data: po,
 							contentType: "application/json;charset=utf-8",
 							type: "post",
@@ -228,7 +229,7 @@
 						console.log(that.gangwei.postname);
 						var po = JSON.stringify(that.gangwei);
 						$.ajax({
-							url: "http://localhost:8080/addPost",
+							url: data.ip+"/addPost",
 							data: po,
 							contentType: "application/json;charset=utf-8",
 							type: "post",
@@ -248,7 +249,7 @@
 						console.log(that.gangwei.postname);
 						var po = JSON.stringify(that.gangwei);
 						$.ajax({
-							url: "http://localhost:8080/updatePost",
+							url: data.ip+"0/updatePost",
 							data: po,
 							contentType: "application/json;charset=utf-8",
 							type: "post",
@@ -267,7 +268,7 @@
 						console.log(that.gangwei.postname);
 						var po = JSON.stringify(that.gangwei);
 						$.ajax({
-							url: "http://localhost:8080/deletePost",
+							url: data.ip+"/deletePost",
 							data: po,
 							contentType: "application/json;charset=utf-8",
 							type: "post",
@@ -288,7 +289,7 @@
 
 					},exportExcel(){
 						
-						window.location.href="http://localhost:8080/exportExcel"
+						window.location.href=data.ip+"/exportExcel"
 						
 					}
 				},

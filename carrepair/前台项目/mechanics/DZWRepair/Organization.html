@@ -1226,6 +1226,7 @@
 		<script type="text/javascript" src="js/perms.js"></script>
 		<script type="text/javascript" src="js/jstree.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				$("#tijiao").click(function() {
@@ -1233,7 +1234,7 @@
 					console.log(fomData)
 					console.log("這裏")
 					$.ajax({
-						url: "http://localhost:8080/importExcel",
+						url: data.ip+"/importExcel",
 						async: true,
 						data: fomData,
 						type: "post",
@@ -1434,7 +1435,7 @@
 					shuxin() {
 						var that = this;
 						$.ajax({
-							url: "http://localhost:8080/selectDep",
+							url: data.ip+"/selectDep",
 							type: "get",
 							xhrFields: {
 								withCredentials: true
@@ -1488,7 +1489,7 @@
 						var str = that.str;
 						console.log("str=" + str)
 						$.ajax({
-							url: "http://localhost:8080/selectStaff",
+							url: data.ip+"/selectStaff",
 							data: {
 								str: str
 							},
@@ -1511,7 +1512,7 @@
 					selectDep() {
 						var that = this;
 						$.ajax({
-							url: "http://localhost:8080/selectDeplist",
+							url: data.ip+"/selectDeplist",
 							dataType: "json",
 							type: "post",
 							success: function(result) {
@@ -1523,7 +1524,7 @@
 					selectPost() {
 						var that = this;
 						$.ajax({
-							url: "http://localhost:8080/postAllSelect",
+							url: data.ip+"/postAllSelect",
 							dataType: "json",
 							type: "post",
 
@@ -1552,7 +1553,7 @@
 							type: "post",
 							data: sta,
 							contentType: "application/json;charset=utf-8",
-							url: "http://localhost:8080/addStaff",
+							url: data.ip+"/addStaff",
 							success: function(result) {
 								console.log(result);
 								that.selectStaffTable();
@@ -1567,7 +1568,7 @@
 							type: "post",
 							data: sta,
 							contentType: "application/json;charset=utf-8",
-							url: "http://localhost:8080/upStaff",
+							url:data.ip+"/upStaff",
 							success: function(result) {
 								console.log(result);
 								that.selectStaffTable();
@@ -1584,7 +1585,7 @@
 						var staffno = that.crrent;
 						$.ajax({
 							type: "post",
-							url: "http://localhost:8080/selectStaffByNo",
+							url: data.ip+"/selectStaffByNo",
 							data: {
 								staffno: staffno
 							},
@@ -1601,7 +1602,7 @@
 						var pwd2 = that.pwd2;
 						$.ajax({
 							type: "post",
-							url: "http://localhost:8080/newPassword",
+							url: data.ip+"/newPassword",
 							data: {
 								no: staffno,
 								pwd1: pwd1,
@@ -1634,7 +1635,7 @@
 						var that = this;
 						$.ajax({
 							type: "post",
-							url: "http://localhost:8080/deleteStaffById",
+							url: data.ip+"/deleteStaffById",
 							data: {
 								staffno: staffno
 							},
@@ -1657,7 +1658,7 @@
 						
 						$.ajax({
 							type: "post",
-							url: "http://localhost:8080/selectStaffByDepId",
+							url: data.ip+"/selectStaffByDepId",
 							data: {
 								depid: depidd
 							},
@@ -1669,7 +1670,7 @@
 					},
 					exportExcel() {
 						var that = this;
-						window.location.href = "http://localhost:8080/exportExcel1?str=" + that.str;
+						window.location.href = data.ip+"/exportExcel1?str=" + that.str;
 
 					},selectStaffByMany(){
 						var that = this;
@@ -1679,7 +1680,7 @@
 						$.ajax({
 							type:"post",
 							data:staff1,
-							url:"http://localhost:8080/selectStaffByMany",
+							url:data.ip+"/selectStaffByMany",
 							contentType:"application/json;charset=utf-8",
 							dataType:"json",
 							success:function(result){

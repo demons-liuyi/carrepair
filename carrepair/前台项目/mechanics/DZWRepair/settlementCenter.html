@@ -351,11 +351,12 @@
 		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="js/vue.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
 		<script>
 			//查询未结账的账单
 			function selectUnfinished() {
 				$.ajax({
-					url: "http://localhost:8080/settlementCenter/selectUnfinished",
+					url: data.ip+"/settlementCenter/selectUnfinished",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -379,7 +380,7 @@
 			//查询结账的账单
 			function selectFinished() {
 				$.ajax({
-					url: "http://localhost:8080/settlementCenter/selectFinished",
+					url: data.ip+"/settlementCenter/selectFinished",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -404,7 +405,7 @@
 				var id = $("[name=status]").find(":checked").attr("attrid");
 				var form = document.createElement("form");
 				form.style.display = 'none';
-				form.action = "http://localhost:8080/excel/settlementExcel";
+				form.action = data.ip+"/excel/settlementExcel";
 				form.method = "post";
 				document.body.appendChild(form);
 				if(id == 1) {
@@ -552,7 +553,7 @@
 								type: "post",
 								data: record,
 								contentType: "application/json;charset=utf-8",
-								url: "http://localhost:8080/addCashier",
+								url: data.ip+"/addCashier",
 								success: function(result) {
 									alert(result)
 								}
