@@ -152,7 +152,7 @@
 				query(){
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/level/query",
+					url:data.ip+"level/query",
 					dataType:"json",
 					success:function(res){
 						vm.list=res
@@ -171,7 +171,7 @@
 				 	if(vm.level.id!=null){
 				    $.ajax({
 					type:"post",
-					url:"http://localhost:8080/level/update",
+					url:data.ip+"level/update",
 					data:
 						JSON.stringify(vm.level)
 					,
@@ -188,7 +188,7 @@
 				}else{
 				 	$.ajax({
 					type:"post",
-					url:"http://localhost:8080/level/add",
+					url:data.ip+"level/add",
 					data:
 						JSON.stringify(vm.level)
 					,
@@ -209,7 +209,7 @@
 				 delete1(){
 				  $.ajax({
 					type:"post",
-					url:"http://localhost:8080/level/delete",
+					url:data.ip+"level/delete",
 					data:{
 						id:vm.level.id
 					},

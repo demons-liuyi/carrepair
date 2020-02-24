@@ -405,7 +405,7 @@
 					
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/"+ways+"",
+						url:data.ip+"repair/"+ways+"",
 						data:{
 							type:type,
 							content:content
@@ -426,7 +426,7 @@
 					console.log(cpc)
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectRepairAndRescue",
+						url:data.ip+"repair/selectRepairAndRescue",
 						data:{
 							type:type,
 							content:content,
@@ -462,7 +462,7 @@
 				$("#queryCarNumber").click(function(){
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectAllCar",
+						url:data.ip+"repair/selectAllCar",
 						async:true,
 						dateType:"json",
 						success:function(result){
@@ -489,7 +489,7 @@
 				
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectClientAndCar",
+						url:data.ip+"repair/selectClientAndCar",
 						async:true,
 						data:{
 							carNumber:carnumber

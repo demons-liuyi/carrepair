@@ -913,7 +913,7 @@
 				 	     $("#clientType").val(clientType);
 				 	        $.ajax({
 				 	     	type:"post",
-				 	     	url:"http://localhost:8080/repair/queryRescue",
+				 	     	url:data.ip+"repair/queryRescue",
 				 	     	async:true,
 				 	     	data:{
 				 	     		number:number
@@ -930,7 +930,7 @@
 				 	     	})
 				 		  $.ajax({
 				 	     	type:"post",
-				 	     	url:"http://localhost:8080/repair/queryGetGoods",
+				 	     	url:data.ip+"repair/queryGetGoods",
 				 	     	async:true,
 				 	     	data:{
 				 	     		tab:"rescue",
@@ -950,7 +950,7 @@
 				 	     	})
 				 		  $.ajax({
 				 	     	type:"post",
-				 	     	url:"http://localhost:8080/repair/queryItemRepair",
+				 	     	url:data.ip+"repair/queryItemRepair",
 				 	     	async:true,
 				 	     	data:{
 				 	     		tab:"rescue",
@@ -967,7 +967,7 @@
 				 	     	})
 				 		 $.ajax({
 				 	     	type:"post",
-				 	     	url:"http://localhost:8080/repair/queryRescueEwitem",
+				 	     	url:data.ip+"repair/queryRescueEwitem",
 				 	     	async:true,
 				 	     	data:{
 				 	     		number:number
@@ -985,7 +985,7 @@
 				 	     	})
 				 	     $.ajax({
 				 	     	type:"post",
-				 	     	url:"http://localhost:8080/repair/selectCarInfo",
+				 	     	url:data.ip+"repair/selectCarInfo",
 				 	     	async:true,
 				 	     	data:{
 				 	     		carNumber:carNumber
@@ -1296,7 +1296,7 @@
 				$("#chooseItem").click(function(){
 			   			$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectById",
+						url:data.ip+"repair/selectById",
 						async:true,
 						data:{
 							id:"10005"
@@ -1315,7 +1315,7 @@
 				function selectItemByid(id){
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectById",
+						url:data.ip+"repair/selectById",
 						async:true,
 						data:{
 							id:id
@@ -1402,7 +1402,7 @@
 				for (var i=0;i<sz.length;i++) {
 					   	$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectById",
+						url:data.ip+"repair/selectById",
 						async:true,
 						data:{
 							id:sz[i]
@@ -1452,7 +1452,7 @@
 					for (var i=0;i<sz.length;i++) {
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/selectGoodById",
+					url:data.ip+"repair/selectGoodById",
 					data:{
 						id:sz[i]
 					},
@@ -1571,7 +1571,7 @@
 					for (var i=0;i<sz.length;i++) {
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/selectGoodById",
+					url:data.ip+"repair/selectGoodById",
 					data:{
 						id:sz[i]
 					},
@@ -1613,7 +1613,7 @@
 				}
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/updateRescue",
+					url:data.ip+"repair/updateRescue",
 					async:false,
 					data:JSON.stringify(vm.repair),
 	
@@ -1633,7 +1633,7 @@
 						}
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/updateGetgood",
+						url:data.ip+"repair/updateGetgood",
 						async:false,
 						data:JSON.stringify(vm.allCommodity)
 						,
@@ -1647,7 +1647,7 @@
 							vm.allCommodity.push({wjid:vm.repair.number,count:"-1"})
 						$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/updateGetgood",
+						url:data.ip+"repair/updateGetgood",
 						async:false,
 						data:JSON.stringify(vm.allCommodity)
 						,
@@ -1672,7 +1672,7 @@
 					
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/updateItemRepair",
+					url:data.ip+"repair/updateItemRepair",
 					async:false,
 					data:JSON.stringify(vm.itemRepair)
 					,
@@ -1686,7 +1686,7 @@
 					vm.itemRepair.push({wjid:vm.repair.number,count:"-1"})
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/updateItemRepair",
+					url:data.ip+"repair/updateItemRepair",
 					async:false,
 					data:JSON.stringify(vm.itemRepair)
 					,
@@ -1706,7 +1706,7 @@
 					}
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/updateEwitem",
+					url:data.ip+"repair/updateEwitem",
 					async:false,
 					data:JSON.stringify(vm.allewitems)
 					,
@@ -1720,7 +1720,7 @@
 					vm.allewitems.push({rescueid:vm.repair.number,remark:"**"})
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/updateEwitem",
+					url:data.ip+"repair/updateEwitem",
 					async:false,
 					data:JSON.stringify(vm.allewitems)
 					,
@@ -1736,7 +1736,7 @@
 			$("#rollback a").click(function(){
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/rollBackRescue",
+					url:data.ip+"repair/rollBackRescue",
 					async:true,
 					data:{
 						number:vm.repair.number
@@ -1760,7 +1760,7 @@
 							$("#myModal").modal("show")
 							$.ajax({
 								type:"post",
-								url:"http://localhost:8080/repair/queryCom",
+								url:data.ip+"repair/queryCom",
 								async:true,
 								dataType:"json",
 								data:{
@@ -1848,7 +1848,7 @@
 				}
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/addRescueCom",
+					url:data.ip+"repair/addRescueCom",
 					async:true,
 					data:JSON.stringify(vm.com),
 					contentType:"application/json;charset=utf-8",

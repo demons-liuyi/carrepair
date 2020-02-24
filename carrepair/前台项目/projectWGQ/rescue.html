@@ -835,7 +835,7 @@
 				 	     $("#clientType").val(clientType);
 				 	     $.ajax({
 				 	     	type:"post",
-				 	     	url:"http://localhost:8080/repair/selectCarInfo",
+				 	     	url:data.ip+"repair/selectCarInfo",
 				 	     	async:true,
 				 	     	data:{
 				 	     		carNumber:carNumber
@@ -1147,7 +1147,7 @@
 				$("#chooseItem").click(function(){
 			   			$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectById",
+						url:data.ip+"repair/selectById",
 						async:true,
 						data:{
 							id:"10005"
@@ -1166,7 +1166,7 @@
 				function selectItemByid(id){
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectById",
+						url:data.ip+"repair/selectById",
 						async:true,
 						data:{
 							id:id
@@ -1253,7 +1253,7 @@
 				for (var i=0;i<sz.length;i++) {
 					   	$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/selectById",
+						url:data.ip+"repair/selectById",
 						async:true,
 						data:{
 							id:sz[i]
@@ -1303,7 +1303,7 @@
 					for (var i=0;i<sz.length;i++) {
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/selectGoodById",
+					url:data.ip+"repair/selectGoodById",
 					data:{
 						id:sz[i]
 					},
@@ -1424,7 +1424,7 @@
 					for (var i=0;i<sz.length;i++) {
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/selectGoodById",
+					url:data.ip+"repair/selectGoodById",
 					data:{
 						id:sz[i]
 					},
@@ -1468,7 +1468,7 @@
 				}
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/addRescue",
+					url:data.ip+"repair/addRescue",
 					async:false,
 					data:JSON.stringify(vm.repair),
 	
@@ -1488,7 +1488,7 @@
 						}
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/repair/addGetgood",
+						url:data.ip+"repair/addGetgood",
 						async:false,
 						data:JSON.stringify(vm.allCommodity)
 						,
@@ -1512,7 +1512,7 @@
 					}
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/addItemRepair",
+					url:data.ip+"repair/addItemRepair",
 					async:false,
 					data:JSON.stringify(vm.itemRepair)
 					,
@@ -1532,7 +1532,7 @@
 					}
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/repair/addEwitem",
+					url:data.ip+"repair/addEwitem",
 					async:false,
 					data:JSON.stringify(vm.allewitems)
 					,

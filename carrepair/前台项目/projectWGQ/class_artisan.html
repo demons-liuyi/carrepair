@@ -739,7 +739,7 @@
 				created:function(){
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/leg/selectNodes",
+						url:data.ip+"leg/selectNodes",
 						dataType:"json",
 						success:function(res){
 							vm.list=res
@@ -747,7 +747,7 @@
 					})
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/level/query",
+					url:data.ip+"level/query",
 					dataType:"json",
 					success:function(res){
 						vm.level=res
@@ -789,7 +789,7 @@
 								
 							$.ajax({
 							type:"post",
-							url:"http://localhost:8080/level/deleteArtisan",
+							url:data.ip+"level/deleteArtisan",
 							data:{
 								artisanno:vm.ar[index].artisanno
 							},
@@ -806,7 +806,7 @@
 					})
 						$.ajax({
 							type:"post",
-							url:"http://localhost:8080/level/selectByWhere",
+							url:data.ip+"level/selectByWhere",
 							async:false,
 							data:{
 								bzid:vm.artisan.artisanclassid,
@@ -875,7 +875,7 @@
 				 	selectByWhere(bzid,sel){
 						$.ajax({
 							type:"post",
-							url:"http://localhost:8080/level/selectByWhere",
+							url:data.ip+"level/selectByWhere",
 							async:true,
 							data:{
 								bzid:bzid,
@@ -921,7 +921,7 @@
 						}else{
 							$.ajax({
 								type:"post",
-								url:"http://localhost:8080/leg/nodesDelete",
+								url:data.ip+"leg/nodesDelete",
 								data:{
 									id:$(options.$trigger[0]).attr("bh")
 								},
@@ -945,7 +945,7 @@
 			function changebz(){
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/leg/selectNodes",
+						url:data.ip+"leg/selectNodes",
 						dataType:"json",
 						success:function(res){
 							vm.list=res
@@ -955,7 +955,7 @@
 			$("#keppadd").click(function(){
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/leg/nodesAdd",
+						url:data.ip+"leg/nodesAdd",
 						dataType:"json",
 						data:JSON.stringify(vm.al),
 						contentType:"application/json;charset=uft-8",
@@ -972,7 +972,7 @@
 			$("#keppupdate").click(function(){
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/leg/nodesUpdate",
+						url:data.ip+"leg/nodesUpdate",
 						dataType:"json",
 						data:JSON.stringify(vm.al),
 						contentType:"application/json;charset=uft-8",
@@ -991,7 +991,7 @@
 				var sel=$("#sel").val()
 					$.ajax({
 							type:"post",
-							url:"http://localhost:8080/level/selectByWhere",
+							url:data.ip+"level/selectByWhere",
 							async:true,
 							data:{
 								bzid:bzid,
@@ -1011,7 +1011,7 @@
 				}
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/level/addArtisan",
+					url:data.ip+"level/addArtisan",
 					data:JSON.stringify(vm.artisan),
 					async:false,
 					contentType:"application/json;charset=utf-8",
@@ -1024,7 +1024,7 @@
 				})
 						$.ajax({
 							type:"post",
-							url:"http://localhost:8080/level/selectByWhere",
+							url:data.ip+"level/selectByWhere",
 							async:false,
 							data:{
 								bzid:vm.artisan.artisanclassid,
@@ -1048,7 +1048,7 @@
 				vm.artisan=JSON.parse(JSON.stringify(vm.artisan))
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/level/updateArtisan",
+					url:data.ip+"level/updateArtisan",
 					data:JSON.stringify(vm.artisan),
 					async:false,
 					contentType:"application/json;charset=utf-8",
@@ -1062,7 +1062,7 @@
 				})
 						 $.ajax({
 							type:"post",
-							url:"http://localhost:8080/level/selectByWhere",
+							url:data.ip+"level/selectByWhere",
 							async:false,
 							data:{
 								bzid:vm.artisan.artisanclassid,

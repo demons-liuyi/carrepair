@@ -164,7 +164,7 @@
 				query(){
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/leg/queryAll",
+					url:data.ip+"leg/queryAll",
 					dataType:"json",
 					success:function(res){
 						vm.list=res
@@ -183,7 +183,7 @@
 				 	if(vm.level.id!=null){
 				    $.ajax({
 					type:"post",
-					url:"http://localhost:8080/leg/update",
+					url:data.ip+"leg/update",
 					data:
 						JSON.stringify(vm.level)
 					,
@@ -200,7 +200,7 @@
 				}else{
 				 	$.ajax({
 					type:"post",
-					url:"http://localhost:8080/leg/add",
+					url:data.ip+"leg/add",
 					data:
 						JSON.stringify(vm.level)
 					,
@@ -221,7 +221,7 @@
 				 delete1(){
 				  $.ajax({
 					type:"post",
-					url:"http://localhost:8080/leg/delete",
+					url:data.ip+"leg/delete",
 					data:{
 						id:vm.level.id
 					},
@@ -241,7 +241,7 @@
 			vm.query()
 				$.ajax({
 					type:"post",
-					url:"http://localhost:8080/leg/selectAll",
+					url:data.ip+"leg/selectAll",
 					dataType:"json",
 					success:function(res){
 						vm.artisan=res
