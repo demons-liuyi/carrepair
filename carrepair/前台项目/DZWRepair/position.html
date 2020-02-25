@@ -16,15 +16,16 @@
 			/**
 			 * 头部
 			 */
-			
+			a{
+				color: #000000;
+			}
 			.header {
 				flex-direction: row;
-				padding: 1em 2em;
+				padding: 1em 1em;
 				justify-content: space-between;
 				width: 100%;
 				display: flex;
-				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
-				box-shadow: 1px 1px 4px 3px #E6E6E6;
+				box-shadow: 1px 1px 2px 0px #E6E6E6;
 			}
 			
 			.header-l {
@@ -52,11 +53,10 @@
 			.t-input {
 				background: white;
 				padding-left: 1.5em;
-				padding-top: 0.5em;
-				padding-bottom: 0.5em;
-				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
-				border-radius: 0.5em;
-				margin: 0.5em 1em;
+				padding-top: 1.5em;
+				padding-bottom: 1.5em;
+				box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+				margin-bottom: 1em;
 			}
 			/**
 			 * 百框内
@@ -66,7 +66,7 @@
 				display: flex;
 				justify-content: flex-end;
 				padding: 0.5em 0;
-				margin: 0.5em 1em;
+				margin: 1em 1em;
 				border-radius: 0.5em;
 				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
 				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
@@ -88,9 +88,8 @@
 			.tb-body {
 				background: white;
 				padding: 1em 1em;
-				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				
 				border-radius: 0.5em;
-				margin: 0.5em 1em;
 			}
 			
 			.bacolor {}
@@ -110,13 +109,13 @@
 
 		<div class="header">
 			<div class="header-l">
-				<span>
+				<h2>
 					
 					岗位定义
-				</span>
+				</h2>
 
 			</div>
-			<div class="header-r">
+			<div class="header-r" style="margin-top: 1em;">
 
 				<button class="btn btn-default">关闭</button>
 

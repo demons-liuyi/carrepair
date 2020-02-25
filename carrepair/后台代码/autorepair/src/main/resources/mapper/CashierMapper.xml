@@ -161,7 +161,7 @@ LEFT JOIN rescue ON cashier.`Number` = rescue.`number` where cashier.`cashiersta
     insert into cashier (id, totalNum, cashierstatic, 
       paymentType, invoiceNo, cashiertime, 
       staffId, onCredit, interior, 
-      clientId, change, Number, 
+      clientId, `change`, `Number`, 
       otherone, othertwo, otherthree, 
       otherfour, otherfive)
     values (#{id,jdbcType=INTEGER}, #{totalnum,jdbcType=REAL}, #{cashierstatic,jdbcType=VARCHAR}, 

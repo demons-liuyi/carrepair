@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>结算中心</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="fonts/font_rdupt/iconfont.css" />
 		<style>
@@ -13,14 +13,19 @@
 				height: 100%;
 				width: 100%;
 			}
-			
+			#img{
+				color: #000000;
+			}
+			#ctx{
+				
+				height: 96%;
+			}
 			.header {
 				flex-direction: row;
 				padding: 1em 2em;
 				justify-content: space-between;
 				width: 100%;
 				display: flex;
-				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
 				box-shadow: 1px 1px 4px 3px #E6E6E6;
 			}
 			
@@ -30,21 +35,23 @@
 				padding: 0.2em 1em;
 			}
 			
-			.header-r {}
+			.header-r {
+				margin-top: 1em;
+			}
 			
 			.header-r input {
+				
 				width: 25em;
 				padding: 0.3em 1em;
 			}
 			
 			.tit-tab {
 				display: flex;
-				justify-content: flex-end;
 				padding: 0.5em 0;
+				box-shadow: 1px 1px 2px 0px #E6E6E6;
 			}
 			
 			.tit-tr {
-				background-color: #31B0D5;
 			}
 			
 			.bt-cx {
@@ -57,9 +64,7 @@
 				padding-left: 1.5em;
 				padding-top: 0.5em;
 				padding-bottom: 0.5em;
-				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
 				border-radius: 0.5em;
-				margin: 0.5em 1em;
 			}
 			
 			.t-input-1 {
@@ -74,12 +79,7 @@
 				margin: 0.5em 1em;
 			}
 			
-			.tit-tab {
-				margin: 0.5em 1em;
-				border-radius: 0.5em;
-				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
-				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
-			}
+		
 			
 			.box-border-a-shadow {
 				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
@@ -122,27 +122,27 @@
 		<div id="ctx">
 			<div class="header">
 				<div class="header-l">
-					<span>
+					<h2>
 					
 					结算中心
-				</span>
+				</h2>
 
 				</div>
 				<div class="header-r">
 
-					<button class="btn btn-success bt-cx">
+					<button class="btn btn-default bt-cx">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查询</button>
 					<button class="btn btn-default">关闭</button>
 				</div>
 			</div>
 
 			<div style="height: 92%">
-				<div class="t-input">
+				<div class="t-input" class="col-md-4">
 					<form class="form-inline">
 						<div class=" form-group">
 							<span class="t-span">开单日期：</span>
 							<input name="startDate" readonly="readonly" type="date" />
-							<input name="nowDate" readonly="readonly" style="margin-left: 10px;" type="date"/>
+							<input name="nowDate" readonly="readonly" style="margin-left: 10px;" type="date" />
 
 							<span class="t-span">结账状态：</span>
 							<select name="status" @change="changeSelect()" class="form-control">
@@ -156,7 +156,7 @@
 						</div>
 					</form>
 				</div>
-				<div class="tit-tab">
+				<div class="tit-tab" class="col-md-8">
 					<div class="col-md-3">
 						<ul>
 							<li name="cashdesk">
@@ -164,8 +164,7 @@
 								<span @click="openCashier()" data-toggle="modal" data-target=".mo2" id="font">收银</span>
 							</li>
 							<li name="rollback">
-								<span id="img" class="glyphicon glyphicon-print"></span>
-								<span @click="rollback()" id="font">回滚</span>
+								
 							</li>
 							<li>
 								<span id="img" class="iconfont icon-biaodan"></span>
@@ -261,14 +260,14 @@
 									<td style="padding-left: 25px;">
 										<input readonly="readonly" value="0.98" type="text"></td>
 									<td style="padding-left: 25px;">
-										<input readonly="readonly" name="taxes" type="text"></td>
+										<input  readonly="readonly" name="taxes" type="text"></td>
 									<td style="padding-left: 25px;">
 										<select name="moweishu" @change="moweishu">
 											<option attrid=0>请选择</option>
 											<option attrid=1>抹税金</option>
 										</select>
 									</td>
-									<td style="padding-left: 25px;"><input type="text"></td>
+									<td style="padding-left: 25px;"><input type="text" name="jfen" @change="moneyjfen()" oninput = "value=value.replace(/[^\d]/g,'')"></td>
 								</tr>
 							</table>
 							<div class="row">
@@ -278,7 +277,7 @@
 									</p>
 									<p>
 										<span>结算状态：</span>
-										<select>
+										<select name="cashierstatic">
 											<option>正常结算</option>
 											<option>部分结算</option>
 											<option>挂账结算</option>
@@ -287,22 +286,72 @@
 								</div>
 								<div style="float: right;margin-top: 30px;margin-right: 50px;">
 									实收金额：<span name="money"></span>
-									<input type="text" />
-									<button class="btn btn-success">一键付款</button>
+									<input type="text" name="moneynum" @change="setchange()" oninput = "value=value.replace(/[^\d]/g,'')"/>
+									<button class="btn btn-success" data-target="#myModal" data-toggle="modal" data-target=".bs-example-modal-sm">确认支付</button>
 								</div>
+							</div>
+							<div>
+								<form class=" ">
+									<table>
+										<tr>
+											<td></td>
+										</tr>
+										<tr>
+											<td><span style="font-size: 1.2em;font-weight: 500;">支付方式：</span></td>
+										</tr>
+										<tr>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>现金</td>
+											<td><input checked name="zhifu" type="radio" id="" value="现金" /></td>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>微信支付</td>
+											<td><input name="zhifu" type="radio" id="" value="微信支付" /></td>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>信用卡</td>
+											<td><input name="zhifu" type="radio" id="" value="信用卡" /></td>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>支付宝</td>
+											<td><input name="zhifu" type="radio" id="" value="支付宝" /></td>
+										</tr>
+									</table>
+								</form>
 							</div>
 
 							<div>
-								<span>找零：</span><span>0.0</span>
+								<span>找零：</span><span name="change" v-text="cashi.change"></span>
 
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button style="margin-right: 35px;" class="btn btn-success">结算</button>
+							<button style="margin-right: 35px;" class="btn btn-default"  data-dismiss="modal">取消</button>
 						</div>
 					</div>
 				</div>
 			</div>
+			
+			
+			
+			
+			<div class="modal fade" tabindex="-1" role="dialog" id="myModal" >
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">支付</h4>
+					</div>
+					<div class="modal-body">
+						<p>已确认金额现在提交？</p>
+					</div>
+					<div class="modal-footer">
+						<a type="button" class="btn btn-default" data-dismiss="modal">取消</a>
+						<button type="button" class="btn btn-primary" data-dismiss="modal"  @click="addCashier()">确定</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
 		</div>
 		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="js/vue.min.js"></script>
@@ -317,14 +366,15 @@
 					xhrFields: {
 						withCredentials: true
 					},
-					success: function(response) {				 
+					success: function(response) {
 						vm.billingInformation = response;
-						console.log(response)
-						for(var i = 0; i < vm.billingInformation.length; i++) {			 
-						if(vm.billingInformation[i].check == true) {					
-							$("[name=startDate]").attr("value",vm.billingInformation[i].ordertime);
+						for(var i = 0; i < vm.billingInformation.length; i++) {
+							if(vm.billingInformation[i].check == true) {
+								$("[name=startDate]").attr("value", vm.billingInformation[i].ordertime);
+							}
+
+							vm.setCashier();
 						}
-					}
 					},
 					error: function(error) {
 						console.log(error);
@@ -340,15 +390,14 @@
 					xhrFields: {
 						withCredentials: true
 					},
-					success: function(response) {					 
+					success: function(response) {
 						vm.billingInformation = response;
-						console.log(response)
-						for(var i = 0; i < vm.billingInformation.length; i++) {					 
-						if(vm.billingInformation[i].check == true) {					
-							$("[name=startDate]").attr("value",vm.billingInformation[i].ordertime);
+						for(var i = 0; i < vm.billingInformation.length; i++) {
+							if(vm.billingInformation[i].check == true) {
+								$("[name=startDate]").attr("value", vm.billingInformation[i].ordertime);
+							}
+
 						}
-						
-					}
 					},
 					error: function(error) {
 						console.log(error);
@@ -385,7 +434,22 @@
 
 					return {
 						billingInformation: {},
-						cashier:{},
+						cashier: {},
+						cashi: {
+
+							totalnum: null, //总金额
+							cashierstatic: "已支付", //结算状态
+							paymenttype: null, //支付方式
+							invoiceno: null, //发票表id
+							cashiertime: null, //结算时间
+							staffid: null, //员工表id检查该员工的角色是否有权限使用内部券
+							oncredit: null, //挂账金额
+							interior: null, //内部免单金额
+							clientId: null, //客户编号
+							change: null, //找零
+							number: null, //销售单号
+							otherone: 1, //其他字段
+						}
 					};
 				},
 				methods: {
@@ -395,18 +459,20 @@
 							var taxes = $("[name=taxes]").val();
 							var price = $("[name=customerMoney]").text();
 							var money = $("[name=customerPrice]").val();
-							if(price == money) {
-								return;
+							if($("[name=moweishu]").val()=="抹税金"){
+								
+								$("[name=customerMoney]").text(Number(money).toFixed(2));
+							}else if($("[name=moweishu]").val()=="请选择"){
+								$("[name=customerMoney]").text(money+taxes)
 							}
-							$("[name=customerMoney]").text(price - taxes);
 						}
 					},
 					//打开收银
 					openCashier: function() {
 						var that = this;
-						
+
 						for(var i = 0; i < that.billingInformation.length; i++) {
-							
+
 							if(that.billingInformation[i].check == true) {
 								$("[name=customerPrice]").val(that.billingInformation[i].price);
 								var price = that.billingInformation[i].price;
@@ -429,13 +495,13 @@
 					switchTr: function(item) {
 						var that = this;
 						for(var i = 0; i < that.billingInformation.length; i++) {
-							
+
 							that.billingInformation[i].check = false;
 						}
 						item.check = true;
 						that.cashier = item;
 						console.log(that.cashier);
-						$("[name=startDate]").attr("value",item.ordertime);
+						$("[name=startDate]").attr("value", item.ordertime);
 					},
 					//打开单据
 					openRepairOrder: function() {
@@ -443,7 +509,7 @@
 					},
 					//改变下拉框事件
 					changeSelect: function() {
-						var id = $("[name=status]").find(":checked").attr("attrid");					 
+						var id = $("[name=status]").find(":checked").attr("attrid");
 						if(id == 1) {
 							selectUnfinished();
 							$("[name=cashdesk]").show();
@@ -453,23 +519,77 @@
 							$("[name=rollback]").show();
 							$("[name=cashdesk]").hide();
 						}
-					},setCashier:function(){
+					},
+					setCashier: function() {
 						var that = this;
 						console.log(that.billingInformation)
 						for(var i = 0; i < that.billingInformation.length; i++) {
-								if(that.billingInformation[i].check == true) {
-									that.cashier = that.billingInformation[i];	
-									console.log(that.cashier.totalNum)
-								}
+							if(that.billingInformation[i].check == true) {
+								that.cashier = that.billingInformation[i];
+
+							}
 						}
-						
-						
+						console.log("这里是初始赋值")
+						console.log(that.cashier);
+
+					},
+					addCashier: function() {
+						var that = this;
+						that.cashi.paymenttype = $("[name=zhifu]").val();
+						that.cashi.cashierstatic = $("[name=cashierstatic]").val();
+						that.cashi.number = that.cashier.number;
+						that.cashi.clientid = that.cashier.clientname;
+						that.cashi.cashiertime = new Date();
+						that.cashi.totalnum = Number($("[name=customerMoney]").text());
+						that.cashi.clientId = that.cashier.clientname;
+						if($("[name=cashierstatic]").val() == "挂账结算") {
+							that.cashi.oncredit = Number($("[name=moneynum]").val()).toFixed(2);
+						}
+						console.log(that.cashi);
+						if($("[name=moneynum]").val() != ""&&that.cashi.change>=0) {
+							var record = JSON.stringify(that.cashi);
+							$.ajax({
+								type: "post",
+								data: record,
+								contentType: "application/json;charset=utf-8",
+								url: "http://localhost:8080/addCashier",
+								success: function(result) {
+									alert(result)
+								}
+							});
+						}else{
+							
+							alert("请填写付款额度")
+						}
+					},
+					setchange: function() {
+						var that = this;
+						if($("[name=moneynum]").val() != "") {
+							that.cashi.change = Number(($("[name=moneynum]").val() - Number($(" [name=customerMoney]").text())).toFixed(2));
+							console.log(that.cashi.change)
+						} else if($("[name=moneynum]").val() == "") {
+							console.log("没填")
+						}
+
+					},moneyjfen:function(){
+						let that = this;
+						if($("[name=jfen]").val() != "") {
+							
+							$("[name=customerMoney]").text(Number(Number($("[name=taxes]").val())+Number($("[name=customerPrice]").val())-Number($("[name=jfen]").val())).toFixed(2))
+							
+							if($("[name=customerMoney]").text()<0){
+								
+								$("[name=customerMoney]").text(0)
+							}
+						}else if($("[name=jfen]").val() == ""){
+							
+							$("[name=customerMoney]").text(Number($("[name=taxes]").val())+Number($("[name=customerPrice]").val()))
+						}
 					}
 				},
 				created: function() {
 					var that = this;
-					selectUnfinished();	
-					
+					selectUnfinished();
 					var now = new Date();
 					//格式化日，如果小于9，前面补0
 					var day = ("0" + now.getDate()).slice(-2);
@@ -478,10 +598,8 @@
 					//拼装完整日期格式
 					var today = now.getFullYear() + "-" + (month) + "-" + (day);
 					//完成赋值				 
-					$("[name=nowDate]").attr("value",today);
+					$("[name=nowDate]").attr("value", today);
 					$("[name=rollback]").hide();
-					that.setCashier();
-					
 				}
 			})
 		</script>

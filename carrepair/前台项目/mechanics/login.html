@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Home</title>
+		<!-- Custom Theme files -->
+		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<!-- Custom Theme files -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+		<!--Google Fonts-->
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+	</head>
+
+	<body>
+		<div class="login">
+			<h2>德召文汽车管理系统</h2>
+			<div class="login-top">
+				<h1>登录</h1>
+				<form>
+					<input name="account" type="text" placeholder="User Id">
+					<input name="password" type="password" placeholder="password">
+				</form>
+				<div class="forgot">
+
+					<input type="button" style="color: darkgray;" class="btn" value="确定">
+				</div>
+			</div>
+		</div>
+		<div class="copyright">
+
+		</div>
+		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script>
+			$(function() {
+				$("[type=button]").click(function() {
+					var account = $("[name=account]").val();
+					var password = $("[name=password]").val();
+					if(account == null || account == "" || account == " ") {
+						alert("请填写账号！");
+						return;
+					}
+					if(password == null || password == "" || password == " ") {
+						alert("请填写密码！");
+						return;
+					}
+					var qwe={"account":account,"password":password};
+					var asd=JSON.stringify(qwe);
+					console.log(asd);
+					 
+					$.ajax({
+						url: "http://localhost:8080/login/selectStaffByAccountAndPassword",
+						data:{account:account,password:password},
+						type: "post",
+						dataType: "text",
+						xhrFields: {
+							withCredentials: true
+						},					
+						success: function(response) {
+							console.log(response);
+							if(response=="0"||response==0){
+								alert("登录失败！");
+								return;
+							}
+							window.location.href="index.html?staffno="+response;
+						},
+						error: function(error) {
+							console.log(error);
+							alert("登录失败！");
+						}
+					});
+				})
+
+			})
+		</script>
+	</body>
+
+</html>

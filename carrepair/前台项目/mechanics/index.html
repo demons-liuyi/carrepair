@@ -1,62 +1,108 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="renderer" content="webkit|ie-comp|ie-stand">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="Bookmark" href="favicon.ico" >
-<link rel="Shortcut Icon" href="favicon.ico" />
-<!--[if lt IE 9]>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="Bookmark" href="favicon.ico">
+		<link rel="Shortcut Icon" href="favicon.ico" />
+		<!--[if lt IE 9]>
 <script type="text/javascript" src="lib/html5.js"></script>
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <![endif]-->
-<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
-<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
-<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
-<!--[if IE 6]>
+		<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+		<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+		<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+		<!--[if IE 6]>
 <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script><![endif]-->
-<!--/meta 作为公共模版分离出去-->
-<style>
-</style>
-<title>首页</title>
-</head>
-<body>
-<div id="ovo">
-<!--_header 作为公共模版分离出去-->
-<header class="navbar-wrapper">
-	<div class="navbar navbar-fixed-top">
-		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="javascript:;">首页</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs"></span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
-			<nav class="nav navbar-nav">
-				<ul class="cl">
-					<li class="dropDown dropDown_hover" v-for="tm in perms"><a href="javascript:;" class="dropDown_A" @click="dux(tm.id)"><i class="Hui-iconfont"></i>{{tm.jurisdictionname}}</a></li>
-				</ul>
-			</nav>
-			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
-				<ul class="cl">
-					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A"><i class="Hui-iconfont">设置</i></a>
-						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-							<li><a href="#">切换账户</a></li>
-						</ul>
-					</li>
-					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A"><i class="Hui-iconfont">退出</i></a></li>
-					<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
-						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
-							<li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
-							<li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
-							<li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
-							<li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
-							<li><a href="javascript:;" data-val="orange" title="橙色">橙色</a></li>
-						</ul>
-					</li>
-				</ul>
-			</nav>
+		<!--/meta 作为公共模版分离出去-->
+		<style>
+
+		</style>
+		<title>首页</title>
+	</head>
+
+	<body>
+		<div id="ovo">
+			<!--_header 作为公共模版分离出去-->
+			<header class="navbar-wrapper">
+				<div class="navbar navbar-fixed-top">
+					<div class="container-fluid cl">
+						<a class="logo navbar-logo f-l mr-10 hidden-xs" href="javascript:;">首页</a>
+						<a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs"></span>
+						<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+						<nav class="nav navbar-nav">
+							<ul class="cl">
+								<li class="dropDown dropDown_hover" v-for="tm in perms">
+									<a href="javascript:;" class="dropDown_A" @click="dux(tm.id)"><i class="Hui-iconfont"></i>{{tm.jurisdictionname}}</a>
+								</li>
+							</ul>
+						</nav>
+						<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
+							<ul class="cl">
+								<li class="dropDown dropDown_hover">
+									<a href="#" class="dropDown_A"><i class="Hui-iconfont">设置</i></a>
+									<ul class="dropDown-menu menu radius box-shadow">
+										<li>
+											<a href="javascript:;" onClick="myselfinfo()">个人信息</a>
+										</li>
+										<li>
+											<a href="#">切换账户</a>
+										</li>
+									</ul>
+								</li>
+								<li class="dropDown dropDown_hover">
+									<a href="#" class="dropDown_A"><i class="Hui-iconfont">退出</i></a>
+								</li>
+								<li id="Hui-skin" class="dropDown right dropDown_hover">
+									<a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
+									<ul class="dropDown-menu menu radius box-shadow">
+										<li>
+											<a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a>
+										</li>
+										<li>
+											<a href="javascript:;" data-val="blue" title="蓝色">蓝色</a>
+										</li>
+										<li>
+											<a href="javascript:;" data-val="green" title="绿色">绿色</a>
+										</li>
+										<li>
+											<a href="javascript:;" data-val="red" title="红色">红色</a>
+										</li>
+										<li>
+											<a href="javascript:;" data-val="yellow" title="黄色">黄色</a>
+										</li>
+										<li>
+											<a href="javascript:;" data-val="orange" title="橙色">橙色</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</header>
+			<!--/_header 作为公共模版分离出去-->
+
+			<!--_menu 作为公共模版分离出去-->
+			<aside class="Hui-aside">
+				<ptree :list="permschildrens"></ptree>
+			</aside>
+			<div class="dislpayArrow hidden-xs"> </div>
+			<!--/_menu 作为公共模版分离出去-->
+
+			<section class="Hui-article-box">
+				<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span></nav>
+				<div class="Hui-article">
+					<iframe name="iframe" src="" frameborder="0" scrolling="yes" id="test" onload="this.height=720" style="width: 1497px;"></iframe>
+				</div>
+			</section>
 		</div>
 	</div>
 </header>
@@ -109,15 +155,80 @@ var permsTree = Vue.component("ptree", {
 						</dd>
 					</dl>
 				</div>	
+		<!--_footer 作为公共模版分离出去-->
+		<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+		<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
+		<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
+		<!--/_footer /作为公共模版分离出去-->
+		<!--请在下方写此页面业务相关的脚本-->
+		<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+		<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/my.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var permsTree = Vue.component("ptree", {
+				props: ["list"],
+				template: `
+				<div class="menu_dropdown bk_2">
+					<dl id="menu-article" v-for='item,index in list' v-if="item.catalog==0">
+						<dt @click="goBig(item)" class="selected">
+						<i class="Hui-iconfont">&#xe616;</i>
+						{{item.jurisdictionname}}
+						<i class="Hui-iconfont menu_dropdown-arrow"></i>
+						</dt>	
+						<dd style="display:block;">
+							<ul v-for='items in item.childrens' v-if="items.catalog==0">
+								<li>
+								<a title="items.jurisdictionname">{{items.jurisdictionname}}</a>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+				</div>	
+>>>>>>> refs/remotes/origin/master
 				`,
-				methods:{
-					goBig:function(item){
-						console.log(item.judge);
-						if(item.judge=="1"){
-							var iframe=$("[name=iframe]");
-							console.log(item.jurisdictionname);
-							iframe.attr("src",item.path);
+				methods: {
+					goBig: function(item) {
+						 
+						var url = window.location.search;
+						var id = 0;
+						if(url.indexOf("?") != -1) {
+							var id = url.substr(url.indexOf("=") + 1);
+							console.log(id);
 						}
+						$.ajax({
+							url: "http://localhost:8080/perms/findJurisdictionByStaffno",
+							data: {
+								staffno: id
+							},
+							type: "get",
+							xhrFields: {
+								withCredentials: true
+							},
+							dataType: "json",
+							success: function(response) {
+								console.log(response);
+								console.log(item.jurisdictionname);
+								for(var i = 0; i < response.length; i++) {
+									if(response[i].jurisdictionname == item.jurisdictionname && response[i].judge == "1") {
+										var iframe = $("[name=iframe]");
+										iframe.attr("src", item.path);
+										return;
+									}
+									if(i == response.length - 1) {
+										alert("您没有权限！");
+										return;
+									}
+								}
+							},
+							error: function(error) {
+
+							}
+						});
+
 					}
 				}
 			});
@@ -126,27 +237,37 @@ var permsTree = Vue.component("ptree", {
 				data() {
 					return {
 						perms: [],
-						permschildrens:[]
+						permschildrens: []
 					}
-				},methods:{
-					dux:function(id){
-						this.permschildrens=[];
-						var array=this.perms;
-						array.forEach(item=>{
-							if(item.id==id){
-								for(var i=0;i<item.childrens.length;i++){
+				},
+				methods: {
+					dux: function(id) {
+						this.permschildrens = [];
+						var array = this.perms;
+						array.forEach(item => {
+							if(item.id == id) {
+								for(var i = 0; i < item.childrens.length; i++) {
 									this.permschildrens.push(item.childrens[i]);
 								}
-								
+
 							}
 						})
-					
+
 					}
 				},
 				created: function() {
+					var url = window.location.search; //获取url中"?"符后的字串  
+					var id = 0;
+					if(url.indexOf("?") != -1) {
+						var id = url.substr(url.indexOf("=") + 1);
+						console.log(id);
+					}
 					var that = this;
 					$.ajax({
-						url:"http://localhost:8080/perms/find",
+						url: "http://localhost:8080/perms/find",
+						data: {
+							staffno: id
+						},
 						type: "get",
 						xhrFields: {
 							withCredentials: true
@@ -162,7 +283,8 @@ var permsTree = Vue.component("ptree", {
 					});
 				}
 			});
-</script>
-<!--/请在上方写此页面业务相关的脚本-->
-</body>
+		</script>
+		<!--/请在上方写此页面业务相关的脚本-->
+	</body>
+
 </html>

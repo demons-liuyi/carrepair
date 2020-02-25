@@ -36,97 +36,101 @@ import com.accp.service.departmentService;
 
 @RestController
 public class PositionController1 {
-	
+
 	@Autowired
 	PositionService1 ps;
 	@Autowired
 	departmentService deps;
-	//按条件查询岗位
+
+	// 按条件查询岗位
 	@PostMapping("/positionSelect")
 	@ResponseBody
 	public List<Post> selectPosition(@RequestBody Post po) {
 		System.out.println("查询postAll");
 		return ps.selectPost(po);
 	}
-	
+
 	@PostMapping("/postAllSelect")
 	@ResponseBody
 	public List<Post> selectPostAll() {
 		System.out.println("查询postAll");
-		
-		
+
 		return ps.selectPostAll();
 	}
-	
-	
-	//查询部门
+
+	// 查询部门
 	@GetMapping("/selectDep")
 	public List<Department> selectDep() {
 		return ps.queryDepTable();
 	}
-	//用来新增的部门信息
-		@PostMapping("/selectDeplist")
-		@ResponseBody
-		public List<Department> selectDeplist(){
-			return deps.selectAllDepartment();
-		}
-	//按条件查询员工信息
+
+	// 用来新增的部门信息
+	@PostMapping("/selectDeplist")
+	@ResponseBody
+	public List<Department> selectDeplist() {
+		return deps.selectAllDepartment();
+	}
+
+	// 按条件查询员工信息
 	@PostMapping("/selectStaff")
 	@ResponseBody
-	public List<Staff> selectStaffByNameByidByPhone(String str){
-		System.out.println("查询符合条件的staff，条件:"+str);
+	public List<Staff> selectStaffByNameByidByPhone(String str) {
+		System.out.println("查询符合条件的staff，条件:" + str);
 		return ps.selectStaffTable(str);
 	}
-	
-	//新增一条岗位信息
+
+	// 新增一条岗位信息
 	@PostMapping("/addPost")
 	@ResponseBody
 	public Integer addPosition(@RequestBody Post po) {
-		if (ps.selectPostById(po)==0) {
+		if (ps.selectPostById(po) == 0) {
 			System.out.println("查询无此条记录。");
 			return ps.addPost(po);
 		}
 		System.out.println("查询有此记录故此返回0。");
 		return 0;
 	}
-	//修改一条岗位信息
+
+	// 修改一条岗位信息
 	@PostMapping("/updatePost")
 	@ResponseBody
 	public Integer upadatePost(@RequestBody Post po) {
-		if (ps.selectPostById(po)>0) {
+		if (ps.selectPostById(po) > 0) {
 			System.out.println("查询到存在该数据，进行修改操作。");
-			return  ps.updatePost(po);
-			
+			return ps.updatePost(po);
+
 		}
 		System.out.println("查无数据故返回0。");
 		return 0;
 	}
-	//删除一条post数据
+
+	// 删除一条post数据
 	@PostMapping("/deletePost")
 	@ResponseBody
 	public Integer deletePostById(@RequestBody Post po) {
-		if (ps.selectPostById(po)>0) {
+		if (ps.selectPostById(po) > 0) {
 			System.out.println("查询到存在该数据，进行删除操作。");
 			return ps.deletePost(po);
 		}
 		return 0;
-		
+
 	}
+
 	@GetMapping("/exportExcel")
-	public ResponseEntity<byte []> exportExcel(Post pos) {
-		List<Post> list= ps.selectPost(pos);
-		
+	public ResponseEntity<byte[]> exportExcel(Post pos) {
+		List<Post> list = ps.selectPost(pos);
+
 		Workbook wb = new XSSFWorkbook();
 		Sheet sheet = wb.createSheet("岗位数据");
 		Row titrow = sheet.createRow(0);
 		titrow.createCell(0).setCellValue("岗位编号");
 		titrow.createCell(1).setCellValue("岗位名称");
 		for (int i = 0; i < list.size(); i++) {
-			Row row= sheet.createRow(i+1);	
+			Row row = sheet.createRow(i + 1);
 			Cell cellId = row.createCell(0);
 			Cell cellPostname = row.createCell(1);
 			cellId.setCellValue(list.get(i).getId());
-			cellPostname.setCellValue(list.get(i).getPostname()); 
+			cellPostname.setCellValue(list.get(i).getPostname());
 		}
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
@@ -135,20 +139,21 @@ public class PositionController1 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		HttpHeaders headers =new HttpHeaders();
+		HttpHeaders headers = new HttpHeaders();
 		try {
-			headers.setContentDispositionFormData("attachment", new String("岗位数据.xlsx".getBytes("utf-8"),"iso-8859-1"));
+			headers.setContentDispositionFormData("attachment",
+					new String("岗位数据.xlsx".getBytes("utf-8"), "iso-8859-1"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		return new ResponseEntity<byte[]>(baos.toByteArray(),headers,HttpStatus.OK);
+		return new ResponseEntity<byte[]>(baos.toByteArray(), headers, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/exportExcel1")
 	public ResponseEntity<byte[]> exportExcel(String str) {
-		System.out.println("导出条件："+str);
+		
 		List<Staff> staff = ps.SelectStaffTableAll(str);
 		Workbook wb = new XSSFWorkbook();
 		Sheet sheet = wb.createSheet("员工信息");
@@ -208,7 +213,7 @@ public class PositionController1 {
 		titrow.createCell(52).setCellValue("备用4");
 		titrow.createCell(53).setCellValue("备用5");
 		for (int i = 0; i < staff.size(); i++) {
-			Row row = sheet.createRow(i+1);
+			Row row = sheet.createRow(i + 1);
 			Cell cellstaffno = row.createCell(0);
 			Cell cellname = row.createCell(1);
 			Cell cellsex = row.createCell(2);
@@ -263,9 +268,9 @@ public class PositionController1 {
 			Cell cellotherthree = row.createCell(51);
 			Cell cellotherfour = row.createCell(52);
 			Cell cellotherfive = row.createCell(53);
-			
+
 			cellstaffno.setCellValue(staff.get(i).getStaffno());
-			System.out.println("输出："+staff.get(i).getStaffno());
+			System.out.println("输出：" + staff.get(i).getStaffno());
 			cellname.setCellValue(staff.get(i).getName());
 			cellsex.setCellValue(staff.get(i).getSex());
 			celldepartmentid.setCellValue(staff.get(i).getDepartmentid());
@@ -311,18 +316,18 @@ public class PositionController1 {
 			cellmemberoffamily.setCellValue(staff.get(i).getMemberoffamily());
 			celldisciplinaryrecords.setCellValue(staff.get(i).getDisciplinaryrecords());
 			cellemploymentadvice.setCellValue(staff.get(i).getEmploymentadvice());
-			
+
 			cellpicture.setCellValue(staff.get(i).getPicture());
-			
-			cellroleid.setCellValue((staff.get(i).getRoleid()==null?0:staff.get(i).getRoleid()));
-			cellisdimission.setCellValue((staff.get(i).getIsdimission()==null?0:staff.get(i).getIsdimission()));
-			
+
+			cellroleid.setCellValue((staff.get(i).getRoleid() == null ? 0 : staff.get(i).getRoleid()));
+			cellisdimission.setCellValue((staff.get(i).getIsdimission() == null ? 0 : staff.get(i).getIsdimission()));
+
 			cellotherone.setCellValue(staff.get(i).getOtherone());
 			cellothertwo.setCellValue(staff.get(i).getOthertwo());
 			cellotherthree.setCellValue(staff.get(i).getOtherthree());
 			cellotherfour.setCellValue(staff.get(i).getOtherfour());
 			cellotherfive.setCellValue(staff.get(i).getOtherfive());
-			
+
 		}
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
@@ -333,48 +338,51 @@ public class PositionController1 {
 		}
 		HttpHeaders headers = new HttpHeaders();
 		try {
-			headers.setContentDispositionFormData("attachment", new String("员工信息.xlsx".getBytes("utf-8"),"iso-8859-1"));
+			headers.setContentDispositionFormData("attachment",
+					new String("员工信息.xlsx".getBytes("utf-8"), "iso-8859-1"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		
-		return new ResponseEntity<byte[]>(baos.toByteArray(),headers,HttpStatus.OK);
+
+		return new ResponseEntity<byte[]>(baos.toByteArray(), headers, HttpStatus.OK);
 	}
+
 	@PostMapping("/importExcel")
 	public String importExcel(MultipartFile file) {
-		List< Staff> list = new ArrayList<Staff>();
- 		try {
+		List<Staff> list = new ArrayList<Staff>();
+		try {
 			Workbook book = new XSSFWorkbook(file.getInputStream());
-			book.getNumberOfSheets();//获取当前excel中的sheet页个数
-			Sheet sheet = book.getSheetAt(0);//根据表获取sheet页个数
-			int rows = sheet.getPhysicalNumberOfRows();//得到当前sheet页中的个数
+			book.getNumberOfSheets();// 获取当前excel中的sheet页个数
+			Sheet sheet = book.getSheetAt(0);// 根据表获取sheet页个数
+			int rows = sheet.getPhysicalNumberOfRows();// 得到当前sheet页中的个数
 			for (int i = 1; i < rows; i++) {
 				Row row = sheet.getRow(i);
 				Cell cellstaffno = row.getCell(0);
-				String staffno=cellstaffno.getStringCellValue();
-				
-				System.out.println(cellstaffno.getStringCellValue()+"<---编号----条数--->"+i);
-				
+				String staffno = cellstaffno.getStringCellValue();
+
+				System.out.println(cellstaffno.getStringCellValue() + "<---编号----条数--->" + i);
+
 				Cell cellname = row.getCell(1);
-				String name=cellname.getStringCellValue()==null?"":cellname.getStringCellValue();
+				String name = cellname.getStringCellValue() == null ? "" : cellname.getStringCellValue();
 				Cell cellsex = row.getCell(2);
-				String sex=cellsex.getStringCellValue()==null?"":cellsex.getStringCellValue();
+				String sex = cellsex.getStringCellValue() == null ? "" : cellsex.getStringCellValue();
 				Cell celldepartmentid = row.getCell(3);
-				Integer departmentid = (int)celldepartmentid.getNumericCellValue();
+				Integer departmentid = (int) celldepartmentid.getNumericCellValue();
 				Cell cellaccount = row.getCell(4);
-				String account=cellaccount.getStringCellValue()==null?"":cellaccount.getStringCellValue();
+				String account = cellaccount.getStringCellValue() == null ? "" : cellaccount.getStringCellValue();
 				Cell cellpassword = row.getCell(5);
-				String password = cellpassword.getStringCellValue()==null?"": cellpassword.getStringCellValue();
+				String password = cellpassword.getStringCellValue() == null ? "" : cellpassword.getStringCellValue();
 				Cell cellpostid = row.getCell(6);
-				Integer postid = (int)cellpostid.getNumericCellValue();
+				Integer postid = (int) cellpostid.getNumericCellValue();
 				Cell cellphysicalcondition = row.getCell(7);
-				String physicalcondition = cellphysicalcondition.getStringCellValue()==null?"":cellphysicalcondition.getStringCellValue();
+				String physicalcondition = cellphysicalcondition.getStringCellValue() == null ? ""
+						: cellphysicalcondition.getStringCellValue();
 				Cell cellheight = row.getCell(8);
 				cellheight.setCellType(CellType.STRING);
-				String height = cellheight.getStringCellValue()==null?"":cellheight.getStringCellValue();
-				System.out.println("身高"+height);
+				String height = cellheight.getStringCellValue() == null ? "" : cellheight.getStringCellValue();
+				System.out.println("身高" + height);
 				Cell cellnativeplace = row.getCell(9);
 				String nativeplace = cellnativeplace.getStringCellValue();
 				Cell cellnation = row.getCell(10);
@@ -452,30 +460,38 @@ public class PositionController1 {
 				Cell cellpicture = row.getCell(46);
 				String picture = cellpicture.getStringCellValue();
 				Cell cellroleid = row.getCell(47);
-				Integer roleid = (int)cellroleid.getNumericCellValue();
+				Integer roleid = (int) cellroleid.getNumericCellValue();
 				Cell cellisdimission = row.getCell(48);
-				Integer isdimission= (int)cellisdimission.getNumericCellValue(); 
+				Integer isdimission = (int) cellisdimission.getNumericCellValue();
 				Cell cellotherone = row.getCell(49);
 				String otherone = cellotherone.getStringCellValue();
 				Cell cellothertwo = row.getCell(50);
-				String othertwo= cellothertwo.getStringCellValue();
+				String othertwo = cellothertwo.getStringCellValue();
 				Cell cellotherthree = row.getCell(51);
 				String otherthree = cellotherthree.getStringCellValue();
 				Cell cellotherfour = row.getCell(52);
 				String otherfour = cellotherfour.getStringCellValue();
 				Cell cellotherfive = row.getCell(53);
 				String otherfive = cellotherfive.getStringCellValue();
-				Staff sta = new Staff(staffno, name, sex, departmentid, account, password, postid, physicalcondition, height, nativeplace, nation, maritalstatus, educationbackground, school, major, professionalqualification, property, degree, authorizedstrength, idcardno, residence, presentaddress, contactnumber, phone, email, depositbank, bankaccount, emergencycontact, emergencyphone, dateonboard, thetrialdue, birthdaydate, contractstart, agreementends, cardnumber, internalcardno, referrer, wholeorderdiscountright, timediscountright, righttodiscount, rightofrelief, jobresume, educationexperience, memberoffamily, disciplinaryrecords, employmentadvice, picture, roleid, isdimission, otherone, othertwo, otherthree, otherfour, otherfive);
+				Staff sta = new Staff(staffno, name, sex, departmentid, account, password, postid, physicalcondition,
+						height, nativeplace, nation, maritalstatus, educationbackground, school, major,
+						professionalqualification, property, degree, authorizedstrength, idcardno, residence,
+						presentaddress, contactnumber, phone, email, depositbank, bankaccount, emergencycontact,
+						emergencyphone, dateonboard, thetrialdue, birthdaydate, contractstart, agreementends,
+						cardnumber, internalcardno, referrer, wholeorderdiscountright, timediscountright,
+						righttodiscount, rightofrelief, jobresume, educationexperience, memberoffamily,
+						disciplinaryrecords, employmentadvice, picture, roleid, isdimission, otherone, othertwo,
+						otherthree, otherfour, otherfive);
 				list.add(sta);
 			}
-			list.stream().forEach(item->System.out.println(item.getStaffno()));
+			list.stream().forEach(item -> System.out.println(item.getStaffno()));
 			for (Staff li : list) {
-				if (ps.selectStaffById(li.getStaffno())>0) {
+				if (ps.selectStaffById(li.getStaffno()) > 0) {
 					int up = ps.updateStaff(li);
-					System.out.println("修改完成："+up+li.getName());
-				}else {
+					System.out.println("修改完成：" + up + li.getName());
+				} else {
 					int add = ps.addStaff(li);
-					System.out.println("*新增完成："+add+li.getName());
+					System.out.println("*新增完成：" + add + li.getName());
 				}
 			}
 		} catch (IOException e) {
@@ -484,8 +500,8 @@ public class PositionController1 {
 		}
 		return null;
 	}
-	
-	//-->staff的增删改
+
+	// -->staff的增删改
 	@PostMapping("/addStaff")
 	@ResponseBody
 	public Integer addStaff(@RequestBody Staff sta) {
@@ -493,52 +509,56 @@ public class PositionController1 {
 		sta.setPassword("88888888");
 		return ps.addStaff(sta);
 	}
+	//删除一条staff
 	@PostMapping("/delStaff")
 	@ResponseBody
 	public Integer delStaff(String staffno) {
 		return ps.delStaff(staffno);
 	}
+	//修改staff 
 	@PostMapping("/upStaff")
 	@ResponseBody
 	public Integer upStaff(@RequestBody Staff sta) {
 		return ps.updateStaff(sta);
 	}
+	//查询staff 条件是编号
 	@PostMapping("/selectStaffByNo")
 	@ResponseBody
 	public Staff selectStaffByNo(String staffno) {
 		return ps.selecStaffByNo(staffno);
 	}
-	
+	//生成staff编号
 	public String addStaffNo() {
 		String no = "DZW00";
 		String input = ps.selecLastStaff().getStaffno();
 		String regex = "\\d+(\\\\d+)?";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(input);
-		Integer id =0;
+		Integer id = 0;
 		while (matcher.find()) {
-			id=Integer.parseInt(matcher.group())+1;
+			id = Integer.parseInt(matcher.group()) + 1;
 		}
-		boolean bo =true;
+		boolean bo = true;
 		while (bo) {
-			
-			if (ps.selectStaffById(no+id)>0) {
-				id=id+1;
-			}else {
-				
-				no=no+id;
-				bo=false;
+
+			if (ps.selectStaffById(no + id) > 0) {
+				id = id + 1;
+			} else {
+
+				no = no + id;
+				bo = false;
 			}
 		}
-		System.out.println("生成staff编号："+no);
+		System.out.println("生成staff编号：" + no);
 		return no;
 	}
-	//<--
-	//重置密码
+
+	// <-- staff增删改代码
+	// 重置密码
 	@PostMapping("/newPassword")
 	@ResponseBody
-	public int newPassword(String no,String pwd1 ,String pwd2) {
-		if (ps.selectStaffByNoAndPass(no, pwd1)>0) {
+	public int newPassword(String no, String pwd1, String pwd2) {
+		if (ps.selectStaffByNoAndPass(no, pwd1) > 0) {
 			Staff st = new Staff();
 			st.setStaffno(no);
 			st.setPassword(pwd2);
@@ -546,26 +566,37 @@ public class PositionController1 {
 		}
 		return 0;
 	}
-	//删除一条数据
+
+	// 删除一条数据
 	@PostMapping("/deleteStaffById")
 	@ResponseBody
 	public Integer deleteStaffById(String staffno) {
-		System.out.println("staffno:"+staffno);
-		if (ps.selectStaffById(staffno)>0) {
+		System.out.println("staffno:" + staffno);
+		if (ps.selectStaffById(staffno) > 0) {
 			return ps.delStaff(staffno);
 		}
 		return 0;
 	}
-	//按条件查询员工信息
-		@PostMapping("/selectStaffByDepId")
-		@ResponseBody
-		public List<Staff> selectStaffByDepId(Integer depid){
-			return ps.selectStaffByDepId(depid);
-		}
-		@PostMapping("/addCashier")
-		@ResponseBody
-		public Integer addCashier(@RequestBody Cashier record) {
-			return ps.addCashier(record);
-		}
-		
+
+	// 按条件查询员工信息
+	@PostMapping("/selectStaffByDepId")
+	@ResponseBody
+	public List<Staff> selectStaffByDepId(Integer depid) {
+		return ps.selectStaffByDepId(depid);
+	}
+
+	// 新增结账
+	@PostMapping("/addCashier")
+	@ResponseBody
+	public Integer addCashier(@RequestBody Cashier record) {
+		return ps.addCashier(record);
+	}
+	//按照模态框内的条件查询staff
+	@PostMapping("/selectStaffByMany")
+	@ResponseBody
+	public List<Staff> selectStaffByMany(@RequestBody Staff staff) {
+		return ps.selectStaffByMany(staff);
+	}
+	
+
 }

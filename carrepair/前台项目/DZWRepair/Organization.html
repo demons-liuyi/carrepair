@@ -14,7 +14,9 @@
 			html {
 				height: 100%;
 			}
-			
+			a{
+				color: #000000;
+			}
 			.container-fluid {
 				height: 100%;
 			}
@@ -32,12 +34,10 @@
 			 */
 			
 			.header {
-				height: 6.8%;
+				height: 10%;
 				padding-top: 1em;
 				padding-bottom: 1em;
-				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
-				box-shadow: 1px 1px 4px 3px #E6E6E6;
-				margin-bottom: 0.5em;
+				
 			}
 			
 			.header-l {
@@ -73,7 +73,7 @@
 			.tit-tab {
 				border-radius: 0.5em;
 				background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
-				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
 				padding: 1em 0.5em;
 			}
 			
@@ -104,7 +104,8 @@
 			 */
 			
 			.shuzhuang {
-				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
+				padding-top: 1em;
 				height: 100%;
 			}
 			/**
@@ -112,9 +113,8 @@
 			 */
 			
 			.zhuti {
-				margin-left: 0.5em;
-				margin-right: 0.5em;
-				height: 85%;
+				
+				height: 83%;
 			}
 			/**
 			 * 模态框
@@ -134,17 +134,20 @@
 		<div class="container-fluid" id="ctx">
 			<div class="row header">
 				<div class="col-md-4 header-l ">
-					<span>
+					<h2>
 					组织结构
-				</span>
+				</h2>
 				</div>
 				<div class="col-md-4"></div>
-				<div class="header-r col-md-4">
+				<div class="header-r col-md-4" style="margin-top: 1.5em;">
 					<form class="form-inline ">
-						<div class="col-md-7">
+						<div class="col-md-10">
 							<input type="text" placeholder="匹配工号/姓名/手机" class="form-control" id="inpstr" v-model="str" />
-							<input type="button" class="btn btn-info" value="搜索" @click="selectStaffTable"></div>
-						<div class="col-md-5"><button class="btn btn-default">关闭</button></div>
+							<button type="button" class="btn btn-default" @click="selectStaffTable">搜索</button>
+							<button class="btn btn-default">关闭</button>
+						</div>
+							
+						<div class="col-md-2"></div>
 
 					</form>
 				</div>
@@ -164,7 +167,7 @@
 								<a data-toggle="modal" data-target=".mo6"><i class="iconfont icon-lishibiaodan"></i>导入</a>
 								<a @click="exportExcel()"><i class="iconfont icon-lishibiaodan"></i>导出</a>
 								<!--<a><i class="iconfont icon-lishibiaodan"></i>员工角色</a>-->
-								<a><i class="iconfont icon-lishibiaodan"></i>字段设置</a>
+								<!--<a><i class="iconfont icon-lishibiaodan"></i>字段设置</a>-->
 
 							</div>
 						</div>
@@ -293,13 +296,13 @@
 									<table>
 										<tr>
 											<td><span>员工编号：</span></td>
-											<td><input class="form-control" type="text" /></td>
+											<td><input class="form-control" type="text" v-model="selStaff.staffno"/></td>
 											<td><span>员工姓名：</span></td>
-											<td><input class="form-control" type="text" /></td>
+											<td><input class="form-control" type="text" v-model="selStaff.name"/></td>
 											<td><span>员工性别：</span></td>
 											<td>
 
-												<select name="sex" class="form-control" style="height: 2.6em;">
+												<select name="sex" class="form-control"  v-model="selStaff.sex" style="height: 2.6em;">
 													<option></option>
 													<option>男</option>
 													<option>女</option>
@@ -310,34 +313,34 @@
 										<tr>
 											<td><span>岗位：</span></td>
 											<td>
-												<select class="form-control" style="height: 2.6em;">
+												<select class="form-control" style="height: 2.6em;" v-model="selStaff.postid">
 													<option></option>
 													<option :value="posts.id" v-for="posts in postlist">{{posts.postname}}</option>
 												</select>
 											</td>
 											<td><span>所在部门：</span></td>
 											<td>
-												<select class="form-control" style="height: 2.6em;">
+												<select class="form-control" style="height: 2.6em;"  v-model="selStaff.departmentid">
 													<option></option>
 													<option :value="de.id" v-for="de in deplist">{{de.departmentname}}</option>
 												</select>
 											</td>
 										</tr>
 										<td><span>身体状况：</span></td>
-										<td><input class="form-control" type="text" /></td>
+										<td><input class="form-control" type="text"  v-model="selStaff.physicalcondition"/></td>
 										<td><span>身高：</span></td>
 										<td>
-											<input class="form-control" type="text" />
+											<input class="form-control" type="text"  v-model="selStaff.height"/>
 										</td>
 										<td> <span>籍贯：</span></td>
 										<td>
-											<input class="form-control" type="text" />
+											<input class="form-control" type="text"  v-model="selStaff.nativeplace"/>
 										</td>
 
 										<tr>
 											<td> <span>民族：</span></td>
 											<td>
-												<select name="" class="form-control" style="height: 2.6em;">
+												<select name="" class="form-control" style="height: 2.6em;" v-model="selStaff.nation">
 													<option></option>
 													<option value="汉族">汉族</option>
 													<option value="蒙古族">蒙古族</option>
@@ -399,7 +402,7 @@
 											</td>
 											<td> <span>婚姻状况：</span></td>
 											<td>
-												<select name="" class="form-control" style="height: 2.6em;">
+												<select name="" class="form-control" style="height: 2.6em;" v-model="selStaff.maritalstatus">
 													<option></option>
 													<option>已婚</option>
 													<option>未婚</option>
@@ -408,23 +411,23 @@
 											</td>
 											<td> <span>学历：</span></td>
 											<td>
-												<input class="form-control" type="text" />
+												<input class="form-control" type="text"  v-model="selStaff.educationbackground"/>
 											</td>
 										</tr>
 
 										<tr>
 											<td> <span>毕业学校：</span></td>
 											<td>
-												<input class="form-control" type="text" />
+												<input class="form-control" type="text"  v-model="selStaff.school"/>
 											</td>
 											<td> <span>专业：</span></td>
 											<td>
-												<input class="form-control" type="text" />
+												<input class="form-control" type="text"  v-model="selStaff.major"/>
 											</td>
 											<td> <span>编制：</span></td>
 											<td>
-												<select name="" v-model="st.authorizedstrength" class="form-control" style="height: 2.6em;">
-													<option>请选择</option>
+												<select name=""  v-model="selStaff.authorizedstrength" class="form-control" style="height: 2.6em;">
+													<option></option>
 													<option>在编</option>
 													<option>不编制</option>
 												</select>
@@ -432,34 +435,10 @@
 										</tr>
 
 										<tr>
-											<td><span>身份证号：</span></td>
-											<td><input type="text"></td>
-											<td><span>入职日期从：</span></td>
-											<td><input type="date"></td>
-											<td><span>到：</span></td>
-											<td><input type="date"></td>
-
-										</tr>
-
-										<tr>
-											<td><span>试用到期E&nbsp;从：</span></td>
-											<td><input class="form-control" type="date" /></td>
-											<td><span>至：</span></td>
-											<td><input class="form-control" type="date" /></td>
-											<td><span>属性：</span></td>
-											<td>
-												<select name="" class="form-control" v-model="st.property" style="height: 2.6em;">
-													<option value="1">记考勤记薪</option>
-													<option value="2">绩效记薪</option>
-												</select>
-											</td>
-
-										</tr>
-										<tr>
 											<td><span>合同开始从：</span></td>
-											<td><input class="form-control" type="date" /></td>
+											<td><input class="form-control" type="date"  v-model="selStaff.contractstart"/></td>
 											<td><span>至：</span></td>
-											<td><input class="form-control" type="date" /></td>
+											<td><input class="form-control" type="date"  v-model="selStaff.agreementends"/></td>
 										</tr>
 
 									</table>
@@ -468,8 +447,9 @@
 							</div>
 
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save changes</button>
+								<button type="button" class="btn btn-primary" @click="selectStaffByMany()">查询</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								
 							</div>
 						</div>
 
@@ -491,11 +471,11 @@
 									<table class="czmima">
 										<tr>
 											<td><span>原密码：</span></td>
-											<td><input class="form-control" v-model="pwd1" type="text" /></td>
+											<td><input class="form-control" v-model="pwd1" type="password" /></td>
 										</tr>
 										<tr>
 											<td><span>新密码：</span></td>
-											<td><input class="form-control" v-model="pwd2" type="text" /></td>
+											<td><input class="form-control" v-model="pwd2" type="password" /></td>
 										</tr>
 									</table>
 								</form>
@@ -1427,7 +1407,26 @@
 						crrent: 0,
 						pwd1: null,
 						pwd2: null,
-						depiddd: null
+						depiddd: null,
+						selStaff:{
+							staffno: null, //编号
+							name: null, //名称
+							sex: null, //性别
+							departmentid: null, //部门id
+							postid: null, //员工岗位id
+							physicalcondition: null, //身体状况
+							height: null, //身高
+							nativeplace: null, //籍贯
+							nation: null, //民族
+							maritalstatus: null, //婚姻状态
+							educationbackground: null, //学历
+							school: null, //毕业学校
+							major: null, //专业
+							authorizedstrength: null, //编制
+							contractstart: null, //合同开始
+							agreementends: null, //合同结束
+							
+						}
 					}
 				},
 				methods: {
@@ -1468,9 +1467,11 @@
 									// 获取当前节点
 									var currentNode = e.node;
 									var ref = $("#jstree_demo_div").jstree(true);
-									var that = this;
 									console.log(e.node.id)
 									that.depiddd=e.node.id;
+									if(e.node.id<3){
+										that.depiddd=0;
+									}
 									console.log(that.depiddd)
 									that.selectStaffByDepId();
 								});
@@ -1653,7 +1654,7 @@
 						//这里是点击部门查询对应的员工信息
 						var that = this;
 						var depidd = that.depiddd;
-						alert(depidd);
+						
 						$.ajax({
 							type: "post",
 							url: "http://localhost:8080/selectStaffByDepId",
@@ -1670,20 +1671,26 @@
 						var that = this;
 						window.location.href = "http://localhost:8080/exportExcel1?str=" + that.str;
 
+					},selectStaffByMany(){
+						var that = this;
+						var staff1 = JSON.stringify(that.selStaff);
+						console.log("现在输出查询条件")
+						console.log(staff1);
+						$.ajax({
+							type:"post",
+							data:staff1,
+							url:"http://localhost:8080/selectStaffByMany",
+							contentType:"application/json;charset=utf-8",
+							dataType:"json",
+							success:function(result){
+								console.log(result)
+									that.staff=result;
+							}
+							
+						});
 					}
 
-					//					,selectDepAll(){
-					//						var that = this;
-					//						$.ajax({
-					//							type: "post",
-					//							url: "http://localhost:8080/selectDep",
-					//							dataType: "json",
-					//							success: function(result) {
-					//								that.deptit = result;
-					//								
-					//							}
-					//						});
-					//					}
+					
 				},
 				created: function() {
 					this.selectStaffTable();

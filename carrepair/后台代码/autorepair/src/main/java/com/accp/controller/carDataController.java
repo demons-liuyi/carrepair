@@ -92,14 +92,23 @@ public class carDataController {
 	@RequestMapping("/queryCarInformationByCondition")
 	public List<Carinfo> queryCarInformationByCondition(String condition){
 		List<Carinfo> list=cis.queryCarInformationByCondition(condition);
+		List<Carinfo> qwelist=cis.selectAllCarInfo();
+		List<Carinfo> lastlist=new ArrayList<Carinfo>();
 		for(int i=0;i<list.size();i++) {
-			if(i==0) {
-				list.get(i).setCheck(true);
-			}else {
-				list.get(i).setCheck(false);	
+			for(int j=0;j<qwelist.size();j++) {
+				if(list.get(i).getId()==qwelist.get(j).getId()) {
+					lastlist.add(qwelist.get(j));
+				}
 			}
 		}
-		return list;
+		for(int i=0;i<lastlist.size();i++) {
+			if(i==0) {
+				lastlist.get(i).setCheck(true);
+			}else {
+				lastlist.get(i).setCheck(false);	
+			}
+		}
+		return lastlist;
 	}
 	
 	@RequestMapping("/selectCarInformationByCondition")

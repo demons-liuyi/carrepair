@@ -195,6 +195,9 @@ public class PositionService1 {
 	 * @return list
 	 */
 	public List<Staff> selectStaffByDepId(Integer depid) {
+		if (depid==0) {
+			return staffMapper.selectByExample(null);
+		}
 		StaffExample example = new StaffExample();
 		StaffExample.Criteria criteria = example.createCriteria();
 		criteria.andDepartmentidEqualTo(depid);
@@ -207,5 +210,65 @@ public class PositionService1 {
 	 */
 	public Integer addCashier(Cashier record){
 		return cashierMapper.insert(record);
+	}
+	
+	/**
+	 * 根据模态框里的条件查询staff 
+	 * @param staff
+	 * @return
+	 */
+	public List<Staff> selectStaffByMany(Staff staff) {
+		StaffExample ex = new StaffExample();
+			StaffExample.Criteria criteria= ex.createCriteria();
+			if (staff.getStaffno()!=null&&!"".equals(staff.getStaffno())) {
+				criteria.andStaffnoLike("%"+staff.getStaffno()+"%");
+			}
+			if (staff.getName()!=null&& !"".equals(staff.getName())) {
+				criteria.andNameLike("%"+staff.getName()+"%" );
+			}
+			if (staff.getSex()!=null&&!"".equals(staff.getSex())) {
+				criteria.andSexLike("%"+staff.getSex()+"%");
+			}
+			if (staff.getDepartmentid()!=null&&!"".equals(staff.getDepartmentid())) {
+				criteria.andDepartmentidEqualTo(staff.getDepartmentid());
+			}
+			if (staff.getPostid()!=null&&!"".equals(staff.getPostid())) {
+				criteria.andPostidEqualTo(staff.getPostid());
+			}
+			if (staff.getPhysicalcondition()!=null&&!"".equals(staff.getPhysicalcondition())) {
+				criteria.andPhysicalconditionEqualTo(staff.getPhysicalcondition());
+			}
+			if (staff.getHeight()!=null&&!"".equals(staff.getHeight())) {
+				criteria.andHeightGreaterThanOrEqualTo(staff.getHeight());
+			}
+			if (staff.getNativeplace()!=null&&!"".equals(staff.getNativeplace())) {
+				criteria.andNativeplaceLike("%"+staff.getNativeplace()+"%");
+			}
+			if (staff.getNation()!=null&&!"".equals(staff.getNation())) {
+				criteria.andNationEqualTo(staff.getNation());
+			}
+			if (staff.getMaritalstatus()!=null&&!"".equals(staff.getMaritalstatus())) {
+				criteria.andMaritalstatusEqualTo(staff.getMaritalstatus());
+			}
+			if (staff.getEducationbackground()!=null&&!"".equals(staff.getEducationbackground())) {
+				criteria.andEducationbackgroundLike("%"+staff.getEducationbackground()+"%");
+			}
+			if (staff.getSchool()!=null&&!"".equals(staff.getSchool())) {
+				criteria.andSchoolLike("%"+staff.getSchool()+"%");
+			}
+			if (staff.getMajor()!=null&&!"".equals(staff.getMajor())) {
+				criteria.andMajorLike("%"+staff.getMajor()+"%");
+			}
+			if (staff.getAuthorizedstrength()!=null&&!"".equals(staff.getAuthorizedstrength())) {
+				criteria.andAuthorizedstrengthLike("%"+staff.getAuthorizedstrength()+"%");
+			}
+			if (staff.getContractstart()!=null&&!"".equals(staff.getContractstart())) {
+				criteria.andContractstartLessThanOrEqualTo(staff.getContractstart());
+			}
+			if (staff.getAgreementends()!=null&&!"".equals(staff.getAgreementends())) {
+				criteria.andAgreementendsLessThanOrEqualTo(staff.getAgreementends());
+			}
+			
+		return staffMapper.selectByExample(ex);
 	}
 }

@@ -19,6 +19,14 @@ public class staffService {
 	@Autowired
 	StaffMapper sm;
 	
+	public Staff selectStaffByAccountAndPassword(String account,String password) {
+		System.out.println(account);
+		System.out.println(password);
+		Staff staff=sm.selectStaffByAccountAndPassword(account, password);
+		System.out.println(staff.getStaffno());
+		return staff;
+	}
+	
 	public List<Staff> selectStaffPhone(){
 		List<Staff> list=sm.selectStaffPhone();
 		return list;

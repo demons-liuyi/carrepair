@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>结算中心</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="fonts/font_rdupt/iconfont.css" />
+		<style>
+			body,
+			html {
+				background: white;
+				height: 100%;
+				width: 100%;
+			}
+			
+			#img {
+				color: #000000;
+			}
+			
+			#ctx {
+				height: 96%;
+			}
+			
+			.header {
+				flex-direction: row;
+				padding: 1em 2em;
+				justify-content: space-between;
+				width: 100%;
+				display: flex;
+				box-shadow: 1px 1px 4px 3px #E6E6E6;
+			}
+			
+			.header-l {
+				font-weight: 600;
+				font-size: 1.3em;
+				padding: 0.2em 1em;
+			}
+			
+			.header-r {
+				margin-top: 1em;
+			}
+			
+			.header-r input {
+				width: 25em;
+				padding: 0.3em 1em;
+			}
+			
+			.tit-tab {
+				display: flex;
+				padding: 0.5em 0;
+				box-shadow: 1px 1px 2px 0px #E6E6E6;
+			}
+			
+			.tit-tr {}
+			
+			.bt-cx {
+				padding-left: 3em;
+				padding-right: 3em;
+			}
+			
+			.t-input {
+				background: white;
+				padding-left: 1.5em;
+				padding-top: 0.5em;
+				padding-bottom: 0.5em;
+				border-radius: 0.5em;
+			}
+			
+			.t-input-1 {
+				margin-top: 0.8em;
+			}
+			
+			.tb-body {
+				background: white;
+				padding: 1em 1em;
+				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				border-radius: 0.5em;
+				margin: 0.5em 1em;
+			}
+			
+			.box-border-a-shadow {
+				box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+				margin: 0.5em 1em;
+				border-radius: 0.5em;
+			}
+			
+			.form-control {
+				height: 2.5em;
+				font-size: 0.8em;
+			}
+			
+			.t-span {
+				margin-left: 0.5em;
+				font-weight: 500;
+			}
+			
+			ul {
+				list-style-type: none;
+				margin-top: 13px;
+				margin-right: 40px;
+			}
+			
+			li {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			#img {
+				color: orange;
+			}
+			
+			#font {
+				font-size: 13px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="ctx">
+			<div class="header">
+				<div class="header-l">
+					<h2>
+					
+					结算中心
+				</h2>
+
+				</div>
+				<div class="header-r">
+
+					<button class="btn btn-default bt-cx">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查询</button>
+					<button class="btn btn-default">关闭</button>
+				</div>
+			</div>
+
+			<div style="height: 92%">
+				<div class="t-input" class="col-md-4">
+					<form class="form-inline">
+						<div class=" form-group">
+							<span class="t-span">开单日期：</span>
+							<input name="startDate" readonly="readonly" type="date" />
+							<input name="nowDate" readonly="readonly" style="margin-left: 10px;" type="date" />
+
+							<span class="t-span">结账状态：</span>
+							<select name="status" @change="changeSelect()" class="form-control">
+								<option attrid="1">
+									未结算
+								</option>
+								<option attrid="2">
+									已结算
+								</option>
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="tit-tab" class="col-md-8">
+					<div class="col-md-3">
+						<ul>
+							<li name="cashdesk">
+								<i class="glyphicon glyphicon-qrcode"></i>
+								<span @click="openCashier()" data-toggle="modal" data-target=".mo2" id="font">收银</span>
+							</li>
+							<li name="rollback">
+
+							</li>
+							<li>
+								<i class="glyphicon glyphicon-list-alt"></i>
+								<span @click="openRepairOrder()" id="font">打开单据</span>
+							</li>
+							<li>
+								<i class="glyphicon glyphicon-download-alt"></i>
+								<span @click="exportExcel()" id="font">导出</span>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="tb-body" style="overflow: auto;height:82%;">
+
+					<table class="table table-bordered" style="width:  3200px;">
+						<thead>
+							<tr class="tit-tr">
+								<td></td>
+								<td>销售单号</td>
+								<td>单据类型</td>
+								<td>结算方式</td>
+								<td>单据状态</td>
+								<td>结算状态</td>
+								<td>结算时间</td>
+								<td>结算人</td>
+								<td>结算金额</td>
+								<td>业务类型</td>
+								<td>客户名称</td>
+								<td>车牌号</td>
+								<td>车型</td>
+								<td>车架号</td>
+								<td>联系电话</td>
+								<td>保险公司</td>
+								<td>服务顾问</td>
+								<td>完成时间</td>
+								<td>备注</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr @click="switchTr(item)" v-for="item in billingInformation" class="tit-tr">
+								<td style="width: 40px;">
+									<span v-if="item.check==true" style="font-size: 8px;" class="glyphicon glyphicon-play"></span>
+								</td>
+								<td>{{item.number}}</td>
+								<td>{{item.wtype}}</td>
+								<td>{{item.setter}}</td>
+								<td>{{item.status}}</td>
+								<td>{{item.paymenttype}}</td>
+								<td>{{item.cashiertime}}</td>
+								<td>{{item.staffpeople}}</td>
+								<td>{{item.totalnum}}</td>
+								<td>{{item.carbrandname}}</td>
+								<td>{{item.clientname}}</td>
+								<td>{{item.carnumber}}</td>
+								<td>{{item.cartypename}}</td>
+								<td>{{item.carnumber1}}</td>
+								<td>{{item.carerphone}}</td>
+								<td>{{item.jqinsurance}}</td>
+								<td>{{item.staffname}}</td>
+								<td>{{item.overworkdate}}</td>
+								<td></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div>
+				<div><span>合计：{{billingInformation.length}}条记录</span>
+				</div>
+			</div>
+			<!-- Large modal -->
+
+			<div class="mo2 modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">收银中心</h4>
+						</div>
+						<div class="modal-body">
+							<table>
+								<tr>
+									<td>客总费</td>
+									<td style="padding-left: 25px;">税率（%）</td>
+									<td style="padding-left: 25px;">加税金</td>
+									<td style="padding-left: 25px;">抹尾数</td>
+									<td style="padding-left: 25px;">积分抵扣（元）</td>
+								</tr>
+								<tr>
+									<td><input readonly="readonly" name="customerPrice" type="text"></td>
+									<td style="padding-left: 25px;">
+										<input readonly="readonly" value="0.98" type="text"></td>
+									<td style="padding-left: 25px;">
+										<input readonly="readonly" name="taxes" type="text"></td>
+									<td style="padding-left: 25px;">
+										<select name="moweishu" @change="moweishu">
+											<option attrid=0>请选择</option>
+											<option attrid=1>抹税金</option>
+										</select>
+									</td>
+									<td style="padding-left: 25px;"><input type="text" name="jfen" @change="moneyjfen()" oninput="value=value.replace(/[^\d]/g,'')"></td>
+								</tr>
+							</table>
+							<div class="row">
+								<div class="col-md-6">
+									<p style="margin-top: 10px;">
+										<label>应收金额:</label><span style="color: red;font-size: 26px;" name="customerMoney"></span>
+									</p>
+									<p>
+										<span>结算状态：</span>
+										<select name="cashierstatic">
+											<option>正常结算</option>
+											<option>部分结算</option>
+											<option>挂账结算</option>
+										</select>
+									</p>
+								</div>
+								<div style="float: right;margin-top: 30px;margin-right: 50px;">
+									实收金额：<span name="money"></span>
+									<input type="text" name="moneynum" @change="setchange()" oninput="value=value.replace(/[^\d]/g,'')" />
+									<button class="btn btn-success" data-target="#myModal" data-toggle="modal" data-target=".bs-example-modal-sm">确认支付</button>
+								</div>
+							</div>
+							<div>
+								<form class=" ">
+									<table>
+										<tr>
+											<td></td>
+										</tr>
+										<tr>
+											<td><span style="font-size: 1.2em;font-weight: 500;">支付方式：</span></td>
+										</tr>
+										<tr>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>现金</td>
+											<td><input checked name="zhifu" type="radio" id="" value="现金" /></td>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>微信支付</td>
+											<td><input name="zhifu" type="radio" id="" value="微信支付" /></td>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>信用卡</td>
+											<td><input name="zhifu" type="radio" id="" value="信用卡" /></td>
+											<td>&nbsp;&nbsp;&nbsp;</td>
+											<td>支付宝</td>
+											<td><input name="zhifu" type="radio" id="" value="支付宝" /></td>
+										</tr>
+									</table>
+								</form>
+							</div>
+
+							<div>
+								<span>找零：</span><span name="change" v-text="cashi.change"></span>
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button style="margin-right: 35px;" class="btn btn-default" data-dismiss="modal">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">支付</h4>
+						</div>
+						<div class="modal-body">
+							<p>已确认金额现在提交？</p>
+						</div>
+						<div class="modal-footer">
+							<a type="button" class="btn btn-default" data-dismiss="modal">取消</a>
+							<button type="button" class="btn btn-primary" data-dismiss="modal" @click="addCashier()">确定</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+		</div>
+		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
+		<script>
+			//查询未结账的账单
+			function selectUnfinished() {
+				$.ajax({
+					url: data.ip+"/settlementCenter/selectUnfinished",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.billingInformation = response;
+						for(var i = 0; i < vm.billingInformation.length; i++) {
+							if(vm.billingInformation[i].check == true) {
+								$("[name=startDate]").attr("value", vm.billingInformation[i].ordertime);
+							}
+
+							vm.setCashier();
+						}
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//查询结账的账单
+			function selectFinished() {
+				$.ajax({
+					url: data.ip+"/settlementCenter/selectFinished",
+					type: "post",
+					dataType: "json",
+					xhrFields: {
+						withCredentials: true
+					},
+					success: function(response) {
+						vm.billingInformation = response;
+						for(var i = 0; i < vm.billingInformation.length; i++) {
+							if(vm.billingInformation[i].check == true) {
+								$("[name=startDate]").attr("value", vm.billingInformation[i].ordertime);
+							}
+
+						}
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			//导出数据
+			function exportExcel() {
+				var id = $("[name=status]").find(":checked").attr("attrid");
+				var form = document.createElement("form");
+				form.style.display = 'none';
+				form.action = data.ip+"/excel/settlementExcel";
+				form.method = "post";
+				document.body.appendChild(form);
+				if(id == 1) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "attrid";
+					input.value = "1";
+					form.appendChild(input);
+				} else {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "attrid";
+					input.value = "2";
+					form.appendChild(input);
+				}
+				form.submit();
+				form.remove();
+			}
+			var vm = new Vue({
+				el: "#ctx",
+				data() {
+
+					return {
+						billingInformation: {},
+						cashier: {},
+						cashi: {
+
+							totalnum: null, //总金额
+							cashierstatic: "已支付", //结算状态
+							paymenttype: null, //支付方式
+							invoiceno: null, //发票表id
+							cashiertime: null, //结算时间
+							staffid: null, //员工表id检查该员工的角色是否有权限使用内部券
+							oncredit: null, //挂账金额
+							interior: null, //内部免单金额
+							clientId: null, //客户编号
+							change: null, //找零
+							number: null, //销售单号
+							otherone: 1, //其他字段
+						}
+					};
+				},
+				methods: {
+					moweishu: function() {
+						var attrid = $("[name=moweishu]").find(":checked").attr("attrid");
+						if(attrid == 1) {
+							var taxes = $("[name=taxes]").val();
+							var price = $("[name=customerMoney]").text();
+							var money = $("[name=customerPrice]").val();
+							if($("[name=moweishu]").val() == "抹税金") {
+
+								$("[name=customerMoney]").text(Number(money).toFixed(2));
+							} else if($("[name=moweishu]").val() == "请选择") {
+								$("[name=customerMoney]").text(money + taxes)
+							}
+						}
+					},
+					//打开收银
+					openCashier: function() {
+						var that = this;
+
+						for(var i = 0; i < that.billingInformation.length; i++) {
+
+							if(that.billingInformation[i].check == true) {
+								$("[name=customerPrice]").val(that.billingInformation[i].price);
+								var price = that.billingInformation[i].price;
+								var taxes = price * 0.0098;
+								$("[name=taxes]").val(taxes);
+								$("[name=customerMoney]").text(price + taxes);
+								return;
+							}
+							if(i == that.billingInformation.length - 1) {
+								alert("无未结账账单！");
+								return;
+							}
+						}
+					},
+					//导出数据
+					exportExcel: function() {
+						exportExcel();
+					},
+					//切换账单选择
+					switchTr: function(item) {
+						var that = this;
+						for(var i = 0; i < that.billingInformation.length; i++) {
+
+							that.billingInformation[i].check = false;
+						}
+						item.check = true;
+						that.cashier = item;
+						console.log(that.cashier);
+						$("[name=startDate]").attr("value", item.ordertime);
+					},
+					//打开单据
+					openRepairOrder: function() {
+						var that = this;
+						var number=that.cashier.number
+						var status = that.cashier.status
+						var carnumber = that.cashier.carnumber;
+						var clientType = 1
+						window.location.href="../../projectWGQ/updateRepair.html?carNumber="+carnumber+"&status="+status+"&number="+number+"&clientType="+clientType
+					},
+					//改变下拉框事件
+					changeSelect: function() {
+						var id = $("[name=status]").find(":checked").attr("attrid");
+						if(id == 1) {
+							selectUnfinished();
+							$("[name=cashdesk]").show();
+							$("[name=rollback]").hide();
+						} else {
+							selectFinished();
+							$("[name=rollback]").show();
+							$("[name=cashdesk]").hide();
+						}
+					},
+					setCashier: function() {
+						var that = this;
+						console.log(that.billingInformation)
+						for(var i = 0; i < that.billingInformation.length; i++) {
+							if(that.billingInformation[i].check == true) {
+								that.cashier = that.billingInformation[i];
+
+							}
+						}
+						console.log("这里是初始赋值")
+						console.log(that.cashier);
+
+					},
+					addCashier: function() {
+						var that = this;
+						that.cashi.paymenttype = $("[name=zhifu]").val();
+						that.cashi.cashierstatic = $("[name=cashierstatic]").val();
+						that.cashi.number = that.cashier.number;
+						that.cashi.clientid = that.cashier.clientname;
+						that.cashi.cashiertime = new Date();
+						that.cashi.totalnum = Number($("[name=customerMoney]").text());
+						that.cashi.clientId = that.cashier.clientname;
+						if($("[name=cashierstatic]").val() == "挂账结算") {
+							that.cashi.oncredit = Number($("[name=moneynum]").val()).toFixed(2);
+						}
+						console.log(that.cashi);
+						if($("[name=moneynum]").val() != "" && that.cashi.change >= 0) {
+							var record = JSON.stringify(that.cashi);
+							$.ajax({
+								type: "post",
+								data: record,
+								contentType: "application/json;charset=utf-8",
+								url: data.ip+"/addCashier",
+								success: function(result) {
+									alert(result)
+								}
+							});
+						} else {
+
+							alert("请填写付款额度")
+						}
+					},
+					setchange: function() {
+						var that = this;
+						if($("[name=moneynum]").val() != "") {
+							that.cashi.change = Number(($("[name=moneynum]").val() - Number($(" [name=customerMoney]").text())).toFixed(2));
+							console.log(that.cashi.change)
+						} else if($("[name=moneynum]").val() == "") {
+							console.log("没填")
+						}
+
+					},
+					moneyjfen: function() {
+						let that = this;
+						if($("[name=jfen]").val() != "") {
+
+							$("[name=customerMoney]").text(Number(Number($("[name=taxes]").val()) + Number($("[name=customerPrice]").val()) - Number($("[name=jfen]").val())).toFixed(2))
+
+							if($("[name=customerMoney]").text() < 0) {
+
+								$("[name=customerMoney]").text(0)
+							}
+						} else if($("[name=jfen]").val() == "") {
+
+							$("[name=customerMoney]").text(Number($("[name=taxes]").val()) + Number($("[name=customerPrice]").val()))
+						}
+					},
+					toupdaterepair(){
+						
+					}
+				},
+				created: function() {
+					var that = this;
+					selectUnfinished();
+					var now = new Date();
+					//格式化日，如果小于9，前面补0
+					var day = ("0" + now.getDate()).slice(-2);
+					//格式化月，如果小于9，前面补0
+					var month = ("0" + (now.getMonth() + 1)).slice(-2);
+					//拼装完整日期格式
+					var today = now.getFullYear() + "-" + (month) + "-" + (day);
+					//完成赋值				 
+					$("[name=nowDate]").attr("value", today);
+					$("[name=rollback]").hide();
+				}
+			})
+		</script>
+	</body>
+
+</html>
