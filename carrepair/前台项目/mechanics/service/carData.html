@@ -1939,11 +1939,12 @@
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../js/map.js"></script>
+		<script type="text/javascript" src="../js/data.js"></script>
 		<script>
 			//查询全部车辆信息
 			function selectAllCarInfo() {
 				$.ajax({
-					url: "http://localhost:8080/carData/selectAllCarInfo",
+					url: data.ip+"/carData/selectAllCarInfo",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -1969,7 +1970,7 @@
 					}
 				}
 				$.ajax({
-					url: "http://localhost:8080/carData/selectClientInformationByClientId",
+					url: data.ip+"/carData/selectClientInformationByClientId",
 					data: {
 						clientId: clientId
 					},
@@ -1990,7 +1991,7 @@
 			//查询所有发动机品牌
 			function selectAllEngineBrand() {
 				$.ajax({
-					url: "http://localhost:8080/customerData/selectAllEngineBrand",
+					url: data.ip+"/customerData/selectAllEngineBrand",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -2007,7 +2008,7 @@
 			//查询客户资料
 			function selectClientInfo() {
 				$.ajax({
-					url: "http://localhost:8080/customerData/selectClientInfo",
+					url: data.ip+"/customerData/selectClientInfo",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -2026,7 +2027,7 @@
 			function selectCarBrandByCondition() {
 				var condition = $("[name=carBrandCondition]").val();
 				$.ajax({
-					url: "http://localhost:8080/customerData/selectCarBrandByCondition",
+					url: data.ip+"/customerData/selectCarBrandByCondition",
 					data: {
 						condition: condition
 					},
@@ -2055,7 +2056,7 @@
 					}
 				}
 				$.ajax({
-					url: "http://localhost:8080/customerData/selectCarByCondition",
+					url: data.ip+"/customerData/selectCarByCondition",
 					data: {
 						condition: condition,
 						carbrandid: carbrandid
@@ -2076,7 +2077,7 @@
 			//查询所有品牌车型
 			function selectAllCarBrand() {
 				$.ajax({
-					url: "http://localhost:8080/customerData/selectAllCarBrand",
+					url: data.ip+"/customerData/selectAllCarBrand",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -2102,7 +2103,7 @@
 				}
 				console.log(carbrandid);
 				$.ajax({
-					url: "http://localhost:8080/customerData/selectCarByCarBrandId",
+					url: data.ip+"/customerData/selectCarByCarBrandId",
 					data: {
 						carbrandid: carbrandid
 					},
@@ -2122,7 +2123,7 @@
 			//查询所有发动机品牌
 			function selectAllEngineBrand() {
 				$.ajax({
-					url: "http://localhost:8080/customerData/selectAllEngineBrand",
+					url: data.ip+"/customerData/selectAllEngineBrand",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -2139,7 +2140,7 @@
 			//增加车辆资料
 			function insertCarInfo(carinfo) {
 				$.ajax({
-					url: "http://localhost:8080/customerData/insertCarInfo",
+					url: data.ip+"/customerData/insertCarInfo",
 					data: carinfo,
 					type: "post",
 					dataType: "json",
@@ -2159,7 +2160,7 @@
 			function updateCarInfo(carinfo) {
 				console.log(carinfo);
 				$.ajax({
-					url: "http://localhost:8080/customerData/updateCarInfo",
+					url: data.ip+"/customerData/updateCarInfo",
 					data: carinfo,
 					type: "post",
 					dataType: "json",
@@ -2178,7 +2179,7 @@
 			//根据车牌号删除车辆资料
 			function deleteCarInfoByCarNumber(number) {
 				$.ajax({
-					url: "http://localhost:8080/customerData/deleteCarInfoByCarNumber",
+					url: data.ip+"/customerData/deleteCarInfoByCarNumber",
 					data: {
 						number: number
 					},
@@ -2198,7 +2199,7 @@
 			//根据车牌号查询车辆资料
 			function selectCarInfoByCarNumber(number) {
 				$.ajax({
-					url: "http://localhost:8080/customerData/selectCarInfoByCarNumber",
+					url: data.ip+"/customerData/selectCarInfoByCarNumber",
 					data: {
 						number: number
 					},
@@ -2253,7 +2254,7 @@
 			//根据车牌号查询车辆指定资料
 			function queryCarInfoByCarNumber(number) {
 				$.ajax({
-					url: "http://localhost:8080/customerData/queryCarInfoByCarNumber",
+					url: data.ip+"/customerData/queryCarInfoByCarNumber",
 					data: {
 						number: number
 					},
@@ -2288,7 +2289,7 @@
 			//查询所有客户类型
 			function selectAllClientType() {
 				$.ajax({
-					url: "http://localhost:8080/customerData/selectAllClientType",
+					url: data.ip+"/customerData/selectAllClientType",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -2305,7 +2306,7 @@
 			//根据条件查询员工
 			function query(departmentname) {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/selectStaffByCondition",
+					url: data.ip+"/exitRegistration/selectStaffByCondition",
 					data: {
 						departmentname: departmentname
 					},
@@ -2326,7 +2327,7 @@
 			//查询所有部门信息
 			function selectAllDepartment() {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/selectAllDepartment",
+					url: data.ip+"/exitRegistration/selectAllDepartment",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -2345,7 +2346,7 @@
 				var condition = $("[name=condition]").val();
 				console.log(condition);
 				$.ajax({
-					url: "http://localhost:8080/carData/queryCarInformationByCondition",
+					url: data.ip+"/carData/queryCarInformationByCondition",
 					data: {
 						condition: condition
 					},
@@ -2372,7 +2373,7 @@
 					}
 				}
 				$.ajax({
-					url: "http://localhost:8080/carData/selectRepairByCarNumber",
+					url: data.ip+"/carData/selectRepairByCarNumber",
 					data: {
 						number: number
 					},
@@ -2414,7 +2415,7 @@
 				console.log(coll);
 
 				$.ajax({
-					url: "http://localhost:8080/carData/selectCarInformationByCondition",
+					url: data.ip+"/carData/selectCarInformationByCondition",
 					data: coll,
 					type: "post",
 					dataType: "json",
@@ -2464,7 +2465,7 @@
 				vm.coll.client = vm.Client;
 				var form = document.createElement("form");
 				form.style.display = 'none';
-				form.action = "http://localhost:8080/excel/carInfoExportExcel";
+				form.action = data.ip+"/excel/carInfoExportExcel";
 				form.method = "post";
 				document.body.appendChild(form);
 				for(var key in vm.CarInfo) {
@@ -2497,7 +2498,7 @@
 				console.log(number);
 				$("[name=carNumberSpan]").text(number);
 				$.ajax({
-					url: "http://localhost:8080/carData/selectMaintainregistInfoByCarNumber",
+					url: data.ip+"/carData/selectMaintainregistInfoByCarNumber",
 					data: {
 						carNumber: number
 					},
@@ -2527,7 +2528,7 @@
 				vm.baoyang.otherone=number;
 				var main=JSON.stringify(vm.baoyang);
 				$.ajax({
-					url: "http://localhost:8080/carData/insertBaoYang",
+					url: data.ip+"/carData/insertBaoYang",
 					data: main,
 					type: "post",
 					dataType: "json",
@@ -2556,7 +2557,7 @@
 				vm.baoyang.otherone=number;
 				var main=JSON.stringify(vm.baoyang);
 				$.ajax({
-					url: "http://localhost:8080/carData/updateBaoYang",
+					url: data.ip+"/carData/updateBaoYang",
 					data: main,
 					type: "post",
 					dataType: "json",
@@ -2582,11 +2583,10 @@
 					}
 				}					 
 				$.ajax({
-					url: "http://localhost:8080/carData/deleteBaoYang",
+					url: data.ip+"/carData/deleteBaoYang",
 					data: {id:id},
 					type: "post",
-					dataType: "json",
-					 
+					dataType: "json",			 
 					xhrFields: {
 						withCredentials: true
 					},

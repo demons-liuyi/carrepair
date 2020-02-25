@@ -104,57 +104,6 @@
 				</div>
 			</section>
 		</div>
-	</div>
-</header>
-<!--/_header 作为公共模版分离出去-->
-
-<!--_menu 作为公共模版分离出去-->
-<aside class="Hui-aside">
-		<ptree :list="permschildrens"></ptree>
-</aside>
-<div class="dislpayArrow hidden-xs"> </div>
-<!--/_menu 作为公共模版分离出去-->
-
-<section class="Hui-article-box">
-	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span></nav>
-	<div class="Hui-article">
-		<iframe name="iframe"  src="pngfix" frameborder="0" scrolling="no" id="test" onload="this.height=850" style="width: 1497px;"></iframe>
-	</div>
-</section>
-</div>
-<!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="lib/layer/2.4/layer.js"></script> 
-<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
-<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script> 
-<!--/_footer /作为公共模版分离出去-->
-<!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
-<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/my.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-var permsTree = Vue.component("ptree", {
-				props: ["list"],
-				template: `
-				<div class="menu_dropdown bk_2">
-					<dl id="menu-article" v-for='item,index in list' v-if="item.catalog==0">
-						<dt @click="goBig(item)" class="selected">
-						<i class="Hui-iconfont">&#xe616;</i>
-						{{item.jurisdictionname}}
-						<i class="Hui-iconfont menu_dropdown-arrow"></i>
-						</dt>	
-						<dd style="display:block;">
-							<ul v-for='items in item.childrens' v-if="items.catalog==0">
-								<li>
-								<a title="items.jurisdictionname">{{items.jurisdictionname}}</a>
-								</li>
-							</ul>
-						</dd>
-					</dl>
-				</div>	
 		<!--_footer 作为公共模版分离出去-->
 		<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 		<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
@@ -188,7 +137,6 @@ var permsTree = Vue.component("ptree", {
 						</dd>
 					</dl>
 				</div>	
->>>>>>> refs/remotes/origin/master
 				`,
 				methods: {
 					goBig: function(item) {

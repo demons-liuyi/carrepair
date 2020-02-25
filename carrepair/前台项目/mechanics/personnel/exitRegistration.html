@@ -856,11 +856,12 @@
 		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/data.js"></script>
 		<script>
 			//根据条件查询员工
 			function query(departmentname) {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/selectStaffByCondition",
+					url: data.ip+"/exitRegistration/selectStaffByCondition",
 					data: {
 						departmentname: departmentname
 					},
@@ -881,7 +882,7 @@
 			//根据员工编号查询员工
 			function queryByStaffNo(staffno) {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/selectByStaffNo",
+					url: data.ip+"/exitRegistration/selectByStaffNo",
 					data: {
 						staffno: staffno
 					},
@@ -902,7 +903,7 @@
 			//查询所有岗位
 			function selectAllPost() {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/selectAllPost",
+					url: data.ip+"/exitRegistration/selectAllPost",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -920,7 +921,7 @@
 			//查询所有部门信息
 			function selectAllDepartment() {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/selectAllDepartment",
+					url: data.ip+"/exitRegistration/selectAllDepartment",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -937,7 +938,7 @@
 			//查询离职员工信息
 			function queryDimission() {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/queryDimissionInfo",
+					url: data.ip+"/exitRegistration/queryDimissionInfo",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -961,7 +962,7 @@
 				var staff = JSON.stringify(vm.employeeinfo);
 
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/queryDimissionInfoByCondition",
+					url: data.ip+"/exitRegistration/queryDimissionInfoByCondition",
 					data: staff,
 					type: "post",
 					dataType: "json",
@@ -981,7 +982,7 @@
 			//根据编号或姓名查询离职员工信息
 			function selectDimissionInfoByStaffNoOrName(condition) {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/selectDimissionInfoByStaffNoOrName",
+					url: data.ip+"/exitRegistration/selectDimissionInfoByStaffNoOrName",
 					data: {
 						condition: condition
 					},
@@ -1001,7 +1002,7 @@
 			//添加离职员工信息
 			function addDimission(staffname, dimissiondate, dimissionreason) {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/addDimission",
+					url: data.ip+"/exitRegistration/addDimission",
 					data: {
 						staffname: staffname,
 						dimissiondate: dimissiondate,
@@ -1024,7 +1025,7 @@
 			//将离职员工信息回滚
 			function staffRollback(staffno) {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/staffRollback",
+					url: data.ip+"/exitRegistration/staffRollback",
 					data: {
 						staffno: staffno
 					},
@@ -1056,7 +1057,7 @@
 				console.log(staff);
 				var form = document.createElement("form");
 				form.style.display = 'none';
-				form.action = "http://localhost:8080/excel/dimissionExportExcel";
+				form.action = data.ip+"/excel/dimissionExportExcel";
 				form.method = "post";
 				document.body.appendChild(form);
 				for(var key in vm.employeeinfo) {
