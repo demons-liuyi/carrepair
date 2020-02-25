@@ -117,6 +117,7 @@
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/my.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/data.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var permsTree = Vue.component("ptree", {
 				props: ["list"],
@@ -148,7 +149,7 @@
 							console.log(id);
 						}
 						$.ajax({
-							url: "http://localhost:8080/perms/findJurisdictionByStaffno",
+							url: data.ip+"/perms/findJurisdictionByStaffno",
 							data: {
 								staffno: id
 							},
@@ -212,7 +213,7 @@
 					}
 					var that = this;
 					$.ajax({
-						url: "http://localhost:8080/perms/find",
+						url: data.ip+"/perms/find",
 						data: {
 							staffno: id
 						},
