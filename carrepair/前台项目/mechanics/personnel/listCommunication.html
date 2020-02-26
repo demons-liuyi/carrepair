@@ -507,11 +507,12 @@
 		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/data.js"></script>
 		<script>
 			//查询员工通讯名录信息
 			function selectStaffPhone() {
 				$.ajax({
-					url: "http://localhost:8080/listCommunication/selectStaffPhone",
+					url: data.ip+"/listCommunication/selectStaffPhone",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -528,7 +529,7 @@
 			//查询所有部门信息
 			function selectAllDepartment() {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/selectAllDepartment",
+					url: data.ip+"/exitRegistration/selectAllDepartment",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -545,7 +546,7 @@
 			//根据编号或姓名查询员工通讯名录信息
 			function selectStaffPhoneByStaffNoOrName(condition) {
 				$.ajax({
-					url: "http://localhost:8080/listCommunication/selectStaffPhoneByStaffNoOrName",
+					url: data.ip+"/listCommunication/selectStaffPhoneByStaffNoOrName",
 					data: {
 						condition: condition
 					},
@@ -566,7 +567,7 @@
 			//查询所有岗位
 			function selectAllPost() {
 				$.ajax({
-					url: "http://localhost:8080/exitRegistration/selectAllPost",
+					url: data.ip+"/exitRegistration/selectAllPost",
 					type: "post",
 					dataType: "json",
 					xhrFields: {
@@ -589,7 +590,7 @@
 				vm.employeeinfo.departmentid = arr[0];
 				var staff = JSON.stringify(vm.employeeinfo);
 				$.ajax({
-					url: "http://localhost:8080/listCommunication/selectStaffPhoneByCondition",
+					url: data.ip+"/listCommunication/selectStaffPhoneByCondition",
 					data: staff,
 					type: "post",
 					dataType: "json",
@@ -620,7 +621,7 @@
 				 
 				var form = document.createElement("form");
 				form.style.display = 'none';
-				form.action = "http://localhost:8080/excel/staffExportExcel";
+				form.action = data.ip+"/excel/staffExportExcel";
 				form.method = "post";
 				document.body.appendChild(form);
 				for(var key in vm.employeeinfo) {

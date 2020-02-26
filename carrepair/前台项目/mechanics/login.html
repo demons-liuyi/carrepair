@@ -34,6 +34,7 @@
 		</div>
 		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/data.js"></script>
 		<script>
 			$(function() {
 				$("[type=button]").click(function() {
@@ -52,7 +53,7 @@
 					console.log(asd);
 					 
 					$.ajax({
-						url: "http://localhost:8080/login/selectStaffByAccountAndPassword",
+						url: data.ip+"/login/selectStaffByAccountAndPassword",
 						data:{account:account,password:password},
 						type: "post",
 						dataType: "text",

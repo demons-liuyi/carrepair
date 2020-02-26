@@ -706,11 +706,12 @@
 		<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/data.js"></script> 
 		<script>
 			//查询所有岗位信息
 			function selectAllPostInfo() {
 				$.ajax({
-					url: "http://localhost:8080/rolePermissionSettings/selectAllPostInfo",
+					url: data.ip+"/rolePermissionSettings/selectAllPostInfo",
 
 					type: "post",
 					dataType: "json",
@@ -736,7 +737,7 @@
 			function selectJurisdictionByPostid() {
 				var postid = $("[name=postname]").find(":checked").attr("postid");
 				$.ajax({
-					url: "http://localhost:8080/rolePermissionSettings/selectJurisdictionByPostid",
+					url: data.ip+"/rolePermissionSettings/selectJurisdictionByPostid",
 					data: {
 						postid: postid
 					},
@@ -758,7 +759,7 @@
 			//根据角色编号删除所有角色权限
 			function deleteAllJurisdictionByPostId(postid) {
 				$.ajax({
-					url: "http://localhost:8080/rolePermissionSettings/deleteAllJurisdictionByPostId",
+					url: data.ip+"/rolePermissionSettings/deleteAllJurisdictionByPostId",
 					data: {
 						postid: postid
 					},
@@ -799,7 +800,7 @@
 			function insertJurisdictionInfo(permsArray) {
 				console.log(JSON.stringify(permsArray));
 				$.ajax({
-					url: "http://localhost:8080/rolePermissionSettings/addJurisdictionInfo",
+					url: data.ip+"/rolePermissionSettings/addJurisdictionInfo",
 					data: JSON.stringify(permsArray),
 					type: "post",
 					dataType: "text",
@@ -818,7 +819,7 @@
 			//根据岗位编号删除岗位信息		
 			function deletePost(postid) {
 				$.ajax({
-					url: "http://localhost:8080/rolePermissionSettings/deletePost",
+					url: data.ip+"/rolePermissionSettings/deletePost",
 					data: {
 						postId: postid
 					},
@@ -841,7 +842,7 @@
 			//根据岗位编号修改岗位信息		
 			function updatePost(postid, postname) {
 				$.ajax({
-					url: "http://localhost:8080/rolePermissionSettings/updatePost",
+					url: data.ip+"/rolePermissionSettings/updatePost",
 					data: {
 						postId: postid,
 						postName: postname
@@ -864,7 +865,7 @@
 			//新增岗位信息		
 			function insertPost(postid, postname) {
 				$.ajax({
-					url: "http://localhost:8080/rolePermissionSettings/insertPost",
+					url: data.ip+"/rolePermissionSettings/insertPost",
 					data: {
 						postId: postid,
 						postName: postname
