@@ -347,7 +347,7 @@
 						<div class="modal-body form-inline">
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>维修项目</label>
-								<input v-model="item.itemsname" disabled="disabled" type="text" class="form-control"><button id="chooseItem" class="btn btn-success">选择项目</button>
+								<input v-model="item.itemsname" disabled="disabled" type="text" class="form-control"><button  class="btn btn-success chooseItem">选择项目</button>
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>价类</label>
@@ -415,7 +415,7 @@
 						<div class="modal-body form-inline">
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>维修项目</label>
-								<input v-model="item.itemsname" disabled="disabled" type="text" class="form-control"><button id="chooseItem" class="btn btn-success">选择项目</button>
+								<input v-model="item.itemsname" disabled="disabled" type="text" class="form-control"><button  class="btn btn-success chooseItem">选择项目</button>
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>价类</label>
@@ -1332,7 +1332,7 @@
 							}
 						}
 				}
-				$("#chooseItem").click(function(){
+				$(".chooseItem").click(function(){
 						$.ajax({
 						type:"post",
 						url:data.ip+"repair/selectAllItem",
@@ -1682,7 +1682,7 @@
 			})
 			$(".otherpagell").click(function(){
 				var sz=[]
-					$("#otherpagexq tr:not(:first)").each(function(){
+					$("#otherpagell tr:not(:first)").each(function(){
 						if($(this).find("td:first input")[0].checked==true){
 							sz.push($(this).find("td:eq(1)").html());
 						}

@@ -339,7 +339,7 @@
 						<div class="modal-body form-inline">
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>维修项目</label>
-								<input v-model="item.itemsname" disabled="disabled" type="text" class="form-control"><button id="chooseItem" class="btn btn-success">选择项目</button>
+								<input v-model="item.itemsname" disabled="disabled" type="text" class="form-control"><button  class="btn btn-success chooseItem">选择项目</button>
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>价类</label>
@@ -356,7 +356,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>数量</label>
-								<input v-model="item.count" id="count" type="text" class="form-control">
+								<input v-model="item.count" style="width: 100px;" id="count" type="text" class="form-control">
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>优惠前单价</label>
@@ -407,7 +407,7 @@
 						<div class="modal-body form-inline">
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>维修项目</label>
-								<input v-model="item.itemsname" disabled="disabled" type="text" class="form-control"><button id="chooseItem" class="btn btn-success">选择项目</button>
+								<input v-model="item.itemsname" disabled="disabled" type="text" class="form-control"><button  class="btn btn-success chooseItem">选择项目</button>
 							</div>
 							<div class="form-group">
 								<label class="control-label"><span class="fontRed">★</span>价类</label>
@@ -790,6 +790,180 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpage">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择顾问</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>员工编号</th>
+								<th>员工姓名</th>
+								
+							</tr>
+							<tr v-for="item in allstaff">
+								<td><input name="cc" type="radio"></td>
+								<td>{{item.staffno}}</td>
+								<td>{{item.name}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpage">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpagebz">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择班组</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>班组编号</th>
+								<th>班组名称</th>
+								
+							</tr>
+							<tr v-for="item in artisan">
+								<td><input name="cc" type="radio"></td>
+								<td>{{item.id}}</td>
+								<td>{{item.artisanclassname}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpagebz">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpagewx">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择维修项目</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>项目编号</th>
+								<th>项目名称</th>
+								
+							</tr>
+							<tr v-for="item in mainten">
+								<td><input name="cc"  type="radio"></td>
+								<td>{{item.id}}</td>
+								<td>{{item.itemsname}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpagewx">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpagewxs">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择维修项目</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>项目编号</th>
+								<th>项目名称</th>
+								
+							</tr>
+							<tr v-for="item in mainten">
+								<td><input  type="checkbox"></td>
+								<td>{{item.id}}</td>
+								<td>{{item.itemsname}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpagewxs">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpagexq">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择商品</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>商品编号</th>
+								<th>商品名称</th>
+								
+							</tr>
+							<tr v-for="item in commoditys">
+								<td><input  type="checkbox"></td>
+								<td>{{item.commodityno}}</td>
+								<td>{{item.name}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpagexq">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" tabindex="-1" role="dialog" id="otherpagell">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">选择商品</h4>
+						</div>
+						<div class="modal-body form-inline">
+						<table class="table table-hover">
+							<tr>
+								<th>选择</th>
+								<th>商品编号</th>
+								<th>商品名称</th>
+								
+							</tr>
+							<tr v-for="item in commoditys">
+								<td><input  type="checkbox"></td>
+								<td>{{item.commodityno}}</td>
+								<td>{{item.name}}</td>
+							
+							</tr>							
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button  type="button" class="btn btn-primary otherpagell">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>				
 		</div>
 		<script src="static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
@@ -823,7 +997,11 @@
 						allCommodity:[],
 						jsInfo:{sta:"",qprice:0.0,hprice:0.0,gsprice:0.0,clprice:0.0},
 						arrayList:[],
-						repair:{number:""}
+						repair:{number:""},
+						allstaff:[],
+						artisan:[],
+						mainten:[],
+						commoditys:[]
 					}
 				},
 				created:function(){
@@ -883,19 +1061,31 @@
 				,
 				methods: {
 					openStaff() {
-						var staffno="ASD002"
-						var staffname="克莱尔"
-						var op=$("<option selected='selected' value='"+staffno+"' >"+staffname+"</option>")
-						$("#fwman").append(op)
-						this.repair.staffno=staffno;
-						this.repair.staffname=staffname
+					$.ajax({
+						type:"post",
+						url:data.ip+"repair/selectAllStaff",
+						async:true,
+						dateType:"json",
+						success:function(result){
+							vm.allstaff=result
+						
+						}
+					});	
+					$("#otherpage").modal("show");
+
+						
 					},
 					openbz(){
-						var staffno="111"
-						var staffname="刘来钱"
-						
-						$("#pgbz").val(staffname)
-						this.repair.rescueteamid=staffno;
+					$.ajax({
+					type:"post",
+					url:data.ip+"leg/selectAll",
+					dataType:"json",
+					success:function(res){
+						vm.artisan=res
+					}
+				})
+					$("#otherpagebz").modal("show")						
+
 						
 					},
 					openMaintenanceItems() {
@@ -1144,13 +1334,35 @@
 					}
 					vm.head = data;
 				});
-				$("#chooseItem").click(function(){
-			   			$.ajax({
+				$(".chooseItem").click(function(){
+						$.ajax({
+						type:"post",
+						url:data.ip+"repair/selectAllItem",
+						async:true,
+						dataType:"json",
+						success:function(result){
+							vm.mainten=result;
+							
+						}
+					});					
+					$("#otherpagewx").modal("show")
+				})
+				$(".otherpagewx").click(function(){
+					var id=0;
+					
+					$("#otherpagewx tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							id=$(this).find("td:eq(1)").html();
+							
+						}
+					})
+					
+						$.ajax({
 						type:"post",
 						url:data.ip+"repair/selectById",
 						async:true,
 						data:{
-							id:"10005"
+							id:id
 						},
 						dataType:"json",
 						success:function(result){
@@ -1160,8 +1372,7 @@
 							
 						}
 					});
-				
-				
+					$("#otherpagewx").modal("hide")
 				})
 				function selectItemByid(id){
 					$.ajax({
@@ -1249,7 +1460,26 @@
 					changeitem();
 			});
 			$("#adds").click(function(){
-				var sz=["10007","10008","10009"];
+						$.ajax({
+						type:"post",
+						url:data.ip+"repair/selectAllItem",
+						async:true,
+						dataType:"json",
+						success:function(result){
+							vm.mainten=result;
+							
+						}
+					});					
+					$("#otherpagewxs").modal("show")		
+			})
+			$(".otherpagewxs").click(function(){
+				var sz=[];
+					$("#otherpagewxs tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							sz.push($(this).find("td:eq(1)").html());
+						}
+					})
+			
 				for (var i=0;i<sz.length;i++) {
 					   	$.ajax({
 						type:"post",
@@ -1279,8 +1509,8 @@
 						})
 					
 				}
-				vm.getsume();
-				
+				vm.getsume();	
+				$("#otherpagewxs").modal("hide")
 			})
 			$("#keepewitems").click(function(){
 				if(vm.ewitems.isupdate!="1"){
@@ -1299,7 +1529,27 @@
 				}
 			})
 			$("#addCommodity").click(function(){
-				var sz=["0Z0 258 007 090","0Z0 280 130 039"]
+				$("#otherpagexq").modal("show");
+						$.ajax({
+						type:"post",
+						url:data.ip+"repair/selectAllCommodity",
+						async:true,
+						dataType:"json",
+						success:function(result){
+							vm.commoditys=result;
+							
+						}
+					});					
+
+				
+			})
+			$(".otherpagexq").click(function(){
+				var sz=[]
+					$("#otherpagexq tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							sz.push($(this).find("td:eq(1)").html());
+						}
+					})				
 					for (var i=0;i<sz.length;i++) {
 				$.ajax({
 					type:"post",
@@ -1325,7 +1575,7 @@
 					}
 				})
 					}
-				
+					$("#otherpagexq").modal("hide")
 			})
 			$("#wlpriceType").change(function(){
 							var clientType=$("#clientType").val();
@@ -1419,8 +1669,26 @@
 				$("#materialRequirement").modal("hide")
 			})
 			$("#wladd").click(function(){
-				
-				var sz=["0Z0 258 007 090","0Z0 280 130 039"]
+				$("#otherpagell").modal("show");
+						$.ajax({
+						type:"post",
+						url:data.ip+"repair/selectAllCommodity",
+						async:true,
+						dataType:"json",
+						success:function(result){
+							vm.commoditys=result;
+							
+						}
+					});					
+
+			})
+			$(".otherpagell").click(function(){
+				var sz=[]
+					$("#otherpagell tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							sz.push($(this).find("td:eq(1)").html());
+						}
+					})	
 					for (var i=0;i<sz.length;i++) {
 				$.ajax({
 					type:"post",
@@ -1446,6 +1714,7 @@
 					}
 				})
 					}
+					$("#otherpagell").modal("hide")
 			})
 			$("#llkeep").click(function(){
 				$("#receiveMaterial").modal("hide")
@@ -1548,9 +1817,56 @@
 
 			})
 						$(".chosebz").click(function(){
-				vm.item.bzid="10005"
-				vm.item.bzname="马云组"
+					$.ajax({
+					type:"post",
+					url:data.ip+"leg/selectAll",
+					dataType:"json",
+					success:function(res){
+						vm.artisan=res
+					}
+				})
+					$("#otherpagebz").modal("show")
 			})
+			$(".otherpagebz").click(function(){
+					$("#otherpagebz tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							vm.item.bzid=$(this).find("td:eq(1)").html();
+							vm.item.bzname=$(this).find("td:eq(2)").html();
+						}
+					})
+					$("#otherpagebz").modal("hide")
+			})
+								$(".otherpage").click(function(){
+				var staffno=''
+				var staffname=''
+						$("#otherpage tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							 staffno=$(this).find("td:eq(1)").html();
+							 staffname=$(this).find("td:eq(2)").html();
+						}
+					})
+
+						var op=$("<option selected='selected' value='"+staffno+"' >"+staffname+"</option>")
+						$("#fwman").append(op)
+						vm.repair.staffname=staffname
+						vm.repair.staffno=staffno;
+						$("#otherpage").modal("hide")
+			})
+				$(".otherpagebz").click(function(){
+									var staffno="111"
+						var staffname="刘来钱"
+				
+								
+					$("#otherpagebz tr:not(:first)").each(function(){
+						if($(this).find("td:first input")[0].checked==true){
+							staffno=$(this).find("td:eq(1)").html();
+							staffname=$(this).find("td:eq(2)").html();
+						}
+					})
+					$("#pgbz").val(staffname)
+					vm.repair.rescueteamid=staffno;
+					$("#otherpagebz").modal("hide")
+			})							
 			
 			
 			});
