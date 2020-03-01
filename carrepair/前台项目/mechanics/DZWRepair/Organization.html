@@ -10,13 +10,15 @@
 		<link rel="stylesheet" href="css/bootstrapStyle/bootstrapStyle.css" type="text/css">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 		<style type="text/css">
-		body,
+			body,
 			html {
 				height: 100%;
 			}
-			a{
+			
+			a {
 				color: #000000;
 			}
+			
 			.container-fluid {
 				height: 100%;
 			}
@@ -37,7 +39,6 @@
 				height: 10%;
 				padding-top: 1em;
 				padding-bottom: 1em;
-				
 			}
 			
 			.header-l {
@@ -113,7 +114,6 @@
 			 */
 			
 			.zhuti {
-				
 				height: 83%;
 			}
 			/**
@@ -124,8 +124,18 @@
 				padding: 0.3em 0.2em;
 			}
 			
-			.czmima tr margin-top: 3em;
-		}
+			.over-f {
+				text-overflow: ellipsis;
+				/* for IE */
+				-moz-text-overflow: ellipsis;
+				/* for Firefox,mozilla */
+				overflow: hidden;
+				white-space: nowrap;
+				text-align: left
+			}
+			.tlayou{
+				 table-layout: fixed;  
+			}
 		</style>
 
 	</head>
@@ -146,7 +156,7 @@
 							<button type="button" class="btn btn-default" @click="selectStaffTable">搜索</button>
 							<button class="btn btn-default">关闭</button>
 						</div>
-							
+
 						<div class="col-md-2"></div>
 
 					</form>
@@ -180,7 +190,7 @@
 
 				</div>
 				<div class="col-md-10 " style="overflow: auto; height: 98%;">
-					<table class="table table-bordered" style="width: 8000px; ">
+					<table class="table table-bordered" style="width: 8000px;  table-layout: fixed;   ">
 						<tr class="tit-tr">
 							<td>员工编号</td>
 							<td>部门id</td>
@@ -225,7 +235,7 @@
 							<td>教育经历</td>
 							<td>家庭成员</td>
 							<td>奖惩记录</td>
-							<td>聘用意见</td>
+							<td class="over-f">录用意见</td>
 
 						</tr>
 
@@ -269,11 +279,11 @@
 							<td>{{sta.timediscountright}}</td>
 							<td>{{sta.righttodiscount}}</td>
 							<td>{{sta.rightofrelief}}</td>
-							<td>{{sta.jobresume}}</td>
-							<td>{{sta.educationexperience}}</td>
-							<td>{{sta.memberoffamily}}</td>
-							<td>{{sta.disciplinaryrecords}}</td>
-							<td>{{sta.employmentadvice}}</td>
+							<td class="over-f">{{sta.jobresume}}</td>
+							<td class="over-f">{{sta.educationexperience}}</td>
+							<td class="over-f">{{sta.memberoffamily}}</td>
+							<td class="over-f" >{{sta.disciplinaryrecords}}</td>
+							<td class="over-f" >{{sta.employmentadvice}}</td>
 						</tr>
 
 					</table>
@@ -296,13 +306,13 @@
 									<table>
 										<tr>
 											<td><span>员工编号：</span></td>
-											<td><input class="form-control" type="text" v-model="selStaff.staffno"/></td>
+											<td><input class="form-control" type="text" v-model="selStaff.staffno" /></td>
 											<td><span>员工姓名：</span></td>
-											<td><input class="form-control" type="text" v-model="selStaff.name"/></td>
+											<td><input class="form-control" type="text" v-model="selStaff.name" /></td>
 											<td><span>员工性别：</span></td>
 											<td>
 
-												<select name="sex" class="form-control"  v-model="selStaff.sex" style="height: 2.6em;">
+												<select name="sex" class="form-control" v-model="selStaff.sex" style="height: 2.6em;">
 													<option></option>
 													<option>男</option>
 													<option>女</option>
@@ -320,21 +330,21 @@
 											</td>
 											<td><span>所在部门：</span></td>
 											<td>
-												<select class="form-control" style="height: 2.6em;"  v-model="selStaff.departmentid">
+												<select class="form-control" style="height: 2.6em;" v-model="selStaff.departmentid">
 													<option></option>
 													<option :value="de.id" v-for="de in deplist">{{de.departmentname}}</option>
 												</select>
 											</td>
 										</tr>
 										<td><span>身体状况：</span></td>
-										<td><input class="form-control" type="text"  v-model="selStaff.physicalcondition"/></td>
+										<td><input class="form-control" type="text" v-model="selStaff.physicalcondition" /></td>
 										<td><span>身高：</span></td>
 										<td>
-											<input class="form-control" type="text"  v-model="selStaff.height"/>
+											<input class="form-control" type="text" v-model="selStaff.height" />
 										</td>
 										<td> <span>籍贯：</span></td>
 										<td>
-											<input class="form-control" type="text"  v-model="selStaff.nativeplace"/>
+											<input class="form-control" type="text" v-model="selStaff.nativeplace" />
 										</td>
 
 										<tr>
@@ -411,22 +421,22 @@
 											</td>
 											<td> <span>学历：</span></td>
 											<td>
-												<input class="form-control" type="text"  v-model="selStaff.educationbackground"/>
+												<input class="form-control" type="text" v-model="selStaff.educationbackground" />
 											</td>
 										</tr>
 
 										<tr>
 											<td> <span>毕业学校：</span></td>
 											<td>
-												<input class="form-control" type="text"  v-model="selStaff.school"/>
+												<input class="form-control" type="text" v-model="selStaff.school" />
 											</td>
 											<td> <span>专业：</span></td>
 											<td>
-												<input class="form-control" type="text"  v-model="selStaff.major"/>
+												<input class="form-control" type="text" v-model="selStaff.major" />
 											</td>
 											<td> <span>编制：</span></td>
 											<td>
-												<select name=""  v-model="selStaff.authorizedstrength" class="form-control" style="height: 2.6em;">
+												<select name="" v-model="selStaff.authorizedstrength" class="form-control" style="height: 2.6em;">
 													<option></option>
 													<option>在编</option>
 													<option>不编制</option>
@@ -436,9 +446,9 @@
 
 										<tr>
 											<td><span>合同开始从：</span></td>
-											<td><input class="form-control" type="date"  v-model="selStaff.contractstart"/></td>
+											<td><input class="form-control" type="date" v-model="selStaff.contractstart" /></td>
 											<td><span>至：</span></td>
-											<td><input class="form-control" type="date"  v-model="selStaff.agreementends"/></td>
+											<td><input class="form-control" type="date" v-model="selStaff.agreementends" /></td>
 										</tr>
 
 									</table>
@@ -449,7 +459,7 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary" @click="selectStaffByMany()">查询</button>
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								
+
 							</div>
 						</div>
 
@@ -1234,14 +1244,14 @@
 					console.log(fomData)
 					console.log("這裏")
 					$.ajax({
-						url: data.ip+"/importExcel",
+						url: data.ip + "/importExcel",
 						async: true,
 						data: fomData,
 						type: "post",
 						contentType: false,
 						processData: false,
 						success: function(result) {
-						
+
 						}
 					})
 
@@ -1252,15 +1262,12 @@
 		<script type="text/javascript">
 			function getCk() {
 				var ref = $('#jstree_demo_div').jstree(); //获得整个树
-				
-				var sel = ref.get_selected(); //获得所有选中节点，返回值为数组
-				
-				
 
-				
+				var sel = ref.get_selected(); //获得所有选中节点，返回值为数组
+
 			}
 
-			function error_prompt_alert(content){
+			function error_prompt_alert(content) {
 				toastr.options = {
 					closeButton: false,
 					debug: false,
@@ -1409,7 +1416,7 @@
 						pwd1: null,
 						pwd2: null,
 						depiddd: null,
-						selStaff:{
+						selStaff: {
 							staffno: null, //编号
 							name: null, //名称
 							sex: null, //性别
@@ -1426,7 +1433,7 @@
 							authorizedstrength: null, //编制
 							contractstart: null, //合同开始
 							agreementends: null, //合同结束
-							
+
 						}
 					}
 				},
@@ -1435,7 +1442,7 @@
 					shuxin() {
 						var that = this;
 						$.ajax({
-							url: data.ip+"/selectDep",
+							url: data.ip + "/selectDep",
 							type: "get",
 							xhrFields: {
 								withCredentials: true
@@ -1469,9 +1476,9 @@
 									var currentNode = e.node;
 									var ref = $("#jstree_demo_div").jstree(true);
 									console.log(e.node.id)
-									that.depiddd=e.node.id;
-									if(e.node.id<3){
-										that.depiddd=0;
+									that.depiddd = e.node.id;
+									if(e.node.id < 3) {
+										that.depiddd = 0;
 									}
 									console.log(that.depiddd)
 									that.selectStaffByDepId();
@@ -1489,7 +1496,7 @@
 						var str = that.str;
 						console.log("str=" + str)
 						$.ajax({
-							url: data.ip+"/selectStaff",
+							url: data.ip + "/selectStaff",
 							data: {
 								str: str
 							},
@@ -1498,7 +1505,7 @@
 
 							success: function(result) {
 								console.log(result);
-								
+
 								that.staff = result;
 							},
 							error: function() {
@@ -1512,7 +1519,7 @@
 					selectDep() {
 						var that = this;
 						$.ajax({
-							url: data.ip+"/selectDeplist",
+							url: data.ip + "/selectDeplist",
 							dataType: "json",
 							type: "post",
 							success: function(result) {
@@ -1524,7 +1531,7 @@
 					selectPost() {
 						var that = this;
 						$.ajax({
-							url: data.ip+"/postAllSelect",
+							url: data.ip + "/postAllSelect",
 							dataType: "json",
 							type: "post",
 
@@ -1553,7 +1560,7 @@
 							type: "post",
 							data: sta,
 							contentType: "application/json;charset=utf-8",
-							url: data.ip+"/addStaff",
+							url: data.ip + "/addStaff",
 							success: function(result) {
 								console.log(result);
 								that.selectStaffTable();
@@ -1568,7 +1575,7 @@
 							type: "post",
 							data: sta,
 							contentType: "application/json;charset=utf-8",
-							url:data.ip+"/upStaff",
+							url: data.ip + "/upStaff",
 							success: function(result) {
 								console.log(result);
 								that.selectStaffTable();
@@ -1585,7 +1592,7 @@
 						var staffno = that.crrent;
 						$.ajax({
 							type: "post",
-							url: data.ip+"/selectStaffByNo",
+							url: data.ip + "/selectStaffByNo",
 							data: {
 								staffno: staffno
 							},
@@ -1602,7 +1609,7 @@
 						var pwd2 = that.pwd2;
 						$.ajax({
 							type: "post",
-							url: data.ip+"/newPassword",
+							url: data.ip + "/newPassword",
 							data: {
 								no: staffno,
 								pwd1: pwd1,
@@ -1635,7 +1642,7 @@
 						var that = this;
 						$.ajax({
 							type: "post",
-							url: data.ip+"/deleteStaffById",
+							url: data.ip + "/deleteStaffById",
 							data: {
 								staffno: staffno
 							},
@@ -1655,10 +1662,10 @@
 						//这里是点击部门查询对应的员工信息
 						var that = this;
 						var depidd = that.depiddd;
-						
+
 						$.ajax({
 							type: "post",
-							url: data.ip+"/selectStaffByDepId",
+							url: data.ip + "/selectStaffByDepId",
 							data: {
 								depid: depidd
 							},
@@ -1670,28 +1677,28 @@
 					},
 					exportExcel() {
 						var that = this;
-						window.location.href = data.ip+"/exportExcel1?str=" + that.str;
+						window.location.href = data.ip + "/exportExcel1?str=" + that.str;
 
-					},selectStaffByMany(){
+					},
+					selectStaffByMany() {
 						var that = this;
 						var staff1 = JSON.stringify(that.selStaff);
 						console.log("现在输出查询条件")
 						console.log(staff1);
 						$.ajax({
-							type:"post",
-							data:staff1,
-							url:data.ip+"/selectStaffByMany",
-							contentType:"application/json;charset=utf-8",
-							dataType:"json",
-							success:function(result){
+							type: "post",
+							data: staff1,
+							url: data.ip + "/selectStaffByMany",
+							contentType: "application/json;charset=utf-8",
+							dataType: "json",
+							success: function(result) {
 								console.log(result)
-									that.staff=result;
+								that.staff = result;
 							}
-							
+
 						});
 					}
 
-					
 				},
 				created: function() {
 					this.selectStaffTable();
