@@ -479,6 +479,14 @@
 			.l_tree_container>.l_tree>.l_tree_branch::after {
 				display: none;
 			}
+			#myDialog p input{
+				margin-left: 5px;
+				margin-right: 5px;
+			}
+			#myDialog p select{
+				margin-left: 5px;
+				margin-right: 5px;
+			}			
 		</style>
 	</head>
 
@@ -556,53 +564,52 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title">技工资料</h4>
 					</div>
-					<div class="modal-body text-center">
-						<table style=" background-color: whitesmoke">
-							<tr>
-								<td>技工编号<input v-model="artisan.artisanno"/></td>
-								<td>技工姓名<input v-model="artisan.artisanname"/></td>
-								<td>性别<select v-model="artisan.sex"  style="width: 220px; height: 30px;">
+					<div class="modal-body">
+					
+							<p>
+								编号<input v-model="artisan.artisanno"/>&nbsp;&nbsp;&nbsp;&nbsp;
+								姓名<input v-model="artisan.artisanname"/>&nbsp;&nbsp;&nbsp;&nbsp;
+								性别<select v-model="artisan.sex"  style="width: 170px; height: 30px;">
 									<option>男</option>
 									<option>女</option>
-								</select></td>
-								<td><input id="groupheader" style="height: 12px;" type="checkbox"/>组长</td>
-							</tr>
-							<tr>
-								<td colspan="2">所在班组<input disabled="disabled" v-model="artisan.artisanclassname" type="text"  /></td>
-								<td>手机<input v-model="artisan.phone" style="width: 220px;"/></td>
-								<td>登录账户<input v-model="artisan.account"/></td>
-							</tr>
-							<tr>
-								<td colspan="2">地址<input v-model="artisan.address" style="width: 400px;" /></td>
-								<td>出生日期<input v-model="artisan.birthday" type="date" style="width: 210px" /></td>
-								<td>微信号<input v-model="artisan.wechat"  /></td>
-							</tr>
-							<tr>
-								<td colspan="2">身份证号<input v-model="artisan.idcardno" style="width: 400px;"/></td>
-								<td colspan="2">户口地址<input v-model="artisan.residence"  style="width: 420px;"/></td>
-							</tr>
-							<tr>
-								<td colspan="2">开户银行<select v-model="artisan.bank"   style="width: 400px; height: 30px;">
+								</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input id="groupheader" style="height: 12px;" type="checkbox"/>组长
+							</p>
+							<p>
+								班组<input disabled="disabled" v-model="artisan.artisanclassname" type="text"  />&nbsp;&nbsp;&nbsp;&nbsp;
+								手机<input v-model="artisan.phone" />&nbsp;&nbsp;&nbsp;&nbsp;
+								账户<input v-model="artisan.account" style="width: 170px;"/>
+							</p>
+							<p>
+								地址<input v-model="artisan.address" />&nbsp;&nbsp;&nbsp;&nbsp;
+								微信号<input v-model="artisan.wechat" style="width: 215px"  />
+							</p>
+							<p>
+								身份证号<input v-model="artisan.idcardno" style="width: 300px;"/>
+								户口地址<input v-model="artisan.residence"  style="width: 350px;"/>
+							</p>
+							<p>
+								开户银行<select v-model="artisan.bank"   style="width: 250px; height: 30px;">
 									<option>工商银行</option>
 									<option>农业银行</option>
-								</select></td>
-								<td>银行账户<input v-model="artisan.bankaccount" type="text" style="width: 210px;" /></td>
-								<td>星级<select v-model="artisan.artisanlevelid" style="width: 200px; height: 30px;">
+								</select>
+								银行账户<input v-model="artisan.bankaccount" type="text" style="width: 180px;" />
+								星级<select v-model="artisan.artisanlevelid" style="width: 180px; height: 30px;">
 									<option v-for="item in level" :value="item.id">{{item.artisanlevelname}}</option>
 									
-								</select></td>
-							</tr>
-							<tr>
-								<td colspan="4">
-									维修工种<input v-model="artisan.maintaintype" style="width: 860px;" />
-								</td>
-							</tr>
-							<tr>
-								<td colspan="4">
-									维修品牌<input v-model="artisan.maintainbrand" style="width: 860px;" />
-								</td>
-							</tr>
-						</table>
+								</select>
+							</p>
+							<p>
+								
+									维修工种<input v-model="artisan.maintaintype" style="width: 720px;" />
+								
+							</p>
+							<p>
+								
+									维修品牌<input v-model="artisan.maintainbrand" style="width: 720px;" />
+								
+							</p>
+						
 					</div>
 					<div class="modal-footer text-center">
 							<button type="button" id="addArtisan" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> 保存</button>
@@ -617,53 +624,51 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title">技工资料</h4>
 					</div>
-					<div class="modal-body text-center">
-						<table style=" background-color: whitesmoke">
-							<tr>
-								<td>技工编号<input disabled="disabled" v-model="artisan.artisanno"/></td>
-								<td>技工姓名<input v-model="artisan.artisanname"/></td>
-								<td>性别<select v-model="artisan.sex"  style="width: 220px; height: 30px;">
+					<div class="modal-body ">
+											
+							<p>
+								编号<input disabled="disabled" v-model="artisan.artisanno"/>&nbsp;&nbsp;&nbsp;&nbsp;
+								姓名<input v-model="artisan.artisanname"/>&nbsp;&nbsp;&nbsp;&nbsp;
+								性别<select v-model="artisan.sex"  style="width: 170px; height: 30px;">
 									<option>男</option>
 									<option>女</option>
-								</select></td>
-								<td><input id="groupheader" style="height: 12px;" type="checkbox"/>组长</td>
-							</tr>
-							<tr>
-								<td colspan="2">所在班组<input disabled="disabled" v-model="artisan.artisanclassname" type="text"  /></td>
-								<td>手机<input v-model="artisan.phone" style="width: 220px;"/></td>
-								<td>登录账户<input v-model="artisan.account"/></td>
-							</tr>
-							<tr>
-								<td colspan="2">地址<input v-model="artisan.address" style="width: 400px;" /></td>
-								<td>出生日期<input v-model="artisan.birthday" type="date" style="width: 210px" /></td>
-								<td>微信号<input v-model="artisan.wechat"  /></td>
-							</tr>
-							<tr>
-								<td colspan="2">身份证号<input v-model="artisan.idcardno" style="width: 400px;"/></td>
-								<td colspan="2">户口地址<input v-model="artisan.residence"  style="width: 420px;"/></td>
-							</tr>
-							<tr>
-								<td colspan="2">开户银行<select v-model="artisan.bank"   style="width: 400px; height: 30px;">
-									<option selected="selected" >{{artisan.bank}}</option>
+								</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input id="groupheader" style="height: 12px;" type="checkbox"/>组长
+							</p>
+							<p>
+								班组<input disabled="disabled" v-model="artisan.artisanclassname" type="text"  />&nbsp;&nbsp;&nbsp;&nbsp;
+								手机<input v-model="artisan.phone" />&nbsp;&nbsp;&nbsp;&nbsp;
+								账户<input v-model="artisan.account" style="width: 170px;"/>
+							</p>
+							<p>
+								地址<input v-model="artisan.address" />&nbsp;&nbsp;&nbsp;&nbsp;
+								微信号<input v-model="artisan.wechat" style="width: 215px"  />
+							</p>
+							<p>
+								身份证号<input v-model="artisan.idcardno" style="width: 300px;"/>
+								户口地址<input v-model="artisan.residence"  style="width: 350px;"/>
+							</p>
+							<p>
+								开户银行<select v-model="artisan.bank"   style="width: 250px; height: 30px;">
+									<option>工商银行</option>
 									<option>农业银行</option>
-								</select></td>
-								<td>银行账户<input v-model="artisan.bankaccount" type="text" style="width: 210px;" /></td>
-								<td>星级<select v-model="artisan.artisanlevelid" style="width: 200px; height: 30px;">
+								</select>
+								银行账户<input v-model="artisan.bankaccount" type="text" style="width: 180px;" />
+								星级<select v-model="artisan.artisanlevelid" style="width: 180px; height: 30px;">
 									<option v-for="item in level" :value="item.id">{{item.artisanlevelname}}</option>
 									
-								</select></td>
-							</tr>
-							<tr>
-								<td colspan="4">
-									维修工种<input v-model="artisan.maintaintype" style="width: 860px;" />
-								</td>
-							</tr>
-							<tr>
-								<td colspan="4">
-									维修品牌<input v-model="artisan.maintainbrand" style="width: 860px;" />
-								</td>
-							</tr>
-						</table>
+								</select>
+							</p>
+							<p>
+								
+									维修工种<input v-model="artisan.maintaintype" style="width: 720px;" />
+								
+							</p>
+							<p>
+								
+									维修品牌<input v-model="artisan.maintainbrand" style="width: 720px;" />
+								
+							</p>
 					</div>
 					<div class="modal-footer text-center">
 							<button type="button" id="updateArtisan" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> 保存</button>

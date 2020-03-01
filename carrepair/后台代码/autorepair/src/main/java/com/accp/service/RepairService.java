@@ -1,5 +1,6 @@
 package com.accp.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -214,7 +215,13 @@ public class RepairService {
 			if(com.getYesorno()==1) {
 				
 				String date1=com.getNowtime().toString();
-				String date2=com.getPredicttime().toString();
+				String date2;
+				if(com.getPredicttime()!=null) {
+				 date2=com.getPredicttime().toString();
+				}else {
+					Date date=new Date();
+				 date2=date.toString();	
+				}
 				int dd=date1.compareTo(date2);
 				System.out.println("时间比较"+dd);
 				if(dd>0) {
