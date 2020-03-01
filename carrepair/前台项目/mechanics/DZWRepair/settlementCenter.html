@@ -113,6 +113,20 @@
 			#font {
 				font-size: 13px;
 			}
+			
+			/*让td省略多出来的部分*/
+			.over-f {
+				text-overflow: ellipsis;
+				/* for IE */
+				-moz-text-overflow: ellipsis;
+				/* for Firefox,mozilla */
+				overflow: hidden;
+				white-space: nowrap;
+				text-align: left
+			}
+			.tlayou{
+				 table-layout: fixed;  
+			}
 		</style>
 	</head>
 
@@ -178,10 +192,10 @@
 				</div>
 				<div class="tb-body" style="overflow: auto;height:82%;">
 
-					<table class="table table-bordered" style="width:  3200px;">
+					<table class="table table-bordered tlayou" style="width:  4000px;">
 						<thead>
 							<tr class="tit-tr">
-								<td></td>
+								<td width="50px"></td>
 								<td>销售单号</td>
 								<td>单据类型</td>
 								<td>结算方式</td>
@@ -199,7 +213,6 @@
 								<td>保险公司</td>
 								<td>服务顾问</td>
 								<td>完成时间</td>
-								<td>备注</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -224,7 +237,6 @@
 								<td>{{item.jqinsurance}}</td>
 								<td>{{item.staffname}}</td>
 								<td>{{item.overworkdate}}</td>
-								<td></td>
 							</tr>
 						</tbody>
 
@@ -555,7 +567,6 @@
 								contentType: "application/json;charset=utf-8",
 								url: data.ip+"/addCashier",
 								success: function(result) {
-									alert(result)
 								}
 							});
 						} else {
