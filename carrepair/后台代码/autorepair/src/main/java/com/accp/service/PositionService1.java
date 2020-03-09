@@ -195,13 +195,32 @@ public class PositionService1 {
 	 * @return list
 	 */
 	public List<Staff> selectStaffByDepId(Integer depid) {
+		List<Post> post= selectPostAll();
 		if (depid==0) {
-			return staffMapper.selectByExample(null);
+			List<Staff> sta =staffMapper.selectByExample(null);
+			for (Staff st : sta) {
+				for (Post po : post) {
+					if (po.getId()==st.getPostid()) {
+						st.setPostName(po.getPostname());
+						System.out.println(po.getPostname());
+					}
+				}
+			}
+			return sta;
 		}
 		StaffExample example = new StaffExample();
 		StaffExample.Criteria criteria = example.createCriteria();
 		criteria.andDepartmentidEqualTo(depid);
-		return staffMapper.selectByExample(example);
+		List<Staff> sta = staffMapper.selectByExample(example);
+		for (Staff st : sta) {
+			for (Post po : post) {
+				if (po.getId()==st.getPostid()) {
+					st.setPostName(po.getPostname());
+					System.out.println(po.getPostname());
+				}
+			}
+		}
+		return sta;
 	}
 	
 	/**
